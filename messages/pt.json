@@ -1,0 +1,102 @@
+{
+    "HomePage": {
+      "title": "Por que reservar conosco!",
+      "description": "Esta é uma página de exemplo para o seu site multilíngue."
+    },
+    "Navbar": {
+      
+        "flight": "Voo",
+        "about": "Sobre",
+        "contact": "Contato",
+        "language": "Idioma",
+        "hotels": "Hotéis",
+        "flightHotel": "Voo + Hotel",
+        "trains": "Trens",
+        "bus": "Ônibus",
+        "holidays": "Férias",
+        "cab": "Táxi",
+        "cruise": "Cruzeiro",
+        "charter": "Carta",
+        "insurance": "Seguro",
+        "activities": "Atividades"
+      
+      
+    },
+    "Navbar2": {
+      "From": "De",
+      "To": "Para",
+      "Departure Date": "Data de Partida",
+      "Return Date": "Data de Retorno",
+      "Travelers": "Viajantes",
+      "oneway": "Somente Ida",
+      "roundtrip": "Ida e Volta",
+      "multicity": "Multidestinos",
+      "defenceforces": "Forças Armadas",
+      "students": "Estudantes",
+      "seniorcitizens": "Idosos",
+      "doctorsnurses": "Médicos e Enfermeiros"
+    },
+    "Popular": {
+      "mainheading": "Destinos Populares de Voos",
+      "heading1": "Principais Rotas de Voo",
+      "des1": "Conectando duas grandes cidades",
+      "des2": "Portal para a Ásia",
+      "des3": "Do outro lado do Mar da Tasmânia",
+      "des4": "Romance e História Combinados",
+      "des5": "Conectando principais centros econômicos",
+      "heading2": "Principais Pacotes de Férias",
+      "desa1": "Cidades históricas esperam por você",
+      "desa2": "Sol, Areia e Serenidade",
+      "desa3": "Aventura e Exploração Combinados",
+      "desa4": "Luxo e Tranquilidade Redefinidos",
+      "desa5": "Tradição e Aventura Combinados",
+      "heading3": "Principais Facilidades de Hotéis",
+      "desb1": "Assentos Premium e Serviços",
+      "desb2": "Transporte Sempre Confiável",
+      "desb3": "Conexão de Internet Sem Falhas a Bordo",
+      "desb4": "Segurança Avançada",
+      "desb5": "Personalizado para Suas Preferências",
+      "service": "Qual serviço você precisa?",
+      "serviceans": "Diga-nos mais sobre seus requisitos para que possamos conectá-lo ao fornecedor de serviços certo.",
+      "moreabout": "Conte-nos mais sobre suas necessidades",
+      "moreaboutans": "Imagine que você está online através de um diretório local, mas seus concorrentes também estão...",
+      "serviceprovider": "Conectamos você ao fornecedor de serviços certo",
+      "serviceproviderans": "Anunciar seu negócio localmente traz várias vantagens. Para empresários locais, é uma oportunidade...",
+      "happyservice": "Satisfeito com nosso serviço",
+      "happyserviceans": "Seu negócio local também precisa de gerenciamento de marca. Como você conhece o mercado local..."
+    },
+    "Bookwithus": {
+      "bookwith": "Por que reservar conosco?",
+      "title1": "Fácil de Reservar",
+      "des1": "Nossa plataforma amigável simplifica o processo de reserva de voos, hotéis, passagens de ônibus e pacotes de férias.",
+      "title2": "Menor Preço",
+      "des2": "Nossa tecnologia avançada de busca compara diversas opções para garantir que você obtenha os melhores preços disponíveis.",
+      "title3": "Ofertas Empolgantes",
+      "des3": "De descontos exclusivos em voos e hotéis a ofertas especiais em serviços de ônibus e pacotes de férias.",
+      "title4": "Suporte 24/7",
+      "des4": "Nossa equipe dedicada está disponível 24 horas por dia, 7 dias por semana, para ajudá-lo em qualquer dúvida ou preocupação durante sua jornada.",
+      "packages": "Pesquise Voos, Hotéis, Ônibus e Pacotes de Férias",
+      "packageans": "No Next Gen , estamos dedicados a transformar seus sonhos de viagem em realidade. Se você está buscando voos acessíveis, hotéis luxuosos, serviços confiáveis de ônibus ou pacotes de férias empolgantes, temos tudo para você."
+    },
+    "FreshTravel": {
+      "travelblogs": "Aproveite os Novos Blogs de Viagem",
+      "travelblogdes1": "Descubra novos lugares emocionantes para visitar, além dos pontos turísticos mais populares.",
+      "travelblogtitle1": "Aproveite os Novos Blogs de Viagem",
+      "travelblogdes2": "Receba conselhos valiosos e dicas de especialistas em viagens experientes.",
+      "travelblogtitle2": "Dicas de Especialistas",
+      "travelblogdes3": "Fique por dentro das últimas tendências de viagens para melhorar sua jornada.",
+      "travelblogtitle3": "Tendências de Viagem",
+      "travelblogdes4": "Leia histórias e experiências de viagem de outros viajantes.",
+      "travelblogtitle4": "Histórias Pessoais"
+    },
+    "footer": {
+      "subscribe": "Inscreva-se na Nossa Newsletter",
+      "sub2": "Inscreva-se agora e receba as últimas notícias de viagens, guias de destinos e ofertas exclusivas direto em sua caixa de entrada. Sua próxima aventura espera por você!"
+    },
+    "activities": {
+      "experience": "Onde Cada Experiência Conta!",
+      "trending": "Destinos em Alta",
+      "title1": "Passeio Guiado de Centopeia no Deserto do Arizona de ATV"
+    }
+  }
+  

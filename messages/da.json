@@ -1,0 +1,95 @@
+{
+    "HomePage": {
+      "title": "Hvorfor booke med os!",
+      "description": "Dette er en eksempelwebside til et flersproget website."
+    },
+    "Navbar": {
+      "flight": "Fly",
+      "about": "Om os",
+      "contact": "Kontakt os",
+      "language": "Sprog",
+      "hotels": "Hoteller",
+      "flightHotel": "Fly + Hotel",
+      "trains": "Tog",
+      "bus": "Bus",
+      "charter" : "Charta",
+      "cruise" : "krydstogt",
+      "cab": "førerhus",
+      "holidays": "helligdage",
+      "insurance": "Forsikring",
+      "activities": "Aktiviteter"
+    },
+    "Navbar2": {
+      "From": "Fra",
+      "To": "Til",
+      "Departure Date": "Afrejsedato",
+      "Return Date": "Returdato",
+      "Travelers": "Rejsende",
+      "oneway": "Enkelt",
+      "roundtrip": "Retur",
+      "multicity": "Flere byer",
+      "defenceforces": "Forsvar",
+      "students": "Studerende",
+      "seniorcitizens": "Ældre borgere",
+      "doctorsnurses": "Læger og sygeplejersker"
+    },
+    "Popular": {
+      "mainheading": "Populære flydestinationer",
+      "heading1": "Populære flyruter",
+      "des1": "Forbinder to store metropoler",
+      "des2": "Porten til Asien",
+      "des3": "Over Tasmanhavet",
+      "des4": "Romantik og historie kombineret",
+      "des5": "Forbinder vigtige økonomiske knudepunkter",
+      "heading2": "Populære feriepakker",
+      "desa1": "Historiske byer venter på dig",
+      "desa2": "Sol, hav og ro",
+      "desa3": "Eventyr og udforskning kombineret",
+      "desa4": "Redefineret luksus og fred",
+      "desa5": "Tradition møder eventyr",
+      "heading3": "Populære hotelfaciliteter",
+      "desb1": "Premium siddepladser og service",
+      "desb2": "Pålidelig transport, når du har brug for det",
+      "desb3": "Problemfri ombordforbindelse",
+      "desb4": "Avanceret sikkerhed og tryghed",
+      "desb5": "Skræddersyet til dine behov",
+      "service": "Hvilken service har du brug for?",
+      "serviceans": "Fortæl os mere om dine behov, så vi kan forbinde dig med den rette udbyder.",
+      "moreabout": "Fortæl os mere om dine behov",
+      "moreaboutans": "Antag, at du har en online tilstedeværelse gennem lokale onlinekataloger, men dine konkurrenter har...",
+      "serviceprovider": "Vi forbinder med den rette udbyder",
+      "serviceproviderans": "At reklamere for din virksomhed i et specifikt område har flere fordele. For lokale forretningsfolk er det en mulighed...",
+      "happyservice": "Tilfreds med vores service",
+      "happyserviceans": "Din lokale virksomhed har også brug for brand management og image building. Som du ved, er det lokale marked..."
+    },
+    "Bookwithus": {
+      "bookwith": "Hvorfor booke med os?",
+      "title1": "Nem booking",
+      "des1": "Vores brugervenlige platform gør det nemt at booke fly, hoteller, busture og feriepakker.",
+      "title2": "Laveste priser",
+      "des2": "Vores avancerede søgeteknologi sammenligner flere muligheder for at give dig de bedste tilbud.",
+      "title3": "Spændende tilbud",
+      "des3": "Fra eksklusive rabatter på fly og hoteller til særlige tilbud på bustjenester og feriepakker – vores platform er designet til at spare dig penge.",
+      "title4": "Service døgnet rundt",
+      "des4": "Vores team er tilgængeligt 24/7 for at hjælpe dig med spørgsmål eller bekymringer under din rejse.",
+      "packages": "Find fly, hoteller, busser og feriepakker",
+      "packageans": "Hos Next Gen er vi dedikerede til at gøre dine rejsedrømme til virkelighed. Uanset om du søger billige fly, luksuriøse hoteller, pålidelige bustjenester eller spændende feriepakker, har vi alt for dig..."
+    },
+    "FreshTravel": {
+      "travelblogs": "Nyd friske rejseblogs",
+      "travelblogdes1": "Opdag nye og spændende steder at besøge i populære destinationer.",
+      "travelblogtitle1": "Nyd friske rejseblogs",
+      "travelblogdes2": "Få værdifulde tips og råd fra rejseeksperter.",
+      "travelblogtitle2": "Ekspertrådgivning",
+      "travelblogdes3": "Hold dig opdateret om de nyeste rejsetrends og innovationer for at forbedre din oplevelse.",
+      "travelblogtitle3": "Rejsetendenser",
+      "travelblogdes4": "Læs spændende rejsehistorier og oplevelser fra medrejsende.",
+      "travelblogtitle4": "Personlige fortællinger"
+    },
+    "footer": {
+      "subscribe": "Tilmeld dig vores nyhedsbrev",
+      "sub2": "Tilmeld dig og modtag de nyeste rejsetilbud, destinationguides og eksklusive tilbud direkte i din indbakke. Dit næste eventyr venter!",
+      "text1": "Hos Next Gen er vi dedikerede til at gøre dine rejsedrømme til virkelighed..."
+    }
+  }
+  

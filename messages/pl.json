@@ -1,0 +1,95 @@
+{
+    "HomePage": {
+      "title": "Dlaczego warto rezerwować u nas!",
+      "description": "To jest przykładowa strona internetowa dla wielojęzycznej witryny."
+    },
+    "Navbar": {
+      "flight": "Loty",
+      "about": "O nas",
+      "contact": "Kontakt",
+      "language": "Język",
+      "hotels": "Hotele",
+      "flightHotel": "Lot + Hotel",
+      "trains": "Pociągi",
+      "bus": "Autobusy",
+      "cab": "Taxi",
+      "holidays": "ferie",
+      "cruise": "Rejs",
+      "charter": "Czarter",
+      "insurance": "Ubezpieczenie",
+      "activities": "Aktywności"
+    },
+    "Navbar2": {
+      "From": "Z",
+      "To": "Do",
+      "Departure Date": "Data wylotu",
+      "Return Date": "Data powrotu",
+      "Travelers": "Podróżni",
+      "oneway": "W jedną stronę",
+      "roundtrip": "W obie strony",
+      "multicity": "Wiele miast",
+      "defenceforces": "Siły obrony",
+      "students": "Studenci",
+      "seniorcitizens": "Seniorzy",
+      "doctorsnurses": "Lekarze i pielęgniarki"
+    },
+    "Popular": {
+      "mainheading": "Popularne kierunki lotów",
+      "heading1": "Popularne trasy lotnicze",
+      "des1": "Łącząc dwa wielkie metropolie",
+      "des2": "Brama do Azji",
+      "des3": "Przez Morze Tasmana",
+      "des4": "Połączenie romantyzmu i historii",
+      "des5": "Łącząc ważne centra gospodarcze",
+      "heading2": "Popularne pakiety wakacyjne",
+      "desa1": "Historyczne miasta czekają na Ciebie",
+      "desa2": "Słońce, morze i spokój",
+      "desa3": "Przygoda i odkrywanie w jednym",
+      "desa4": "Redefinicja luksusu i spokoju",
+      "desa5": "Tradycja spotyka przygodę",
+      "heading3": "Popularne udogodnienia hotelowe",
+      "desb1": "Premium miejsca i usługi",
+      "desb2": "Niezawodny transport w razie potrzeby",
+      "desb3": "Bezproblemowe połączenie na pokładzie",
+      "desb4": "Zaawansowane bezpieczeństwo i ochrona",
+      "desb5": "Dostosowane do Twoich potrzeb",
+      "service": "Jakiej usługi potrzebujesz?",
+      "serviceans": "Powiedz nam więcej o swoich potrzebach, abyśmy mogli połączyć Cię z odpowiednim dostawcą.",
+      "moreabout": "Powiedz nam więcej o swoich potrzebach",
+      "moreaboutans": "Załóżmy, że masz obecność online poprzez lokalne katalogi, ale Twoi konkurenci...",
+      "serviceprovider": "Łączymy z odpowiednim dostawcą",
+      "serviceproviderans": "Reklamowanie swojej firmy w konkretnym obszarze ma wiele zalet. Dla lokalnych przedsiębiorców to okazja...",
+      "happyservice": "Zadowolony z naszych usług",
+      "happyserviceans": "Twoja lokalna firma również potrzebuje zarządzania marką i budowania wizerunku. Jak wiadomo, lokalny rynek..."
+    },
+    "Bookwithus": {
+      "bookwith": "Dlaczego warto rezerwować u nas?",
+      "title1": "Łatwa rezerwacja",
+      "des1": "Nasza przyjazna użytkownikom platforma umożliwia łatwą rezerwację lotów, hoteli, wycieczek autobusowych i pakietów wakacyjnych.",
+      "title2": "Najniższe ceny",
+      "des2": "Nasza zaawansowana technologia wyszukiwania porównuje różne opcje, aby zapewnić Ci najlepsze oferty.",
+      "title3": "Ekscytujące oferty",
+      "des3": "Od ekskluzywnych rabatów na loty i hotele po specjalne oferty na usługi autobusowe i pakiety wakacyjne – nasza platforma jest zaprojektowana tak, aby oszczędzać Twoje pieniądze.",
+      "title4": "Usługa 24/7",
+      "des4": "Nasz zespół jest dostępny 24/7, aby pomóc Ci w pytaniach lub problemach podczas podróży.",
+      "packages": "Znajdź loty, hotele, autobusy i pakiety wakacyjne",
+      "packageans": "W Next Gen  jesteśmy zaangażowani w realizację Twoich podróżniczych marzeń. Niezależnie od tego, czy szukasz tanich lotów, luksusowych hoteli, niezawodnych usług autobusowych czy ekscytujących pakietów wakacyjnych, mamy coś dla Ciebie..."
+    },
+    "FreshTravel": {
+      "travelblogs": "Odkryj świeże blogi podróżnicze",
+      "travelblogdes1": "Odkrywaj nowe i ekscytujące miejsca do odwiedzenia w popularnych destynacjach.",
+      "travelblogtitle1": "Odkryj świeże blogi podróżnicze",
+      "travelblogdes2": "Uzyskaj cenne wskazówki i porady od ekspertów podróży.",
+      "travelblogtitle2": "Porady ekspertów",
+      "travelblogdes3": "Bądź na bieżąco z najnowszymi trendami podróżniczymi i innowacjami, aby ulepszyć swoje doświadczenia.",
+      "travelblogtitle3": "Trendy w podróżach",
+      "travelblogdes4": "Czytaj ekscytujące historie podróżnicze i doświadczenia innych podróżników.",
+      "travelblogtitle4": "Osobiste opowieści"
+    },
+    "footer": {
+      "subscribe": "Zapisz się na nasz newsletter",
+      "sub2": "Zapisz się i otrzymuj najnowsze oferty podróży, przewodniki po destynacjach i ekskluzywne promocje bezpośrednio na swoją skrzynkę. Twoja kolejna przygoda czeka!",
+      "text1": "W Next Gen  jesteśmy zaangażowani w realizację Twoich podróżniczych marzeń..."
+    }
+  }
+  

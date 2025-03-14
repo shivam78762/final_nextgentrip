@@ -1,0 +1,148 @@
+{
+"HomePage": {
+  "title": "¡Por qué reservar con nosotros!",
+  "description": "Esta es una página de ejemplo para su sitio web multilingüe."
+},
+"Navbar": {
+  
+    "flight": "Vuelo",
+    "about": "Sobre nosotros",
+    "contact": "Contacto",
+    "language": "Idioma",
+    "hotels": "Hoteles",
+    "flightHotel": "Vuelo + Hotel",
+    "trains": "Trenes",
+    "cab": "Taxi",
+    "bus": "Autobús",
+    "holidays": "Vacaciones",
+    "insurance": "Seguro",
+    "activities": "Actividades"
+  
+  
+},
+"Navbar2": {
+  "From": "Desde",
+  "To": "Hasta",
+  "Departure Date": "Fecha de salida",
+  "Return Date": "Fecha de regreso",
+  "Travelers": "Viajeros",
+  "oneway": "Solo ida",
+  "roundtrip": "Ida y vuelta",
+  "multicity": "Multidestino",
+  "defenceforces": "Fuerzas armadas",
+  "students": "Estudiantes",
+  "seniorcitizens": "Adultos mayores",
+  "doctorsnurses": "Médicos y enfermeras"
+},
+"Popular": {
+  "mainheading": "Destinos populares de vuelos",
+
+  "heading1": "Principales rutas de vuelo",
+  "des1": "Conectando dos grandes ciudades",
+  "des2": "Puerta de entrada a Asia",
+  "des3": "A través del mar de Tasmania",
+  "des4": "Romántico e histórico combinado",
+  "des5": "Conectando grandes centros económicos",
+
+  "heading2": "Principales paquetes de vacaciones",
+  "desa1": "Ciudades históricas te esperan",
+  "desa2": "Sol, arena y serenidad",
+  "desa3": "Aventura y exploración combinadas",
+  "desa4": "Lujo y tranquilidad redefinidos",
+  "desa5": "Tradición y aventura se encuentran",
+
+  "heading3": "Principales instalaciones hoteleras",
+  "desb1": "Asientos y servicios premium",
+  "desb2": "Transporte confiable siempre disponible",
+  "desb3": "Conexión a internet sin interrupciones a bordo",
+  "desb4": "Seguridad avanzada",
+  "desb5": "Personalizado a tus preferencias",
+
+  "service": "¿Qué servicio necesitas?",
+  "serviceans": "Cuéntanos más sobre tus requisitos para que podamos conectarte con el proveedor de servicios adecuado.",
+  "moreabout": "Cuéntanos más sobre tus requisitos",
+  "moreaboutans": "Imagina que ya tienes presencia en línea a través de un directorio local, pero tus competidores...",
+  "serviceprovider": "Nos conectamos con el proveedor de servicios adecuado",
+  "serviceproviderans": "Publicitar tu negocio en una zona específica tiene muchas ventajas. Para los empresarios locales, es una oportunidad...",
+  "happyservice": "¿Estás satisfecho con nuestro servicio?",
+  "happyserviceans": "Tu negocio local también necesita gestión de marca e imagen. Como sabes, el mercado local..."
+},
+"Bookwithus": {
+  "bookwith": "¿Por qué reservar con nosotros?",
+  "title1": "Reserva fácil",
+  "des1": "Nuestra plataforma fácil de usar simplifica el proceso de reserva de vuelos, hoteles, boletos de autobús y paquetes de vacaciones.",
+  "title2": "El precio más bajo",
+  "des2": "Nuestra tecnología avanzada de búsqueda compara una amplia gama de opciones para asegurarte de obtener las mejores ofertas disponibles.",
+  "title3": "Ofertas emocionantes",
+  "des3": "Desde descuentos exclusivos en vuelos y hoteles hasta ofertas especiales en servicios de autobuses y paquetes de vacaciones, nuestra plataforma está diseñada para ayudarte.",
+  "title4": "Soporte 24/7",
+  "des4": "Nuestro equipo dedicado está disponible 24/7 para ayudarte con cualquier pregunta o inquietud que puedas tener durante tu viaje.",
+  "packages": "Buscar vuelos, hoteles, autobuses y paquetes de vacaciones",
+  "packageans": "En Next Gen , nos dedicamos a hacer realidad tus sueños de viaje. Ya sea que busques vuelos económicos, hoteles de lujo, servicios de autobuses confiables o paquetes de vacaciones emocionantes, tenemos todo lo que necesitas. Nuestra herramienta de búsqueda de vuelos te permite comparar numerosas aerolíneas para encontrar la mejor oferta, asegurando una experiencia de reserva sin problemas. En cuanto a alojamiento, ofrecemos una vasta selección de hoteles, desde suites lujosas hasta opciones económicas, con reseñas de huéspedes y ofertas exclusivas. Para viajes en autobús convenientes y cómodos, nuestra plataforma te conecta con servicios confiables que cubren tanto trayectos urbanos como viajes largos. Y para aquellos que buscan explorar nuevos destinos, nuestros paquetes de vacaciones ofrecen una variedad de opciones, desde relajantes escapadas a la playa hasta aventureras escapadas a la montaña. Con Next Gen , cada aspecto de tu viaje está cubierto, para que puedas enfocarte en disfrutar de tus vacaciones."
+},
+"FreshTravel": {
+  "travelblogs": "Disfruta de blogs de viaje frescos",
+  "travelblogdes1": "Descubre lugares nuevos y emocionantes para visitar, además de los destinos más populares.",
+  "travelblogtitle1": "Disfruta de blogs de viaje frescos",
+  "travelblogdes2": "Recibe valiosos consejos y recomendaciones de expertos viajeros.",
+  "travelblogtitle2": "Perspectivas de expertos",
+  "travelblogdes3": "Mantente informado sobre las últimas tendencias e innovaciones en viajes para mejorar tu experiencia.",
+  "travelblogtitle3": "Tendencias de viaje",
+  "travelblogdes4": "Lee historias de viaje cautivadoras y experiencias de otros viajeros.",
+  "travelblogtitle4": "Historias personales"
+},
+"footer": {
+  "subscribe": "Suscríbete a nuestro boletín",
+  "sub2": "Suscríbete ahora y recibe las últimas noticias sobre viajes, guías de destinos y ofertas exclusivas directamente en tu bandeja de entrada. ¡Tu próxima aventura te espera!",
+  "text1": "En Next Gen , nos dedicamos a hacer realidad tus sueños de viaje. Ya sea que busques vuelos económicos, hoteles de lujo, servicios de autobuses confiables o emocionantes paquetes vacacionales, tenemos todo lo que necesitas. Nuestra herramienta de búsqueda de vuelos te permite comparar varias aerolíneas para encontrar la mejor oferta, asegurando una experiencia de reserva sin inconvenientes. En cuanto a alojamiento, ofrecemos una amplia selección de hoteles, desde suites de lujo hasta opciones económicas, con reseñas de huéspedes y ofertas exclusivas.",
+  "listofhotels": "Lista de hoteles",
+  "pnr": "Ver estado de PNR",
+  "activities": "Actividades",
+  "flights": "Vuelos",
+  "booking": "Mi reserva",
+  "hotels": "Hoteles",
+  "fhotels": "Vuelos + Hoteles",
+  "trains": "Trenes",
+  "about": "Sobre nosotros",
+  "privacy": "Privacidad",
+  "terms": "Términos",
+  "contactus": "Contáctanos"
+},
+"activities": {
+  "experience": "¡Donde cada experiencia cuenta!",
+  "trending": "Destinos populares",
+  "title1": "Tour Centipede - Tour guiado por el desierto de Arizona en ATV",
+  "title2": "Aventura de esnórquel en Molokini y Turtle Town a bordo",
+  "title3": "Recorrido a pie por Westminster y entrada a la Abadía de Westminster",
+  "title4": "Tour todo incluido por la isla con almuerzo",
+  "title5": "Entrada al Centro Espacial de Houston",
+  "title6": "Tour en kayak transparente por la reserva Shell Key y la zona de la bahía de Tampa",
+  "title7": "Historia y leyendas de Salem - Tour guiado a pie"
+},
+"flight": {
+  "memorable": "Reserva tu billete de avión con Next Gen  para una experiencia memorable.",
+  "memorable_1": "Next Gen  es un agente de viajes confiable en la India, que ofrece excelentes ofertas en boletos de avión. Reserva vuelos para todas las destinos dentro de la India o en todo el mundo a las tarifas más bajas con nosotros. Como uno de los principales portales de viajes en la India, nos esforzamos constantemente por hacer que tus vacaciones sean memorables. Entonces, ¿por qué ir a otro lado? Llámanos para ahorrar en todos los tipos de productos/servicios de viaje y tener una experiencia de viaje memorable con un presupuesto pequeño. Creemos en crear vacaciones geniales para nuestros clientes a través de paquetes y tours personalizados. Disfruta de grandes ahorros en vuelos, hoteles y viajes de vacaciones con Next Gen .",
+  "memorable_2": "Next Gen  es un agente de viajes confiable en la India, que ofrece excelentes ofertas en boletos de avión. Reserva vuelos para todas las destinos dentro de la India o en todo el mundo a las tarifas más bajas con nosotros. Como uno de los principales portales de viajes en la India, nos esforzamos constantemente por hacer que tus vacaciones sean memorables. Entonces, ¿por qué ir a otro lado? Llámanos para ahorrar en todos los tipos de productos/servicios de viaje y tener una experiencia de viaje memorable con un presupuesto pequeño. Creemos en crear vacaciones geniales para nuestros clientes a través de paquetes y tours personalizados. Disfruta de grandes ahorros en vuelos, hoteles y viajes de vacaciones con Next Gen .",
+  "questions1": "¿Cómo reservo un tour?",
+  "ans1": "Puedes reservar un tour a través de nuestro sitio web, por teléfono o visitando nuestra oficina.",
+  "questions2": "¿Cuál es su política de cancelación?",
+  "ans2": "Nuestra política de cancelación varía según el tour. Consulta los detalles específicos del tour o contáctanos para más información.",
+  "questions3": "¿Ofrecen itinerarios personalizados?",
+  "ans3": "Sí, nos especializamos en crear itinerarios personalizados según tus preferencias. Contáctanos para discutir tus planes de viaje.",
+  "questions4": "¿Está incluida el seguro de viaje?",
+  "ans4": "El seguro de viaje no está incluido, pero puede ser organizado a solicitud. Recomendamos encarecidamente comprar un seguro de viaje para tu viaje.",
+  "questions5": "¿Cómo puedo obtener actualizaciones sobre las restricciones de viaje?",
+  "ans5": "Proporcionamos las últimas actualizaciones de viaje en nuestro blog y redes sociales. También puedes contactarnos directamente para información específica."
+},
+"about2": {
+  "about1": "Nos apasiona ofrecer un valor excepcional y crear experiencias memorables.",
+  "about2": "También creemos que viajar es más que solo visitar nuevos destinos; se trata de crear recuerdos que duren toda la vida. Ya sea que busques aventura, inmersión cultural, relajación o una combinación de todo, diseñamos itinerarios que ofrecen experiencias únicas y enriquecedoras. Nuestro objetivo es ayudarte a descubrir el mundo de una manera significativa y memorable.",
+  "about3": "Nuestro compromiso contigo comienza con una planificación meticulosa y se extiende a cada momento de tu aventura. Creemos en encargarnos de todos los detalles para que puedas concentrarte en disfrutar tu viaje. Desde la consulta inicial hasta el momento en que regreses a casa, nuestro equipo estará contigo en cada paso, brindando un servicio personalizado y apoyo.",
+  "about4": "En Next Gen , nos enorgullece nuestra experiencia y profundo conocimiento de los destinos de todo el mundo. Nuestro equipo está compuesto por viajeros experimentados y profesionales de la industria que son apasionados por ofrecer experiencias de viaje excepcionales. Nos tomamos el tiempo para comprender tus preferencias, intereses y necesidades, asegurándonos de que cada aspecto de tu viaje esté adaptado a ti.",
+  "about5": "La seguridad y protección son nuestra prioridad en todas nuestras operaciones. Trabajamos con diligencia para asegurarnos de que todos nuestros socios, alojamientos y actividades cumplan con los más altos estándares. Tu bienestar es nuestra prioridad y aplicamos estrictos protocolos de seguridad para brindarte tranquilidad mientras exploras nuevos lugares.",
+  "about6": "También creemos que viajar es más que solo visitar nuevos destinos; se trata de crear recuerdos que duren toda la vida. Ya sea que busques aventura, inmersión cultural, relajación o una combinación de todo, diseñamos itinerarios que ofrecen experiencias únicas y enriquecedoras. Nuestro objetivo es ayudarte a descubrir el mundo de una manera significativa y memorable.",
+  "about7": "Gracias por considerar Next Gen  para tus necesidades de viaje. Esperamos poder crear un viaje que no solo cumpla, sino que supere tus expectativas, convirtiendo tus sueños de viaje en realidad."
+}
+
+
+}
