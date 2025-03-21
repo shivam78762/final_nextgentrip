@@ -183,28 +183,26 @@ const response = await axios.get(`${apilink}/home/bannerimg`);
             ))} */}
 
 
-<div className="rounded-2xl overflow-hidden   h-[100px]   md:h-[250px]  lg:h-full">
+<div className="rounded-2xl overflow-hidden   h-[150px]   md:h-[250px]  lg:h-full">
 
 
                <img src={`${storageLink}/${sliderdata.info[0]?.img2}`} alt="" className="h-full w-full" />
               
               </div>
-              <div className="rounded-2xl overflow-hidden   h-[100px]   md:h-[250px]  lg:h-full">
+              <div className="rounded-2xl overflow-hidden   h-[150px]   md:h-[250px]  lg:h-full">
 
 
                <img src={`${storageLink}/${sliderdata.info[0]?.img3}`} alt="" className="h-full w-full" />
               
               </div>
-              <div className="rounded-2xl overflow-hidden   h-[100px]   md:h-[250px]  lg:h-full">
+              <div className="rounded-2xl overflow-hidden   h-[150px]   md:h-[250px]  lg:h-full">
 
 
                <img src={`${storageLink}/${sliderdata.info[0]?.img4}`} alt="" className="h-full w-full" />
               
               </div>
 
-<div className="rounded-2xl overflow-hidden   h-[100px]   md:h-[250px]  lg:h-full">
-                {/* <img src={item.imageUrl} alt="" className="h-full w-full" /> */}
-              </div>
+
             </div>
         </div>
 
