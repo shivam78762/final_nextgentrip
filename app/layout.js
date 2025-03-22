@@ -47,7 +47,11 @@ export default async function RootLayout({ children }) {
           async
           src="https://www.googletagmanager.com/gtag/js?id=G-7F46NND7PG"
         ></script>
+
         <script
+         id="google-analytics"
+          strategy="afterInteractive"
+
           dangerouslySetInnerHTML={{
             __html: `
               window.dataLayer = window.dataLayer || [];
@@ -60,6 +64,8 @@ export default async function RootLayout({ children }) {
 
         {/* Hotjar Tracking */}
         <script
+          id="hotjar-tracking"
+          strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `
               (function(h,o,t,j,a,r){
@@ -77,6 +83,8 @@ export default async function RootLayout({ children }) {
 
       
         <script
+  id="google-tag-manager"
+          strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `
               (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
