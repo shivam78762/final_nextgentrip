@@ -12,13 +12,13 @@ import { getAllRegHotels } from "../Component/Store/slices/getReqHotels";
 import { imgurl } from "../Component/common";
 import TypeWriterHeaderEffect from "../Component/AllComponent/TypeWriterHeaderEffect";
 import HotelsComp from "../Component/AllComponent/formMaincomp/HotelsComp";
-
+import HotelSliderCompo from "./HotelSliderCompo"
 const page = () => {
   const [showAll, setShowAll] = useState(false);
   const dispatch=useDispatch();
   const allReghotels=useSelector(state=>state.getRegHotelsSlice)
 
-  
+   
  useEffect(()=>{
 dispatch(getAllRegHotels())
  },[ ])
@@ -134,10 +134,6 @@ dispatch(getAllRegHotels())
 
 
 
-
-
-
-
         <div className="mt-4 text-center">
           <button
             onClick={handleViewAll}
@@ -146,12 +142,24 @@ dispatch(getAllRegHotels())
             {showAll ? "Show Less" : "View All"}
           </button>
         </div>
-        <div className="mt-10 mb-5">
-          <HotelChains />
-        </div>
-      </div>
 
-      <section className="px-0 lg:px-20">
+
+
+
+
+
+        {/* <div className="mt-10 mb-5">
+          <HotelChains />
+        </div> */}
+      </div>
+      <div className="px-32 my-20">
+<HotelSliderCompo />
+</div>
+
+
+
+
+      {/* <section className="px-0 lg:px-20">
         <div className="container mx-auto px-4 py-8 block lg:flex  items-center">
           
           <div className="hidden lg:block flex-shrink-0 w-full md:w-1/2 lg:w-1/3 mb-4 md:mb-0">
@@ -165,7 +173,7 @@ dispatch(getAllRegHotels())
             </div>
           </div>
 
-          {/* Ratings Section */}
+         
           <div className="w-full md:w-1/2 lg:w-1/3 mb-4 md:mb-0">
             <div className="text-center">
               <span className="text-xl font-bold">
@@ -285,7 +293,7 @@ dispatch(getAllRegHotels())
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
       <div className="pb-3">
         <FAQSection />
       </div>
