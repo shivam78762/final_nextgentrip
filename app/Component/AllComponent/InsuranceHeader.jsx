@@ -5,8 +5,13 @@ import React, { useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import { useDispatch } from "react-redux";
 import { getInsuranceSearch } from "../Store/slices/insuranceSearchSlice";
+import { useRouter } from "next/navigation";
 
 export default function InsuranceHeader() {
+
+const navigation =useRouter();
+
+
   const planCategories = [
     
     { id: 1, title: "DomesticTravelPolicy" },
@@ -45,7 +50,11 @@ console.log( new Date(e.target.value),"sadfwdcfwefcwe")
 
   const handelIncSearch=()=>{
     console.log(alldata)
+
+    
     dispatch(getInsuranceSearch({PlanCategory:alldata.Plan_Category.num,PlanCoverage:alldata.Plan_Coverage.num,PlanType:alldata.Plan_Type  ,TravelStartDate:alldata.TravelStartDate,  TravelEndDate:alldata.TravelEndDate}))
+
+    navigation.push(`/Insurance/plancategory=${alldata.Plan_Category.num}&plancoverage=${alldata.Plan_Coverage.num}&plantype=${alldata.Plan_Type}&travelstartdate=${alldata.TravelStartDate}&travelenddate=${alldata.TravelEndDate}`)
   }
 
 
