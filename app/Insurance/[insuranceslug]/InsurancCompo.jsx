@@ -1,11 +1,16 @@
-import React from 'react'
+'use client'
+import React,{useEffect,useState} from 'react'
 import InsuranceHeader from '../../Component/AllComponent/InsuranceHeader'
 import { FaHospital, FaPlane, FaMoneyBillWave, FaBaggageClaim } from "react-icons/fa";
 
+import { useDispatch, useSelector } from "react-redux";
+import { getInsuranceSearch } from '../../Component/Store/slices/insuranceSearchSlice';
+
+import { useParams } from 'next/navigation';
 
 
 
-
+ 
 const plans = [
     {
       PlanCode: "4",
@@ -66,6 +71,39 @@ const plans = [
 
 
 const InsurancCompo = ({slug}) => {
+
+
+
+  const dispatch = useDispatch();
+  const { insuranceslug } = useParams();
+
+
+  const decodedParams = decodeURIComponent(insuranceslug);
+  const queryParams = Object.fromEntries(new URLSearchParams(decodedParams));
+
+  console.log(queryParams, "Extracted Params"); 
+
+  const insuranceState = useSelector((state) => state.insurance || { info: [], isLoading: false, isError: false });
+  const { info: plans, isLoading, isError } = insuranceState;
+
+  
+
+     useEffect(() => {
+      if (queryParams.PlanCategory && queryParams.PlanCoverage && queryParams.PlanType) {
+        dispatch(
+          getInsuranceSearch({
+            PlanCategory: parseInt(queryParams.PlanCategory, 10),
+            PlanCoverage: parseInt(queryParams.PlanCoverage, 10),
+            PlanType: parseInt(queryParams.PlanType, 10),
+            TravelStartDate: queryParams.TravelStartDate || "01/04/2025",
+            TravelEndDate: queryParams.TravelEndDate || "10/04/2025",
+          })
+        );
+      }
+    }, [dispatch, queryParams]);
+
+   
+
   return (
     <>
     <InsuranceHeader />

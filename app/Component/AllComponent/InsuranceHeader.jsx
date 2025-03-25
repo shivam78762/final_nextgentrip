@@ -36,9 +36,13 @@ const navigation =useRouter();
   const dispatch=useDispatch();
 
    const [isOpen, setIsOpen] = useState(null);
-  const [alldata,setallData]=useState({Plan_Category:{title:planCategories[0].title,num:planCategories[0].id}   , Plan_Coverage:{name:planCoverage[0].name,num:planCoverage[0].id}   })
-
-
+   const [alldata, setallData] = useState({
+    Plan_Category: { title: planCategories[0].title, num: planCategories[0].id },
+    Plan_Coverage: { name: planCoverage[0].name, num: planCoverage[0].id },
+    Plan_Type: "1",
+    TravelStartDate: "",
+    TravelEndDate: "",
+  });
 
   const DropDownHandler = (auth) => {
     setIsOpen((prevVal) => (prevVal === auth ? null : auth));
@@ -48,15 +52,13 @@ console.log( new Date(e.target.value),"sadfwdcfwefcwe")
   }
 
 
-  const handelIncSearch=()=>{
-    console.log(alldata)
-
-    
-    dispatch(getInsuranceSearch({PlanCategory:alldata.Plan_Category.num,PlanCoverage:alldata.Plan_Coverage.num,PlanType:alldata.Plan_Type  ,TravelStartDate:alldata.TravelStartDate,  TravelEndDate:alldata.TravelEndDate}))
-
-    navigation.push(`/Insurance/plancategory=${alldata.Plan_Category.num}&plancoverage=${alldata.Plan_Coverage.num}&plantype=${alldata.Plan_Type}&travelstartdate=${alldata.TravelStartDate}&travelenddate=${alldata.TravelEndDate}`)
-  }
-
+  const handelIncSearch = () => {
+  
+    // Redirect to /Insurance with query parameters
+    navigation.push(
+      `/Insurance?plancategory=${alldata.Plan_Category.num}&plancoverage=${alldata.Plan_Coverage.num}&plantype=${alldata.Plan_Type}&travelstartdate=${alldata.TravelStartDate}&travelenddate=${alldata.TravelEndDate}`
+    );
+  };
 
 
 
