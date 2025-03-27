@@ -256,9 +256,9 @@ const comp = ({ slug }) => {
     let data = [];
     data.push(ResultIndex);
 
+    const addate= Date.now()
 
-
-    localStorage.setItem("checkOutFlightDetail", JSON.stringify({data:ResultIndex,ResultIndex:ResultIndex.ResultIndex,IsLCC:ResultIndex.IsLCC,traceid,ip:newtIp}));
+    localStorage.setItem("checkOutFlightDetail", JSON.stringify({addat:addate,data:ResultIndex,ResultIndex:ResultIndex.ResultIndex,IsLCC:ResultIndex.IsLCC,traceid,ip:newtIp}));
     // window.location.href = "/flight/checkout";
 
 
@@ -336,11 +336,11 @@ const comp = ({ slug }) => {
 
 
 const handelnonlcc=(id, ResultIndex)=>{
-  localStorage.setItem("checkOutFlightDetail", JSON.stringify({data:ResultIndex,ResultIndex:ResultIndex.ResultIndex,IsLCC:ResultIndex.IsLCC,traceid,ip:newtIp}));
-  
-   window.location.href = "/flight/checkout";
-     
+  const addate= Date.now()
+  localStorage.setItem("checkOutFlightDetail", JSON.stringify({addat:addate,data:ResultIndex,ResultIndex:ResultIndex.ResultIndex,IsLCC:ResultIndex.IsLCC,traceid,ip:newtIp}));
 
+   window.location.href = "/flight/checkout";
+  
   }
 
 

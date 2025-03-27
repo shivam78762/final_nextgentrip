@@ -17,7 +17,9 @@ import axios from "axios";
 import { apilink } from "../../common";
 import { useRouter } from "next/navigation";
 import { FaSpinner } from "react-icons/fa";
-const Page = ({ setActiveTab, fdatas, price }) => {
+const Page = ({ setActiveTab,fdatas, price }) => {
+
+
   const router = useRouter();
   const [user, setUser] = useState();
   const [cardDetailsError, setCardDetailsError] = useState(false);
@@ -114,9 +116,9 @@ const Page = ({ setActiveTab, fdatas, price }) => {
   };
 
 
-
-
-
+  const now = new Date(Date.now())
+const  addate = new Date(fdatas?.addat);
+const differenceInMinutes = (now - addate) / (1000 * 60);
   useEffect(() => {
     const initialPassengers = () => {
       let passengers = [];
@@ -319,9 +321,14 @@ const Page = ({ setActiveTab, fdatas, price }) => {
       if (data.data.success) {
         setUser(data.data.user);
       }
+      else{
+    
+      }
     };
     fetchuserData();
   }, []);
+
+
 
   const formatDate = (dateStr) => {
     const targetDate = new Date(dateStr);
@@ -405,7 +412,7 @@ const Page = ({ setActiveTab, fdatas, price }) => {
 
 
           <div className="bg-gray-100 p-4 rounded-lg">
-            <h3 className="text-lg font-semibold mb-2">✈️ Flight Details</h3>
+            <h3 className="text-lg font-semibold mb-2">✈️ Flight Detailscccc</h3>
             <table className="w-full">
               <thead>
                 <tr className="bg-gray-200">
@@ -463,7 +470,7 @@ const Page = ({ setActiveTab, fdatas, price }) => {
 
 
 
-  console.log(fdatas?.data.Segments[0][0]);
+ 
   return (
     <div className="">
       <div className="md:grid md:grid-cols-6 gap-5 mt-3">
@@ -476,7 +483,12 @@ const Page = ({ setActiveTab, fdatas, price }) => {
                 <div className="border-4 bg-white border-orange-100 h-10 w-10 flex justify-center items-center text-2xl rounded-full">
                   <GiAirplaneDeparture />
                 </div>
+                <div className="flex justify-between gap-10">
                 <span className="text-sm md:text-xl font-medium">Flight Detail</span>
+                <span className="text-sm md:text-xl font-medium text-red-700">
+                  { differenceInMinutes>11  && <span>token is Expire Search flight again</span> }
+                </span>
+                </div>
               </div>
             </div>
 
@@ -615,7 +627,11 @@ const Page = ({ setActiveTab, fdatas, price }) => {
                 <div className="border-4 bg-white border-orange-100 h-10 w-10 flex justify-center items-center text-2xl rounded-full">
                   <GiAirplaneDeparture />
                 </div>
-                <span className="text-sm md:text-xl font-medium">Traveller Details</span>
+                <div>
+                <span className="text-sm md:text-xl font-medium">Traveller Details</span> 
+                
+                </div>
+
               </div>
             </div>
             <div className="p-4">
