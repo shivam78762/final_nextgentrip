@@ -88,7 +88,7 @@ const comp = ({ slug }) => {
   }, [ssrFair]);
 
   useEffect(() => {
-    console.log('PreferredAirlines', PreferredAirlines)
+  
     if (newtIp && fromCityCode && toCityCode && JourneyType == 1) {
       dispatch(
         searchFlightApi({
@@ -170,7 +170,7 @@ const comp = ({ slug }) => {
   useEffect(() => {
 
 
-    console.log('state.data.Response', state)
+   
 
 
     setstate2(
@@ -268,7 +268,7 @@ const comp = ({ slug }) => {
 
   useEffect(() => {
 
-    console.log('ssrFair',ssrFair.info.Response?.Results?.FareBreakdown)
+   
 
     localStorage.setItem("farebreakdown", JSON.stringify({data:ssrFair.info.Response?.Results?.FareBreakdown}));
 
@@ -332,6 +332,19 @@ const comp = ({ slug }) => {
       </div>
     );
   };
+
+
+
+const handelnonlcc=(id, ResultIndex)=>{
+  localStorage.setItem("checkOutFlightDetail", JSON.stringify({data:ResultIndex,ResultIndex:ResultIndex.ResultIndex,IsLCC:ResultIndex.IsLCC,traceid,ip:newtIp}));
+  
+   window.location.href = "/flight/checkout";
+     
+
+  }
+
+
+
 
 
   return (
@@ -860,12 +873,15 @@ const comp = ({ slug }) => {
               // Show skeleton loader while data is being fetched
               [...Array(3)].map((_, index) => <SkeletonLoader key={index} />)
             ) : (             
-              state2.map((flightinfo) => {
+              state2?.map((flightinfo) => {
+
                 return (
+
                   <div className="w-full">
                    
 
                     {flightinfo?.map((flight, index) => {
+                     
                       return (
                         <>
                           {flight.Segments[0].length > 1 ? (
@@ -997,7 +1013,10 @@ const comp = ({ slug }) => {
 
                                         {!flight.IsLCC &&
                                         <button
-                                          
+                                          onClick={()=>handelnonlcc(
+                                            "view-price",
+                                            flight
+                                          )}
                                           className="block text-[11.5px]  md:text-sm font-semibold md:h-8 text-white rounded-full p-1 px-2 md:px-4 bg-red-600 border border-blue-600"
                                         >
                                            
@@ -1646,7 +1665,7 @@ const comp = ({ slug }) => {
                                         flight.Segments[0][0].Origin.Airport.CityName
                                       }
                                     </p>
-                                    {console.log(' flight.Segments',flight.Segments[0][0].Origin.Airport.CityName)}
+                                   
                                   </div>
 
                                   <div className="text-center w-1/3 sm:w-auto hidden md:block lg:block">

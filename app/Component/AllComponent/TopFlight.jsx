@@ -8,6 +8,7 @@ import { useTranslations } from "next-intl";
 import axios from "axios";
 import { apilink } from "../common";
 import FeaturedProperties from "./FeaturedProperties";
+import HotelSliderCompo from "../../hotels/HotelSliderCompo";
 
 const TopFlight = () => {
   const [viewAll, setviewAll] = useState(true);
@@ -298,8 +299,11 @@ const TopFlight = () => {
       <InfoSection />
 
 
-      <div className='px-2 lg:px-10 my-8'>
-      <FeaturedProperties />
+      <div className='px-2 lg:px-40 my-8'>
+
+        <h3 className="text-center text-3xl font-bold my-4"> Our Packages</h3>
+      {/* <FeaturedProperties /> */}
+      <HotelSliderCompo />
 
       </div>
 
