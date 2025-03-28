@@ -2,36 +2,46 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { apilink } from "../../common";
 
+// Async Thunk to Fetch Insurance Data
 export const getInsuranceSearch = createAsyncThunk(
   "/insurance",
-  async ({ PlanCategory, PlanCoverage, PlanType, TravelStartDate, TravelEndDate }) => {
+  async (requestData) => {
     try {
-      // Fetch the user's IPv4 address
-      const ipRes = await axios.get("https://api.ipify.org?format=json");
-      const EndUserIp = ipRes.data.ip;
+      // Fetch User's IP Address
+      const ipResponse = await axios.get("https://api.ipify.org?format=json");
+      const userIp = ipResponse.data.ip;
 
-      console.log(PlanCategory, PlanCoverage, PlanType, TravelStartDate, TravelEndDate, EndUserIp, "Request Data");
 
-      // Send the insurance search request
-      const res = await axios.post(`${apilink}/insurance/search`, {
-        EndUserIp,
-        PlanCategory,
-        PlanCoverage,
-        PlanType,
-        TravelStartDate,
-        TravelEndDate,
-        NoOfPax: 1,
-        PaxAge: [37],
-      });
+      const updatedRequestData = {
+        ...requestData,
+        EndUserIp: userIp, 
+      };
+
+      console.log(updatedRequestData, "Final Request Data");
+
+
+      const res = await axios.post(`${apilink}/insurance/search`, 
+        {
+          EndUserIp: userIp,
+          PlanCategory: requestData.plancategory,
+          PlanCoverage: requestData.plancoverage,
+          PlanType: requestData.plantype,
+          TravelStartDate: requestData.travelstartdate,
+          TravelEndDate: requestData.travelenddate,
+          NoOfPax: requestData.noOfPax || 1, 
+          PaxAge: requestData.paxAge || [30], 
+        }
+      );
 
       return res.data;
     } catch (error) {
-      console.error("Error fetching user IP or insurance data:", error);
+      console.error("Error fetching insurance data:", error);
       throw error;
     }
   }
 );
 
+// Redux Slice for Insurance
 const insuranceSlice = createSlice({
   name: "insurance",
   initialState: { info: [], isLoading: false, isError: false },

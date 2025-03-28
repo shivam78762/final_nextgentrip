@@ -73,7 +73,7 @@ const plans = [
 const InsurancCompo = ({slug}) => {
 
 
-
+  const [ipAddress, setIpAddress] = useState("");
   const dispatch = useDispatch();
   const { insuranceslug } = useParams();
 
@@ -81,26 +81,45 @@ const InsurancCompo = ({slug}) => {
   const decodedParams = decodeURIComponent(insuranceslug);
   const queryParams = Object.fromEntries(new URLSearchParams(decodedParams));
 
-  console.log(queryParams, "Extracted Params"); 
+
 
   const insuranceState = useSelector((state) => state.insurance || { info: [], isLoading: false, isError: false });
   const { info: plans, isLoading, isError } = insuranceState;
 
+ 
+
+  useEffect(() => {
+
+    const fetchIp = async () => {
+      try {
+        const response = await axios.get("https://api64.ipify.org?format=json");
+
+        console.log('response',response)
+        setIpAddress(response);
+      } catch (error) {
+        console.error("Error fetching IP:", error);
+      }
+    };
+
+    fetchIp();
+  }, []);
+
   
 
      useEffect(() => {
-      if (queryParams.PlanCategory && queryParams.PlanCoverage && queryParams.PlanType) {
+      if (queryParams.plancategory && queryParams.plancoverage && queryParams.plantype) {
         dispatch(
           getInsuranceSearch({
-            PlanCategory: parseInt(queryParams.PlanCategory, 10),
-            PlanCoverage: parseInt(queryParams.PlanCoverage, 10),
-            PlanType: parseInt(queryParams.PlanType, 10),
-            TravelStartDate: queryParams.TravelStartDate || "01/04/2025",
-            TravelEndDate: queryParams.TravelEndDate || "10/04/2025",
+            plancategory: parseInt(queryParams.plancategory, 10),
+            plancoverage: parseInt(queryParams.plancoverage, 10),
+            plantype: parseInt(queryParams.plantype, 10),
+            travelstartdate: queryParams.travelstartdate || "01/04/2025",
+            travelenddate: queryParams.travelenddate || "10/04/2025",
+            EndUserIp:ipAddress
           })
         );
       }
-    }, [dispatch, queryParams]);
+    }, []);
 
    
 
