@@ -80,7 +80,7 @@ const handleClick =()=>{
 
     }
 }
-
+console.log(CheckOutData,"sdcsdnmcpwepn")
   
   return (
     <div className="">
@@ -92,9 +92,12 @@ const handleClick =()=>{
                 <div className="border-4 bg-white border-orange-100  h-10 w-10 flex justify-center items-center text-2xl rounded-full">
                   <GiAirplaneDeparture />
                 </div>
+                <div>
                 <span className="text-sm md:text-xl font-medium">
                   Flight Detail
                 </span>
+               
+                </div>
               </div>
             </div>
             <div className=" ">
