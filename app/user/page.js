@@ -1,912 +1,657 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
 import { CgProfile } from "react-icons/cg";
-import { LuLogOut } from "react-icons/lu";
-import { LuUsers2 } from "react-icons/lu";
+import { LuLogOut, LuUsers2 } from "react-icons/lu";
 import { AiOutlineLogout } from "react-icons/ai";
 import Image from "next/image";
 import { FaCheckCircle, FaPencilAlt, FaPlus, FaTimes } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { apilink } from "../Component/common";
-import { toast ,Bounce} from "react-toastify";
+import { toast, Bounce } from "react-toastify";
 
-const page = () => {
+const ProfilePage = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(null);
-  const openPopup = (type) => {
-    setIsPopupOpen(type);
-  };
-  
+  const [activeTab, setActiveTab] = useState(0);
+  const [activeItem, setActiveItem] = useState("profile");
+  const [userinfo, setUserinfo] = useState(null);
+  const router = useRouter();
 
-  const [fullName, setFullName] = useState("");
-  const [birthday, setBirthday] = useState("");
-  const [gender, setGender] = useState("");
-  const [nationality, setNationality] = useState("");
-  const [maritalStatus, setMaritalStatus] = useState("");
-  const [meal, setMeal] = useState("");
-  const [preference, setPreference] = useState("");
-  const [relationship, setRelationship] = useState("");
-  const [address, setAddress] = useState("");
-  const [issueingCountry, setIssueingCountry] = useState("");
-  const [airline, setAirline] = useState("");
-  const [pincode, setPincode] = useState("");
-  const [state, setState] = useState("");
-
-  const [profileData, setProfileData] = useState({
+  // Profile form states
+  const [formData, setFormData] = useState({
     fullName: "",
     birthday: "",
     gender: "",
-    maritalStatus: "",
-    address: "",
-    pincode: "",
-    state: "",
     nationality: "",
+    maritalStatus: "",
     meal: "",
-    relationship: "",
     preference: "",
+    relationship: "",
+    address: "",
     issueingCountry: "",
     airline: "",
+    pincode: "",
+    state: "",
   });
 
-
-  const closePopup = async() => {
-    // setIsPopupOpen(profileData);
-    const user=  JSON.parse(localStorage.getItem("NextGenUser"));
-    const data= await axios.put(`${apilink}/user/${user}`,profileData)
-    console.log(data.data,"sdfsdfmsdfcwepofwe")
-    
-  };
-
-
-
-  const handleSave = (e) => {
-    e.preventDefault();
-
-    setProfileData({
-      fullName: fullName,
-      birthday: birthday,
-      gender: gender,
-      maritalStatus: maritalStatus,
-      address: address,
-      pincode: pincode,
-      state: state,
-      nationality: nationality,
-      meal: meal,
-      relationship: relationship,
-      preference: preference,
-      issueingCountry: issueingCountry,
-      airline: airline,
-    });
-    closePopup();
-  };
-
-  const [activeItem, setActiveItem] = useState("profile");
-
+  // Refs for scroll navigation
   const profileRef = useRef(null);
   const loginDetailsRef = useRef(null);
   const coTravellersRef = useRef(null);
   const logoutRef = useRef(null);
 
+  // Open/close popup handlers
+  const openPopup = (type) => setIsPopupOpen(type);
+  const closePopup = () => setIsPopupOpen(null);
+
+  // Save profile data
+  const handleSave = async (e) => {
+    e.preventDefault();
+    try {
+      const user = JSON.parse(localStorage.getItem("NextGenUser"));
+      const { data } = await axios.put(`${apilink}/user/${user}`, formData);
+      toast.success("Profile updated successfully!", {
+        position: "top-right",
+        autoClose: 3000,
+        transition: Bounce,
+      });
+      closePopup();
+    } catch (error) {
+      toast.error("Failed to update profile", {
+        position: "top-right",
+        autoClose: 3000,
+        transition: Bounce,
+      });
+    }
+  };
+
+  // Handle input changes
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  // Navigation handlers
   const handleItemClick = (item, ref) => {
     setActiveItem(item);
     ref?.current?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const [activeTab, setActiveTab] = useState(0);
+  const handleTabChange = (index) => setActiveTab(index);
 
-  const handleTabChange = (index) => {
-    setActiveTab(index);
+  // Logout handler
+  const handleLogout = () => {
+    localStorage.removeItem("NextGenUser");
+    router.push("/");
+    toast.success("Logged out successfully", {
+      position: "top-right",
+      autoClose: 3000,
+      transition: Bounce,
+    });
   };
 
 
-const route=useRouter()
-const [userinfo,setuserinfo]=useState()
 
+  
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("NextGenUser"));
+    if (!user) {
+      router.push("/user/login");
+      return;
+    }
 
-useEffect(()=>{
-const user=  JSON.parse(localStorage.getItem("NextGenUser"));
-if(!user){
-route.push("/user/login")
-}
+    const fetchUserData = async () => {
+      try {
+        const { data } = await axios.get(`${apilink}/user/${user}`);
+        setUserinfo(data.user);
+        // Initialize form data with user info if available
+        if (data.user) {
+          setFormData(prev => ({
+            ...prev,
+            fullName: data.user.name || "",
+            email: data.user.email || ""
+          }));
+        }
+      } catch (error) {
+        toast.error("Failed to fetch user data", {
+          position: "top-right",
+          autoClose: 3000,
+          transition: Bounce,
+        });
+      }
+    };
 
-const handeluser=async()=>{
-  const data= await axios.get(`${apilink}/user/${user}`)
-  setuserinfo(data.data.user)
-}
-
-handeluser()
-
-
-
-},[ ])
-
-
-
-
-const handellogout=()=>{
-  route.push("/")
-  localStorage.clear("NextGenUser");
-  toast.success("logout user",{
-    position: "top-right",
-    autoClose: 5000,
-
-    transition: Bounce,
-  });
-}
-
-
-
+    fetchUserData();
+  }, [router]);
 
   return (
-    <>
-      <div className="px-5 py-5 md:py-10 md:px-20 flex gap-10 flex-col md:flex-row">
-        <div className="w-full md:w-1/4 h-full sticky top-24">
-          <div className="bg-white px-5 rounded-xl pb-5 myshadow">
-            <Image
-              src="/images/user-profile.webp"
-              width={50}
-              height={50}
-              alt=""
-              className="w-auto mx-auto h-60"
-            />
-            <p className="text-sm text-center">PERSONAL PROFILE</p>
-
-            <ul className="mt-5">
-              <li
-                className={`flex items-center gap-3 px-5 py-3 rounded-md text-base font-medium cursor-pointer ${
-                  activeItem === "profile" ? "text-blue-500 bg-[#ecf5fe]" : ""
-                }`}
-                onClick={() => handleItemClick("profile", profileRef)}
-              >
-                <CgProfile />
-                Profile
-              </li>
-              <li
-                className={`flex items-center gap-3  px-5 py-3 rounded-md  text-base font-medium cursor-pointer ${
-                  activeItem === "loginDetails"
-                    ? "text-blue-500 bg-[#ecf5fe]"
-                    : ""
-                }`}
-                onClick={() => handleItemClick("loginDetails", loginDetailsRef)}
-              >
-                <LuLogOut />
-                Login Details
-              </li>
-              <li
-                className={`flex items-center gap-3  px-5 py-3 rounded-md  text-base font-medium cursor-pointer ${
-                  activeItem === "coTravellers"
-                    ? "text-blue-500 bg-[#ecf5fe]"
-                    : ""
-                }`}
-                onClick={() => handleItemClick("coTravellers", coTravellersRef)}
-              >
-                <LuUsers2 />
-                Co-Travellers
-              </li>
-              <li
-                className={`flex items-center gap-3 px-5 py-3 rounded-md  text-base font-medium cursor-pointer ${
-                  activeItem === "logout" ? "text-blue-500 bg-[#ecf5fe]" : ""
-                }`}
-                onClick={handellogout}
-              >
-                <AiOutlineLogout />
-                Logout
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <div className="w-full md:w-3/4 mt-8 md:mt-0">
-        
-          <div className=" bg-white myshadow rounded-xl p-6">
-            <div className=" ">
-              <p className=" flex justify-between">
-                <span>Complete your Profile</span>
-                <span className=" ">60%</span>
-              </p>
-              <div className=" bg-white flex rounded h-2 mt-2">
-                <div className=" bg-blue-600 h-full w-3/5"></div>
-                <div className=" bg-gray-600 h-full w-2/5"></div>
-              </div>
-            </div>
-            <p className=" mt-4">
-              Get the best out of Next Gen by adding the remaining details!
-            </p>
-            <ul className="flex justify-between items-center bg-[#ecf5fe] mt-4 px-10 py-4 rounded-lg">
-              <li className="flex gap-3 font-semibold items-center text-blue-600 cursor-pointer">
-                <FaCheckCircle className="text-2xl" />
-                Verified mobile Number
-              </li>
-              <li className="flex gap-3 font-semibold items-center text-blue-600 cursor-pointer">
-                <FaCheckCircle className="text-2xl" />
-                Verified Email ID
-              </li>
-              <li className="flex gap-3 font-semibold items-center text-blue-600 cursor-pointer">
-                <FaPlus className="text-2xl" />
-                Complete Basic Info
-              </li>
-            </ul>
-          </div>
-        
-
-          <div
-            ref={profileRef}
-            className="bg-white myshadow rounded-xl p-6 mt-6"
-          >
-            <div className="flex justify-between items-center">
-              <div>
-                <h3 className="font-semibold text-2xl">Profile</h3>
-                <p className="font18 darkGreyText mt-2">
-                  Basic info, for a faster booking experience
-                </p>
-              </div>
-              <button
-                className="font16 bg-white border hover:shadow px-4 rounded-xl py-2 text-blue-600 flex items-center"
-                onClick={() => openPopup("edit")}
-              >
-                <FaPencilAlt className="mr-2" />
-                Edit
-              </button>
-
-              {isPopupOpen === "edit" && (
-                <div className="fixed inset-0 flex z-[9999] items-center justify-center bg-black bg-opacity-50">
-                  <div className="p-6 bg-white shadow-lg rounded-lg">
-                    <h3 className="text-2xl font-black text-gray-900">
-                      Edit Profile
-                    </h3>
-                    <form
-                      data-cy="profileEditFormCard_O2"
-                      className="space-y-6 mt-3"
-                      onSubmit={handleSave}
-                    >
-                      <div className="space-y-4">
-                        <div className="flex space-x-4">
-                          <div className="w-1/2">
-                            <label
-                              htmlFor="profileFirstName"
-                              className="text-sm font-bold text-gray-900"
-                            >
-                              Full Name<span className="text-red-600">*</span>
-                            </label>
-                            <input
-                              data-cy="profileFirstName"
-                              className="w-full mt-1 p-2 text-sm text-gray-900 border h-10 border-gray-300 rounded-none"
-                              type="text"
-                              id="profileFirstName"
-                              value={fullName}
-                              onChange={(e) => setFullName(e.target.value)}
-                            />
-                          </div>
-                          <div className="w-1/2">
-                            <label
-                              htmlFor="profileBirthday"
-                              className="text-sm font-bold text-gray-900"
-                            >
-                              Birthday
-                            </label>
-                            <input
-                              data-cy="profileBirthday"
-                              className="w-full mt-1 p-2 text-sm text-gray-900 border h-10 border-gray-300 rounded-none"
-                              type="date"
-                              id="profileBirthday"
-                              value={birthday}
-                              onChange={(e) => setBirthday(e.target.value)}
-                            />
-                          </div>
-                        </div>
-
-                        <div className="flex space-x-4">
-                          <div className="w-1/2">
-                            <label
-                              htmlFor="profileGender"
-                              className="text-sm font-bold text-gray-900"
-                            >
-                              Gender
-                            </label>
-                            <select
-                              data-cy="profileGender"
-                              className="w-full mt-1 p-2 text-sm text-gray-900 border h-10 border-gray-300 rounded-none"
-                              id="profileGender"
-                              value={gender}
-                              onChange={(e) => setGender(e.target.value)}
-                            >
-                              <option value="">Select Gender</option>
-                              <option value="MALE">Male</option>
-                              <option value="FEMALE">Female</option>
-                              <option value="OTHER">Other</option>
-                            </select>
-                          </div>
-                          <div className="w-1/2">
-                            <label
-                              htmlFor="profileMaritalStatus"
-                              className="text-sm font-bold text-gray-900"
-                            >
-                              Marital Status
-                            </label>
-                            <select
-                              data-cy="profileMaritalStatus"
-                              className="w-full mt-1 p-2 text-sm text-gray-900 border h-10 border-gray-300 rounded-none"
-                              id="profileMaritalStatus"
-                              value={maritalStatus}
-                              onChange={(e) => setMaritalStatus(e.target.value)}
-                            >
-                              <option value="">Select Marital Status</option>
-                              <option value="SINGLE">Single</option>
-                              <option value="MARRIED">Married</option>
-                              <option value="OTHER">Other</option>
-                            </select>
-                          </div>
-                        </div>
-
-                        <div className="flex space-x-4">
-                          <div className="w-1/2">
-                            <label
-                              htmlFor="profileAddress"
-                              className="text-sm font-bold text-gray-900"
-                            >
-                              Your Address
-                            </label>
-                            <input
-                              data-cy="profileAddress"
-                              className="w-full mt-1 p-2 text-sm text-gray-900 border h-10 border-gray-300 rounded-none"
-                              type="text"
-                              id="profileAddress"
-                              value={address}
-                              onChange={(e) => setAddress(e.target.value)}
-                            />
-                          </div>
-                          <div className="w-1/2">
-                            <label
-                              htmlFor="profilePincode"
-                              className="text-sm font-bold text-gray-900"
-                            >
-                              Pincode
-                            </label>
-                            <input
-                              data-cy="profilePincode"
-                              className="w-full mt-1 p-2 text-sm text-gray-900 border h-10 border-gray-300 rounded-none"
-                              type="text"
-                              id="profilePincode"
-                              value={pincode}
-                              onChange={(e) => setPincode(e.target.value)}
-                            />
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="flex justify-end space-x-6">
-                        <span
-                          data-cy="profile:cancel-btn"
-                          className="text-lg  px-6 py-2 font-bold text-gray-600 cursor-pointer"
-                          onClick={closePopup}
-                        >
-                          Cancel
-                        </span>
-                        <button
-                          data-cy="profileEdit_Submit"
-                          type="submit"
-                          className="text-lg font-black text-white bg-blue-600 px-6 py-2 rounded-lg"
-                        >
-                          Save
-                        </button>
-                      </div>
-                    </form>
-                  </div>
+    <div className="min-h-screen bg-gray-50">
+      <div className="container mx-auto px-4 py-8 md:px-6 lg:px-8">
+        <div className="flex flex-col md:flex-row gap-8">
+          {/* Sidebar Navigation */}
+          <div className="w-full md:w-1/4">
+            <div className="bg-white rounded-xl shadow-md overflow-hidden">
+              <div className="p-6 text-center">
+                <div className="mx-auto w-40 h-40 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden">
+                  <Image
+                    src="/images/user-profile.webp"
+                    width={160}
+                    height={160}
+                    alt="Profile"
+                    className="object-cover"
+                  />
                 </div>
-              )}
-            </div>
-
-            <div className="flex mt-6">
-              <ul className=" w-1/2">
-                <li className="flex justify-between items-center  border-y p-5 hover:bg-gray-300 hover:bg-gradient-to-r hover:from-white hover:to-[#f7f7f7]">
-                  <span className="text-xs font-normal">NAME</span>
-                  <span className="text-sm font-semibold text-black cursor-pointer">
-                    {profileData.fullName || "+ Add"}
-                  </span>
-                </li>
-                <li className="flex justify-between items-center border-b p-5 hover:bg-gray-300 hover:bg-gradient-to-r hover:from-white hover:to-[#f7f7f7]">
-                  <span className="text-xs font-normal">DATE OF BIRTH</span>
-                  <span className="text-sm font-semibold text-black cursor-pointer">
-                    {profileData.birthday || "+ Add"}
-                  </span>
-                </li>
-                <li className="flex justify-between items-center border-b p-5 hover:bg-gray-300 hover:bg-gradient-to-r hover:from-white hover:to-[#f7f7f7]">
-                  <span className="text-xs font-normal">GENDER</span>
-                  <span className="text-sm font-semibold text-black cursor-pointer">
-                    {profileData.gender || "+ Add"}
-                  </span>
-                </li>
-              </ul>
-              <ul className="w-1/2">
-                <li className="flex justify-between items-center border-l border-y p-5 hover:bg-gray-300 hover:bg-gradient-to-r hover:from-white hover:to-[#f7f7f7]">
-                  <span className="text-xs font-normal">MARITAL STATUS</span>
-                  <span className="text-sm font-semibold text-black cursor-pointer">
-                    {profileData.maritalStatus || "+ Add"}
-                  </span>
-                </li>
-                <li className="flex justify-between items-center border-l border-b p-5 hover:bg-gray-300 hover:bg-gradient-to-r hover:from-white hover:to-[#f7f7f7]">
-                  <span className="text-xs font-normal">ADDRESS</span>
-                  <span className="text-sm font-semibold text-black cursor-pointer">
-                    {profileData.address || "+ Add"}
-                  </span>
-                </li>
-                <li className="flex justify-between items-center border-b border-l p-5 hover:bg-gray-300 hover:bg-gradient-to-r hover:from-white hover:to-[#f7f7f7]">
-                  <span className="text-xs font-normal">PINCODE</span>
-                  <span className="text-sm font-semibold text-black cursor-pointer">
-                    {profileData.pincode || "+ Add"}
-                  </span>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-
-          <div
-            ref={loginDetailsRef}
-            className=" bg-white myshadow rounded-xl p-6 mt-6"
-          >
-            <h3 className="font-semibold text-2xl">Login Details</h3>
-            <p className="font18 darkGreyText mt-2">
-              Manage your mobile number, email address and password
-            </p>
-
-            <ul className="mt-6">
-              <li className=" flex justify-between items-center border-b p-5 hover:bg-gray-300 hover:bg-gradient-to-r hover:from-white hover:to-[#f7f7f7] ">
-                <span className="text-xs font-normal ">NAME</span>
-                <span className="text-sm  font-semibold  cursor-pointer">
-                {userinfo && userinfo.name}
-                </span>
-              </li>
-              <li className=" flex justify-between  items-center border-b p-5 hover:bg-gray-300 hover:bg-gradient-to-r hover:from-white hover:to-[#f7f7f7] ">
-                <span className="text-xs font-normal">EMAIL ID</span>
-                <span className="text-sm font-semibold text-black cursor-pointer">
-                 {userinfo && userinfo.email}
-                </span>
-              </li>
-              <li className=" flex justify-between items-center border-b p-5 hover:bg-gray-300 hover:bg-gradient-to-r hover:from-white hover:to-[#f7f7f7] ">
-                <span className="text-xs font-normal ">PASSWORD</span>
-                <span className="text-sm font-semibold text-black cursor-pointer leading-none">
-                  *******
-                </span>
-              </li>
-            </ul>
-          </div>
-
-
-          <div
-            ref={coTravellersRef}
-            className=" bg-white myshadow rounded-xl p-6 mt-6"
-          >
-            <div className=" flex justify-between items-center">
-              <div>
-                <h3 className="font-semibold text-2xl">Co-Travellers</h3>
-                <p className="font18 darkGreyText mt-2">
-                  Add, Remove and Update your traveller list
-                </p>
-              </div>
-              <button
-                className="font16 bg-white border hover:shadow px-4 rounded-xl py-2 text-blue-600 flex items-center"
-                onClick={() => openPopup("traveller")}
-              >
-                <FaPencilAlt className="  mr-2" />
-                Add Traveller
-              </button>
-            </div>
-          </div>
-
-
-          {isPopupOpen === "traveller" && (
-            <div className="fixed inset-0 flex z-[9999] items-center justify-center bg-black bg-opacity-50">
-              <div className="p-6 bg-white shadow-lg rounded-lg">
-                <h3 className="text-2xl font-black text-gray-900">
-                  Add Traveller’s Info
+                <h3 className="mt-4 text-xl font-semibold text-gray-800">
+                  {userinfo?.name || "Welcome"}
                 </h3>
-                <div className="">
-                  <div className="mt-2">
-                    <div className="">
-                      <ul className="my-4 text-base font-black text-gray-700 flex space-x-4">
-                        <li
-                          onClick={() => handleTabChange(0)}
-                          className={`cursor-pointer ${
-                            activeTab === 0
-                              ? "text-black border-b-2 border-black"
-                              : ""
-                          }`}
-                        >
-                          Basic Info
-                        </li>
-                        <li
-                          onClick={() => handleTabChange(1)}
-                          className={`cursor-pointer ${
-                            activeTab === 1
-                              ? "text-black border-b-2 border-black"
-                              : ""
-                          }`}
-                        >
-                          Passport Details
-                        </li>
-                        <li
-                          onClick={() => handleTabChange(2)}
-                          className={`cursor-pointer ${
-                            activeTab === 2
-                              ? "text-black border-b-2 border-black"
-                              : ""
-                          }`}
-                        >
-                          Contact Details
-                        </li>
-                        <li
-                          onClick={() => handleTabChange(3)}
-                          className={`cursor-pointer ${
-                            activeTab === 3
-                              ? "text-black border-b-2 border-black"
-                              : ""
-                          }`}
-                        >
-                          Frequent Flyer Details
-                        </li>
-                      </ul>
-                    </div>
-                    <form noValidate>
-                      {activeTab === 0 && (
-                        <div className="">
-                          <div className="">
-                            <p className="text-base text-gray-700 mt-5">
-                              Please check if First & Last name, gender and date
-                              of birth match Govt. ID such as Passport.
-                            </p>
-                            <div className="mt-8">
-                              <div className="flex space-x-4">
-                                <div className="w-1/2">
-                                  <label
-                                    htmlFor="travellerFirstName"
-                                    className="text-base font-bold text-black"
-                                  >
-                                    First Name
-                                    <span className="text-red-500">*</span>
-                                  </label>
-                                  <input
-                                    id="travellerFirstName"
-                                    type="text"
-                                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-black"
-                                  />
-                                </div>
-                                <div className="w-1/2">
-                                  <label
-                                    htmlFor="travellerLastName"
-                                    className="text-base font-bold text-black"
-                                  >
-                                    Last Name
-                                    <span className="text-red-500">*</span>
-                                  </label>
-                                  <input
-                                    id="travellerLastName"
-                                    type="text"
-                                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-black"
-                                  />
-                                </div>
-                              </div>
-                              <div className="mt-4 flex space-x-4">
-                                <div className="w-1/2">
-                                  <label
-                                    htmlFor="Gender"
-                                    className="text-base font-bold text-black"
-                                  >
-                                    Gender
-                                    <span className="text-red-500">*</span>
-                                  </label>
-                                  <select
-                                    data-cy="profileGender"
-                                    className="w-full mt-1 p-2 h-[42px] text-sm text-gray-900 border  border-gray-300 rounded-md"
-                                    id="profileGender"
-                                    value={gender}
-                                    onChange={(e) => setGender(e.target.value)}
-                                  >
-                                    <option value="">Select Gender</option>
-                                    <option value="MALE">Male</option>
-                                    <option value="FEMALE">Female</option>
-                                    <option value="OTHER">Other</option>
-                                  </select>
-                                </div>
-                                <div className="w-1/2">
-                                  <label
-                                    htmlFor="DateOfBirth"
-                                    className="text-base font-bold text-black"
-                                  >
-                                    Date of Birth
-                                    <span className="text-red-500">*</span>
-                                  </label>
-                                  <div className="mt-1 border border-gray-300 rounded-md p-2">
-                                    <p className="text-gray-500">Select Date</p>
-                                  </div>
-                                </div>
-                              </div>
-                              <div className="mt-4 flex space-x-4">
-                                <div className="w-1/2">
-                                  <label
-                                    htmlFor="nationality"
-                                    className="text-base font-bold text-black"
-                                  >
-                                    Nationality
-                                  </label>
-                                  <select
-                                    data-cy="profileGender"
-                                    className="w-full mt-1 p-2 h-[42px]  text-sm text-gray-900 border  border-gray-300 rounded-md"
-                                    id="profileNationality"
-                                    value={nationality}
-                                    onChange={(e) =>
-                                      setNationality(e.target.value)
-                                    }
-                                  >
-                                    <option value="">Select Nationality</option>
-                                    <option value="Indian">Indian</option>
-                                    <option value="OTHER">Other</option>
-                                  </select>
-                                </div>
-                                <div className="w-1/2">
-                                  <label
-                                    htmlFor="mealPref"
-                                    className="text-base font-bold text-black"
-                                  >
-                                    Meal Preference
-                                  </label>
-                                  <select
-                                    data-cy="profileMeal"
-                                    className="w-full mt-1 p-2 h-[42px] text-sm text-gray-900 border  border-gray-300 rounded-md"
-                                    id="profileMeal"
-                                    value={meal}
-                                    onChange={(e) => setMeal(e.target.value)}
-                                  >
-                                    <option value="">Select Meal</option>
-                                    <option value="MALE">Vegetarian</option>
-                                    <option value="FEMALE">
-                                      Non-Vegeterian
-                                    </option>
-                                    <option value="OTHER">Vegan</option>
-                                    <option value="OTHER">Kosher Meal</option>
-                                  </select>
-                                </div>
-                              </div>
-                              <div className="mt-4 flex space-x-4">
-                                <div className="w-1/2">
-                                  <label
-                                    htmlFor="relationship"
-                                    className="text-base font-bold text-black"
-                                  >
-                                    Traveller's relationship with you
-                                  </label>
-                                  <select
-                                    data-cy="profileRelationship"
-                                    className="w-full mt-1 p-2 h-[42px] text-sm text-gray-900 border  border-gray-300 rounded-md"
-                                    id="profileRelationship"
-                                    value={relationship}
-                                    onChange={(e) =>
-                                      setRelationship(e.target.value)
-                                    }
-                                  >
-                                    <option value="">
-                                      Select relationship{" "}
-                                    </option>
-                                    <option value="MALE">Spouse</option>
-                                    <option value="FEMALE">Child</option>
-                                    <option value="OTHER">Sibling</option>
-                                    <option value="OTHER">Parent</option>x
-                                  </select>
-                                </div>
-                                <div className="w-1/2">
-                                  <label
-                                    htmlFor="seatPref"
-                                    className="text-base font-bold text-black"
-                                  >
-                                    Train Berth Preference
-                                  </label>
-                                  <select
-                                    data-cy="profilePreference"
-                                    className="w-full mt-1 p-2 h-[42px] text-sm text-gray-900 border  border-gray-300 rounded-md"
-                                    id="profilePreference"
-                                    value={preference}
-                                    onChange={(e) =>
-                                      setPreference(e.target.value)
-                                    }
-                                  >
-                                    <option value="">Select Preference </option>
-                                    <option value="MALE">Spouse</option>
-                                    <option value="FEMALE">Child</option>
-                                    <option value="OTHER">Sibling</option>
-                                    <option value="OTHER">Parent</option>x
-                                  </select>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      )}
-                      {activeTab === 1 && (
-                        <div className="">
-                          <div className="">
-                            <p className="text-base text-gray-700 mt-1">
-                              Mandatory for International Travel
-                            </p>
-                            <div className="mt-8">
-                              <div className="flex space-x-4">
-                                <div className="w-1/2">
-                                  <label
-                                    htmlFor="passportNumber"
-                                    className="text-base font-bold text-black"
-                                  >
-                                    Passport Number
-                                  </label>
-                                  <input
-                                    id="passportNumber"
-                                    type="text"
-                                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-black"
-                                  />
-                                </div>
-                                <div className="w-1/2">
-                                  <label
-                                    htmlFor="issuingCountry"
-                                    className="text-base font-bold text-black"
-                                  >
-                                    Issuing Country
-                                  </label>
-                                  <select
-                                    data-cy="profileIssuingCountry"
-                                    className="w-full mt-1 p-2 h-[42px] text-sm text-gray-900 border  border-gray-300 rounded-md"
-                                    id="profileIssuingCountry"
-                                    value={issueingCountry}
-                                    onChange={(e) =>
-                                      setIssueingCountry(e.target.value)
-                                    }
-                                  >
-                                    <option value="">
-                                      Select Issuing Country{" "}
-                                    </option>
-                                    <option value="MALE">
-                                      United Arab Emirates
-                                    </option>
-                                    <option value="FEMALE">Anguilla</option>
-                                    <option value="OTHER">Antarctica</option>
-                                    <option value="OTHER">Armenia</option>x
-                                  </select>
-                                </div>
-                              </div>
-                              <div className="mt-4">
-                                <label
-                                  htmlFor="passportExpiry"
-                                  className="text-base font-bold text-black"
-                                >
-                                  Expiry Date
-                                </label>
-                                <div className="mt-1 border border-gray-300 rounded-md p-2">
-                                  <p className="text-gray-500">
-                                    Select Expiry Date
-                                  </p>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      )}
-                      {activeTab === 2 && (
-                        <div className="">
-                          <div className="">
-                            <p className="text-base text-gray-700 mt-1">
-                              Used only for booking related communications
-                            </p>
-                            <div className="mt-8">
-                              <div className="flex space-x-4">
-                                <div className="w-1/2">
-                                  <label
-                                    htmlFor="emailId"
-                                    className="text-base font-bold text-black"
-                                  >
-                                    Email ID
-                                  </label>
-                                  <input
-                                    id="emailId"
-                                    type="email"
-                                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-black"
-                                  />
-                                </div>
-                                <div className="w-1/2">
-                                  <label
-                                    htmlFor="phoneNum"
-                                    className="text-base font-bold text-black"
-                                  >
-                                    Phone No
-                                  </label>
-                                  <div className="mt-1 flex border border-gray-300 rounded-md">
-                                    <div className="flex items-center px-3 border-r border-gray-300">
-                                      <span className="font-bold text-gray-700">
-                                        +91
-                                      </span>
-                                    </div>
-                                    <input
-                                      id="phoneNum"
-                                      type="tel"
-                                      className="w-full px-3 py-2 border-none focus:ring-0"
-                                    />
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      )}
-                      {activeTab === 3 && (
-                        <div className="">
-                          <div className="">
-                            <div className="mt-8">
-                              <div className="flex space-x-4">
-                                <div className="w-1/2">
-                                  <label
-                                    htmlFor=""
-                                    className="text-base font-bold text-black"
-                                  >
-                                    Frequent Flyer Airline
-                                  </label>
-                                  <select
-                                    data-cy="profileairline"
-                                    className="w-full mt-1 p-2 h-[42px] text-sm text-gray-900 border  border-gray-300 rounded-md"
-                                    id="profileairline"
-                                    value={airline}
-                                    onChange={(e) => setAirline(e.target.value)}
-                                  >
-                                    <option value="">
-                                      Select Issuing Country{" "}
-                                    </option>
-                                    <option value="MALE">Air India</option>
-                                    <option value="FEMALE">Air Canada</option>
-                                    <option value="OTHER">Air France</option>
-                                    <option value="OTHER">Finnair</option>x
-                                  </select>
-                                </div>
-                                <div className="w-1/2">
-                                  <label
-                                    htmlFor="frequentFlyerNumber"
-                                    className="text-base font-bold text-black"
-                                  >
-                                    Frequent Flyer Number
-                                  </label>
-                                  <input
-                                    id="frequentFlyerNumber"
-                                    type="text"
-                                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-black"
-                                  />
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      )}
-                      <div className=" flex justify-between items-center mt-6">
-                        <span
-                          className="text-lg font-bold text-gray-700 cursor-pointer"
-                          onClick={() => closePopup()}
-                        >
-                          Cancel
-                        </span>
-                        <button
-                          type="submit"
-                          className="bg-black text-white font-bold py-2 px-4 rounded-md"
-                        >
-                          Save
-                        </button>
-                      </div>
-                    </form>
+                <p className="text-sm text-gray-500 mt-1">PERSONAL PROFILE</p>
+              </div>
+
+              <nav className="mt-2">
+                <ul className="space-y-1 p-2">
+                  {[
+                    { icon: <CgProfile />, label: "Profile", ref: profileRef, id: "profile" },
+                    { icon: <LuLogOut />, label: "Login Details", ref: loginDetailsRef, id: "loginDetails" },
+                    { icon: <LuUsers2 />, label: "Co-Travellers", ref: coTravellersRef, id: "coTravellers" },
+                    { icon: <AiOutlineLogout />, label: "Logout", ref: logoutRef, id: "logout", action: handleLogout },
+                  ].map((item) => (
+                    <li key={item.id}>
+                      <button
+                        onClick={() => item.action ? item.action() : handleItemClick(item.id, item.ref)}
+                        className={`w-full flex items-center gap-3 px-4 py-3 text-left rounded-lg transition-colors ${activeItem === item.id ? "bg-blue-50 text-blue-600" : "text-gray-700 hover:bg-gray-100"}`}
+                      >
+                        <span className="text-lg">{item.icon}</span>
+                        <span className="font-medium">{item.label}</span>
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            </div>
+          </div>
+
+          {/* Main Content */}
+          <div className="w-full md:w-3/4 space-y-6">
+            {/* Profile Completion Card */}
+            <div className="bg-white rounded-xl shadow-md p-6">
+              <div className="flex justify-between items-center">
+                <h3 className="text-lg font-semibold text-gray-800">Complete your Profile</h3>
+                <span className="text-blue-600 font-medium">60%</span>
+              </div>
+              <div className="w-full bg-gray-200 rounded-full h-2.5 mt-3">
+                <div className="bg-blue-600 h-2.5 rounded-full" style={{ width: '60%' }}></div>
+              </div>
+              <p className="mt-3 text-gray-600">
+                Get the best out of Next Gen by adding the remaining details!
+              </p>
+              <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4">
+                {[
+                  { icon: <FaCheckCircle className="text-green-500" />, text: "Verified mobile Number" },
+                  { icon: <FaCheckCircle className="text-green-500" />, text: "Verified Email ID" },
+                  { icon: <FaPlus className="text-blue-500" />, text: "Complete Basic Info" },
+                ].map((item, index) => (
+                  <div key={index} className="flex items-center gap-2 p-3 bg-blue-50 rounded-lg">
+                    <span className="text-xl">{item.icon}</span>
+                    <span className="font-medium text-blue-600">{item.text}</span>
                   </div>
-                </div>
+                ))}
               </div>
             </div>
 
-          )}
+            {/* Profile Section */}
+            <div ref={profileRef} className="bg-white rounded-xl shadow-md p-6">
+              <div className="flex justify-between items-center">
+                <div>
+                  <h3 className="text-2xl font-semibold text-gray-800">Profile</h3>
+                  <p className="text-gray-600 mt-1">Basic info, for a faster booking experience</p>
+                </div>
+                <button
+                  onClick={() => openPopup("edit")}
+                  className="flex items-center gap-2 px-4 py-2 border border-blue-500 text-blue-600 rounded-lg hover:bg-blue-50 transition-colors"
+                >
+                  <FaPencilAlt />
+                  Edit
+                </button>
+              </div>
 
+              <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+                {[
+                  { label: "NAME", value: formData.fullName || "+ Add", key: "fullName" },
+                  { label: "DATE OF BIRTH", value: formData.birthday || "+ Add", key: "birthday" },
+                  { label: "GENDER", value: formData.gender || "+ Add", key: "gender" },
+                  { label: "MARITAL STATUS", value: formData.maritalStatus || "+ Add", key: "maritalStatus" },
+                  { label: "ADDRESS", value: formData.address || "+ Add", key: "address" },
+                  { label: "PINCODE", value: formData.pincode || "+ Add", key: "pincode" },
+                ].map((item) => (
+                  <div key={item.key} className="p-4 border-b hover:bg-gray-50 transition-colors">
+                    <p className="text-xs text-gray-500 uppercase">{item.label}</p>
+                    <p className="text-sm font-medium mt-1">{item.value}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
 
+            {/* Login Details Section */}
+            <div ref={loginDetailsRef} className="bg-white rounded-xl shadow-md p-6">
+              <h3 className="text-2xl font-semibold text-gray-800">Login Details</h3>
+              <p className="text-gray-600 mt-1">
+                Manage your mobile number, email address and password
+              </p>
+
+              <div className="mt-6 space-y-4">
+                {[
+                  { label: "NAME", value: userinfo?.name || "N/A" },
+                  { label: "EMAIL ID", value: userinfo?.email || "N/A" },
+                  { label: "PASSWORD", value: "*******" },
+                ].map((item, index) => (
+                  <div key={index} className="p-4 border-b hover:bg-gray-50 transition-colors">
+                    <p className="text-xs text-gray-500 uppercase">{item.label}</p>
+                    <p className="text-sm font-medium mt-1">{item.value}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Co-Travellers Section */}
+            <div ref={coTravellersRef} className="bg-white rounded-xl shadow-md p-6">
+              <div className="flex justify-between items-center">
+                <div>
+                  <h3 className="text-2xl font-semibold text-gray-800">Co-Travellers</h3>
+                  <p className="text-gray-600 mt-1">
+                    Add, Remove and Update your traveller list
+                  </p>
+                </div>
+                <button
+                  onClick={() => openPopup("traveller")}
+                  className="flex items-center gap-2 px-4 py-2 border border-blue-500 text-blue-600 rounded-lg hover:bg-blue-50 transition-colors"
+                >
+                  <FaPencilAlt />
+                  Add Traveller
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
-
       </div>
-    </>
+
+      {isPopupOpen === "edit" && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="p-6">
+              <div className="flex justify-between items-center">
+                <h3 className="text-2xl font-bold text-gray-900">Edit Profile</h3>
+                <button onClick={closePopup} className="text-gray-500 hover:text-gray-700">
+                  <FaTimes />
+                </button>
+              </div>
+
+              <form onSubmit={handleSave} className="mt-6 space-y-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Full Name <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      name="fullName"
+                      value={formData.fullName}
+                      onChange={handleInputChange}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      required
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Birthday
+                    </label>
+                    <input
+                      type="date"
+                      name="birthday"
+                      value={formData.birthday}
+                      onChange={handleInputChange}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Gender
+                    </label>
+                    <select
+                      name="gender"
+                      value={formData.gender}
+                      onChange={handleInputChange}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    >
+                      <option value="">Select Gender</option>
+                      <option value="MALE">Male</option>
+                      <option value="FEMALE">Female</option>
+                      <option value="OTHER">Other</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Marital Status
+                    </label>
+                    <select
+                      name="maritalStatus"
+                      value={formData.maritalStatus}
+                      onChange={handleInputChange}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    >
+                      <option value="">Select Marital Status</option>
+                      <option value="SINGLE">Single</option>
+                      <option value="MARRIED">Married</option>
+                      <option value="OTHER">Other</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Your Address
+                    </label>
+                    <input
+                      type="text"
+                      name="address"
+                      value={formData.address}
+                      onChange={handleInputChange}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Pincode
+                    </label>
+                    <input
+                      type="text"
+                      name="pincode"
+                      value={formData.pincode}
+                      onChange={handleInputChange}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    />
+                  </div>
+                </div>
+
+                <div className="flex justify-end space-x-4 pt-6">
+                  <button
+                    type="button"
+                    onClick={closePopup}
+                    className="px-6 py-2 text-gray-700 font-medium rounded-md hover:bg-gray-100 transition-colors"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    className="px-6 py-2 bg-blue-600 text-white font-medium rounded-md hover:bg-blue-700 transition-colors"
+                  >
+                    Save Changes
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      )}
+
+     
+      {isPopupOpen === "traveller" && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="p-6">
+              <div className="flex justify-between items-center">
+                <h3 className="text-2xl font-bold text-gray-900">Add Traveller's Info</h3>
+                <button onClick={closePopup} className="text-gray-500 hover:text-gray-700">
+                  <FaTimes />
+                </button>
+              </div>
+
+              <div className="mt-6">
+                <div className="border-b border-gray-200">
+                  <nav className="-mb-px flex space-x-8">
+                    {['Basic Info', 'Passport Details', 'Contact Details', 'Frequent Flyer Details'].map((tab, index) => (
+                      <button
+                        key={tab}
+                        onClick={() => handleTabChange(index)}
+                        className={`whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm ${activeTab === index ? 'border-blue-500 text-blue-600' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'}`}
+                      >
+                        {tab}
+                      </button>
+                    ))}
+                  </nav>
+                </div>
+
+                <form className="mt-6">
+                  {activeTab === 0 && (
+                    <div className="space-y-4">
+                      <p className="text-gray-600">
+                        Please check if First & Last name, gender and date of birth match Govt. ID such as Passport.
+                      </p>
+
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-1">
+                            First Name <span className="text-red-500">*</span>
+                          </label>
+                          <input
+                            type="text"
+                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          />
+                        </div>
+
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-1">
+                            Last Name <span className="text-red-500">*</span>
+                          </label>
+                          <input
+                            type="text"
+                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          />
+                        </div>
+
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-1">
+                            Gender <span className="text-red-500">*</span>
+                          </label>
+                          <select className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <option value="">Select Gender</option>
+                            <option value="MALE">Male</option>
+                            <option value="FEMALE">Female</option>
+                            <option value="OTHER">Other</option>
+                          </select>
+                        </div>
+
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-1">
+                            Date of Birth <span className="text-red-500">*</span>
+                          </label>
+                          <input
+                            type="date"
+                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          />
+                        </div>
+
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-1">
+                            Nationality
+                          </label>
+                          <select className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <option value="">Select Nationality</option>
+                            <option value="Indian">Indian</option>
+                            <option value="OTHER">Other</option>
+                          </select>
+                        </div>
+
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-1">
+                            Meal Preference
+                          </label>
+                          <select className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <option value="">Select Meal</option>
+                            <option value="VEGETARIAN">Vegetarian</option>
+                            <option value="NON_VEGETARIAN">Non-Vegeterian</option>
+                            <option value="VEGAN">Vegan</option>
+                            <option value="KOSHER">Kosher Meal</option>
+                          </select>
+                        </div>
+
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-1">
+                            Traveller's relationship with you
+                          </label>
+                          <select className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <option value="">Select relationship</option>
+                            <option value="SPOUSE">Spouse</option>
+                            <option value="CHILD">Child</option>
+                            <option value="SIBLING">Sibling</option>
+                            <option value="PARENT">Parent</option>
+                          </select>
+                        </div>
+
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-1">
+                            Train Berth Preference
+                          </label>
+                          <select className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <option value="">Select Preference</option>
+                            <option value="LOWER">Lower Berth</option>
+                            <option value="MIDDLE">Middle Berth</option>
+                            <option value="UPPER">Upper Berth</option>
+                            <option value="SIDE">Side Berth</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {activeTab === 1 && (
+                    <div className="space-y-4">
+                      <p className="text-gray-600">Mandatory for International Travel</p>
+
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-1">
+                            Passport Number
+                          </label>
+                          <input
+                            type="text"
+                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          />
+                        </div>
+
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-1">
+                            Issuing Country
+                          </label>
+                          <select className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <option value="">Select Issuing Country</option>
+                            <option value="UAE">United Arab Emirates</option>
+                            <option value="ANGUILLA">Anguilla</option>
+                            <option value="ANTARCTICA">Antarctica</option>
+                            <option value="ARMENIA">Armenia</option>
+                          </select>
+                        </div>
+
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-1">
+                            Expiry Date
+                          </label>
+                          <input
+                            type="date"
+                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {activeTab === 2 && (
+                    <div className="space-y-4">
+                      <p className="text-gray-600">Used only for booking related communications</p>
+
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-1">
+                            Email ID
+                          </label>
+                          <input
+                            type="email"
+                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          />
+                        </div>
+
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-1">
+                            Phone No
+                          </label>
+                          <div className="flex">
+                            <div className="flex items-center px-3 py-2 border border-gray-300 rounded-l-md bg-gray-50">
+                              <span className="text-gray-700">+91</span>
+                            </div>
+                            <input
+                              type="tel"
+                              className="w-full px-3 py-2 border-t border-b border-r border-gray-300 rounded-r-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {activeTab === 3 && (
+                    <div className="space-y-4">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-1">
+                            Frequent Flyer Airline
+                          </label>
+                          <select className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <option value="">Select Airline</option>
+                            <option value="AIR_INDIA">Air India</option>
+                            <option value="AIR_CANADA">Air Canada</option>
+                            <option value="AIR_FRANCE">Air France</option>
+                            <option value="FINNAIR">Finnair</option>
+                          </select>
+                        </div>
+
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-1">
+                            Frequent Flyer Number
+                          </label>
+                          <input
+                            type="text"
+                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  <div className="flex justify-between items-center pt-6">
+                    <button
+                      type="button"
+                      onClick={closePopup}
+                      className="px-6 py-2 text-gray-700 font-medium rounded-md hover:bg-gray-100 transition-colors"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      type="submit"
+                      className="px-6 py-2 bg-blue-600 text-white font-medium rounded-md hover:bg-blue-700 transition-colors"
+                    >
+                      Save Traveller
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
   );
 };
 
-export default page;
+export default ProfilePage;

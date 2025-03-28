@@ -51,6 +51,8 @@ const Page = ({ setActiveTab,fdatas, price }) => {
     }
   };
 
+
+  
   // Toggle visibility of a specific passenger form
   const toggleFormVisibility = (index) => {
     const updatedShowForms = [...showForms];
@@ -248,6 +250,10 @@ const differenceInMinutes = (now - addate) / (1000 * 60);
           };
   
           console.log('payload', payload);
+
+
+
+  
   
           try {
               const response = await axios.post(`${apilink}/flight-book`, payload);
