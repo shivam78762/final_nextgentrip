@@ -49,7 +49,7 @@ const ProfilePage = () => {
     e.preventDefault();
     try {
       const user = JSON.parse(localStorage.getItem("NextGenUser"));
-      const { data } = await axios.put(`${apilink}/user/${user}`, formData);
+      const {  data } = await axios.put(`${apilink}/user/${user}`, formData);
       toast.success("Profile updated successfully!", {
         position: "top-right",
         autoClose: 3000,
@@ -65,13 +65,16 @@ const ProfilePage = () => {
     }
   };
 
-  // Handle input changes
+  
+
+  
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  // Navigation handlers
+ 
+
   const handleItemClick = (item, ref) => {
     setActiveItem(item);
     ref?.current?.scrollIntoView({ behavior: "smooth" });
@@ -79,7 +82,9 @@ const ProfilePage = () => {
 
   const handleTabChange = (index) => setActiveTab(index);
 
-  // Logout handler
+
+ 
+
   const handleLogout = () => {
     localStorage.removeItem("NextGenUser");
     router.push("/");
@@ -92,7 +97,7 @@ const ProfilePage = () => {
 
 
 
-  
+
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("NextGenUser"));
     if (!user) {

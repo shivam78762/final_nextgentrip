@@ -108,6 +108,8 @@ const [bannerimg,setbannerImg]=useState()
 const dispatch = useDispatch();
 const sliderdata = useSelector((state) => state.sliderData);
 
+console.log(sliderdata,"sdfwe")
+
  useEffect(()=>{
 
   dispatch(getSliderData())
@@ -126,6 +128,7 @@ const filteredData2=["/images/flight-slide2.png","/images/flight-slide1.png","/i
   };
 
   const fetchapi=async()=>{
+
 const response = await axios.get(`${apilink}/home/bannerimg`);
    setbannerImg(response.data)
   }
@@ -139,7 +142,7 @@ const response = await axios.get(`${apilink}/home/bannerimg`);
     return () => clearTimeout(timeout);
   }, []);
 
-  console.log('sliderdata',sliderdata.info[0]?.img2)
+  
 
   return (
     <>
@@ -150,7 +153,22 @@ const response = await axios.get(`${apilink}/home/bannerimg`);
         </div>
         
 
+{ 
+// true &&
+sliderdata.isLoading &&
+<div className="flex  flex-col lg:flex-row px-4 lg:px-36 justify-end gap-4 w-full">
+{/* Image Placeholder Loader */}
+<div className="w-2/4 h-72 bg-gray-300 rounded-lg animate-pulse"></div>
+<div className="w-1/4 h-72 bg-gray-300 rounded-lg animate-pulse"></div>
+<div className="w-1/4 h-72 bg-gray-300 rounded-lg animate-pulse"></div>
+<div className="w-1/4 h-72 bg-gray-300 rounded-lg animate-pulse"></div>
+</div>
 
+}
+
+{ 
+// false &&
+  !sliderdata.isLoading &&
         <div className=" flex  flex-col lg:flex-row px-4 lg:px-36 justify-end gap-4 w-full ">
         <Swiper
             className=" w-full  lg:w-3/6 h-[200px] lg:h-[300px] "
@@ -175,12 +193,7 @@ const response = await axios.get(`${apilink}/home/bannerimg`);
               ))}
             </Swiper>
             <div className="flex  lg:gap-4  lg:w-3/6 justify-around">
-            {/* {filteredData.slice(0,3).map((item)=>(
-              <div className="rounded-2xl overflow-hidden   h-[100px]   md:h-[250px]  lg:h-full">
-                <img src={item.imageUrl} alt="" className="h-full w-full" />
-              </div>
-
-            ))} */}
+           
 
 
 <div className="rounded-2xl overflow-hidden   h-[150px]   md:h-[250px]  lg:h-full">
@@ -205,6 +218,7 @@ const response = await axios.get(`${apilink}/home/bannerimg`);
 
             </div>
         </div>
+}
 
       </div>
     </>
