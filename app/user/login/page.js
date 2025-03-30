@@ -18,7 +18,7 @@ const page = () => {
   const [loginpage, setloginpage] = useState(false);
   const [sighupinfo, setsighupinfo] = useState({});
   const [logininfo, setlogininfo] = useState({});
-
+const [loader ,setloader]=useState(false)
   useEffect(() => {
     const alreadylogin = JSON.parse(localStorage.getItem("NextGenUser"));
     if (alreadylogin) {
@@ -27,6 +27,8 @@ const page = () => {
   }, []);
 
   const handelVerify = async () => {
+setloader(true)
+
     const res = await axios.post(`${apilink}/user/verifyotp`, {
       email: sighupinfo.semail,
       otp,
@@ -50,9 +52,11 @@ const page = () => {
         transition: Bounce,
       });
     }
+    setloader(false)
   };
 
   const handelSignup = async () => {
+    setloader(true)
     const res = await axios.post(`${apilink}/user/signup`, {
       name: `${sighupinfo.fname} ${sighupinfo.lname}`,
       email: sighupinfo.semail,
@@ -78,9 +82,11 @@ const page = () => {
         transition: Bounce,
       });
     }
+    setloader(false)
   };
 
   const handelLogin = async () => {
+    setloader(true)
     const res = await axios.post(`${apilink}/user/login`, {
       email: logininfo.email,
       password: logininfo.password,
@@ -103,6 +109,7 @@ const page = () => {
         transition: Bounce,
       });
     }
+    setloader(false)
   };
 
   return (
@@ -166,8 +173,10 @@ const page = () => {
             <button
               className="text-white bg-blue-600 px-4 py-1 rounded-lg font-semibold text-xl"
               onClick={handelLogin}
+              disabled={loader}
             >
-              Login
+              
+              {loader?"loading...":"Login"}
             </button>
           </div>
 
@@ -283,16 +292,21 @@ const page = () => {
                 <button
                   className="text-white bg-blue-600 px-4 py-1 rounded-lg font-semibold text-xl"
                   onClick={handelSignup}
+                  disabled={loader}
                 >
-                  Signup
+                   {loader?"loading...":"Signup"}
+                  
                 </button>
               )}
               {otpSend && (
                 <button
                   className="text-white bg-green-600 px-4 py-1 rounded-lg font-semibold text-xl"
                   onClick={handelVerify}
+                  disabled={loader}
                 >
-                  Verify Otp
+                   {loader?"loading...":"Verify Otp"}
+
+                  
                 </button>
               )}{" "}
             </div>
