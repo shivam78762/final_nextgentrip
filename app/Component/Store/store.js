@@ -31,7 +31,7 @@ export const store = configureStore({
     getRegHotelsSlice,
     citysearch,hotelsSlice,preBookSlice,
     sightseeingslice,sightseeingGetslice,busCityslice,gethotelslice,busslice,busSeatSlice,fareRuleSlice,
-    insuranceSlice,
+    insurance:insuranceSlice,
     currencySlice,
     calendar:calendarSlice,
     sliderData:SliderSlice
