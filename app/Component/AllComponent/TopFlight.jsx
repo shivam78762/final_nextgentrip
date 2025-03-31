@@ -191,7 +191,7 @@ const TopFlight = () => {
             </div>
           </div>
 
-          <div className=" grid grid-cols-1 md:grid-cols-2   lg:grid-cols-3  gap-8  xl:px-5 pb-5 justify-center ">
+          <div className=" grid grid-cols-1 md:grid-cols-2   lg:grid-cols-3  gap-8  xl:px-5 pb-5 justify-center p-3 ">
             <div className="bg-white border shadow-md my-5 lg:my-0  mx-auto lg:mx-2 rounded-xl overflow-hidden relative  w-full ">
               <div className="city-head bg-[#0291d2] text-center">
                 <h4 className="text-white text-lg font-semibold py-3">

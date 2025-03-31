@@ -155,19 +155,29 @@ const HotelSliderCompo = ({ isLoading, children }) => {
 
 
         <div className=" lg:flex-row px-4 lg:px-36 gap-4 w-full my-15 flex justify-center ">
-          <Swiper
-            className=" w-full h-[350px] lg:h-[300px] "
+        <Swiper
+            className=" w-full h-[350px]  lg:h-[300px] "
             loop={true}
-            autoplay={{
-              delay: 2500,
-              disableOnInteraction: false,
-            }}
-            slidesPerView={4}
-            spaceBetween={50}
-
-            modules={[Autoplay]}
-
-          >
+              autoplay={{
+                delay: 2500,
+                disableOnInteraction: false,
+              }}
+              breakpoints={{
+                640: {
+                  slidesPerView: 1, // 1 slide on screens < 640px (mobile)
+                },
+                768: {
+                  slidesPerView: 2, // Optional: 2 slides for tablets
+                },
+                1024: {
+                  slidesPerView: 4, // 4 slides for larger screens (desktop)
+                },
+              }}
+              spaceBetween={50}
+           
+              modules={[Autoplay]}
+ 
+            >
 
             {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((_, index) => <SwiperSlide
               className="flex flex-col   rounded-2xl shadow-sm bg-white-900"

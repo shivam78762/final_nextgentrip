@@ -895,7 +895,7 @@ const Header = () => {
                     className="relative group"
                   >
                     <div>
-                      <button className="flex text-[11.5px] md:text-sm text-nowrap items-center md:gap-1 hover:text-blue-500">
+                      <button className=" p-3 flex  text-[11.5px] md:text-sm text-nowrap items-center md:gap-1 hover:text-blue-500">
                         {elm.heading}
                         <IoIosArrowDown
                           className={`${bottomDropdown === index ? "rotate-180" : ""
@@ -933,16 +933,16 @@ const Header = () => {
           </div>
 
           <div className=" px-4 border-b-2 shadow-sm  space-y-2 py-3 ">
-            <div className=" tabs 1stTab text-sm text-nowrap  md:text-sm  flex  md:gap-2 font-bold text-black  ">
+            <div className=" tabs 1stTab text-sm text-nowrap  md:text-sm  flex  md:gap-2 font-bold text-black gap-5 ">
               <button
-                className={`md:px-4 py-1  font-bold rounded-3xl ${JourneyType === 1 ? "bg-white text-[#000] active" : " "
+                className={`px-4 py-1  font-bold rounded-3xl ${JourneyType === 1 ? "bg-white text-[#000] active" : " "
                   } transition-colors duration-300 ease-in-out`}
                 onClick={() => handleTabClick(1)}
               >
                 {t("oneway")}
               </button>
               <button
-                className={`px-4 py-1 font-bold rounded-3xl ${JourneyType === 2 ? "bg-white text-[#000] active" : ""
+                className={`px-4  font-bold rounded-3xl ${JourneyType === 2 ? "bg-white text-[#000] active" : ""
                   } transition-colors duration-300 ease-in-out`}
                 onClick={() => handleTabClick(2)}
               >
@@ -1089,7 +1089,7 @@ const Header = () => {
                   </div>
 
                   {isVisible && selectedOption === "date" && (
-                    <div className="bg-white text-black p-5 shadow-2xl absolute top-full left-0 mt-2 z-10">
+                    <div className="bg-white text-black p-5 shadow-2xl text-[10px] md:text-lg absolute top-full mt-2 z-10 -left-4 md:left-0  w-[24rem] md:w-full">
                       {/* <Calendar
                             aria-label="Select a date"
                             value={""}
@@ -1142,7 +1142,7 @@ const Header = () => {
                   </div>
 
                   {isVisible && selectedOption === "return" && (
-                    <div className="bg-white text-black p-5 shadow-2xl absolute top-full left-0 mt-2 z-10">
+                    <div className="bg-white text-black p-5 shadow-2xl text-[10px] md:text-lg absolute top-full mt-2 z-10 -left-4 md:left-0  w-[24rem] md:w-full">
                       <Calendar
                         onChange={handleReturnDateChange}
                         value={selectedReturn}
@@ -1161,7 +1161,7 @@ const Header = () => {
                   </div>
                   <button onClick={() =>{ setIsVisible(true),setSelectedOption("count")}}>Edit</button>
                   {isVisible &&  selectedOption==="count" &&
-                   <div className="absolute top-[80%]  min-w-full min-h-[10rem] -left-10  z-10 " >
+                   <div className="absolute top-[80%]  min-w-full min-h-[10rem] left-1 md:-left-10  z-10 " >
                       <div className="shadow-2xl rounded-md  bg-white mt-[10%]  flex flex-col gap-4 p-4">
                         <div className="flex gap-3 justify-between"><p className="text-nowrap">Adult Count </p> <div className="flex items-center gap-3"> <button className="px-2 border" onClick={()=>{adultCount>1?setAdultCount(adultCount-1):null}}>-</button> <p className=" px-2 border">{adultCount}</p> <button className="px-2 border"onClick={()=>setAdultCount(adultCount+1)} >+</button> </div> </div>
                         <div className="flex gap-3 justify-between"><p className="text-nowrap">Child Count </p> <div className="flex items-center gap-3"> <button className="px-2 border" onClick={()=>{childCount>0?setChildCount(childCount-1):null}}>-</button> <p className=" px-2 border">{childCount}</p> <button className="px-2 border"onClick={()=>setChildCount(childCount+1)} >+</button> </div> </div>
@@ -1500,7 +1500,7 @@ const Header = () => {
                 className="defenceColm flex justify-center md:justify-between"
                 id="divFamilyFare"
               >
-                <ul className="grid   w grid-cols-2 justify-center md:grid-cols-3 lg:flex md:flex-nowrap md:justify-start  gap-3 lg:gap-2  text-xs items-center  p-0 m-0">
+                <ul className="grid    grid-cols-2 justify-center md:grid-cols-3 lg:flex md:flex-nowrap md:justify-start  gap-3 lg:gap-2  text-xs items-center  p-0 m-0">
                   {/* <li className="mr-5">
                     <label className="container_df  checkmark_df corp-hidden cscshw flex items-center">
                       {t("defenceforces")}
@@ -1562,7 +1562,7 @@ const Header = () => {
                     </label>
                   </li> */}
 
-                  {options.map((option) => (
+                  {/* {options.map((option) => (
                     <button
                       key={option.id}
                       onClick={() => DefnceStudentMoreHandler(option)}
@@ -1575,9 +1575,9 @@ const Header = () => {
                       </div>
                       <p className=" font-medium ">{option.label}</p>
                     </button>
-                  ))}
+                  ))} */}
 
-                  <li className="mr-5  w-fit ">
+                  <li className=" w-fit ">
                     {/* Cheap Flight Dropdown */}
                     <div className="relative " ref={dropCoachandCheap}>
                       <button

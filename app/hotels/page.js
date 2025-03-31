@@ -155,7 +155,7 @@ dispatch(getAllRegHotels())
           <HotelChains />
         </div> */}
       </div>
-      <div className="px-32 my-20">
+      <div className=" px-4 md:px-32 my-20">
 <HotelSliderCompo />
 </div>
 

@@ -299,7 +299,7 @@ const Topbar = () => {
   };
 
   return (
-    <div className="bg-red-400 border-b   pe-4 py-2  relative md:sticky top-0 navbar-main  border-blue-100 px-4  md:px-8 lg:px-16 xl:px-20">
+    <div className="bg-red-400 border-b     relative md:sticky top-0 navbar-main pe-4 py-2 border-blue-100   md:px-8 lg:px-16 xl:px-20">
       <div className="container mx-auto flex py-0  flex-row justify-between items-center">
         <div className="flex gap-2 items-center space-x-2">
           <div
@@ -311,7 +311,7 @@ const Topbar = () => {
             <div className="w-4 h-[2px] bg-gray-800"></div> */}
           </div>
           <Link href="/">
-            <img src="/images/NextGenTrip.jpg" alt="" className="h-[37px] md:h-[75px]" />
+            <img src="/images/NextGenTrip.jpg" alt="" className="h-[35px] md:h-[75px]" />
           </Link>
           <Sidebar isOpen={isSidebarOpen} onClose={closeSidebar} />
         </div>
@@ -610,7 +610,7 @@ const Topbar = () => {
             <div className=" flex items-center justify-center space-x-4 mt-1   ">
               {userlogin && (
                 <Link href={"/user"}>
-                  <FaUserCircle className="md:text-3xl mb-2 " />
+                  <FaUserCircle className="text-2xl md:text-3xl mb-2 " />
                 </Link>
               )}
               {!userlogin && (
