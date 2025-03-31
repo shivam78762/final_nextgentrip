@@ -107,7 +107,8 @@ const Navbar = () => {
   return (
     <>
       {" "}
-      <div className=" mt-0 lg:mt-2 mb-5 block md:hidden">
+
+  {/* <div className=" mt-0 lg:mt-2 mb-5 block md:hidden">
         <Slider {...settings}>
           <div>
             <img
@@ -134,7 +135,10 @@ const Navbar = () => {
             />
           </div>
         </Slider>
-      </div>
+      </div>      <div className=" md:hidden">
+<CustomSlider />
+</div>
+     */}
 
 
 
@@ -231,6 +235,34 @@ const Navbar = () => {
             </div>
           </>
         )}
+        <div
+              className={`container relative custom-nav grid grid-cols-3 md:flex gap-3 md:gap-6 lg:gap-0 transition-all duration-100 items-center overflow-auto `}
+            >
+              {icons.map((item, index) => (
+                <Link
+                  href={item.link}
+                  key={index}
+                  onClick={() => setActiveLink(item.link)}
+                  className={` flex justify-center flex-wrap min-lg:flex-col lg:flex-row flex-col items-center gap-1 md:py-2 px-0 text-center lg:px-3 rounded-md hover:bg-[#ECF5FE] hover:text-white transition-colors duration-300 ${
+                    activeLink === item.link
+                      ? "bg-[#ECF5FE] text-white"
+                      : "hover:bg-[#ECF5FE] hover:text-white"
+                  }`}
+                >
+
+                    <div
+                      src={item.icon}
+                      alt={`${item.name} icon`}
+                      className={`w-10 h-10 ${item.className}`}
+                      style={index === 0 ? { transform: "rotate(312deg)" } : {}}
+                    />
+
+                  <span className="text-black font-semibold text-sm">
+                    {item.name}
+                  </span>
+                </Link>
+              ))}
+            </div>
       </nav>
     </>
   );

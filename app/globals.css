@@ -377,7 +377,7 @@ a.text-sm {
   border-radius: 2px;
 }
 
-.event-box div:nth-child(2) {
+/* .event-box div:nth-child(2) {
   z-index: 2;
   position: absolute;
   margin-top: -135px;
@@ -397,7 +397,7 @@ a.text-sm {
 }
 .event-box h2 {
   text-overflow: ellipsis;
-  /* white-space: pre; */
+
   padding: 0px 6px;
   overflow: hidden;
   font-size: 18px;
@@ -410,7 +410,7 @@ a.text-sm {
   white-space: pre;
   overflow: hidden;
   color: #dddcdc;
-}
+} */
 
 .add-list textarea {
   height: 120px;

@@ -100,7 +100,7 @@ const togglePopup = () => setIsOpen(!isOpen);
   return (
 <>
 {isOpen && hotel && (
-<div className='fixed top-0 left-0 w-screen   h-screen flex justify-center items-center bg-[#0000008a] z-50 overflow-y-scroll pt-16   '>
+<div className='fixed top-0 left-0 w-screen   h-screen flex justify-center items-center bg-[#0000008a] z-50 overflow-y-scroll md:pt-16   '>
 
      
 

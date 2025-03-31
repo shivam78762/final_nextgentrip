@@ -868,7 +868,7 @@ const handelnonlcc=(id, ResultIndex)=>{
               </div>
             )}
 
-          <div className="myshadow w-full flex bg-white gap-1 px-4 overflow-hidden">
+          <div className="myshadow w-full md:flex bg-white gap-1 px-4 overflow-hidden">
             {!state2 ? (
               // Show skeleton loader while data is being fetched
               [...Array(3)].map((_, index) => <SkeletonLoader key={index} />)

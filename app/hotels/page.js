@@ -56,7 +56,10 @@ dispatch(getAllRegHotels())
 
     <HotelsComp/>
     {/* <HotelComp /> */}
-      <CustomSlider />
+    <div className='hidden md:block'>
+<CustomSlider/>
+
+</div>
       <div className="px-0 lg:px-20">
         <h2 className="text-lg text-center lg:text-2xl font-semibold mb-5">
           Book Hotels at Popular Destinations

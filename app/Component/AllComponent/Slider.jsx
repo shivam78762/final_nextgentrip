@@ -146,9 +146,9 @@ const response = await axios.get(`${apilink}/home/bannerimg`);
 
   return (
     <>
-      <div className="my-6">
+      <div className="md:my-6">
 
-        <div className="relative  pt-0 lg:pt-10 text-lg md:text-xl lg:text-3xl font-bold text-gray-900 flex justify-center items-center gap-2 my-5">
+        <div className="hidden relative  pt-0 lg:pt-10 text-lg md:text-xl lg:text-3xl font-bold text-gray-900 md:flex justify-center items-center gap-2 my-5">
         {t('title')}
         </div>
         
@@ -185,7 +185,7 @@ sliderdata.isLoading &&
               {sliderdata.info[0]?.slider_img.map((item, index) => (
                 <SwiperSlide
                   key={index}
-                  className="flex flex-col   rounded-2xl overflow-hidden  bg-white-900"
+                  className="flex flex-col   h-full md:rounded-2xl overflow-hidden  bg-white-900"
                 >
                   <img src={`${storageLink}/${item}`} alt=""  className="w-full  h-full"/>
                  
@@ -196,19 +196,19 @@ sliderdata.isLoading &&
            
 
 
-<div className="rounded-2xl overflow-hidden   h-[150px]   md:h-[250px]  lg:h-full">
+<div className="rounded-2xl overflow-hidden   h-[150px]   md:h-[250px]  lg:h-full hidden md:block">
 
 
                <img src={`${storageLink}/${sliderdata.info[0]?.img2}`} alt="" className="h-full w-full" />
               
               </div>
-              <div className="rounded-2xl overflow-hidden   h-[150px]   md:h-[250px]  lg:h-full">
+              <div className="rounded-2xl overflow-hidden   h-[150px]   md:h-[250px]  lg:h-full hidden md:block">
 
 
                <img src={`${storageLink}/${sliderdata.info[0]?.img3}`} alt="" className="h-full w-full" />
               
               </div>
-              <div className="rounded-2xl overflow-hidden   h-[150px]   md:h-[250px]  lg:h-full">
+              <div className="rounded-2xl overflow-hidden   h-[150px]   md:h-[250px]  lg:h-full hidden md:block">
 
 
                <img src={`${storageLink}/${sliderdata.info[0]?.img4}`} alt="" className="h-full w-full" />

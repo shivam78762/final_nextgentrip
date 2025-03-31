@@ -21,7 +21,10 @@ const page = () => {
     <>
      
       <Header />
-      <CustomSlider/>
+      <div className='hidden md:block'>
+<CustomSlider/>
+
+</div>
 
 
 
