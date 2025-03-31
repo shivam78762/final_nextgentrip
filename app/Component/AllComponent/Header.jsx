@@ -1089,7 +1089,7 @@ const Header = () => {
                   </div>
 
                   {isVisible && selectedOption === "date" && (
-                    <div className="bg-white text-black p-5 shadow-2xl text-[10px] md:text-lg absolute top-full mt-2 z-10 -left-4 md:left-0  w-[24rem] md:w-full">
+                    <div className="bg-white text-black  w-[352px] p-2 lg:w-[400px]  shadow-2xl text-[10px] md:text-lg absolute top-full mt-2 z-10 left-0 lg:-left-4   ">
                       {/* <Calendar
                             aria-label="Select a date"
                             value={""}
@@ -1142,7 +1142,7 @@ const Header = () => {
                   </div>
 
                   {isVisible && selectedOption === "return" && (
-                    <div className="bg-white text-black p-5 shadow-2xl text-[10px] md:text-lg absolute top-full mt-2 z-10 -left-4 md:left-0  w-[24rem] md:w-full">
+                    <div className="bg-white w-[352px] p-2  lg:w-[400px]  text-black shadow-2xl text-[10px] md:text-lg absolute top-full mt-2 z-10 left-0 lg:-left-4 md:left-0  ">
                       <Calendar
                         onChange={handleReturnDateChange}
                         value={selectedReturn}
