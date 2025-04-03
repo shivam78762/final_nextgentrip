@@ -605,7 +605,7 @@ const Header = () => {
           // },
           {
             link: "/TrainComponent/pnrcheck",
-            list: "PNE Status Check",
+            list: "PNR Status Check",
           },
           {
             link: "/TrainComponent",
