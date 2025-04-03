@@ -31,6 +31,8 @@ import { getssrFlight } from "../Component/Store/slices/ssrRuleFlight";
 const comp = ({ slug }) => {
   const [faredata, setfareData] = useState([]);
   const [isLoading, setisLoading] = useState([]);
+  const [isloadingQoute, setisloadingQoute] = useState(false);
+
 
   const dispatch = useDispatch();
 
@@ -244,24 +246,45 @@ const comp = ({ slug }) => {
   };
 
   const togglePopup = (id, ResultIndex) => {
-    dispatch(getfarequote({ResultIndex:ResultIndex.ResultIndex, TraceId: traceid }));
-
-
- 
-    if (activePopup === id) {
-      setActivePopup(null);
-    } else {
-      setActivePopup(id);
-    }
-    let data = [];
-    data.push(ResultIndex);
-
-    const addate= Date.now()
-
-    localStorage.setItem("checkOutFlightDetail", JSON.stringify({addat:addate,data:ResultIndex,ResultIndex:ResultIndex.ResultIndex,IsLCC:ResultIndex.IsLCC,traceid,ip:newtIp}));
-    // window.location.href = "/flight/checkout";
-
-
+    setisloadingQoute(true); // Set loading to true when starting
+  
+    // Dispatch the action and handle the response
+    dispatch(getfarequote({ ResultIndex: ResultIndex.ResultIndex, TraceId: traceid }))
+      .then(() => {
+        // This runs when the dispatch is successful
+        if (activePopup === id) {
+          setActivePopup(null);
+        } else {
+          setActivePopup(id);
+        }
+  
+        let data = [];
+        data.push(ResultIndex);
+  
+        const addate = Date.now();
+        localStorage.setItem(
+          "checkOutFlightDetail",
+          JSON.stringify({
+            addat: addate,
+            data: ResultIndex,
+            ResultIndex: ResultIndex.ResultIndex,
+            IsLCC: ResultIndex.IsLCC,
+            traceid,
+            ip: newtIp,
+          })
+        );
+  
+        // Optionally redirect
+        // window.location.href = "/flight/checkout";
+      })
+      .catch((error) => {
+        // Handle any errors from the dispatch
+        console.error("Error fetching fare quote:", error);
+      })
+      .finally(() => {
+        // Set loading to false when everything is done (success or failure)
+        setisloadingQoute(false);
+      });
   };
 
 
@@ -992,39 +1015,82 @@ const handelnonlcc=(id, ResultIndex)=>{
                                           </div>
                                         </div>
                                         {flight.IsLCC &&
-                                        <button
-                                          onClick={
-                                            () =>
-                                              togglePopup(
-                                                "view-price",
-                                                flight
-                                              )
-                                            // handelPrice(flight)
-                                          }
-                                          className="block text-[11.5px]  md:text-sm font-semibold md:h-8 text-blue-600 rounded-full p-1 px-2 md:px-4 bg-blue-200 border border-blue-600"
-                                        >
-                                           
-                                          <span className="hidden md:inline">
-                                            VIEW
-                                          </span>{" "}
-                                          PRICES
-                                        </button> }
+                                       <button
+                                       onClick={() =>
+                                         togglePopup("view-price", flight)
+                                       }
+                                       className="block text-[11.5px] md:text-sm font-semibold md:h-8 text-blue-600 rounded-full p-1 px-2 md:px-4 bg-blue-200 border border-blue-600 relative overflow-hidden"
+                                       disabled={isloadingQoute} 
+                                     >
+                                       {isloadingQoute ? (
+                                         <div className="flex items-center justify-center">
+                                           <svg
+                                             className="animate-spin h-5 w-5 text-blue-600"
+                                             xmlns="http://www.w3.org/2000/svg"
+                                             fill="none"
+                                             viewBox="0 0 24 24"
+                                           >
+                                             <circle
+                                               className="opacity-25"
+                                               cx="12"
+                                               cy="12"
+                                               r="10"
+                                               stroke="currentColor"
+                                               strokeWidth="4"
+                                             />
+                                             <path
+                                               className="opacity-75"
+                                               fill="currentColor"
+                                               d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                                             />
+                                           </svg>
+                                         </div>
+                                       ) : (
+                                         <>
+                                           <span className="hidden md:inline">VIEW</span> PRICES
+                                         </>
+                                       )}
+                                     </button> }
 
 
                                         {!flight.IsLCC &&
-                                        <button
-                                          onClick={()=>handelnonlcc(
-                                            "view-price",
-                                            flight
-                                          )}
-                                          className="block text-[11.5px]  md:text-sm font-semibold md:h-8 text-white rounded-full p-1 px-2 md:px-4 bg-red-600 border border-blue-600"
-                                        >
-                                           
-                                          <span className="hidden md:inline">
-                                            VIEW
-                                          </span>{" "}
-                                          PRICES
-                                        </button> }
+                                       <button
+                                       onClick={() =>
+                                         togglePopup("view-price", flight)
+                                       }
+                                       className="block text-[11.5px] md:text-sm font-semibold md:h-8 text-blue-600 rounded-full p-1 px-2 md:px-4 bg-blue-200 border border-blue-600 relative overflow-hidden"
+                                       disabled={isloadingQoute} // Optional: disable button while loading
+                                     >
+                                       {isloadingQoute ? (
+                                         <div className="flex items-center justify-center">
+                                           <svg
+                                             className="animate-spin h-5 w-5 text-blue-600"
+                                             xmlns="http://www.w3.org/2000/svg"
+                                             fill="none"
+                                             viewBox="0 0 24 24"
+                                           >
+                                             <circle
+                                               className="opacity-25"
+                                               cx="12"
+                                               cy="12"
+                                               r="10"
+                                               stroke="currentColor"
+                                               strokeWidth="4"
+                                             />
+                                             <path
+                                               className="opacity-75"
+                                               fill="currentColor"
+                                               d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                                             />
+                                           </svg>
+                                         </div>
+                                       ) : (
+                                         <>
+                                           <span className="hidden md:inline">VIEW</span> PRICES
+                                         </>
+                                       )}
+                                     </button>
+                                     }
 
                                       </div>
                                     ) : (
@@ -1729,23 +1795,41 @@ const handelnonlcc=(id, ResultIndex)=>{
                                       </div>
                                     </div>
                                     <button
-                                      onClick={() =>
-                                        togglePopup(
-                                          "view-price",
-                                          flight
-                                        )
-                                      }
-                                      className="block text-[11.5px] md:text-sm font-semibold h-8 text-blue-600 rounded-full p-1 px-3 md:px-4 bg-blue-200 border border-blue-600"
-                                    >
-                                      {
-
-
-                                      }
-                                      <span className="hidden md:inline">
-                                        VIEW
-                                      </span>
-                                      PRICES
-                                    </button>
+                                       onClick={() =>
+                                         togglePopup("view-price", flight)
+                                       }
+                                       className="block text-[11.5px] md:text-sm font-semibold md:h-8 text-blue-600 rounded-full p-1 px-2 md:px-4 bg-blue-200 border border-blue-600 relative overflow-hidden"
+                                       disabled={isloadingQoute} // Optional: disable button while loading
+                                     >
+                                       {isloadingQoute ? (
+                                         <div className="flex items-center justify-center">
+                                           <svg
+                                             className="animate-spin h-5 w-5 text-blue-600"
+                                             xmlns="http://www.w3.org/2000/svg"
+                                             fill="none"
+                                             viewBox="0 0 24 24"
+                                           >
+                                             <circle
+                                               className="opacity-25"
+                                               cx="12"
+                                               cy="12"
+                                               r="10"
+                                               stroke="currentColor"
+                                               strokeWidth="4"
+                                             />
+                                             <path
+                                               className="opacity-75"
+                                               fill="currentColor"
+                                               d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                                             />
+                                           </svg>
+                                         </div>
+                                       ) : (
+                                         <>
+                                           <span className="hidden md:inline">VIEW</span> PRICES
+                                         </>
+                                       )}
+                                     </button> 
                                   </div>
 
                                   <p className="my-4 p-2 text-center bg-yellow-100 w-full">

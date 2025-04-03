@@ -17,10 +17,11 @@ import axios from "axios";
 import { apilink } from "../../common";
 import { useRouter } from "next/navigation";
 import { FaSpinner } from "react-icons/fa";
+
 const Page = ({ setActiveTab,fdatas, price }) => {
 
-
   const router = useRouter();
+
   const [user, setUser] = useState();
   const [cardDetailsError, setCardDetailsError] = useState(false);
   const [showAdult, setShowAdult] = useState(true);
@@ -30,11 +31,52 @@ const Page = ({ setActiveTab,fdatas, price }) => {
   const [showModal, setShowModal] = useState(false);
   const [errors, setErrors] = useState({});
   const [bookingResponse, setBookingResponse] = useState(null);
-
+  const [userInfo,setUserinfo] = useState();
 
   const [showForms, setShowForms] = useState([true]); // Track visibility for each passenger form
 
   const [isLoading, setIsLoading] = useState(false); // State to manage loading
+
+
+
+
+
+  useEffect(() => {
+    
+    const fetchUserData = async (userId) => {
+      try {
+        const { data } = await axios.get(`${apilink}/user/${userId}`);
+        setUserinfo(data.user);
+        console.log("User data:", data.user);
+
+        // If you need to update passengers with user info
+        if (data.user && passengers.length > 0) {
+          const updatedPassengers = [...passengers];
+          updatedPassengers[0] = {
+            ...updatedPassengers[0],
+            FirstName: data.user.name || "",
+            Email: data.user.email || "",
+          };
+          setPassengers(updatedPassengers);
+        }
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+        toast.error("Failed to fetch user data", {
+          position: "top-right",
+          autoClose: 3000,
+        });
+      }
+    };
+
+    // Get user ID from localStorage and fetch data
+    const userid = JSON.parse(localStorage.getItem("NextGenUser"));
+    if (!userid) {
+      router.push("/user/login");
+    } else {
+      fetchUserData(userid);
+    }
+  }, []);
+
   const handleChange = (e, index) => {
     const { name, value } = e.target;
     const updatedPassengers = [...passengers];
@@ -188,136 +230,165 @@ const differenceInMinutes = (now - addate) / (1000 * 60);
     setPassengers([...passengers, newTraveler]);
   };
 
-
-
   const handlebook = async (e) => {
+    e.preventDefault();
 
-      e.preventDefault();
-  
-      const isValid = validateAllForms();
-  
-      if (isValid) {
-          const fareBreakdown = fdatas?.data?.FareBreakdown;
-          setIsLoading(true); 
-          // Prepare the payload
-          const payload = {
-              ResultIndex: fdatas?.ResultIndex,
-              EndUserIp: fdatas?.ip,
-              TraceId: fdatas?.traceid,
-              fFareBreakdown: fareBreakdown, // Include fare breakdown
-              Passengers: passengers.map((passenger) => {
-                  const passengerFare = fareBreakdown.find(
-                      (fare) => fare.PassengerType === passenger.PaxType
-                  );
-  
-                  // Calculate fare per passenger
-                  const baseFarePerPassenger = passengerFare?.BaseFare / passengerFare?.PassengerCount;
-                  const taxPerPassenger = passengerFare?.Tax / passengerFare?.PassengerCount;
-  
-                  return {
-                      Title: passenger.Title,
-                      FirstName: passenger.FirstName,
-                      LastName: passenger.LastName,
-                      PaxType: passenger.PaxType,
-                      DateOfBirth: passenger.DateOfBirth,
-                      Gender: parseInt(passenger.Gender, 10),
-                      PassportNo: passenger.PassportNo,
-                      PassportExpiry: passenger.PassportExpiry,
-                      AddressLine1: passenger.AddressLine1,
-                      City: passenger.City,
-                      CountryCode: passenger.CountryCode,
-                      ContactNo: passenger.ContactNo,
-                      Email: passenger.Email,
-                      IsLeadPax: passenger.IsLeadPax,
-                      Fare: {
-                          Currency: passengerFare?.Currency,
-                          BaseFare: baseFarePerPassenger,
-                          Tax: taxPerPassenger,
-                          YQTax: passengerFare?.YQTax,
-                          AdditionalTxnFeePub: fdatas?.data?.Fare.AdditionalTxnFeePub,
-                          AdditionalTxnFeeOfrd: fdatas?.data?.Fare.AdditionalTxnFeeOfrd,
-                          OtherCharges: fdatas?.data?.Fare.OtherCharges,
-                          Discount: fdatas?.data?.Fare.Discount,
-                          PublishedFare: fdatas?.data?.Fare.PublishedFare,
-                          OfferedFare: fdatas?.data?.Fare.OfferedFare,
-                          TdsOnCommission: fdatas?.data?.Fare.OfferedFare, // Should this be TdsOnCommission?
-                          TdsOnPLB: fdatas?.data?.Fare.TdsOnPLB,
-                          TdsOnIncentive: fdatas?.data?.Fare.TdsOnIncentive,
-                          ServiceFee: fdatas?.data?.Fare.ServiceFee,
-                      },
-                  };
-              }),
-          };
-  
-          console.log('payload', payload);
+    const isValid = validateAllForms();
 
+    if (!isValid) {
+      alert("Please fill out all required fields and fix the errors before submitting.");
+      return;
+    }
 
+    const fareBreakdown = fdatas?.data?.FareBreakdown;
+    setIsLoading(true);
 
-  
-  
-          try {
-              const response = await axios.post(`${apilink}/flight-book`, payload);
-              console.log(response);
-              console.log(response.data.Response.Error.ErrorCode);
-              setIsLoading(false); 
+    // Prepare the payload
+    const payload = {
+      ResultIndex: fdatas?.ResultIndex,
+      EndUserIp: fdatas?.ip,
+      TraceId: fdatas?.traceid,
+      fFareBreakdown: fareBreakdown,
+      email: userInfo.email,
+      user_id : userInfo.id,
+      Passengers: passengers.map((passenger) => {
+        const passengerFare = fareBreakdown.find(
+          (fare) => fare.PassengerType === passenger.PaxType
+        );
 
-              if(response.data.Response.Error.ErrorCode === 35){
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Booking Failed',
-                    text: 'Booking failed from supplier side.',
-                    confirmButtonText: 'OK',
-                });
+        const baseFarePerPassenger = passengerFare?.BaseFare / passengerFare?.PassengerCount;
+        const taxPerPassenger = passengerFare?.Tax / passengerFare?.PassengerCount;
 
-              }else if(response.data?.Error?.ErrorCode === 3){
-                Swal.fire({
-                  icon: 'error',
-                  title: 'Booking Failed',
-                  text: 'Booking failed from supplier side.',
-                  confirmButtonText: 'OK',                });
+        return {
+          Title: passenger.Title,
+          FirstName: passenger.FirstName,
+          LastName: passenger.LastName,
+          PaxType: passenger.PaxType,
+          DateOfBirth: passenger.DateOfBirth,
+          Gender: parseInt(passenger.Gender, 10),
+          PassportNo: passenger.PassportNo,
+          PassportExpiry: passenger.PassportExpiry,
+          AddressLine1: passenger.AddressLine1,
+          City: passenger.City,
+          CellCountryCode: passenger.CountryCode,
+          CountryCode: "IN",
+          ContactNo: passenger.ContactNo,
+          Email: passenger.Email,
+          IsLeadPax: passenger.IsLeadPax,
+          Fare: {
+            Currency: passengerFare?.Currency,
+            BaseFare: baseFarePerPassenger,
+            Tax: taxPerPassenger,
+            YQTax: passengerFare?.YQTax,
+            AdditionalTxnFeePub: fdatas?.data?.Fare.AdditionalTxnFeePub,
+            AdditionalTxnFeeOfrd: fdatas?.data?.Fare.AdditionalTxnFeeOfrd,
+            OtherCharges: fdatas?.data?.Fare.OtherCharges,
+            Discount: fdatas?.data?.Fare.Discount,
+            PublishedFare: fdatas?.data?.Fare.PublishedFare,
+            OfferedFare: fdatas?.data?.Fare.OfferedFare,
+            TdsOnCommission: fdatas?.data?.Fare.TdsOnCommission,
+            TdsOnPLB: fdatas?.data?.Fare.TdsOnPLB,
+            TdsOnIncentive: fdatas?.data?.Fare.TdsOnIncentive,
+            ServiceFee: fdatas?.data?.Fare.ServiceFee,
+          },
+        };
+      }),
+    };
 
-              }
-              else{
-                Swal.fire({
-                  icon: 'error',
-                  title: 'Booking Failed',
-                  text: 'Session is Expired. Search again.', 
-                  confirmButtonText: 'OK',
-              });
+    console.log('payload', payload);
 
-              }
-              // setBookingResponse(response.data); // Set the response data
-              // setShowModal(true); // Show the modal
-          } catch (error) {
-              console.error("Error booking flights:", error);
-  
-              // Check if the error response contains ErrorCode 35
-              if (error.response?.data?.Error?.ErrorCode === 35) {
-                  Swal.fire({
-                      icon: 'error',
-                      title: 'Booking Failed',
-                      text: 'Booking failed from supplier side.',
-                      confirmButtonText: 'OK',
-                  });
-              } else {
-                  // Handle other errors generically (optional)
-                  Swal.fire({
-                      icon: 'error',
-                      title: 'Error',
-                      text: 'An unexpected error occurred. Please try again.',
-                      confirmButtonText: 'OK',
-                  });
-              }
-          }
+    const checkOutFlightDetail = JSON.parse(localStorage.getItem("checkOutFlightDetail"));
+    const isLCC = checkOutFlightDetail?.IsLCC === true;
+    const apiEndpoint = isLCC ? `${apilink}/flight-book-llc` : `${apilink}/flight-book`;
+
+    try {
+      const response = await axios.post(apiEndpoint, payload);
+      console.log('Booking response:', response);
+
+      if (response?.data?.status === 'success') {
+        Swal.fire({
+          icon: 'success',
+          title: 'Booking Successful',
+          text: `Your flight has been booked successfully! PNR: ${response.data.data.Response.PNR}`,
+          confirmButtonText: 'OK',
+        });
       } else {
-          alert("Please fill out all required fields and fix the errors before submitting.");
+        handleBookingError(response.data);
       }
+    } catch (error) {
+      console.error("Error booking flights:", error);
+
+      if (error.response) {
+        const errorData = error.response.data;
+
+        // Handle duplicate booking error
+        if (errorData?.status === "error" && errorData?.message?.includes("already been processed")) {
+          Swal.fire({
+            icon: 'warning',
+            title: 'Duplicate Booking',
+            text: `${errorData.message}${errorData.pnr ? ` PNR: ${errorData.pnr}` : ''}`,
+            footer: errorData.action || 'Please check your booking history or start a new search.',
+            confirmButtonText: 'OK',
+          }).then(() => {
+            // Optionally redirect to booking history
+            // window.location.href = '/booking-history';
+          });
+        } 
+        // Handle session expiration
+        else if (errorData?.error?.includes("TraceId is expired")) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Session Expired',
+            text: 'Your booking session has expired. Please search for flights again.',
+            confirmButtonText: 'OK',
+          }).then(() => {
+            window.location.href = '/flight-search';
+          });
+        } 
+        // Generic backend error
+        else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Booking Failed',
+            text: errorData?.message || 'An error occurred during booking.',
+            confirmButtonText: 'OK',
+          });
+        }
+      } else if (error.request) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Network Error',
+          text: 'Please check your internet connection and try again.',
+          confirmButtonText: 'OK',
+        });
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Unexpected Error',
+          text: 'An unexpected error occurred. Please try again.',
+          confirmButtonText: 'OK',
+        });
+      }
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleBookingError = (data) => {
+    Swal.fire({
+      icon: 'error',
+      title: 'Booking Failed',
+      text: data?.message || 'An error occurred while processing your booking.',
+      confirmButtonText: 'OK',
+    });
   };
 
 
   const closeModal = () => {
     setShowModal(false);
   };
+
+
   useEffect(() => {
     const userid = JSON.parse(localStorage.getItem("NextGenUser"));
     if (!userid) router.push("/user/login");
@@ -492,7 +563,7 @@ const differenceInMinutes = (now - addate) / (1000 * 60);
                 <div className="flex justify-between gap-10">
                 <span className="text-sm md:text-xl font-medium">Flight Detail</span>
                 <span className="text-sm md:text-xl font-medium text-red-700">
-                  { differenceInMinutes>11  && <span>token is Expire Search flight again</span> }
+                  { differenceInMinutes>11  && <span>Token is Expire Search flight again</span> }
                 </span>
                 </div>
               </div>
@@ -882,7 +953,7 @@ const differenceInMinutes = (now - addate) / (1000 * 60);
                 <p>Adult x {passengers?.length}</p>
                 <p className="flex items-center font-bold text-xs">
                   <FaRupeeSign />
-                  {fdatas?.data?.Fare?.BaseFare}
+                  {fdatas?.data?.Fare?.OfferedFare}
                 </p>
               </div>
               {/* Other price details */}

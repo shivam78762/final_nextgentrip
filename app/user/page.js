@@ -12,9 +12,16 @@ import { toast, Bounce } from "react-toastify";
 
 const ProfilePage = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(null);
+  const myBookingsRef = useRef(null);
   const [activeTab, setActiveTab] = useState(0);
   const [activeItem, setActiveItem] = useState("profile");
   const [userinfo, setUserinfo] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const [booking,setBookings] = useState([]);
+  const [newbooking,setnewBookings] = useState([]);
+
   const router = useRouter();
 
   // Profile form states
@@ -109,7 +116,7 @@ const ProfilePage = () => {
       try {
         const { data } = await axios.get(`${apilink}/user/${user}`);
         setUserinfo(data.user);
-        // Initialize form data with user info if available
+   
         if (data.user) {
           setFormData(prev => ({
             ...prev,
@@ -126,54 +133,148 @@ const ProfilePage = () => {
       }
     };
 
+
+    const fetchBookings = async () => {
+      try {
+   
+        const { data } = await axios.get(`${apilink}/user-bookings/${user}`);
+        console.log("Booking Data 1", data);
+
+        if (data.status === "success") {
+          setBookings(data);
+          console.log("Booking Data", data);
+        }
+      } catch (error) {
+        toast.error("Failed to fetch bookings", {
+          position: "top-right",
+          autoClose: 3000,
+          transition: Bounce,
+        });
+      }
+    };
+
+
     fetchUserData();
+    fetchBookings();
+
+
   }, [router]);
+
+
+
+  const fetchBookingDetails = async () => {
+    setLoading(true);
+    setError(null);
+
+    try {
+
+
+      
+      const payload = {
+        EndUserIp: bookingDatas.user_ip,
+        TraceId: bookingDatas.trace_id,
+        TokenId: bookingDatas.token, 
+        PNR: bookingDatas.pnr,
+        BookingId: parseInt(bookingDatas.booking_id), 
+      };
+
+
+       console.log("bookingDatas", bookingDatas);
+
+
+      const response = await axios.post(`${apilink}/get-booking-details`, 
+        payload,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+ 
+      const bookingData = response.data.data.FlightItinerary;
+      setnewBookings([
+        {
+          id: bookingData.BookingId,
+          flight_name: `${bookingData.AirlineCode} - ${bookingData.Segments[0].Airline.AirlineName}`,
+          departure_from: `${bookingData.Origin} (${bookingData.Segments[0].Origin.Airport.AirportName})`,
+          arrival_to: `${bookingData.Destination} (${bookingData.Segments[0].Destination.Airport.AirportName})`,
+          booking_id: bookingData.BookingId,
+          pnr: bookingData.PNR,
+          flight_date: bookingData.Segments[0].Origin.DepTime.split("T")[0],
+          departure_time: bookingData.Segments[0].Origin.DepTime.split("T")[1].slice(0, 5),
+          arrival_time: bookingData.Segments[0].Destination.ArrTime.split("T")[1].slice(0, 5),
+          duration: bookingData.Segments[0].Duration,
+          passenger_name: `${bookingData.Passenger[0].Title} ${bookingData.Passenger[0].FirstName} ${bookingData.Passenger[0].LastName}`,
+          contact_no: bookingData.Passenger[0].ContactNo,
+          email: bookingData.Passenger[0].Email,
+          base_fare: bookingData.Fare.BaseFare,
+          tax: bookingData.Fare.Tax,
+          total_fare: bookingData.Fare.PublishedFare,
+          baggage: bookingData.Passenger[0].SegmentAdditionalInfo[0].Baggage,
+          response: bookingData.Status === 5 ? "Confirmed" : "Pending", // Assuming Status 5 is Confirmed
+        },
+      ]);
+    } catch (err) {
+      setError(
+        err.response?.data?.message || "Failed to fetch booking details"
+      );
+    } finally {
+      setLoading(false);
+    }
+  };
+
+
 
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="container mx-auto px-4 py-8 md:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row gap-8">
           {/* Sidebar Navigation */}
+
           <div className="w-full md:w-1/4">
             <div className="bg-white rounded-xl shadow-md overflow-hidden">
               <div className="p-6 text-center">
                 <div className="mx-auto w-40 h-40 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden">
-                  <Image
+                  <img
                     src="/images/user-profile.webp"
-                    width={160}
-                    height={160}
+                  
                     alt="Profile"
                     className="object-cover"
                   />
                 </div>
                 <h3 className="mt-4 text-xl font-semibold text-gray-800">
-                  {userinfo?.name || "Welcome"}
+                  { "Welcome"}
                 </h3>
                 <p className="text-sm text-gray-500 mt-1">PERSONAL PROFILE</p>
               </div>
 
               <nav className="mt-2">
                 <ul className="space-y-1 p-2">
-                  {[
-                    { icon: <CgProfile />, label: "Profile", ref: profileRef, id: "profile" },
-                    { icon: <LuLogOut />, label: "Login Details", ref: loginDetailsRef, id: "loginDetails" },
-                    { icon: <LuUsers2 />, label: "Co-Travellers", ref: coTravellersRef, id: "coTravellers" },
-                    { icon: <AiOutlineLogout />, label: "Logout", ref: logoutRef, id: "logout", action: handleLogout },
-                  ].map((item) => (
-                    <li key={item.id}>
-                      <button
-                        onClick={() => item.action ? item.action() : handleItemClick(item.id, item.ref)}
-                        className={`w-full flex items-center gap-3 px-4 py-3 text-left rounded-lg transition-colors ${activeItem === item.id ? "bg-blue-50 text-blue-600" : "text-gray-700 hover:bg-gray-100"}`}
-                      >
-                        <span className="text-lg">{item.icon}</span>
-                        <span className="font-medium">{item.label}</span>
-                      </button>
-                    </li>
-                  ))}
+                {[
+  { label: "Profile", ref: profileRef, id: "profile" },
+  { label: "Login Details", ref: loginDetailsRef, id: "loginDetails" },
+  {  label: "Co-Travellers", ref: coTravellersRef, id: "coTravellers" },
+  {label: "My Bookings", ref: myBookingsRef, id: "myBookings" },
+  { label: "Logout", ref: logoutRef, id: "logout", action: handleLogout },
+].map((item) => (
+  <>
+  <li key={item.id}>
+    <button
+      onClick={() => item.action ? item.action() : handleItemClick(item.id, item.ref)}
+      className={`w-full flex items-center gap-3 px-4 py-3 text-left rounded-lg transition-colors ${activeItem === item.id ? "bg-blue-50 text-blue-600" : "text-gray-700 hover:bg-gray-100"}`}
+    >
+
+      <span className="font-medium">{item.label}</span>
+    </button>
+  </li>
+  </>
+))}
                 </ul>
               </nav>
             </div>
           </div>
+        
 
           {/* Main Content */}
           <div className="w-full md:w-3/4 space-y-6">
@@ -202,6 +303,8 @@ const ProfilePage = () => {
                 ))}
               </div>
             </div>
+
+
 
             {/* Profile Section */}
             <div ref={profileRef} className="bg-white rounded-xl shadow-md p-6">
@@ -256,6 +359,125 @@ const ProfilePage = () => {
                 ))}
               </div>
             </div>
+
+
+
+            <div ref={myBookingsRef} className="bg-white rounded-xl shadow-md p-6">
+              <div className="flex justify-between items-center">
+                <div>
+                  <h3 className="text-2xl font-semibold text-gray-800">My Bookings</h3>
+                  <p className="text-gray-600 mt-1">
+                    View and manage your past and upcoming bookings
+                  </p>
+                </div>
+                <button
+            onClick={fetchBookingDetails}
+            className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50"
+            disabled={loading}
+          >
+            {loading ? "Loading..." : "Get Booking Details"}
+          </button>
+              </div>
+
+
+              <div className="mt-6 space-y-4">
+  {booking.length > 0 ? (
+    booking.map((booking) => (
+      <div key={booking.id} className="p-4 border-b hover:bg-gray-50 transition-colors">
+        <p className="text-sm font-medium text-gray-800">
+          {booking.flight_name || "Flight Booking"} - {booking.departure_from || "N/A"} to {booking.arrival_to || "N/A"}
+        </p>
+        <p className="text-xs text-gray-500">
+          Booking ID: {booking.booking_id} | PNR: {booking.pnr} | Date: {booking.flight_date || "N/A"}
+        </p>
+        <p
+          className="text-xs mt-1"
+          style={{ color: booking.response === "Confirmed" ? "#10B981" : "#F59E0B" }}
+        >
+          {booking.response || "Confirmed"} {/* Default to "Confirmed" if response is null */}
+        </p>
+      </div>
+    ))
+  ) : (
+    <p className="text-gray-600 text-sm">
+      
+    </p>
+  )}
+</div>
+<div className="mt-6 space-y-4">
+        {error && <p className="text-red-600 text-sm">{error}</p>}
+        {newbooking.length > 0 ? (
+          newbooking.map((booking) => (
+
+            <div
+              key={booking.id}
+              className="p-4 border rounded-lg bg-gray-50 shadow-sm hover:bg-gray-100 transition-colors"
+            >
+              {/* Flight Info */}
+              <div className="mb-4">
+                <h4 className="text-lg font-semibold text-gray-800">
+                  {booking.flight_name}
+                </h4>
+                <p className="text-sm text-gray-600">
+                  {booking.departure_from} → {booking.arrival_to}
+                </p>
+                <p className="text-xs text-gray-500 mt-1">
+                  Date: {booking.flight_date} | Departure: {booking.departure_time} | Arrival: {booking.arrival_time} | Duration: {Math.floor(booking.duration / 60)}h {booking.duration % 60}m
+                </p>
+                <p
+                  className="text-xs mt-1 font-medium"
+                  style={{
+                    color: booking.response === "Confirmed" ? "#10B981" : "#F59E0B",
+                  }}
+                >
+                  Status: {booking.response}
+                </p>
+              </div>
+
+              {/* Passenger Info */}
+              <div className="mb-4">
+                <h5 className="text-md font-medium text-gray-700">Passenger Details</h5>
+                <p className="text-sm text-gray-600">
+                  Name: {booking.passenger_name}
+                </p>
+                <p className="text-sm text-gray-600">
+                  Contact: {booking.contact_no} | Email: {booking.email}
+                </p>
+              </div>
+
+              {/* Fare Info */}
+              <div className="mb-4">
+                <h5 className="text-md font-medium text-gray-700">Fare Details</h5>
+                <p className="text-sm text-gray-600">
+                  Base Fare: ₹{booking.base_fare} | Tax: ₹{booking.tax} | Total: ₹{booking.total_fare}
+                </p>
+              </div>
+
+              {/* Additional Info */}
+              <div>
+                <h5 className="text-md font-medium text-gray-700">Additional Info</h5>
+                <p className="text-sm text-gray-600">
+                  Booking ID: {booking.booking_id} | PNR: {booking.pnr}
+                </p>
+                <p className="text-sm text-gray-600">
+                  Baggage Allowance: {booking.baggage}
+                </p>
+              </div>
+            </div>
+            
+          ))
+        ) : (
+          <p className="text-gray-600 text-sm">
+            No bookings found. Click "Get Booking Details" to fetch your booking!
+          </p>
+        )}
+      </div>
+             
+            </div>
+        
+ 
+
+            
 
             {/* Co-Travellers Section */}
             <div ref={coTravellersRef} className="bg-white rounded-xl shadow-md p-6">
