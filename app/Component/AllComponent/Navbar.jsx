@@ -62,12 +62,12 @@ const Navbar = () => {
       class: "trains-icon",
       link: "/train",
     },
-    // {
-    //   name: t("bus"),
-    //   className: "meuicowidth busmenuico",
-    //   class: "buses-icon",
-    //   link: "/buses",
-    // },
+    {
+      name: t("bus"),
+      className: "meuicowidth busmenuico",
+      class: "buses-icon",
+      link: "/buses",
+    },
     {
       name: t("holidays"),
       className: "meuicowidth holidaymenuico",
