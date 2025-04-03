@@ -116,7 +116,7 @@ export default function page() {
           transition: Bounce,
         });
         setSendOtp(false);
-        route.push(`https://api.jasskaran.in/hotelreg/login`);
+        route.push(`http://127.0.0.1:8000/hotelreg/login`);
       } else {
         toast.error(info.data.message, {
           position: "top-right",
@@ -291,7 +291,7 @@ export default function page() {
 
           {/* Forgot Password Link */}
           <div className="text-center mt-4 flex justify-between">
-            <Link href={`https://api.jasskaran.in/hotelreg/login`}  >
+            <Link href={`http://127.0.0.1:8000/hotelreg/login`}  >
               {/* <a target="_blank" rel="noopener noreferrer"> */}
               <p className="text-sm text-blue-600 hover:text-blue-800">Allready have Account?</p>
               {/* </a> */}
