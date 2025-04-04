@@ -53,50 +53,6 @@ const settings = {
   };
   const [busData,setBusData]=useState();
 
-//   const busData = [
-//     {
-//       id: 1,
-//       busName: "IntrCity SmartBus",
-//       busType: "Bharat Benz A/C Seater /Sleeper (2+1)",
-//       departureTime: "22:15",
-//       departureDate: "30 Aug",
-//       duration: { hours: 8, minutes: 30 },
-//       arrivalTime: "06:45",
-//       arrivalDate: "31 Aug",
-//       price: 449,
-//       rating: 4.8,
-//       ratingsCount: 676,
-//       seatsLeft: 40,
-//     },
-//     {
-//       id: 2,
-//       busName: "IntrCity SmartBus",
-//       busType: "Bharat Benz A/C Seater /Sleeper (2+1)",
-//       departureTime: "22:15",
-//       departureDate: "30 Aug",
-//       duration: { hours: 8, minutes: 30 },
-//       arrivalTime: "06:45",
-//       arrivalDate: "31 Aug",
-//       price: 449,
-//       rating: 4.8,
-//       ratingsCount: 676,
-//       seatsLeft: 40,
-//     },
-//     {
-//       id: 3,
-//       busName: "IntrCity SmartBus",
-//       busType: "Bharat Benz A/C Seater /Sleeper (2+1)",
-//       departureTime: "22:15",
-//       departureDate: "30 Aug",
-//       duration: { hours: 8, minutes: 30 },
-//       arrivalTime: "06:45",
-//       arrivalDate: "31 Aug",
-//       price: 449,
-//       rating: 4.8,
-//       ratingsCount: 676,
-//       seatsLeft: 40,
-//     },
-//   ];
 
 
   useEffect(()=>{

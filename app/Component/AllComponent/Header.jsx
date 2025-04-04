@@ -251,20 +251,6 @@ const Header = () => {
   const handleClick = (option) => {
     setSelectedOption(option);
     setIsVisible(true);
-
-    // switch (option) {
-    //   case "from":
-    //     handleFromClick();
-    //     break;
-    //   case "to":
-    //     handleToClick();
-    //     break;
-    //   case "traveller":
-    //     handleToClick(); // Add the appropriate handler for traveller
-    //     break;
-    //   default:
-    //
-    // }
   };
 
 
@@ -517,14 +503,7 @@ const Header = () => {
             link: "/",
             list: " Nextgentrip.com",
           },
-          // {
-          //   link: "",
-          //   list: " Our Approach",
-          // },
-          // {
-          //   link: "",
-          //   list: " Responsibe Tourism",
-          // },
+         
           {
             link: "/blog",
             list: "Blog",
@@ -535,15 +514,6 @@ const Header = () => {
           },
 
 
-
-          // {
-          //   link: "",
-          //   list: "News & Updates",
-          // },
-          // {
-          //   link: "",
-          //   list: "Careers",
-          // },
           {
             link: "/condition/privacy-policy",
             list: "Privacy Policy",
@@ -587,22 +557,10 @@ const Header = () => {
       {
         heading: "Travel Assistance",
         listData: [
-          // {
-          //   link: "",
-          //   list: "Customer Support",
-          // },
-          // {
-          //   link: "",
-          //   list: "Check Booking Status",
-          // },
           {
             link: "/web-check",
             list: "Web Check-in",
           },
-          // {
-          //   link: "",
-          //   list: "Flight Status",
-          // },
           {
             link: "/TrainComponent/pnrcheck",
             list: "PNR Status Check",
@@ -625,29 +583,6 @@ const Header = () => {
             link: "/hotels",
             list: "Hotels",
           },
-          // {
-          //   link: "",
-          //   list: "Apartments",
-          // },
-          // {
-          //   link: "",
-          //   list: "Resorts",
-          // },
-
-          // {
-          //   link: "",
-          //   list: "Vilas",
-          // },
-
-          // {
-          //   link: "",
-          //   list: "Homestay",
-          // },
-
-          // {
-          //   link: "",
-          //   list: "Transfers",
-          // },
 
           {
             link: "/buses",
@@ -670,51 +605,12 @@ const Header = () => {
             link: "/atl/atipro",
             list: "Elite Lucuary",
           },
-          
-          // {
-          //   link: "",
-          //   list: "Visa Services",
-          // },
-          // {
-          //   link: "",
-          //   list: "Forex Currency Exchange",
-          // },
           {
             link: "/train",
             list: "Train Services",
           },
-          // {
-          //   link: "",
-          //   list: "Seminars & Conferences",
-          // },
-          // {
-          //   link: "",
-          //   list: "Advertisments",
-          // },
         ],
       },
-
-      // {
-      //   heading: "Blogs",
-      //   listData: [
-      //     {
-      //       link: "",
-      //       list: "Top 10 Must-Visit Destinations in 2024",
-      //     },
-      //     {
-      //       link: "",
-      //       list: "A Guide to Budget-Friendly Travel",
-      //     },
-      //     {
-      //       link: "",
-      //       list: "How to Plan a Perfect Family Vacation",
-      //     },
-      //     {
-      //       link: "",
-      //       list: "Exploring Offbeat Locations in India",
-      //     },
-      //   ],
-      // },
       {
         heading: "Business Assistance",
         listData: [
@@ -738,14 +634,6 @@ const Header = () => {
             link: "/property-listing",
             list: "List Your Property",
           },
-          // {
-          //   link: "",
-          //   list: "Become an Affiliate",
-          // },
-          // {
-          //   link: "",
-          //   list: "Business Associates Support",
-          // },
         ],
       },
     ],
