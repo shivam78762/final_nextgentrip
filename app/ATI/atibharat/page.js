@@ -206,13 +206,13 @@ return (
     Headquarter
   </h2>
   <p className="text-base text-gray-600">
-    [Company Address]
+  Sector 48, 
     <br />
-    City, Country
+    Chandigarh, India
     <br />
-    [+(91) 9877579319]
+    +(91) 9877579319
     <br />
-    [NextGenindia@gmail.com]
+    NextGenindia@gmail.com
   </p>
 </div>
 <div className="bg-[#F1F5F9] p-8 rounded-lg space-y-4">

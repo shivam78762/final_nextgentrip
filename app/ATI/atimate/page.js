@@ -142,10 +142,10 @@ return (
   <div>
     <h3 className="text-xl font-semibold text-gray-800">Headquarter</h3>
     <p className="text-base text-gray-600">
-      SCO Sector 34A, Chandigarh, India
+    Sector 48, Chandigarh, India
     </p>
     <p className="text-base text-gray-600">
-      919877579319 | <a href="mailto:Info@Nextgentrip.com" className="text-blue-600">Info@Nextgentrip.com</a>
+    +(91) 9877579319 | <a href="mailto:Info@Nextgentrip.com" className="text-blue-600">NextGenindia@gmail.com</a>
     </p>
     <div className="flex space-x-4 mt-4 text-2xl">
       <a href="#" className=""><FaFacebookSquare /></a>

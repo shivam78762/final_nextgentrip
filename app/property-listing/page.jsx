@@ -175,7 +175,7 @@ export default function page() {
 
     </div>
 
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500">
+    <div className="flex items-center py-5 justify-center min-h-screen bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500">
       <div className="w-[80%] max-w-lg p-4 lg:p-8 bg-white rounded-xl shadow-lg transform transition duration-300 hover:scale-105">
         <h2 className="text-3xl font-semibold text-center text-gray-800 mb-8">Create Your Account</h2>
         <form onSubmit={handleSubmit} className="space-y-6">
