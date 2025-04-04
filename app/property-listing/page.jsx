@@ -116,7 +116,7 @@ export default function page() {
           transition: Bounce,
         });
         setSendOtp(false);
-        route.push(`http://127.0.0.1:8000/hotelreg/login`);
+        route.push(`https://api.jasskaran.in/hotelreg/login`);
       } else {
         toast.error(info.data.message, {
           position: "top-right",
@@ -291,7 +291,7 @@ export default function page() {
 
          
           <div className="text-center mt-4 flex justify-between">
-            <Link href={`http://127.0.0.1:8000/hotelreg/login`}  >
+            <Link href={`https://api.jasskaran.in/hotelreg/login`}  >
              
               <p className="text-sm text-blue-600 hover:text-blue-800">Allready have Account?</p>
            
