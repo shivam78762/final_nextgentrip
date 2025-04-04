@@ -18,11 +18,16 @@ const ProfilePage = () => {
   const [userinfo, setUserinfo] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [selectedBooking, setSelectedBooking] = useState(null);
+  const [booking, setBookings] = useState([]);
+  const [cancel_booking, setcancel_booking] = useState([]);
 
-  const [booking,setBookings] = useState([]);
-  const [newbooking,setnewBookings] = useState([]);
+  const [newbooking, setnewBookings] = useState([]);
 
   const router = useRouter();
+
+  const [modalOpen, setModalOpen] = useState(false);
+  const [cancellationData, setCancellationData] = useState(null);
 
   // Profile form states
   const [formData, setFormData] = useState({
@@ -56,7 +61,7 @@ const ProfilePage = () => {
     e.preventDefault();
     try {
       const user = JSON.parse(localStorage.getItem("NextGenUser"));
-      const {  data } = await axios.put(`${apilink}/user/${user}`, formData);
+      const { data } = await axios.put(`${apilink}/user/${user}`, formData);
       toast.success("Profile updated successfully!", {
         position: "top-right",
         autoClose: 3000,
@@ -72,15 +77,58 @@ const ProfilePage = () => {
     }
   };
 
+
+  const fetchCancellationCharges = async (booking) => {
+
+    try {
+      const response = await fetch(`${apilink}/flight-cancellation-charges`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        // booking?.data?.[0].user_ip,
+        body: JSON.stringify({
+          BookingId: String(cancel_booking.BookingId),
+          RequestType: "1",
+          EndUserIp: cancel_booking.EndUserIp,
+          TokenId: cancel_booking.TokenId,
+        }),
+      });
+
+      const data = await response.json();
+      if (data.Response.ResponseStatus === 1) {
+        setCancellationData({
+          refundAmount: data.Response.RefundAmount,
+          cancellationCharge: data.Response.CancellationCharge,
+          currency: data.Response.Currency,
+        });
+        setSelectedBooking(booking);
+        setModalOpen(true);
+      } else {
+        alert("Failed to fetch cancellation details. Try again.");
+      }
+    } catch (error) {
+      console.error("Error fetching cancellation charges:", error);
+    }
+  };
+
+  const handleCancelBooking = (bookingId) => {
+    alert(`Booking ${bookingId} has been cancelled.`);
+    setCancellationData((prevData) => {
+      const newData = { ...prevData };
+      delete newData[bookingId]; // Remove cancellation data after cancellation
+      return newData;
+    });
+    setSelectedBooking(null);
+  };
   
 
-  
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
- 
+
 
   const handleItemClick = (item, ref) => {
     setActiveItem(item);
@@ -90,7 +138,7 @@ const ProfilePage = () => {
   const handleTabChange = (index) => setActiveTab(index);
 
 
- 
+
 
   const handleLogout = () => {
     localStorage.removeItem("NextGenUser");
@@ -116,7 +164,7 @@ const ProfilePage = () => {
       try {
         const { data } = await axios.get(`${apilink}/user/${user}`);
         setUserinfo(data.user);
-   
+
         if (data.user) {
           setFormData(prev => ({
             ...prev,
@@ -136,7 +184,7 @@ const ProfilePage = () => {
 
     const fetchBookings = async () => {
       try {
-   
+
         const { data } = await axios.get(`${apilink}/user-bookings/${user}`);
 
         if (data.status === "success") {
@@ -158,7 +206,7 @@ const ProfilePage = () => {
 
   }, [router]);
 
-
+  // console.log("bookingDatas", booking?.data?.[0].pnr);
 
   const fetchBookingDetails = async () => {
     setLoading(true);
@@ -166,20 +214,29 @@ const ProfilePage = () => {
 
     try {
 
+      console.log("bookingDatas", booking);
 
-      
       const payload = {
-        EndUserIp: bookingDatas.user_ip,
-        TraceId: bookingDatas.trace_id,
-        TokenId: bookingDatas.token, 
-        PNR: bookingDatas.pnr,
-        BookingId: parseInt(bookingDatas.booking_id), 
+        EndUserIp: booking?.data?.[0].user_ip,
+        TraceId: booking?.data?.[0].trace_id,
+        TokenId: booking?.data?.[0].token,
+        PNR: booking?.data?.[0].pnr,
+        BookingId: parseInt(booking?.data?.[0].booking_id),
       };
 
+      setcancel_booking({
+        EndUserIp: booking?.data?.[0].user_ip,
+        TraceId: booking?.data?.[0].trace_id,
+        TokenId: booking?.data?.[0].token,
+        PNR: booking?.data?.[0].pnr,
+        BookingId: parseInt(booking?.data?.[0].booking_id),
+      })
 
 
 
-      const response = await axios.post(`${apilink}/get-booking-details`, 
+
+
+      const response = await axios.post(`${apilink}/get-booking-details`,
         payload,
         {
           headers: {
@@ -188,7 +245,7 @@ const ProfilePage = () => {
         }
       );
 
- 
+
       const bookingData = response.data.data.FlightItinerary;
       setnewBookings([
         {
@@ -235,43 +292,43 @@ const ProfilePage = () => {
                 <div className="mx-auto w-40 h-40 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden">
                   <img
                     src="/images/user-profile.webp"
-                  
+
                     alt="Profile"
                     className="object-cover"
                   />
                 </div>
                 <h3 className="mt-4 text-xl font-semibold text-gray-800">
-                  { "Welcome"}
+                  {"Welcome"}
                 </h3>
                 <p className="text-sm text-gray-500 mt-1">PERSONAL PROFILE</p>
               </div>
 
               <nav className="mt-2">
                 <ul className="space-y-1 p-2">
-                {[
-  { label: "Profile", ref: profileRef, id: "profile" },
-  { label: "Login Details", ref: loginDetailsRef, id: "loginDetails" },
-  {  label: "Co-Travellers", ref: coTravellersRef, id: "coTravellers" },
-  {label: "My Bookings", ref: myBookingsRef, id: "myBookings" },
-  { label: "Logout", ref: logoutRef, id: "logout", action: handleLogout },
-].map((item) => (
-  <>
-  <li key={item.id}>
-    <button
-      onClick={() => item.action ? item.action() : handleItemClick(item.id, item.ref)}
-      className={`w-full flex items-center gap-3 px-4 py-3 text-left rounded-lg transition-colors ${activeItem === item.id ? "bg-blue-50 text-blue-600" : "text-gray-700 hover:bg-gray-100"}`}
-    >
+                  {[
+                    { label: "Profile", ref: profileRef, id: "profile" },
+                    { label: "Login Details", ref: loginDetailsRef, id: "loginDetails" },
+                    { label: "Co-Travellers", ref: coTravellersRef, id: "coTravellers" },
+                    { label: "My Bookings", ref: myBookingsRef, id: "myBookings" },
+                    { label: "Logout", ref: logoutRef, id: "logout", action: handleLogout },
+                  ].map((item) => (
+                    <>
+                      <li key={item.id}>
+                        <button
+                          onClick={() => item.action ? item.action() : handleItemClick(item.id, item.ref)}
+                          className={`w-full flex items-center gap-3 px-4 py-3 text-left rounded-lg transition-colors ${activeItem === item.id ? "bg-blue-50 text-blue-600" : "text-gray-700 hover:bg-gray-100"}`}
+                        >
 
-      <span className="font-medium">{item.label}</span>
-    </button>
-  </li>
-  </>
-))}
+                          <span className="font-medium">{item.label}</span>
+                        </button>
+                      </li>
+                    </>
+                  ))}
                 </ul>
               </nav>
             </div>
           </div>
-        
+
 
           {/* Main Content */}
           <div className="w-full md:w-3/4 space-y-6">
@@ -368,113 +425,175 @@ const ProfilePage = () => {
                   </p>
                 </div>
                 <button
-            onClick={fetchBookingDetails}
-            className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50"
-            disabled={loading}
-          >
-            {loading ? "Loading..." : "Get Booking Details"}
-          </button>
+                  onClick={fetchBookingDetails}
+                  className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50"
+                  disabled={loading}
+                >
+                  {loading ? "Loading..." : "Get Booking Details"}
+                </button>
               </div>
 
 
               <div className="mt-6 space-y-4">
-  {booking.length > 0 ? (
-    booking.map((booking) => (
-      <div key={booking.id} className="p-4 border-b hover:bg-gray-50 transition-colors">
-        <p className="text-sm font-medium text-gray-800">
-          {booking.flight_name || "Flight Booking"} - {booking.departure_from || "N/A"} to {booking.arrival_to || "N/A"}
-        </p>
-        <p className="text-xs text-gray-500">
-          Booking ID: {booking.booking_id} | PNR: {booking.pnr} | Date: {booking.flight_date || "N/A"}
-        </p>
-        <p
-          className="text-xs mt-1"
-          style={{ color: booking.response === "Confirmed" ? "#10B981" : "#F59E0B" }}
-        >
-          {booking.response || "Confirmed"} 
-        </p>
-      </div>
-    ))
-  ) : (
-    <p className="text-gray-600 text-sm">
-      
-    </p>
-  )}
-</div>
-<div className="mt-6 space-y-4">
-        {error && <p className="text-red-600 text-sm">{error}</p>}
-        {newbooking.length > 0 ? (
-          newbooking.map((booking) => (
+                {booking.length > 0 ? (
+                  booking.map((booking) => (
+                    <div key={booking.id} className="p-4 border-b hover:bg-gray-50 transition-colors">
+                      <p className="text-sm font-medium text-gray-800">
+                        {booking.flight_name || "Flight Booking"} - {booking.departure_from || "N/A"} to {booking.arrival_to || "N/A"}
+                      </p>
+                      <p className="text-xs text-gray-500">
+                        Booking ID: {booking.booking_id} | PNR: {booking.pnr} | Date: {booking.flight_date || "N/A"}
+                      </p>
+                      <p
+                        className="text-xs mt-1"
+                        style={{ color: booking.response === "Confirmed" ? "#10B981" : "#F59E0B" }}
+                      >
+                        {booking.response || "Confirmed"} {/* Default to "Confirmed" if response is null */}
+                      </p>
 
-            <div
-              key={booking.id}
-              className="p-4 border rounded-lg bg-gray-50 shadow-sm hover:bg-gray-100 transition-colors"
-            >
-              {/* Flight Info */}
-              <div className="mb-4">
-                <h4 className="text-lg font-semibold text-gray-800">
-                  {booking.flight_name}
-                </h4>
-                <p className="text-sm text-gray-600">
-                  {booking.departure_from} → {booking.arrival_to}
-                </p>
-                <p className="text-xs text-gray-500 mt-1">
-                  Date: {booking.flight_date} | Departure: {booking.departure_time} | Arrival: {booking.arrival_time} | Duration: {Math.floor(booking.duration / 60)}h {booking.duration % 60}m
-                </p>
-                <p
-                  className="text-xs mt-1 font-medium"
-                  style={{
-                    color: booking.response === "Confirmed" ? "#10B981" : "#F59E0B",
-                  }}
-                >
-                  Status: {booking.response}
-                </p>
-              </div>
 
-              {/* Passenger Info */}
-              <div className="mb-4">
-                <h5 className="text-md font-medium text-gray-700">Passenger Details</h5>
-                <p className="text-sm text-gray-600">
-                  Name: {booking.passenger_name}
-                </p>
-                <p className="text-sm text-gray-600">
-                  Contact: {booking.contact_no} | Email: {booking.email}
-                </p>
-              </div>
+                    </div>
+                  ))
+                ) : (
+                  <p className="text-gray-600 text-sm">
 
-              {/* Fare Info */}
-              <div className="mb-4">
-                <h5 className="text-md font-medium text-gray-700">Fare Details</h5>
-                <p className="text-sm text-gray-600">
-                  Base Fare: ₹{booking.base_fare} | Tax: ₹{booking.tax} | Total: ₹{booking.total_fare}
-                </p>
+                  </p>
+                )}
               </div>
+              <div className="mt-6 space-y-4">
+                {error && <p className="text-red-600 text-sm">{error}</p>}
+                {newbooking.length > 0 ? (
+                  newbooking.map((booking) => (
 
-              {/* Additional Info */}
-              <div>
-                <h5 className="text-md font-medium text-gray-700">Additional Info</h5>
-                <p className="text-sm text-gray-600">
-                  Booking ID: {booking.booking_id} | PNR: {booking.pnr}
-                </p>
-                <p className="text-sm text-gray-600">
-                  Baggage Allowance: {booking.baggage}
-                </p>
-              </div>
-            </div>
-            
-          ))
-        ) : (
-          <p className="text-gray-600 text-sm">
-            No bookings found. Click "Get Booking Details" to fetch your booking!
-          </p>
-        )}
-      </div>
+                    <div
+                      key={booking.id}
+                      className="p-4 border rounded-lg bg-gray-50 shadow-sm hover:bg-gray-100 transition-colors"
+                    >
+
+                      <div className="mb-4">
+                        <h4 className="text-lg font-semibold text-gray-800">
+                          {booking.flight_name}
+                        </h4>
+                        <p className="text-sm text-gray-600">
+                          {booking.departure_from} → {booking.arrival_to}
+                        </p>
+                        <p className="text-xs text-gray-500 mt-1">
+                          Date: {booking.flight_date} | Departure: {booking.departure_time} | Arrival: {booking.arrival_time} | Duration: {Math.floor(booking.duration / 60)}h {booking.duration % 60}m
+                        </p>
+                        <p
+                          className="text-xs mt-1 font-medium"
+                          style={{
+                            color: booking.response === "Confirmed" ? "#10B981" : "#F59E0B",
+                          }}
+                        >
+                          Status: {booking.response}
+                        </p>
+                      </div>
+
+
+                      <div className="mb-4">
+                        <h5 className="text-md font-medium text-gray-700">Passenger Details</h5>
+                        <p className="text-sm text-gray-600">
+                          Name: {booking.passenger_name}
+                        </p>
+                        <p className="text-sm text-gray-600">
+                          Contact: {booking.contact_no} | Email: {booking.email}
+                        </p>
+                      </div>
+
+
+                      <div className="mb-4">
+                        <h5 className="text-md font-medium text-gray-700">Fare Details</h5>
+                        <p className="text-sm text-gray-600">
+                          Base Fare: ₹{booking.base_fare} | Tax: ₹{booking.tax} | Total: ₹{booking.total_fare}
+                        </p>
+                      </div>
+
+
+                  
+
              
-            </div>
-        
- 
 
-            
+                      <div>
+                        <h5 className="text-md font-medium text-gray-700">Additional Info</h5>
+                        <p className="text-sm text-gray-600">
+                          Booking ID: {booking.booking_id} | PNR: {booking.pnr}
+                        </p>
+                        <p className="text-sm text-gray-600">
+                          Baggage Allowance: {booking.baggage}
+                        </p>
+                      </div>
+
+                      <button
+            onClick={() => fetchCancellationCharges(booking)}
+            className="bg-red-500 text-white px-3 py-1 text-sm rounded hover:bg-red-600 transition"
+          >
+            Cancel
+          </button>
+
+
+                      {selectedBooking === booking.id && cancellationData[booking.id] && (
+            <div className="mt-4 p-4 border border-red-300 bg-red-50 rounded">
+              <h5 className="text-md font-medium text-red-600">Cancellation Charges</h5>
+              <p className="text-sm text-gray-700">
+                Refund Amount: <span className="font-medium text-green-600">
+                  {cancellationData[booking.id].currency} {cancellationData[booking.id].refundAmount}
+                </span>
+              </p>
+              <p className="text-sm text-gray-700">
+                Cancellation Charge: <span className="font-medium text-red-600">
+                  {cancellationData[booking.id].currency} {cancellationData[booking.id].cancellationCharge}
+                </span>
+              </p>
+              <button
+                onClick={() => handleCancelBooking(booking.id)}
+                className="mt-2 bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 transition"
+              >
+                Confirm Cancel
+              </button>
+            </div>
+          )}
+                    </div>
+
+
+
+
+                  ))
+                ) : (
+                  <p className="text-gray-600 text-sm">
+                    No bookings found. Click "Get Booking Details" to fetch your booking!
+                  </p>
+                )}
+              </div>
+
+
+              {modalOpen && cancellationData && (
+        <div className="fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center">
+          <div className="bg-white p-6 rounded-lg shadow-lg w-96">
+            <h3 className="text-lg font-semibold text-gray-800">Cancellation Charges</h3>
+            <p className="text-sm text-gray-600 mt-2">
+              Refund Amount: <span className="font-medium text-green-600">{cancellationData.currency} {cancellationData.refundAmount}</span>
+            </p>
+            <p className="text-sm text-gray-600">
+              Cancellation Charge: <span className="font-medium text-red-600">{cancellationData.currency} {cancellationData.cancellationCharge}</span>
+            </p>
+            <div className="mt-4 flex justify-end space-x-3">
+              <button onClick={() => setModalOpen(false)} className="bg-gray-300 px-3 py-1 rounded hover:bg-gray-400 transition">
+                Close
+              </button>
+              <button onClick={handleCancelBooking} className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition">
+                Confirm Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+              )}
+
+            </div>
+
+
+
+
 
           
             <div ref={coTravellersRef} className="bg-white rounded-xl shadow-md p-6">
@@ -620,7 +739,7 @@ const ProfilePage = () => {
         </div>
       )}
 
-     
+
       {isPopupOpen === "traveller" && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
