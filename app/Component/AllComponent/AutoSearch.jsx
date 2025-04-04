@@ -4,20 +4,18 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import debounce from "../AllComponent/Debounce";
-import { getAllAirports } from "../Store/slices/Allairportslice";
 
 import axios from "axios";
 import { toast, Flip } from "react-toastify";
-import { getAllcityes } from "../Store/slices/citysearchSlice";
-import { usePathname } from "next/navigation";
+
+// import { usePathname } from "next/navigation";
 import { apilink } from "../common";
 
 const AutoSearch = ({ value, onSelect, Click, fromCity }) => {
   const state = useSelector((state) => state.Allairport);
-  const state2 = useSelector((state) => state.topPortsSlice);
-  const allcityes=useSelector((state)=>state.citysearch)
-  const pathname=usePathname()
+  // const state2 = useSelector((state) => state.topPortsSlice);
+  // const allcityes=useSelector((state)=>state.citysearch)
+  // const pathname=usePathname()
 
   const defaultAirports = [
     {

@@ -11,7 +11,7 @@ export const getCalendarFare = createAsyncThunk(
           `${apilink}/get-calendar-fare`, 
           payload
         );
-        console.log('response',response)
+       
         return response.data; 
       } catch (error) {
         if (error.response) {

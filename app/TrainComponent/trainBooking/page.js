@@ -108,8 +108,8 @@ const page = () => {
 
   return (
     <>
-      <div className="flex px-20 py-10 gap-5">
-        <div className="flex flex-col w-1/4 ">
+      <div className="flex flex-col md:flex-row px-3 md:px-20 py-10 gap-5">
+        <div className="flex flex-col md:w-1/4 ">
           <div className="bg-white">
             <div className="secondshadow ">
               <div className="flex items-center p-4 border-b border-dashed">
@@ -193,7 +193,7 @@ const page = () => {
           </div>
         </div>
 
-        <div className="flex flex-col w-3/4">
+        <div className="flex flex-col md:w-3/4">
           <div className="">
             <div className=" secondshadow ">
               <div className="flex justify-between items-center  px-4 py-3 rounded-t-md bg-[#F2F9FF]">
@@ -272,8 +272,8 @@ const page = () => {
             </div>
 
             <div className="secondshadow  my-5 pt-4">
-              <div className="flex justify-between items-center px-5 pb-4">
-                <div className="flex space-x-4">
+              <div className="flex flex-wrap justify-between items-center px-5 pb-4">
+                <div className="flex flex-wrap  gap-3">
                   {dates.map((dateItem, index) => {
                     const [day, month, year] = dateItem.date.split("/");
                     return (

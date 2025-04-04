@@ -14,7 +14,7 @@ const page = () => {
    useEffect(() => {
      let dataS = localStorage.getItem("checkOutFlightDetail");
  
-    //  console.log(JSON.parse(dataS))
+   
  
      setCheckOutData(JSON.parse(dataS));
    }, []);

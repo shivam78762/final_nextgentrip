@@ -186,11 +186,9 @@ const ProfilePage = () => {
       try {
 
         const { data } = await axios.get(`${apilink}/user-bookings/${user}`);
-        console.log("Booking Data 1", data);
 
         if (data.status === "success") {
           setBookings(data);
-          console.log("Booking Data", data);
         }
       } catch (error) {
         toast.error("Failed to fetch bookings", {
@@ -437,35 +435,33 @@ const ProfilePage = () => {
 
 
               <div className="mt-6 space-y-4">
-                {booking.length > 0 ? (
-                  booking.map((booking) => (
-                    <div key={booking.id} className="p-4 border-b hover:bg-gray-50 transition-colors">
-                      <p className="text-sm font-medium text-gray-800">
-                        {booking.flight_name || "Flight Booking"} - {booking.departure_from || "N/A"} to {booking.arrival_to || "N/A"}
-                      </p>
-                      <p className="text-xs text-gray-500">
-                        Booking ID: {booking.booking_id} | PNR: {booking.pnr} | Date: {booking.flight_date || "N/A"}
-                      </p>
-                      <p
-                        className="text-xs mt-1"
-                        style={{ color: booking.response === "Confirmed" ? "#10B981" : "#F59E0B" }}
-                      >
-                        {booking.response || "Confirmed"} {/* Default to "Confirmed" if response is null */}
-                      </p>
-
-
-                    </div>
-                  ))
-                ) : (
-                  <p className="text-gray-600 text-sm">
-
-                  </p>
-                )}
-              </div>
-              <div className="mt-6 space-y-4">
-                {error && <p className="text-red-600 text-sm">{error}</p>}
-                {newbooking.length > 0 ? (
-                  newbooking.map((booking) => (
+  {booking.length > 0 ? (
+    booking.map((booking) => (
+      <div key={booking.id} className="p-4 border-b hover:bg-gray-50 transition-colors">
+        <p className="text-sm font-medium text-gray-800">
+          {booking.flight_name || "Flight Booking"} - {booking.departure_from || "N/A"} to {booking.arrival_to || "N/A"}
+        </p>
+        <p className="text-xs text-gray-500">
+          Booking ID: {booking.booking_id} | PNR: {booking.pnr} | Date: {booking.flight_date || "N/A"}
+        </p>
+        <p
+          className="text-xs mt-1"
+          style={{ color: booking.response === "Confirmed" ? "#10B981" : "#F59E0B" }}
+        >
+          {booking.response || "Confirmed"} {/* Default to "Confirmed" if response is null */}
+        </p>
+      </div>
+    ))
+  ) : (
+    <p className="text-gray-600 text-sm">
+      
+    </p>
+  )}
+</div>
+<div className="mt-6 space-y-4">
+        {error && <p className="text-red-600 text-sm">{error}</p>}
+        {newbooking.length > 0 ? (
+          newbooking.map((booking) => (
 
                     <div
                       key={booking.id}
@@ -597,7 +593,7 @@ const ProfilePage = () => {
 
 
 
-            {/* Co-Travellers Section */}
+          
             <div ref={coTravellersRef} className="bg-white rounded-xl shadow-md p-6">
               <div className="flex justify-between items-center">
                 <div>

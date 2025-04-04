@@ -43,7 +43,6 @@ const page = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form Data:", formData);
   };
 
   const addOns = [
@@ -80,7 +79,7 @@ const page = () => {
       <div className="flex  items-center space-x-4">
         {steps.map((step, index) => (
           <div key={index} className="flex items-center space-x-2">
-            {/* Circle */}
+           
             <div
               className={`w-8 h-8 flex items-center justify-center rounded-full text-sm font-bold ${
                 step.completed
@@ -93,7 +92,7 @@ const page = () => {
               {step.completed ? "✓" : index + 1}
             </div>
 
-            {/* Label */}
+           
             <p
               className={`text-sm ${
                 step.completed || step.active ? "text-black" : "text-gray-400"
@@ -569,7 +568,7 @@ const page = () => {
             )}
           </div>
 
-          {/* Confirmation Message */}
+        
           <div className="bg-green-100 border-l-4 border-green-500 p-4 mb-6">
             <p className="text-green-700 font-semibold">
               Your booking is confirmed
@@ -579,7 +578,7 @@ const page = () => {
             </p>
           </div>
 
-          {/* Booking Details */}
+        
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             <div>
               <p className="text-sm text-gray-500">Guest</p>
@@ -607,7 +606,7 @@ const page = () => {
             </div>
           </div>
 
-          {/* Parking Ticket */}
+          
           <div className="border p-4 rounded-lg bg-gray-100">
             <p className="text-gray-700 mb-2">
               Entrance to parking area is possible only with parking ticket

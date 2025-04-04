@@ -22,19 +22,7 @@ export const searchFlightApi = createAsyncThunk(
   }, { rejectWithValue }) => { 
 
     try {
-      console.log('Origin Destination', Destination);
-      console.log('Origin Origin', Origin);
-
-      console.log('data.datadata', AdultCount);
-      console.log('data.datadata', EndUserIp);
-      console.log('data.datadata', ChildCount);
-      console.log('data.datadata', Origin);
-      console.log('data.datadata', Destination);
-
-      console.log('data.datadata', FlightCabinClass);
-      console.log('data.datadata', FlightCabinClass);
-      console.log('data.datadata', PreferredAirlines);
-      console.log('data.datadata', JourneyType);
+    
 
       const data = await axios.post(`${apilink}/search-flights`, {
         EndUserIp,
@@ -52,7 +40,6 @@ export const searchFlightApi = createAsyncThunk(
         PreferredArrivalTime,
       });
 
-      console.log('data.datadata', data);
 
       return data.data;
     } catch (error) {

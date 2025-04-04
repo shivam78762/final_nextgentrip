@@ -146,7 +146,6 @@ const HotelSliderCompo = ({ isLoading, children }) => {
     return () => clearTimeout(timeout);
   }, []);
 
-  console.log('sliderdata', sliderdata.info[0]?.img2)
 
   return (
     <>

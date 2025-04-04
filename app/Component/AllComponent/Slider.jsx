@@ -108,7 +108,6 @@ const [bannerimg,setbannerImg]=useState()
 const dispatch = useDispatch();
 const sliderdata = useSelector((state) => state.sliderData);
 
-console.log(sliderdata,"sdfwe")
 
  useEffect(()=>{
 

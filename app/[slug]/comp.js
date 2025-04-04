@@ -1653,20 +1653,7 @@ const handelnonlcc=(id, ResultIndex)=>{
                                           .AirlineName || "Default"
                                       } Logo`}
                                     />
-                                    <div className="">
-                                      {/* <p className="font-bold text-black text-sm md:text-base">
-                                        {
-                                          flight.Segments[0][0].Airline
-                                            .AirlineName
-                                        }
-                                      </p> */}
-                                      {/* <p className="text-black text-xs md:text-sm">
-                                        {
-                                          flight.Segments[0][0].Airline
-                                            .FlightNumber
-                                        }
-                                      </p> */}
-                                    </div>
+                                    
                                   </div>
 
                                   <div className=" w-full flex md:hidden lg:hidden  ">
@@ -1711,12 +1698,7 @@ const handelnonlcc=(id, ResultIndex)=>{
                                           "T"
                                         )[1].slice(0, 5)}
                                       </p>
-                                      <p className="text-black text-xs">
-                                        {/* {
-                                          flight.Segments[0][0].Origin.Airport
-                                            .CityName
-                                        } */}
-                                      </p>
+                                     
                                     </div>
                                   </div>
 

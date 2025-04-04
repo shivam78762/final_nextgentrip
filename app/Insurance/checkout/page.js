@@ -72,7 +72,6 @@ const page = () => {
   // Log only after state updates
   useEffect(() => {
     if (insuranceData) {
-      console.log("Updated insuranceData", insuranceData);
     }
   }, [insuranceData]); 
 
@@ -493,7 +492,7 @@ const page = () => {
       
       </div>
 
-      {/* Right Side: Price Summary */}
+    {/* Right Side: Price Summary */}
       <div className="w-full md:col-span-2 space-y-4 md:px-4">
         <div className="sticky top-0">
           <div className="border rounded shadow-lg">

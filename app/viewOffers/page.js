@@ -260,9 +260,7 @@ const Cards = ({
               className="border border-dashed border-gray-400 rounded-md flex items-center relative h-8 bg-white cursor-pointer"
               onClick={stopRedirection}
             >
-              {/* <span className="absolute text-[9px] uppercase font-semibold -top-2 text-white bg-[#2196f3] px-2 rounded-full">
-                Promocode
-              </span> */}
+             
               <span
                 className="font-bold border-r  border-dashed border-gray-400 p-1 px-2 text-sm "
                 id={code}

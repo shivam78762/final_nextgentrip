@@ -24,7 +24,7 @@ const PrivacyPolicy = () => {
             <img className="mr-2.5" src="/images/banner-privacy.webp" alt="NextGenTrip" />
           </div>
           
-          <div className="mx-auto mt-10 text-justify max-w-6xl">
+          <div className="mx-auto mt-10 text-justify max-w-6xl px-3">
             <div className="box-detail-info">
               <p>
                 NextGenTrip values your privacy and is committed to protecting your personal information. 

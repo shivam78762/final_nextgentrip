@@ -326,13 +326,7 @@ const Page = () => {
         <div className="flex flex-col items-start p-4 w-full">
           <h2 className="text-xl md:text-2xl font-semibold mb-4">Location</h2>
           <div className="relative w-full h-64 shadow-md">
-            {/* <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2118.8653849516486!2d76.78440877092395!3d30.749943072624916!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390fed76ab9f14c1%3A0xd6362b158b8994aa!2sEiffel%20Tower%20Replica!5e0!3m2!1sen!2sin!4v1733123258040!5m2!1sen!2sin"
-              className="w-[77.5%] h-full rounded-2xl"
-              style={{ border: 0 }}
-              allowFullScreen=""
-              loading="lazy"
-            ></iframe> */}
+          
 
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3428.9163435459964!2d76.78284007645692!3d30.748851284851785!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390fed76ab9f14c1%3A0xd6362b158b8994aa!2sEiffel%20Tower%20Replica!5e0!3m2!1sen!2sin!4v1733137389275!5m2!1sen!2sin"

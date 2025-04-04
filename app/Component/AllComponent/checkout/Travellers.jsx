@@ -47,7 +47,7 @@ const Page = ({ setActiveTab,fdatas, price }) => {
       try {
         const { data } = await axios.get(`${apilink}/user/${userId}`);
         setUserinfo(data.user);
-        console.log("User data:", data.user);
+        
 
         // If you need to update passengers with user info
         if (data.user && passengers.length > 0) {
@@ -189,7 +189,7 @@ const differenceInMinutes = (now - addate) / (1000 * 60);
           }
         });
       }
-      console.log("Initial Passengers:", passengers);
+      ("Initial Passengers:", passengers);
       setPassengers(passengers);
     };
 
@@ -197,16 +197,12 @@ const differenceInMinutes = (now - addate) / (1000 * 60);
   }, [fdatas]);
 
 
-  useEffect(() => {
-    console.log("Passengers State:", passengers);
-  }, [passengers]);
 
 
 
 
-  useEffect(() => {
-    console.log("Passengers State:", passengers);
-  }, [passengers]);
+
+
 
 
   const addTraveler = () => {
@@ -295,7 +291,7 @@ const differenceInMinutes = (now - addate) / (1000 * 60);
       }),
     };
 
-    console.log('payload', payload);
+
 
     const checkOutFlightDetail = JSON.parse(localStorage.getItem("checkOutFlightDetail"));
     const isLCC = checkOutFlightDetail?.IsLCC === true;
@@ -303,7 +299,7 @@ const differenceInMinutes = (now - addate) / (1000 * 60);
 
     try {
       const response = await axios.post(apiEndpoint, payload);
-      console.log('Booking response:', response);
+     
 
       if (response?.data?.status === 'success') {
         Swal.fire({
