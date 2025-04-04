@@ -38,7 +38,7 @@ setBusBoarding(state?.info?.busbording?.GetBusRouteDetailResult)
 
 const handelseetbook=(seat)=>{
   setBookseatdeatle({seat});
-  console.log(setBookseatdeatle)
+ 
 }
 
 

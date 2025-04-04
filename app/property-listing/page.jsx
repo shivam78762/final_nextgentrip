@@ -289,17 +289,15 @@ export default function page() {
               )}
           </button>
 
-          {/* Forgot Password Link */}
+         
           <div className="text-center mt-4 flex justify-between">
             <Link href={`http://127.0.0.1:8000/hotelreg/login`}  >
-              {/* <a target="_blank" rel="noopener noreferrer"> */}
+             
               <p className="text-sm text-blue-600 hover:text-blue-800">Allready have Account?</p>
-              {/* </a> */}
+           
 
             </Link>
-            {/* <Link href="/forgot-password">
-              <p className="text-sm text-blue-600 hover:text-blue-800">Forgot Password?</p>
-            </Link> */}
+          
           </div>
         </form>
 

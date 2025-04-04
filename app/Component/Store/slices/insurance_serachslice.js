@@ -5,7 +5,6 @@ import { apilink } from "../../common";
 
 export const getInsuranceSearch=createAsyncThunk("/insurance",async({PlanCategory,PlanCoverage,PlanType,TravelStartDate,TravelEndDate})=>{
   
-console.log(PlanCategory,PlanCoverage,PlanType,TravelStartDate,TravelEndDate,"sdcmwsk")
 
 
 const res=await axios.post(`${apilink}/insurance`,({EndUserIp:"0.0.0.0",PlanCategory,PlanCoverage,PlanType,TravelStartDate,TravelEndDate,NoOfPax:1,PaxAge:[37]}))

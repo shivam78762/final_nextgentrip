@@ -16,7 +16,7 @@ const [packageInfo,setPackageInfo]=useState()
     useEffect(()=>{
      const fetchapi=async()=>{
 const res= await axios.get(`${apilink}/holidays-package/${slug}`)
-console.log(res.data)
+
 setPackageInfo(res.data)
 
      }

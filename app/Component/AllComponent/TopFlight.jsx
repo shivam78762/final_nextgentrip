@@ -23,7 +23,6 @@ const TopFlight = () => {
   const seconds = "00";
   date = `${year}-${month}-${day}T${hours}:${minutes}:${seconds}`;
 
-  console.log(date.split("T"), "scsdlkjcndjcfvnodcf");
 
   const cityData = [
     {

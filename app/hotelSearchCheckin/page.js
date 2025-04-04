@@ -296,7 +296,7 @@ const page = () => {
             </div>
             <div className="flex gap-5 mb-5">
               <div>
-                {/* Image Thumbnail with click event to open popup */}
+               
                 <div
                   className="relative w-[520px] h-[340px] mb-4"
                   onClick={() => openPopup(0)}
@@ -313,7 +313,7 @@ const page = () => {
                   </div>
                 </div>
 
-                {/* Popup modal for the image gallery */}
+                
                 {isOpenSecond && (
                   <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-[999]">
                     <div className="relative w-[90%] h-[80%] max-w-4xl max-h-4xl p-4">
@@ -902,7 +902,7 @@ const page = () => {
                   )}
                 </div>
 
-                {/* Attractions Section */}
+              
                 <div className="">
                   <div
                     className="selected flex items-center gap-4 cursor-pointer py-5 border-b"
@@ -977,7 +977,7 @@ const page = () => {
                   )}
                 </div>
 
-                {/* Transport Section */}
+               
                 <div className="">
                   <div
                     className="selected flex w-full items-center gap-4  cursor-pointer py-5 border-b"
@@ -1420,7 +1420,7 @@ const page = () => {
                               1
                             </button>
                           </li>
-                          {/* Add other page buttons similarly */}
+                          
                           <li>
                             <button
                               className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg"
@@ -1641,7 +1641,7 @@ const page = () => {
                               1
                             </button>
                           </li>
-                          {/* Add other page buttons similarly */}
+                          
                           <li>
                             <button
                               className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg"
@@ -1861,7 +1861,7 @@ const page = () => {
                               1
                             </button>
                           </li>
-                          {/* Add other page buttons similarly */}
+                          
                           <li>
                             <button
                               className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg"
@@ -2081,7 +2081,7 @@ const page = () => {
                               1
                             </button>
                           </li>
-                          {/* Add other page buttons similarly */}
+                         
                           <li>
                             <button
                               className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg"

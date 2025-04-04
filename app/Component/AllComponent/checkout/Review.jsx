@@ -80,7 +80,6 @@ const handleClick =()=>{
 
     }
 }
-console.log(CheckOutData,"sdcsdnmcpwepn")
   
   return (
     <div className="">

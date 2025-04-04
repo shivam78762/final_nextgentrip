@@ -539,9 +539,9 @@ const Footer = () => {
             </p>
             <Link
               href="/condition/privacy-policy"
-              className="text-sm hidden md:block leading-5 text-gray-500"
+              className="text-sm hidden md:block leading-5 text-gray-500 cursor-pointer"
             >
-              Privacy
+              privacy-policy
             </Link>
           </div>
         </div>

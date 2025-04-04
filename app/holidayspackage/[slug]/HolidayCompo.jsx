@@ -26,7 +26,6 @@ fatchapi()
 
     },[])
 
-    console.log(pakages,"dfdfvg")
 
   return (
     <>

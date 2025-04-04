@@ -185,7 +185,7 @@ setloader(true)
           </div>
         </div>
 
-        {/* sign up code  */}
+   
         <div className="p-3">
           <div
             className={`bg-white p-2 md:p-5 md:w-[40rem] rounded-md shadow-md flex flex-col md:items-center gap-3  ${

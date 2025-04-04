@@ -17,7 +17,6 @@ export const getInsuranceSearch = createAsyncThunk(
         EndUserIp: userIp, 
       };
 
-      console.log(updatedRequestData, "Final Request Data");
 
 
       const res = await axios.post(`${apilink}/insurance/search`, 

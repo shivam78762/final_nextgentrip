@@ -205,10 +205,7 @@ const page = () => {
             <div className="border W-1/2 bg-[#FBEBEB] rounded-xl  px-3 py-2 flex flex-col gap-5">
               <h3 className="font-bold">Exclusions</h3>
               <div className="overflow-x-hidden h-40 exclusions   overflow-scroll flex flex-col gap-2">
-                {/* <p className="flex items-center gap-1 text-sm">
-                  <RxCross2 className="text-red-700" />
-                  Water sports activities
-                </p> */}
+               
                 {exclusions.map((exclusion, index) => (
                   <p key={index} className="flex items-center gap-2 text-sm">
                     <RxCross2 className="text-red-700  " />

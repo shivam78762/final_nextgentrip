@@ -46,7 +46,6 @@ const Page = () => {
       const price = Math.floor(Math.random() * (10000 - 4000 + 1)) + 4000; // Random price between 4000 and 10000
         
 
-      console.log('date-date',date)
       // Generate flight link
       const flightLink = `flightto=BOM&from=DEL&date=${date}T00:00:00&prfdate=${date}T00:00:00&JourneyType=1&adultcount=1&childCount=0&infantCount=0&selectedClass=1&returndate=${returnDate}T00:00:00&PreferredAirlines=null`;
 
@@ -80,7 +79,6 @@ const Page = () => {
 
   const handleFlightSearch = (deal) => {
     // Handle flight search logic here
-    console.log("Flight search for:", deal);
   };
 
   const renderDeals = (monthIndex) => {

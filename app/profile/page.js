@@ -79,6 +79,9 @@ const page = () => {
     ref?.current?.scrollIntoView({ behavior: "smooth" });
   };
 
+
+   
+
   const [activeTab, setActiveTab] = useState(0);
 
   const handleTabChange = (index) => {

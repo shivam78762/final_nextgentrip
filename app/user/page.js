@@ -138,11 +138,9 @@ const ProfilePage = () => {
       try {
    
         const { data } = await axios.get(`${apilink}/user-bookings/${user}`);
-        console.log("Booking Data 1", data);
 
         if (data.status === "success") {
           setBookings(data);
-          console.log("Booking Data", data);
         }
       } catch (error) {
         toast.error("Failed to fetch bookings", {
@@ -179,7 +177,6 @@ const ProfilePage = () => {
       };
 
 
-       console.log("bookingDatas", bookingDatas);
 
 
       const response = await axios.post(`${apilink}/get-booking-details`, 
@@ -394,7 +391,7 @@ const ProfilePage = () => {
           className="text-xs mt-1"
           style={{ color: booking.response === "Confirmed" ? "#10B981" : "#F59E0B" }}
         >
-          {booking.response || "Confirmed"} {/* Default to "Confirmed" if response is null */}
+          {booking.response || "Confirmed"} 
         </p>
       </div>
     ))
@@ -479,7 +476,7 @@ const ProfilePage = () => {
 
             
 
-            {/* Co-Travellers Section */}
+          
             <div ref={coTravellersRef} className="bg-white rounded-xl shadow-md p-6">
               <div className="flex justify-between items-center">
                 <div>

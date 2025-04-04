@@ -62,7 +62,6 @@ const handelhotelSearch=()=>{
   const localFormattedDate = localDate.toISOString().slice(0, 19);
   const localFormattedDate2 = localDate2.toISOString().slice(0, 19);
 
- // console.log(allsearchdata,localFormattedDate,localFormattedDate2)
    
   route.push(`/activities/CityId=${allsearchdata.Code}&FromDate=${localFormattedDate}&ToDate=${localFormattedDate2}`)
 

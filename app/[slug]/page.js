@@ -20,7 +20,7 @@ export default async function Page({ params: { slug } }) {
 
         data = response.data;
 
-        console.log('Data:', data);
+        
     } catch (error) {
         console.error('Error fetching data:', error);
     }

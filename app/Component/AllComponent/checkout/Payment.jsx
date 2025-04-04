@@ -101,7 +101,6 @@ const [user,setUser]=useState()
     return `${weekday}-${day} ${month} ${year}`;
   };
 
-  console.log(user)
   return (
     <div className="">
       
