@@ -74,12 +74,12 @@ const Navbar = () => {
       class: "holiday-icon",
       link: "/holidayspackage",
     },
-    {
-      name: t("cab"),
-      className: "meuicowidth cabmenuico",
-      class: "cab-icon",
-      link: "/cabs",
-    },
+    // {
+    //   name: t("cab"),
+    //   className: "meuicowidth cabmenuico",
+    //   class: "cab-icon",
+    //   link: "/cabs",
+    // },
     // {
     //   name: t("activities"),
     //   className: "meuicowidth actvitymenuico",

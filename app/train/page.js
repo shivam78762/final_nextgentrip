@@ -431,7 +431,7 @@ const page = () => {
         </ul>
       </div>
 
-      <div className=" px-5 md:px-20  py-10">
+      {/* <div className=" px-5 md:px-20  py-10">
         <h2 className="text-2xl font-semibold text-center mb-3">
           Your Next Train Journey Starts Here
         </h2>
@@ -480,7 +480,7 @@ const page = () => {
             ))}
           </div>
         </div>
-      </div>
+      </div> */}
 
       <div className=" px-5 md:px-20 py-10">
         <h2 className="text-2xl font-bold mb-4 text-center">
