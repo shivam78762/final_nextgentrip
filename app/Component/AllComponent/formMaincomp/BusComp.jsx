@@ -93,7 +93,7 @@ const handeltocity=(data)=>{
 
 
 
- 
+  
  
 
 
@@ -257,7 +257,7 @@ const state = useSelector(state => state.busCityslice)
 const   [busdata,setbusData]=useState()
 
 useEffect(()=>{
-  setbusData(state?.info?.BusCities)
+  setbusData(state?.info?.BusCities)  
 },[state])
 
 
