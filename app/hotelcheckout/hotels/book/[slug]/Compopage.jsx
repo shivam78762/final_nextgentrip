@@ -255,7 +255,7 @@ const [hotelinfoIndex,sethotelinfoIndex]=useState(0)
 <p className='text-xl font-semibold my-2'>Description</p>
 <div 
 dangerouslySetInnerHTML={{
-  __html: hotelinfo.hotel.hotel_des,
+  __html: hotelinfo?.hotel?.hotel_des,
 }}
 ></div> 
   </div>
