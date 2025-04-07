@@ -92,6 +92,18 @@ dispatch(getBusSeatLayout({TraceId:state.info.BusSearchResult.TraceId,ResultInde
           </div>
 
           <div>
+{state.isLoading && (
+           <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 backdrop-blur-sm z-50">
+           <div className="text-center">
+             <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500 border-solid"></div>
+             <h4 className="mt-4 text-white text-lg font-semibold">Loading...</h4>
+           </div>
+         </div>
+         
+          )}
+
+
+
             { busData && busData.map((bus) => (
               <div
                 key={bus.id}
