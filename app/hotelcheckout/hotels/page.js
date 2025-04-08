@@ -65,7 +65,7 @@ dispatch(getAllRegHotels())
 
 
         <div className="_polrdestnbx mt-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-  {allReghotels && allReghotels.info.map((dest, index) => (
+  {allReghotels && allReghotels?.info?.map((dest, index) => (
     <Link
       key={index}
       href={`/hotels/book/${dest.user.slug}`}
@@ -74,7 +74,7 @@ dispatch(getAllRegHotels())
       <div className="flex gap-4 p-4">
         <div className="w-2/3 relative">
           <img
-            src={`${imgurl}/storage/${dest?.hotel?.hotel_img[0]}`}
+            src={`${imgurl}/${dest?.hotel?.hotel_img[0]}`}
             alt={dest?.hotel?.hotel_img[0]}
             className="rounded-md w-full h-52 object-cover"
           />
@@ -85,7 +85,7 @@ dispatch(getAllRegHotels())
             {dest?.hotel?.hotel_img.slice(0, 3).map((image, imgIndex) => (
               <img
                 key={imgIndex}
-                src={`${imgurl}/storage/${image}`}
+                src={`${imgurl}/${image}`}
                 alt={`Hotel Image ${imgIndex}`}
                 className="rounded-md w-14 h-14 object-cover border-2 border-white shadow-sm"
               />
