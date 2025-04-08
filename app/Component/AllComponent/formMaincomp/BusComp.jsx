@@ -278,7 +278,6 @@ useEffect(() => {
 
 
 return(
-
   <div className="absolute top-full bg-white w-full z-30 ">
   <input type="text" value={searchparam}  className="w-full text-black" placeholder="Search city..." onChange={(e) =>setsearchparam(e.target.value)} />
   <div className="h-32 overflow-hidden overflow-y-scroll">
@@ -292,10 +291,7 @@ return(
         }}>{item.CityName}</p>
       )
     })}</div>
-</div>
-
-
-)
+</div>)
 
 
 
