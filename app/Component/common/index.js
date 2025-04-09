@@ -5,4 +5,4 @@ export const imgurl = 'https://apkatripbucket.s3.ap-south-1.amazonaws.com'
 export const storageLink = 'http://localhost:8000/storage'
 
 export const development= "roduction";
-//http://localhost:8000v
+//http://localhost:8000
