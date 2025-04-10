@@ -25,7 +25,7 @@ import TypeWriterHeaderEffect from "../TypeWriterHeaderEffect";
 const BusComp = () => {
   const [selected, setselected] = useState("")
   const defaultstore = JSON.parse(localStorage.getItem("busSearch"))
-
+  const [loading, setloading] = useState(true)
   const [fromCity, setFromCity] = useState((defaultstore && defaultstore.fromCity) || {
     CityId: 9573,
     CityName: "Hyderabad",
@@ -255,11 +255,13 @@ export default BusComp;
 const SearchCompnents=({handelcity})=>{
 const [searchparam,setsearchparam]=useState("")
 const state = useSelector(state => state.busCityslice)
-
+const [loading, setLoading] = useState(true)
 const   [busdata,setbusData]=useState()
 
 useEffect(()=>{
+  setLoading(true);
   setbusData(state?.info?.BusCities)  
+  setLoading(false);
 },[state])
 
 
@@ -278,20 +280,42 @@ useEffect(() => {
 
 
 return(
-  <div className="absolute top-full bg-white w-full z-30 ">
-  <input type="text" value={searchparam}  className="w-full text-black" placeholder="Search city..." onChange={(e) =>setsearchparam(e.target.value)} />
-  <div className="h-32 overflow-hidden overflow-y-scroll">
-    { busdata?.map((item) => {
-      return (
-        <p className=" border-b-2 p-1 cursor-pointer" onClick={() => {
-          handelcity({
-            CityId: item.CityId,
-            CityName: item.CityName,
-          })
-        }}>{item.CityName}</p>
-      )
-    })}</div>
-</div>)
+  <div className="absolute top-full bg-white w-full z-30 shadow-md rounded-md mt-1">
+  <input 
+    type="text" 
+    value={searchparam}  
+    className="w-full text-black px-3 py-2 border-b outline-none" 
+    placeholder="Search city..." 
+    onChange={(e) => setsearchparam(e.target.value)} 
+  />
+
+  <div className="max-h-60 overflow-y-scroll custom-scroll">
+    {loading ? (
+      // Show 5 skeleton items when loading is true
+      [...Array(5)].map((_, i) => (
+        <div key={i} className="p-2 border-b animate-pulse">
+          <div className="h-4 bg-gray-300 rounded w-3/4"></div>
+        </div>
+      ))
+    ) : (
+      busdata?.map((item, idx) => (
+        <p 
+          key={idx}
+          className="border-b px-3 py-2 cursor-pointer hover:bg-gray-100 transition-all"
+          onClick={() => {
+            handelcity({
+              CityId: item.CityId,
+              CityName: item.CityName,
+            });
+          }}
+        >
+          {item.CityName}
+        </p>
+      ))
+    )}
+  </div>
+</div>
+)
 
 
 

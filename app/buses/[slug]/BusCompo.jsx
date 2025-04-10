@@ -193,33 +193,7 @@ dispatch(getBusSeatLayout({TraceId:state.info.BusSearchResult.TraceId,ResultInde
 
               
                 <div className="border-t py-2 flex justify-between mt-6">
-                  <ul className="flex gap-2 md:gap-6 flex-wrap items-center text-sm">
-                    <li className="cursor-pointer hover:text-blue-500">
-                      <span className="mr-2 flex gap-2 items-center text-sm">
-                        Policies <FaChevronDown />
-                      </span>
-                    </li>
-                    <li className="cursor-pointer hover:text-blue-500">
-                      <span className="mr-2 flex gap-2 items-center text-sm">
-                        Photos <FaChevronDown />
-                      </span>
-                    </li>
-                    <li className="cursor-pointer hover:text-blue-500">
-                      <span className="mr-2 flex gap-2 items-center text-sm">
-                        Services <FaChevronDown />
-                      </span>
-                    </li>
-                    <li className="cursor-pointer hover:text-blue-500">
-                      <span className="mr-2 flex gap-2 items-center text-sm">
-                        Pickups & Drops <FaChevronDown />
-                      </span>
-                    </li>
-                    <li className="cursor-pointer hover:text-blue-500">
-                      <span className="mr-2 flex gap-2 items-center text-sm">
-                        Reviews <FaChevronDown />
-                      </span>
-                    </li>
-                  </ul>
+                
                   <Link href={`/buses/selectseat/index=${state.info.BusSearchResult.TraceId}&resultindex=${bus.ResultIndex}`} className="selectSeats text-center cursor-pointer bg-blue-100 border border-blue-600 rounded px-3 py-1 text-blue-600 font-semibold">
                     Select Seats
                   </Link>
