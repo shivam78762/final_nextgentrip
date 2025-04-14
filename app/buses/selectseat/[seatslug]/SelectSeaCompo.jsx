@@ -303,7 +303,7 @@ const SelectSeaCompo = ({ slug }) => {
               </select>
             </div>
 
-            {/* ID Number */}
+
             <div>
               <label className="block text-sm font-medium text-gray-700">ID Number</label>
               <div className="flex items-center border border-gray-300 rounded-lg mt-1 bg-gray-50 focus-within:ring focus-within:ring-indigo-300 transition">
@@ -319,7 +319,9 @@ const SelectSeaCompo = ({ slug }) => {
               </div>
             </div>
 
-            {/* Address */}
+            
+
+
             <div>
               <label className="block text-sm font-medium text-gray-700">Address</label>
               <div className="flex items-center border border-gray-300 rounded-lg mt-1 bg-gray-50 focus-within:ring focus-within:ring-indigo-300 transition">
