@@ -1390,7 +1390,7 @@ const Header = () => {
                 className="defenceColm flex justify-center md:justify-between"
                 id="divFamilyFare"
               >
-                <ul className="grid    grid-cols-2 justify-center md:grid-cols-3 lg:flex md:flex-nowrap md:justify-start  gap-3 lg:gap-2  text-xs items-center  p-0 m-0">
+                <ul className="grid  grid-cols-2 justify-center md:grid-cols-3 lg:flex md:flex-nowrap md:justify-start  gap-3 lg:gap-2  text-xs items-center  p-0 m-0">
                   {/* <li className="mr-5">
                     <label className="container_df  checkmark_df corp-hidden cscshw flex items-center">
                       {t("defenceforces")}
