@@ -63,12 +63,15 @@ LeadPassenger: true,
 
 const [bookingdata,setbookingdata]=useState({TraceId:index,ResultIndex:resultindex});
 
+const booknow=async()=>{
+  const res=await axios.post(`${apilink}/bus/book`,bookingdata)
+  console.log(res.data)
+}
 
-const handleBooking = async () => {
+const handleBooking =  () => {
   const updatedData = { ...bookingdata, passenger: [passenger],BoardingPointId:busBoarding?.BoardingPointsDetails[0]?.CityPointIndex,DropingPointId:busBoarding?.DroppingPointsDetails[0]?.CityPointIndex };
   setbookingdata(updatedData);
-const res=await axios.post(`${apilink}/bus/book`,bookingdata)
-console.log(res.data)
+    booknow()
 };
 
 
