@@ -917,12 +917,12 @@ const differenceInMinutes = (now - addate) / (1000 * 60);
 
 
               {/* Add Traveler Button */}
-              <button
+              {/* <button
                 onClick={addTraveler}
                 className="bg-blue-600 text-white px-4 py-2 rounded-md mt-4"
               >
                 Add Traveler
-              </button>
+              </button> */}
 
 
 
