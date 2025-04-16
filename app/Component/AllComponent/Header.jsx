@@ -544,10 +544,10 @@ const Header = () => {
             link: "/activities",
             list: "Group Tours",
           },
-          {
-            link: "/cabs",
-            list: "Car Rental",
-          },
+          // {
+          //   link: "/cabs",
+          //   list: "Car Rental",
+          // },
           {
             link: "/buses",
             list: "Bus Tickets",
@@ -601,10 +601,7 @@ const Header = () => {
             list: "Holiday Packages",
           },
 
-          {
-            link: "/atl/atipro",
-            list: "Elite Lucuary",
-          },
+        
           {
             link: "/train",
             list: "Train Services",
