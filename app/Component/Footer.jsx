@@ -462,20 +462,13 @@ const Footer = () => {
                     </li>
                     <li>
                       <Link
-                        href="/ATI/loyalty-program"
+                        href="/ATI/loyalty-program/"
                         className="text-sm leading-6 text-gray-600 hover:text-gray-900 text-nowrap"
                       >
-                        Loyalty Program
+                       Membership & Loyalty Program
                       </Link>
                     </li>
-                    <li>
-                      <Link
-                        href="/ATI/membership-club"
-                        className="text-sm leading-6 text-gray-600 hover:text-gray-900"
-                      >
-                        Membership Club
-                      </Link>
-                    </li>
+                  
                   </ul>
                 </div>
               </div>
