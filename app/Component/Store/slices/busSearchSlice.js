@@ -3,8 +3,8 @@ import axios from "axios";
 
 import { apilink } from "../../common";
 
-export const getBuscityapi=createAsyncThunk("/buscity",async(city)=>{
-const res=await axios.get(`${apilink}/bus/cities?city_name=${city}`)
+export const getBuscityapi=createAsyncThunk("/buscity",async()=>{
+const res=await axios.get(`${apilink}/bus/cities`)
 
 return res.data;
 })
