@@ -10,12 +10,14 @@ import { FaAngleDoubleRight, FaStar } from "react-icons/fa";
 
 export const PackageCompo = () => {
 const [allpackage,setAllpackage]=useState()
-
+const [loader,setloader]=useState(true)
     const fetchPackage=async()=>{
+      setloader(true)
         const response= await axios.get(`${apilink}/holidays/top`)
         if(response.data){
 setAllpackage(response.data)
         }
+        setloader(false)
     }
 
 useEffect(()=>{
@@ -25,7 +27,39 @@ useEffect(()=>{
 
 console.log(allpackage)
   return (
-  <> {allpackage?.map((tour) => (
+  <> 
+  
+  
+   
+      {loader && [1, 2,3,4].map((item) => (
+        <div key={item} className="border rounded-lg shadow-sm p-4">
+          <div className="animate-pulse space-y-4">
+            <div className="h-48 bg-gray-300 rounded"></div>
+            <div className="flex justify-between items-center">
+              <div className="h-4 bg-gray-300 rounded w-1/3"></div>
+              <div className="h-6 bg-gray-300 rounded w-16"></div>
+            </div>
+            <div className="h-6 bg-gray-300 rounded w-2/3"></div>
+            <div className="flex items-center space-x-2">
+              <div className="h-6 bg-yellow-300 rounded-full px-2 py-1 w-20"></div>
+              <div className="flex space-x-1">
+                {[1, 2, 3].map((star) => (
+                  <div key={star} className="h-4 w-4 bg-yellow-300 rounded-full"></div>
+                ))}
+              </div>
+            </div>
+            <div className="h-4 bg-gray-300 rounded w-full"></div>
+            <div className="h-4 bg-gray-300 rounded w-5/6"></div>
+            <div className="h-4 bg-gray-300 rounded w-3/4"></div>
+            <div className="flex justify-center mt-4">
+              <div className="h-8 bg-gray-300 rounded w-32"></div>
+            </div>
+          </div>
+        </div>
+      ))}
+    
+  
+  {!loader && allpackage?.map((tour) => (
           <div
             key={tour.id}
             className="bg-white shadow-md  overflow-hidden"
