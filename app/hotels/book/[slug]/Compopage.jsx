@@ -109,7 +109,7 @@ const Compopage = ({ slug }) => {
 
 
   const handelBookNow = (room_type, price) => {
-    booknowrooom["current"] = { user_id: userLogind, hotel_id: hotelinfo.hotel.id, room_type, price, hotel_name: hotelinfo.hotel.property_name, address: `${hotelinfo.hotel.address}` }
+    booknowrooom["current"] = { user_id: userLogind, hotel_id: hotelinfo?.hotel?.id, room_type, price, hotel_name: hotelinfo?.hotel?.property_name, address: `${hotelinfo.hotel.address}` }
     setshowbooknow(true)
   }
 
@@ -205,7 +205,7 @@ const Compopage = ({ slug }) => {
               <div className="  bg-white rounded-lg shadow-md p-6">
 
 
-                {/* Payment Methods */}
+     
                 <div className="mb-6">
 
                   <div className="grid grid-cols-2 gap-4">
@@ -306,11 +306,11 @@ const Compopage = ({ slug }) => {
 
             <div className='flex gap-1 w-full h-[20rem]'>
               <div className='w-full  h-full'>
-                <img src={`${imgurl}/storage/${hotelinfo.hotel.hotel_img[0]}`} className=' h-full w-full rounded-md' />
+                <img src={`${imgurl}/${hotelinfo.hotel.hotel_img[0]}`} className=' h-full w-full rounded-md' />
               </div>
 
               <div className='w-44 justify-around  gap-1 flex flex-col '>
-                {hotelinfo.hotel.hotel_img.slice(0, 3).map((img, index) => (<img src={`${imgurl}/storage/${img}`} key={index} className=' rounded-md h-[6rem]' />))}
+                {hotelinfo.hotel.hotel_img.slice(0, 3).map((img, index) => (<img src={`${imgurl}/${img}`} key={index} className=' rounded-md h-[6rem]' />))}
               </div>
 
             </div>
@@ -412,7 +412,7 @@ const Compopage = ({ slug }) => {
       <div className='shadow w-full p-3 rounded-md bg-white'>
 
 
-        {hotelinfoIndex == 0 && hotelinfo && hotelinfo.rooms &&
+        {hotelinfoIndex == 0 && hotelinfo && hotelinfo?.rooms &&
           hotelinfo.rooms.map((room, index) => {
             return (
               <div key={index} className='flex flex-col md:flex-row w-full border-b-2 border-gray-700' >
@@ -457,7 +457,7 @@ const Compopage = ({ slug }) => {
 
 
         {
-          hotelinfoIndex == 1 && hotelinfo && hotelinfo.rooms && <div className='p-4'>
+          hotelinfoIndex == 1 && hotelinfo && hotelinfo?.rooms && <div className='p-4'>
 
             <p className='text-xl font-semibold my-2'>Hotel  Policy</p>
             <div dangerouslySetInnerHTML={{ __html: hotelinfo?.hotel?.terms }}></div>
@@ -485,11 +485,11 @@ const Compopage = ({ slug }) => {
 
 
         {
-          hotelinfoIndex == 2 && hotelinfo && hotelinfo.hotel && <div >
+          hotelinfoIndex == 2 && hotelinfo && hotelinfo?.hotel && <div >
 
             <div><p className='text-xl font-semibold'>Address:</p>
               <p className='my-2'>
-                <div dangerouslySetInnerHTML={{ __html: hotelinfo.hotel.address }}></div>
+                <div dangerouslySetInnerHTML={{ __html: hotelinfo?.hotel?.address }}></div>
 
 
               </p>

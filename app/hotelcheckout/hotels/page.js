@@ -65,7 +65,7 @@ dispatch(getAllRegHotels())
 
 
         <div className="_polrdestnbx mt-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-  {allReghotels && allReghotels.info.map((dest, index) => (
+  {allReghotels && allReghotels?.info?.map((dest, index) => (
     <Link
       key={index}
       href={`/hotels/book/${dest.user.slug}`}

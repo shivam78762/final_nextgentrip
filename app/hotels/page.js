@@ -71,11 +71,11 @@ dispatch(getAllRegHotels())
 
 
         <div className="_polrdestnbx mt-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-5">
-  {allReghotels && allReghotels.info.map((dest, index) => (
+  {allReghotels && allReghotels?.info?.map((dest, index) => (
     <Link
       key={index}
       href={`/hotels/book/${dest.hotel.slug}`}
-       className="card-container  border border-[#5c6fff] hover:border-[#ffd94f] shadow-lg rounded-lg overflow-hidden transform  transition-transform duration-300 ease-in-out"
+      className="card-container  border border-[#5c6fff] hover:border-[#ffd94f] shadow-lg rounded-lg overflow-hidden transform  transition-transform duration-300 ease-in-out"
     >
       <div className="flex gap-4 p-4">
         <div className="w-2/3 relative">
