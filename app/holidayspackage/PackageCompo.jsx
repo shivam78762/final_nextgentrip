@@ -25,13 +25,13 @@ useEffect(()=>{
 
 },[])
 
-console.log(allpackage)
+
   return (
   <> 
   
   
    
-      {loader && [1, 2,3,4].map((item) => (
+      {loader && [1, 2,3,4].map((item) => ( 
         <div key={item} className="border rounded-lg shadow-sm p-4">
           <div className="animate-pulse space-y-4">
             <div className="h-48 bg-gray-300 rounded"></div>
