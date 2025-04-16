@@ -54,7 +54,7 @@ console.log(allpackage)
                   ))}
                 </div>
               </div>
-            <p className='h-12 text-[12px] overflow-hidden' dangerouslySetInnerHTML={{__html:tour?.des}}></p>
+            <p className='h-12 text-sm overflow-hidden' dangerouslySetInnerHTML={{__html:tour?.des}}></p>
             </div>
 
             <div className="mt-4  flex justify-center border-t  space-x-2">
@@ -67,3 +67,4 @@ console.log(allpackage)
         ))} </>
   )
 }
+
