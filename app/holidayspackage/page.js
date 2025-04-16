@@ -6,6 +6,7 @@ import FAQSection from "../Component/AllComponent/FAQ";
 import Link from "next/link";
 import HeroSlider from "../Component/AllComponent/HeroSlider";
 import { FaAngleDoubleRight, FaStar } from "react-icons/fa";
+import { PackageCompo } from "./PackageCompo";
 
 const page = () => {
   const carouselData = [
@@ -288,49 +289,8 @@ const page = () => {
         </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 px-5 lg:px-20 pb-10">
-        {tours.map((tour) => (
-          <div
-            key={tour.id}
-            className="bg-white shadow-md  overflow-hidden"
-          >
-            <div className="relative">
-              <img
-                src={tour.image}
-                alt={tour.title}
-                width={500}
-                height={300}
-                className="w-full h-64 object-cover"
-              />
-              <div className="absolute bottom-2 right-2  z-20 w-full flex  items-center justify-end ">
-                <p className="font-bold bg-white px-2 py-1">{tour.price}</p>
-              </div>
-            </div>
-            <div className="p-4 pb-0">
-              <h4 className="text-lg font-semibold">{tour.title}</h4>
-              <div className="flex items-center my-2">
-                <span className="text-sm bg-yellow-500 text-white py-1 px-2 rounded-full">
-                  HOT DEALS
-                </span>
-                <div className="flex ml-2">
-                  {[...Array(5)].map((_, i) => (
-                    <FaStar key={i} className="text-yellow-400" />
-                  ))}
-                </div>
-              </div>
-            <p> {tour.description}</p>
-            </div>
-
-            <div className="mt-4  flex justify-between border-t  space-x-2">
-              <Link href="/booknow" className=" flex p-4  items-center   gap-2 py-2 px-4 rounded hover:text-gray-600">
-                Book Now <FaAngleDoubleRight />
-              </Link>
-             <hr className="h-16 w-[1px] bg-[#e5e7eb]"/>
-              <button className=" flex p-4 items-center ap-2g  py-2 px-4 rounded hover:text-gray-600">
-                View More <FaAngleDoubleRight />
-              </button>
-            </div>
-          </div>
-        ))}
+        
+        <PackageCompo />
       </div>
       <FAQSection />
     </>
