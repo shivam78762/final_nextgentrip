@@ -42,6 +42,10 @@ const Page = () => {
       <MobileHeader />
       <CustomSlider />
 
+      
+
+
+
       <div className="flex flex-col">
      
         <div className="block md:flex items-center justify-between gap-4 px-5 lg:px-20">

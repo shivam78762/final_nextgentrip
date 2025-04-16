@@ -1,7 +1,7 @@
 "use client"
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { apilink, imgurl } from '../../../Component/common'
+import { apilink, storageLink } from '../../../Component/common'
 import { FaAngleRight,FaRegStar,FaRegCheckCircle } from "react-icons/fa";
 import { FaStar } from "react-icons/fa";
 import { IoTerminalOutline } from "react-icons/io5";
@@ -28,7 +28,7 @@ setPackageInfo(res.data)
      <section>
       <div className="rows inner_banner bg-gray-100 relative"> 
         <div className='absolute top-0 left-0 h-full w-full bg-[#0000005c] z-10'></div>
-        <img src={`${imgurl}/storage/${packageInfo.banner_image}`} alt="" className='w-full h-[25rem] bg-cover' />
+        <img src={`${storageLink}/${packageInfo.banner_image}`} alt="" className='w-full h-[25rem] bg-cover' />
         <div className="container flex justify-center items-center  absolute top-0 left-0 h-full w-full  z-20 ">
           <div className="spe-title text-center py-8">
             <h2 className="text-4xl font-bold text-[#FF2E4A]">
@@ -85,7 +85,7 @@ The Best of {packageInfo.country} &amp;  {packageInfo.city} <span className=""> 
 <Swiper navigation={true} modules={[Navigation]}  loop={true} className="mySwiper w-full h-full">
     {packageInfo.images.map((imginfo,imgindex)=>{
         return(
-<SwiperSlide className='w-full h-full' key={imgindex} ><img src={`${imgurl}/storage/${imginfo}`} alt="" className='w-full h-full bg-cover' /> </SwiperSlide>
+<SwiperSlide className='w-full h-full' key={imgindex} ><img src={`${storageLink}/${imginfo}`} alt="" className='w-full h-full bg-cover' /> </SwiperSlide>
         )
     })}
         

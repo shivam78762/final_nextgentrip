@@ -1,7 +1,7 @@
 "use client"
 import axios from 'axios'
 import React, { useEffect, useState, useTransition } from 'react'
-import { apilink, imgurl } from '../../Component/common'
+import { apilink, imgurl, storageLink } from '../../Component/common'
 import { FaPlane, FaStar, FaMapMarkerAlt } from 'react-icons/fa';
 import { MdOutlineAccessTime } from 'react-icons/md';
 import Image from 'next/image';
@@ -42,7 +42,7 @@ fatchapi()
     {/* Image Section */}
     <div className="relative">
       <img
-        src={`${imgurl}/storage/${item.banner_image}`}
+        src={`${storageLink}/${item.banner_image}`}
         alt={item.package_name}
         className="w-full h-56 object-cover"
         loading="lazy"
