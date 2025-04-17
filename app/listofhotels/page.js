@@ -43,7 +43,7 @@ export default function Hotels() {
     {
       id: 5,
       title: "Villas",
-      img: "/images/Hotel5.webp",
+      img: "/images/Hotel33.webp",
       description:
         "Our villas offer the ultimate in luxury and privacy. Enjoy spacious living areas, private pools, and exclusive services in beautiful settings, whether on the coast or nestled in the countryside.",
       additional:
