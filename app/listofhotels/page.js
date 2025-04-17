@@ -43,7 +43,7 @@ export default function Hotels() {
     {
       id: 5,
       title: "Villas",
-      img: "/images/Hotel5..webp",
+      img: "/images/Hotel5.webp",
       description:
         "Our villas offer the ultimate in luxury and privacy. Enjoy spacious living areas, private pools, and exclusive services in beautiful settings, whether on the coast or nestled in the countryside.",
       additional:
@@ -60,7 +60,7 @@ export default function Hotels() {
     },
     {
       id: 7,
-      img: "/images/Hotel6..webp",
+      img: "/images/Hotel6.webp",
       title: "Homestays",
       description:
         "Immerse yourself in local culture with our homestay options. Staying in a homestay provides a unique opportunity to experience life as a local, with personal touches and authentic interactions.",
@@ -70,7 +70,7 @@ export default function Hotels() {
     {
       id: 8,
       title: "Apartments",
-      img: "/images/Hotel8..webp",
+      img: "/images/Hotel8.webp",
       description:
         "Our apartments offer the comfort and convenience of home with added services for a pleasant stay. Choose from short-term rentals to extended stays, and enjoy fully equipped kitchens, living areas, and often additional facilities like gyms or pools.",
       additional:
