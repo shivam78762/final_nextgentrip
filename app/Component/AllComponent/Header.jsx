@@ -550,7 +550,7 @@ const Header = () => {
           // },
           {
             link: "/buses",
-            list: "Bus Tickets",
+            list: "Bus",
           },
         ],
       },
@@ -586,7 +586,7 @@ const Header = () => {
 
           {
             link: "/buses",
-            list: "Bus Tickets",
+            list: "Bus",
           },
           {
             link: "/cruise",

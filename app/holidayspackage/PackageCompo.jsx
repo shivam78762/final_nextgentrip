@@ -22,7 +22,6 @@ setAllpackage(response.data)
 
 useEffect(()=>{
     fetchPackage()
-
 },[])
 
 
@@ -95,7 +94,10 @@ useEffect(()=>{
               </Link>
             </div>
           </div>
-        ))} </>
+        ))} 
+        
+        
+        </>
   )
 }
 

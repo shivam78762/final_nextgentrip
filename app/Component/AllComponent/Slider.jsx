@@ -133,7 +133,7 @@ const response = await axios.get(`${apilink}/home/bannerimg`);
   }
 
   useEffect(() => {
-    // fetchapi();
+    
     const timeout = setTimeout(() => {
       setLoading(false);
     }, 2000); 
