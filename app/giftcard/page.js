@@ -125,7 +125,7 @@ const page = () => {
       guests: "2-6 guests",
       price: "$110.00",
       link: "/tour-detail-8",
-      imageSrc: "/images/NewYork..webp",
+      imageSrc: "/images/NewYork.webp",
     },
     {
       title: "Sydney Opera House Visit",
@@ -324,11 +324,9 @@ const page = () => {
                 slidesPerView={4}
                 loop={true}
                 breakpoints={{
-                  // when window width is >= 320px (mobile)
                   320: {
                     slidesPerView: 2,
                   },
-                  // when window width is >= 768px (tablet and above)
                   768: {
                     slidesPerView: 4,
                   },

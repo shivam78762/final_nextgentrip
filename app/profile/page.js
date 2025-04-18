@@ -2,7 +2,7 @@
 import React, { useState, useRef } from "react";
 import { CgProfile } from "react-icons/cg";
 import { LuLogOut } from "react-icons/lu";
-import { LuUsers2 } from "react-icons/lu";
+
 import { AiOutlineLogout } from "react-icons/ai";
 import Image from "next/image";
 import { FaCheckCircle, FaPencilAlt, FaPlus, FaTimes } from "react-icons/fa";
@@ -130,7 +130,7 @@ const page = () => {
                 }`}
                 onClick={() => handleItemClick("coTravellers", coTravellersRef)}
               >
-                <LuUsers2 />
+                <CgProfile />
                 Co-Travellers
               </li>
               <li
@@ -145,6 +145,16 @@ const page = () => {
             </ul>
           </div>
         </div>
+
+
+
+
+
+
+
+
+
+
 
         <div className="w-full md:w-3/4 mt-8 md:mt-0">
         

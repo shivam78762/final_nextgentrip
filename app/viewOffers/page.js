@@ -72,7 +72,7 @@ const stopRedirection = (event) => {
 const cardData = [
   {
     id: 0,
-    img: "/images/02-E_sTtfo3..webp",
+    img: "/images/02-E_sTtfo3.webp",
     heading: "New Offers",
     head: "Register and Get Discount on First Bookings with Next Gen",
     add: "San Diego City, CA, USA",
@@ -86,7 +86,7 @@ const cardData = [
   },
   {
     id: 1,
-    img: "/images/01-kkM7mXf9..webp",
+    img: "/images/01-kkM7mXf9.webp",
     head: "Register and Get Discount on First Bookings with Next Gen",
     add: "New York, NY, USA",
     bed: 3,
@@ -100,7 +100,7 @@ const cardData = [
   },
   {
     id: 2,
-    img: "/images/03-B8eH2v8V..webp",
+    img: "/images/03-B8eH2v8V.webp",
     head: "Register and Get Discount on First Bookings with Next Gen",
     add: "Austin, TX, USA",
     bed: 1,
@@ -114,7 +114,7 @@ const cardData = [
   },
   {
     id: 3,
-    img: "/images/04-SDLCq6RC..webp",
+    img: "/images/04-SDLCq6RC.webp",
     head: "Register and Get Discount on First Bookings with Next Gen",
     add: "Miami, FL, USA",
     bed: 5,
@@ -128,7 +128,7 @@ const cardData = [
   },
   {
     id: 4,
-    img: "/images/01-kkM7mXf9..webp",
+    img: "/images/01-kkM7mXf9.webp",
     head: "Register and Get Discount on First Bookings with Next Gen",
     add: "Malibu, CA, USA",
     bed: 3,
@@ -142,7 +142,7 @@ const cardData = [
   },
   {
     id: 5,
-    img: "/images/02-E_sTtfo3..webp",
+    img: "/images/02-E_sTtfo3.webp",
     head: "Register and Get Discount on First Bookings with Next Gen",
     add: "Chicago, IL, USA",
     bed: 2,
@@ -156,7 +156,7 @@ const cardData = [
   },
   {
     id: 2,
-    img: "/images/03-B8eH2v8V..webp",
+    img: "/images/03-B8eH2v8V.webp",
     head: "Register and Get Discount on First Bookings with Next Gen",
     add: "Austin, TX, USA",
     bed: 1,
@@ -170,7 +170,7 @@ const cardData = [
   },
   {
     id: 3,
-    img: "/images/04-SDLCq6RC..webp",
+    img: "/images/04-SDLCq6RC.webp",
     head: "Register and Get Discount on First Bookings with Next Gen",
     add: "Miami, FL, USA",
     bed: 5,
@@ -418,7 +418,7 @@ export default function Page() {
                 type="text"
                 className=" border border-gray-300 rounded-lg p-2 w-full max-w-md"
                 id="searchInput"
-                placeholder="Search offers..."
+                placeholder="Search offers.."
                 autofocus
               />
             </div>
