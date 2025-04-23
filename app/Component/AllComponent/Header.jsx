@@ -665,7 +665,7 @@ const Header = () => {
   });
 
   useEffect(() => {
-    // Update `calData` dynamically
+    
     const updatedCalData = {
       JourneyType: 1,
       EndUserIp: '223.178.208.151',
