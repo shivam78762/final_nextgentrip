@@ -47,6 +47,7 @@ export default async function RootLayout({ children }) {
           async
           src="https://www.googletagmanager.com/gtag/js?id=G-7F46NND7PG"
         ></script>
+<link rel="canonical" href="https://nextgentrip.com/page-url" />
 
         <script
          id="google-analytics"

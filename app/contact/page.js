@@ -66,7 +66,7 @@ export default function Page() {
                     className="text-blue-500 text-xl"
                   />
                   <p className="text-lg font-semibold text-gray-700">
-                    tr@Nextgentrip.com
+                    info@NextGentrip.com
                   </p>
                 </div>
                 <div className="flex items-center space-x-3">
@@ -75,7 +75,7 @@ export default function Page() {
                     className="text-blue-500 text-xl"
                   />
                   <p className="text-lg font-semibold text-gray-700">
-                    NextGenindia@gmail.com
+                    info@NextGentrip.com
                   </p>
                 </div>
                 <div className="flex items-center space-x-3">
@@ -84,7 +84,7 @@ export default function Page() {
                     className="text-blue-500 text-xl"
                   />
                   <p className="text-lg font-semibold text-gray-700">
-                    info@Nextgentrip.com
+                  info@NextGentrip.com
                   </p>
                 </div>
               </div>

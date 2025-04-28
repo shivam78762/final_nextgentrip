@@ -5,4 +5,4 @@ export const imgurl = 'https://apkatripbucket.s3.ap-south-1.amazonaws.com'
 export const storageLink = 'https://api.tringaa.com/storage'
  
 export const development= "roduction";
-//http://api.tringaa.com/
+//http://api.tringaa.com/  
