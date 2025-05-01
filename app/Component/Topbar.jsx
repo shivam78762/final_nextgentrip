@@ -384,9 +384,14 @@ const Topbar = () => {
               <div className="fixed flex justify-center items-center bg-[rgba(0,0,0,0.6)] inset-0 p-4">
               <div  onClick={(e) => e.stopPropagation()} className="h-[32rem] w-[700px] rounded-xl p-6 bg-white shadow-lg overflow-y-scroll">
  
-                <div className="text-center mb-6">
+                <div className="text-center mb-6 flex justify-between ">
                   <h3 className="text-xl font-semibold text-gray-800">Select Your Currency</h3>
-               
+                  <button
+                            onClick={() => setcurrencyappled(false)}
+                            className=""
+                          >
+                            <RxCross2 />
+                          </button>
                 </div>
             
  
@@ -414,8 +419,8 @@ const Topbar = () => {
                   ))}
                 </div>
               </div>
-            </div>
-            
+            </div> 
+          
 
             )
           }

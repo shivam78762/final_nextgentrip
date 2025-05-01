@@ -130,10 +130,10 @@ const MiniNav = () => {
                 link: "/TrainComponent/pnrcheck",
                 list: "PNR Status Check",
               },
-              {
-                link: "/TrainComponent",
-                list: "Local Guides",
-              },
+            //   {
+            //     link: "/TrainComponent",
+            //     list: "Local Guides",
+            //   },
             ],
           },
     

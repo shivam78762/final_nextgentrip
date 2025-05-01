@@ -16,10 +16,16 @@ import LayoutCompo from "./LayoutCompo"
 const inter = Inter({ subsets: ["latin"] });
 
 
+
+
 export const metadata = {
-  title: "Next Gen Trip",
-  description: "Book online Trip",
+  title: "My Website",
+  description: "Welcome to my awesome website built with Next.js",
+  keywords: ["Next.js", "React", "SEO", "Layout"],
 };
+
+
+
 
 export default async function RootLayout({ children }) {
 
