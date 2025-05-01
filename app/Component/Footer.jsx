@@ -166,7 +166,7 @@ const Footer = () => {
         </h2>
 
         <div className="mx-auto max-w-7xl lg:py-10 px-6 pb-8 pt-16 sm:pt-24 lg:px-8 lg:pt-10">
-     {/*     <div className="Recomended TabChanges space-y-4">
+         <div className="Recomended TabChanges space-y-4">
             <p className="text-sm font-semibold text-gray-700 lg:text-3xl ">
               Recommended by <span className="text-blue-500">Nextgentrip.com</span>
             </p>
@@ -217,7 +217,7 @@ const Footer = () => {
                 </ul>
               )}
             </div>
-          </div> */}
+          </div>
 
           <div className="my-10 xl:grid xl:grid-cols-3 xl:gap-8">
             <div className="space-y-4">
