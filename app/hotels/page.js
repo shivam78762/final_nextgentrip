@@ -13,6 +13,7 @@ import { imgurl } from "../Component/common";
 import TypeWriterHeaderEffect from "../Component/AllComponent/TypeWriterHeaderEffect";
 import HotelsComp from "../Component/AllComponent/formMaincomp/HotelsComp";
 import HotelSliderCompo from "./HotelSliderCompo"
+import Header from "../Component/AllComponent/Header";
 const page = () => {
   const [showAll, setShowAll] = useState(false);
   const dispatch=useDispatch();
@@ -52,7 +53,6 @@ dispatch(getAllRegHotels())
 
   return (
     <>
-    
 
     <HotelsComp/>
    

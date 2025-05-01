@@ -17,6 +17,7 @@ import { FaCalendarWeek, FaChevronDown, FaCalendarAlt, FaUserLarge } from "react
 import { IoLocationSharp } from "react-icons/io5";
 import { RxCross2 } from "react-icons/rx";
 import TypeWriterHeaderEffect from "../TypeWriterHeaderEffect";
+import MiniNav from "../MiniNav";
 
 
 

@@ -50,11 +50,11 @@ export default function Page() {
                 </div>
                 <div className="flex items-center space-x-3">
                   <FontAwesomeIcon
-                    icon={faMapMarkerAlt}
+                    icon={faEnvelope}
                     className="text-blue-500 text-xl"
                   />
                   <p className="text-lg font-semibold text-gray-700">
-                    Sector 48, Chandigarh, India
+                    carrer@NextGenTrip.com
                   </p>
                 </div>
               </div>
@@ -66,7 +66,7 @@ export default function Page() {
                     className="text-blue-500 text-xl"
                   />
                   <p className="text-lg font-semibold text-gray-700">
-                    info@NextGentrip.com
+                    info@NextGenTrip.com
                   </p>
                 </div>
                 <div className="flex items-center space-x-3">
@@ -75,7 +75,7 @@ export default function Page() {
                     className="text-blue-500 text-xl"
                   />
                   <p className="text-lg font-semibold text-gray-700">
-                    info@NextGentrip.com
+                    sales@NextGentrip.com
                   </p>
                 </div>
                 <div className="flex items-center space-x-3">
@@ -84,7 +84,7 @@ export default function Page() {
                     className="text-blue-500 text-xl"
                   />
                   <p className="text-lg font-semibold text-gray-700">
-                  info@NextGentrip.com
+                  bd@NextGentrip.com
                   </p>
                 </div>
               </div>
