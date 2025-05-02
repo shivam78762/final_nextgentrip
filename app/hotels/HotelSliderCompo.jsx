@@ -169,7 +169,7 @@ const HotelSliderCompo = ({ isLoading, children }) => {
                   slidesPerView: 2, // Optional: 2 slides for tablets
                 },
                 1024: {
-                  slidesPerView: 4, // 4 slides for larger screens (desktop)
+                  slidesPerView: 3, // 4 slides for larger screens (desktop)
                 },
               }}
               spaceBetween={50}

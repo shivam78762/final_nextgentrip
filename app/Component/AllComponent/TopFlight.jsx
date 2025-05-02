@@ -305,7 +305,7 @@ const fetchTopport = async () => {
       <InfoSection />
 
 
-      <div className='px-2 lg:px-40 my-8'>
+      <div className='px-2 lg:px-20 my-8'>
 
         <h3 className="text-center text-3xl font-bold my-4"> Our Packages</h3>
       {/* <FeaturedProperties /> */}

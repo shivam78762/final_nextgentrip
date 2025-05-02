@@ -18,35 +18,35 @@ const Reviews = () => {
           location: "Chandigarh",
           rating: 4.5,
           review:
-            "The professionalism and dedication of the NextGentrip team are commendable. They delivered a sleek and user-friendly design that greatly improved our customer engagement.",
+            "The professionalism and dedication of the NextGentrip team are commendable. They delivered a sleek and user-friendly design that greatly improved our customer engagement",
         },
         {
-          name: "Maya",
+          name: "anku",
           location: "Delhi",
           rating: 5,
           review:
-            "Absolutely loved the way they understood our requirements and delivered beyond expectations.",
+            "Absolutely loved the way they understood our requirements and delivered beyond expectations",
         },
         {
-          name: "Ravi",
+          name: "aman",
           location: "Mumbai",
           rating: 4,
           review:
-            "Great experience with the team. Very responsive and creative in their approach.",
+            "Great experience with the team. Very responsive and creative in their approach",
         },
         {
             name: "Maya",
             location: "Delhi",
             rating: 5,
             review:
-              "Absolutely loved the way they understood our requirements and delivered beyond expectations.",
+              "Absolutely loved the way they understood our requirements and delivered beyond expectations",
           },
           {
             name: "Ravi",
             location: "Mumbai",
             rating: 4,
             review:
-              "Great experience with the team. Very responsive and creative in their approach.",
+              "Great experience with the team. Very responsive and creative in their approach",
           },
       ];
 
@@ -118,7 +118,7 @@ const Reviews = () => {
               <div className="text-sm text-gray-500 mb-2">{item.location}</div>
               <div className="flex mb-3">{renderStars(item.rating)}</div>
               </div>
-              <p className="text-gray-700 text-sm">{item.review}</p>
+              <p className="text-gray-700 text-sm">{item.review.length>80?`${item.review.slice(0,80)} . . .`:`${item.review}`}</p>
             </div>
           </SwiperSlide>
         ))}
