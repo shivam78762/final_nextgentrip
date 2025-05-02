@@ -6,7 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import axios from "axios";
-import { apilink, imgurl } from "../common";
+import { apilink, imgurl, storageLink } from "../common";
 import FeaturedProperties from "./FeaturedProperties";
 import HotelSliderCompo from "../../hotels/HotelSliderCompo";
 
@@ -248,7 +248,7 @@ const fetchTopport = async () => {
                   >
                     <div className="city-image">
                       <img
-                        src={ `${imgurl}/${imageData?.img}`}
+                        src={ `${storageLink}/${imageData?.img}`}
                         alt={imageData?.title}
                         className="rounded-full h-9 object-cover w-9"
                       />
