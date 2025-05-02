@@ -9,7 +9,13 @@
 
 }
 
+.swiper-button-next {
+  right: -2px !important;
+}
 
+.swiper-button-prev {
+  left: -2px !important;
+}
 
 
 /* Custom scrollbar */

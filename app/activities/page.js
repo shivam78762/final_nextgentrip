@@ -1,9 +1,10 @@
 "use client";
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper/modules";
+import { Navigation,Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
+import 'swiper/css/navigation';
 import ActivitiesSlider from "../Component/AllComponent/ActivitiesSlider";
 import { FaArrowRight, FaClock, FaMapPin } from "react-icons/fa";
 import Link from "next/link";
@@ -137,7 +138,7 @@ const Page = () => {
               {t("trending")}
             </h2>
           </div>
-          <div data-aos="fade-up" className="col-auto aos-init aos-animate">
+          {/* <div data-aos="fade-up" className="col-auto aos-init aos-animate">
             <Link
               className="buttonArrow gap-4 font-semibold flex items-center"
               href=""
@@ -145,51 +146,54 @@ const Page = () => {
               <span>See all</span>
               <FaArrowRight />
             </Link>
-          </div>
+          </div> */}
         </div>
 
         <Swiper
-          spaceBetween={30}
-          slidesPerView={8}
-          pagination={{
+  spaceBetween={30}
+  slidesPerView={8}
+  loop={true}
+  slideToClickedSlide={true} 
+  pagination={{
             clickable: true,
             el: ".swiper-pagination",
             type: "bullets",
           }}
-          breakpoints={{
-            0: {
-              slidesPerView: 2,
-            },
-            640: {
-              slidesPerView: 2,
-            },
-            768: {
-              slidesPerView: 4,
-            },
-            1024: {
-              slidesPerView: 8,
-            },
-          }}
-          modules={[Pagination]}
-          className="mySwiper"
-        >
-          {slides.map((slide, index) => (
-            <SwiperSlide key={index} className="w-32">
-              <Link href="#" className="block text-center">
-                <div className="mx-auto rounded-full">
-                  <img
-                    alt={slide.title}
-                    loading="lazy"
-                    className="w-32 h-32 mx-auto object-cover rounded-full"
-                    src={slide.src}
-                  />
-                </div>
-                <h3 className="text-lg font-semibold mt-4">{slide.title}</h3>
-                <p className="text-sm">{slide.tours}</p>
-              </Link>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+  breakpoints={{
+    0: {
+      slidesPerView: 2,
+    },
+    640: {
+      slidesPerView: 2,
+    },
+    768: {
+      slidesPerView: 4,
+    },
+    1024: {
+      slidesPerView: 8,
+    },
+  }}
+  navigation={true}
+  modules={[Navigation,Pagination]}
+  className="mySwiper"
+>
+  {slides.map((slide, index) => (
+    <SwiperSlide key={index} className="w-32 cursor-pointer">
+      <Link href="#" className="block text-center">
+        <div className="mx-auto rounded-full">
+          <img
+            alt={slide.title}
+            loading="lazy"
+            className="w-32 h-32 mx-auto object-cover rounded-full"
+            src={slide.src}
+          />
+        </div>
+        <h3 className="text-lg font-semibold mt-4">{slide.title}</h3>
+        <p className="text-sm">{slide.tours}</p>
+      </Link>
+    </SwiperSlide>
+  ))}
+</Swiper>
         <div className="swiper-pagination custom-pagination"></div>
       </div>
 

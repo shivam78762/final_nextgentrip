@@ -50,7 +50,7 @@ useEffect(()=>{
 
             {blogPosts && blogPosts.map((info)=>(
                <Link href={`/blogView/${info.slug}`} className="bg-white  w-full md:w-[32%]   shadow-md">
-               <Image src={`${imgurl}/${info.blog_image}`} width={100} height={100} alt="" className="w-full"/>
+               <Image src={`${imgurl}/${info.blog_image}`} width={100} height={100} alt="" className="w-full h-[20rem]"/>
                <div className="p-6">
                <h3 className="text-2xl font-bold text-gray-800">{info.blog_title}</h3>
                  <p className="text-gray-600 mt-2">{info.blog_text}</p>
