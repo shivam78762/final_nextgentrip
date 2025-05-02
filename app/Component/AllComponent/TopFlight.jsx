@@ -6,7 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import axios from "axios";
-import { apilink } from "../common";
+import { apilink, imgurl } from "../common";
 import FeaturedProperties from "./FeaturedProperties";
 import HotelSliderCompo from "../../hotels/HotelSliderCompo";
 
@@ -169,12 +169,19 @@ const TopFlight = () => {
     { name: "Thar", icon: "🏜️", link: "/FamousPlaces/Kerala" },
   ];
   const [topport, settopport] = useState();
+const [toppkage,setToppackage]=useState()
 
+const fetchPAckage=async()=>{
+  const data = await axios.get(`${apilink}/holidays/list`);
+  setToppackage(data.data);
+
+}
+const fetchTopport = async () => {
+  const data = await axios.get(`${apilink}/Popular-Flight`);
+  settopport(data.data);
+};
   useEffect(() => {
-    const fetchTopport = async () => {
-      const data = await axios.get(`${apilink}/Popular-Flight`);
-      settopport(data.data, "sdfsdfjwe");
-    };
+    fetchPAckage()
     fetchTopport();
   }, []);
 
@@ -225,7 +232,7 @@ const TopFlight = () => {
                 </div>
               )}
             </div>
-
+{toppkage && 
             <div className="bg-white border shadow-md my-5 lg:my-0  mx-auto lg:mx-2 rounded-xl overflow-hidden relative  w-full ">
               <div className="city-head bg-[#0291d2] text-center">
                 <h4 className="text-white text-lg font-semibold py-3">
@@ -233,32 +240,32 @@ const TopFlight = () => {
                 </h4>
               </div>
               <div className=" ">
-                {cityData[1].images.map((imageData, i) => (
+                {toppkage?.map((imageData, i) => (
                   <Link
-                    href="/"
+                    href={`/holidayspackage/${imageData.url}`}
                     className="items-center border-b px-4 flex hover:shadow-lg cursor-pointer"
                     key={i}
                   >
                     <div className="city-image">
                       <img
-                        src={imageData.image}
-                        alt={imageData.title}
+                        src={ `${imgurl}/${imageData?.img}`}
+                        alt={imageData?.title}
                         className="rounded-full h-9 object-cover w-9"
                       />
                     </div>
                     <div className="px-4 w-[80%]">
                       <h3 className="text-sm font-semibold mb-0 mt-4 ">
-                        {imageData.title}
+                        {imageData?.title}
                       </h3>
                       <p className="text-[#525252] text-xs font-normal mb-5 pt-1">
-                        {imageData.description}
+                        {imageData?.des}
                       </p>
                     </div>
                   </Link>
                 ))}
               </div>
             </div>
-
+}
             <div className="bg-white border shadow-md my-5 lg:my-0  mx-auto lg:mx-2 rounded-xl overflow-hidden relative  w-full ">
               <div className="city-head bg-[#0291d2] text-center">
                 <h4 className="text-white text-lg font-semibold py-3">

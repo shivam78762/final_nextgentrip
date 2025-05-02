@@ -10,7 +10,7 @@ import Footer from './Component/Footer'
 import CustomSlider from './Component/AllComponent/Slider'
 import { redirect } from 'next/navigation'
 import { development } from './Component/common'
-
+import Reviews from "./Component/AllComponent/Reviews"
 
 import FeaturedProperties from './Component/AllComponent/FeaturedProperties'
 const page = () => {
@@ -41,7 +41,7 @@ const page = () => {
 
      
       
-     
+     <Reviews />
       
     
     </>
