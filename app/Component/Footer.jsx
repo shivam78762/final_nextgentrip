@@ -195,9 +195,9 @@ const Footer = () => {
                 </button>
               </div>
               {activeTab == 1 ? (
-                <ul className=" w-full overflow-x-auto tab-content px-3 text-xs grid grid-cols-2 lg:grid-cols-4   gap-4 rounded-md py-8">
+                <ul className=" w-full overflow-x-auto tab-content px-3 text-xs grid grid-cols-2 lg:grid-cols-5   gap-4 rounded-md py-8">
                   {tabsContent.bestCheapFlight.map((elm, index) => (
-                    <li key={index} className="ml-0   lg:text-md lg:ml-20">
+                    <li key={index} className="ml-0   lg:text-md lg:ml-20 text-sm">
                       <h5>{elm.name}</h5>
                     </li>
                   ))}
@@ -232,7 +232,8 @@ const Footer = () => {
               </p>
               <div className="flex items-center space-x-6">
                 <Link
-                  href="https://www.facebook.com/"
+                target="_blank"
+                  href="https://www.facebook.com/share/1AA9dPezvA/?mibextid=wwXIfr"
                   className="hover:text-blue-400 text-blue-500"
                 >
                   <span className="sr-only">Facebook</span>
@@ -251,7 +252,8 @@ const Footer = () => {
                 </Link>
 
                 <Link
-                  href="https://x.com/?lang=en"
+                target="_blank"
+                  href="https://x.com/NextGenTrip?t=d4oQeyJHEQldf9lsP2EgnQ&s=08"
                   className="hover:text-gray-400 text-gray-500"
                 >
                   <span className="sr-only">X</span>
@@ -267,8 +269,9 @@ const Footer = () => {
                   </svg>
                 </Link>
                 <Link
-                  href="https://www.instagram.com/"
+                  href="https://www.instagram.com/nextgentrip/profilecard/?igsh=MTdyMjlyb293aTB0MA%3D%3D"
                   className="hover:text-black-400 text-black-500"
+                  target="_blank"
                 >
                   <span className="sr-only">instagram</span>
                   <svg
@@ -283,7 +286,8 @@ const Footer = () => {
                   </svg>
                 </Link>
                 <Link
-                  href="/https://www.youtube.com/"
+                target="_blank"
+                  href="https://www.youtube.com/@NextGenTrip-g5t"
                   className=" text-red-500  hover:text-red-400  "
                 >
                   <span className="sr-only">YouTube</span>

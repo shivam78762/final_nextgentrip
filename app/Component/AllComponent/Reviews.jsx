@@ -118,7 +118,7 @@ const Reviews = () => {
               <div className="text-sm text-gray-500 mb-2">{item.location}</div>
               <div className="flex mb-3">{renderStars(item.rating)}</div>
               </div>
-              <p className="text-gray-700 text-sm">{item.review.length>80?`${item.review.slice(0,80)} . . .`:`${item.review}`}</p>
+              <p className="text-gray-700 text-sm">{item.review.length>70?`${item.review.slice(0,70)} ...`:`${item.review}`}</p>
             </div>
           </SwiperSlide>
         ))}
