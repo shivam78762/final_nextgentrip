@@ -56,7 +56,7 @@ const FlightFliter = ({airlines,handelFilter,handelnonstop}) => {
         </div>
 
         <div className="mb-8">
-          <p className="font-bold text-[16px] mb-4">Stops From New Delhi</p>
+          <p className="font-bold text-[16px] mb-4">Stops </p>
           <div data-testid="" className="flex justify-between w-full mb-4">
             <span className="checkmarkOuter">
               <input type="radio" className="mr-2" id="nonstop" name="nonstop" value="direct" onChange={(e)=>handelnonstop(e)} />
