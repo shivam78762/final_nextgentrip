@@ -242,7 +242,7 @@ const fetchTopport = async () => {
               <div className=" ">
                 {toppkage?.map((imageData, i) => (
                   <Link
-                    href={`/holidayspackage/${imageData.url}`}
+                    href={`/holidayspackage/package/${imageData.url}`}
                     className="items-center border-b px-4 flex hover:shadow-lg cursor-pointer"
                     key={i}
                   >
