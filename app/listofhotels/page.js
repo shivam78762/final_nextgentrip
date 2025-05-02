@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 import { LiaHotelSolid } from "react-icons/lia";
 
@@ -141,10 +142,10 @@ export default function Hotels() {
             reach today.
           </p>
           <div className="flex justify-center">
-            <button className="primary-col text-white px-6 py-3 rounded-full font-bold flex items-center gap-2 md:px-8 md:py-4">
+            <Link href={"/property-listing"} className="primary-col text-white px-6 py-3 rounded-full font-bold flex items-center gap-2 md:px-8 md:py-4">
               List Your Property Today{" "}
               <LiaHotelSolid className="text-lg md:text-xl" />
-            </button>
+            </Link>
           </div>
         </div>
       </div>
