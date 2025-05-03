@@ -67,8 +67,6 @@ const Page = ({ setActiveTab,fdatas, price }) => {
 
     // Get user ID from localStorage and fetch data
     const userid = JSON.parse(localStorage.getItem("NextGenUser"));
-
-    console.log("userid",userid)
     if (!userid) {
       router.push("/user/login");
     } else {
