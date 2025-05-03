@@ -251,6 +251,12 @@ const differenceInMinutes = (now - addate) / (1000 * 60);
         amount: amount,
         currency: "INR",
         receipt: `receipt_${Date.now()}`,
+        user_email: userInfo.email,
+        user_name: userInfo.name,
+        user_phone: '7988532993',
+
+
+
       });
   
       const { order_id } = orderResponse.data;
