@@ -10,8 +10,9 @@ import { ImCancelCircle } from "react-icons/im";
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import { apilink } from '../../../Component/common';
-
+import { useRouter } from "next/navigation";
 const SelectSeaCompo = ({ slug }) => {
+  const router = useRouter();
   const decodeslug = decodeURIComponent(slug);
   const params = new URLSearchParams(decodeslug)
 
@@ -70,10 +71,38 @@ const booknow=async()=>{
 }
 
   const handleBooking = async () => {
-    const updatedData = { ...bookingdata, passenger: [passenger], BoardingPointId: busBoarding?.BoardingPointsDetails[0]?.CityPointIndex, DropingPointId: busBoarding?.DroppingPointsDetails[0]?.CityPointIndex };
-    setbookingdata(updatedData);
-    const res = await axios.post(`${apilink}/bus/book`, bookingdata)
-    console.log(res.data)
+
+    const updatedData = {
+      ...bookingdata,
+      BoardingPointId: busBoarding?.BoardingPointsDetails[0]?.CityPointIndex,
+      DropingPointId: busBoarding?.DroppingPointsDetails[0]?.CityPointIndex,
+    };
+
+    if (!updatedData || typeof updatedData !== 'object') {
+      console.error('Invalid updatedData:', updatedData);
+      return;
+    }
+    if (!busBoarding || !busBoarding.BoardingPointsDetails || !busBoarding.DroppingPointsDetails) {
+      console.error('Invalid busBoarding:', busBoarding);
+      return;
+    }
+
+    try {
+      setbookingdata(updatedData);
+      localStorage.setItem('busBookingData', JSON.stringify(updatedData));
+      localStorage.setItem('busBoardingData', JSON.stringify(busBoarding));
+      console.log('Stored in localStorage - busBookingData:', updatedData);
+      console.log('Stored in localStorage - busBoardingData:', busBoarding);
+
+      const query = encodeURIComponent(JSON.stringify(updatedData));
+      const url = `/buses/checkout/data=${query}`;
+      console.log('Navigating to:', url);
+      router.push(url);
+    } catch (error) {
+      console.error('Error in handleBooking:', error);
+    }
+
+
   };
 
 
@@ -174,12 +203,12 @@ const booknow=async()=>{
 
       <div className='flex justify-center md:px-11 lg:px-24'>
 
-        <div className="  rounded-lg p-8 ">
+        {/* <div className="  rounded-lg p-8 ">
           <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center mt-2">
             Nextgentrip.com
           </h1>
           <form className="space-y-6">
-            {/* Title */}
+  
             <div className='flex gap-5'>
               <div>
                 <label className="block text-sm font-medium text-gray-700">Title</label>
@@ -195,7 +224,7 @@ const booknow=async()=>{
                 </select>
               </div>
 
-              {/* First Name */}
+     
               <div>
                 <label className="block text-sm font-medium text-gray-700">First Name</label>
                 <div className="flex items-center border border-gray-300 rounded-lg mt-1 bg-gray-50 focus-within:ring focus-within:ring-indigo-300 transition">
@@ -227,7 +256,7 @@ const booknow=async()=>{
 
 
             </div>
-            {/* Email */}
+    
             <div>
               <label className="block text-sm font-medium text-gray-700">Email</label>
               <div className="flex items-center border border-gray-300 rounded-lg mt-1 bg-gray-50 focus-within:ring focus-within:ring-indigo-300 transition">
@@ -243,7 +272,7 @@ const booknow=async()=>{
               </div>
             </div>
 
-            {/* Phone Number */}
+
             <div>
               <label className="block text-sm font-medium text-gray-700">Phone Number</label>
               <div className="flex items-center border border-gray-300 rounded-lg mt-1 bg-gray-50 focus-within:ring focus-within:ring-indigo-300 transition">
@@ -259,7 +288,7 @@ const booknow=async()=>{
               </div>
             </div>
 
-            {/* Gender */}
+
             <div className='flex gap-2'>
               <div className='w-full'>
                 <label className="block text-sm font-medium text-gray-700">Gender</label>
@@ -289,7 +318,7 @@ const booknow=async()=>{
               </div>
             </div>
 
-            {/* ID Type */}
+
             <div>
               <label className="block text-sm font-medium text-gray-700">ID Type</label>
               <select
@@ -342,9 +371,15 @@ const booknow=async()=>{
               </div>
             </div>
 
-            {/* Age */}
 
-            {
+
+          
+
+
+          </form>
+        </div> */}
+
+        {
               busBoarding &&
               <>
 
@@ -352,12 +387,12 @@ const booknow=async()=>{
 
 
                 <div className=" mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg">
-                  {/* Header */}
+         
                   <h1 className="text-3xl font-bold text-center mb-6 text-blue-600">
                     Bus Route Details
                   </h1>
 
-                  {/* Boarding Points */}
+                
                   <div className='flex justify-around items-center'>
                     <div className="mb-6 ">
                       <h2 className="text-2xl font-semibold mb-3 text-gray-700">
@@ -393,7 +428,7 @@ const booknow=async()=>{
                       <div className='bg-orange-500 text-white font-semibold p-1 px-3 rounded-md cursor-pointer ' type="submit" >Book Now</div>
                       <div className='h-1 bg-orange-500 w-full group-hover:w-[0px] duration-300 rounded-b-full	'></div>
                     </div>
-                    {/* Dropping Points */}
+                
                     <div>
                       <h2 className="text-2xl font-semibold mb-3 text-gray-700">
                         Dropping Points
@@ -428,11 +463,6 @@ const booknow=async()=>{
               </>
 
             }
-
-
-          </form>
-        </div>
-
 
       </div>
 
