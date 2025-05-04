@@ -11,8 +11,10 @@ import Slider from "react-slick";
 import { FaChevronDown, FaFilter, FaTimes } from "react-icons/fa";
 import Link from 'next/link'
 
+import { useRouter } from 'next/navigation';
 
 const BusCompo = ({ slug }) => {
+  const router = useRouter();
   const decodeslug = decodeURIComponent(slug);
   const params = new URLSearchParams(decodeslug)
   const OriginId = params.get("OriginId")
@@ -63,6 +65,21 @@ const BusCompo = ({ slug }) => {
   const handelGetSeat = (ResultIndex) => {
     dispatch(getBusSeatLayout({ TraceId: state.info.BusSearchResult.TraceId, ResultIndex }))
   }
+
+
+
+
+  const handleSelectSeats = (bus) => {
+    // console.log("bus", bus);
+  
+    // Save data to localStorage
+    localStorage.setItem("selectedBus", JSON.stringify(bus));
+   
+  
+
+    router.push(`/buses/selectseat/index=${state.info.BusSearchResult.TraceId}&resultindex=${bus.ResultIndex}`);
+  };
+  
 
 
   return (
@@ -194,9 +211,12 @@ const BusCompo = ({ slug }) => {
 
                 <div className="border-t py-2 flex justify-between mt-6">
 
-                  <Link href={`/buses/selectseat/index=${state.info.BusSearchResult.TraceId}&resultindex=${bus.ResultIndex}`} className="selectSeats text-center cursor-pointer bg-blue-100 border border-blue-600 rounded px-3 py-1 text-blue-600 font-semibold">
-                    Select Seats
-                  </Link>
+                <button
+      onClick={()=>handleSelectSeats(bus)}
+      className="selectSeats text-center cursor-pointer bg-blue-100 border border-blue-600 rounded px-3 py-1 text-blue-600 font-semibold"
+    >
+      Select Seats
+    </button>
                 </div>
               </div>
             ))}

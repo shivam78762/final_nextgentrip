@@ -7,29 +7,32 @@ import { RiArrowDropDownLine } from "react-icons/ri";
 import { FaLock, FaRupeeSign, FaSpinner } from "react-icons/fa";
 
 import { FaBusAlt } from "react-icons/fa";
+import { apilink } from '../../../Component/common';
 
 
 const CheckoutPage = () => {
   const searchParams = useSearchParams();
   const [bookingData, setBookingData] = useState(null);
   const [boardingData, setBoardingData] = useState(null);
+  const [selectedBusData, setSelectedBusData] = useState(null);
+
   const [error, setError] = useState(null);
 
-  const passengers = [
+  const [passengers, setPassengers] = useState([
     {
-      Title: "",
-      FirstName: "",
-      LastName: "",
-      Gender: "",
-      DateOfBirth: "",
-      PassportNo: "",
-      PassportExpiry: "",
-      AddressLine1: "",
-      City: "",
-      ContactNo: "",
-      Email: ""
-    }
-  ];
+      Title: '',
+      FirstName: '',
+      LastName: '',
+      Gender: '',
+      DateOfBirth: '',
+      PassportNo: '',
+      PassportExpiry: '',
+      AddressLine1: '',
+      City: '',
+      ContactNo: '',
+      Email: '',
+    },
+  ]);
   
   const fdatas = {
     data: {
@@ -58,21 +61,22 @@ const CheckoutPage = () => {
   };
 
 
-   // Retrieve data from localStorage or query parameter
-   useEffect(() => {
+  useEffect(() => {
     let source = 'none';
-
-    // Try localStorage first
     try {
       const storedBookingData = localStorage.getItem('busBookingData');
       const storedBoardingData = localStorage.getItem('busBoardingData');
-      if (storedBookingData && storedBoardingData) {
+      const storedSelectedBus = localStorage.getItem('selectedBus');
+      if (storedBookingData && storedBoardingData && storedSelectedBus) {
         const parsedBooking = JSON.parse(storedBookingData);
         const parsedBoarding = JSON.parse(storedBoardingData);
+        const parsedSelectedBus = JSON.parse(storedSelectedBus);
         setBookingData(parsedBooking);
         setBoardingData(parsedBoarding);
+        setSelectedBusData(parsedSelectedBus);
         console.log('Data from localStorage - busBookingData:', parsedBooking);
         console.log('Data from localStorage - busBoardingData:', parsedBoarding);
+        console.log('Data from localStorage - selectedBus:', parsedSelectedBus);
         source = 'localStorage';
         return;
       }
@@ -81,20 +85,16 @@ const CheckoutPage = () => {
       setError('Error retrieving data from localStorage');
     }
 
-    // Fallback to query parameter
     const data = searchParams.get('data');
     if (data) {
       try {
         const decodedData = decodeURIComponent(data.replace(/\/$/, ''));
         console.log('Decoded Data:', decodedData);
-
         if (decodedData && decodedData.startsWith('{') && decodedData.endsWith('}')) {
           const parsed = JSON.parse(decodedData);
           setBookingData(parsed);
           console.log('Data from query:', parsed);
           source = 'query';
-
-          // Store in localStorage for persistence
           localStorage.setItem('busBookingData', JSON.stringify(parsed));
           console.log('Stored query data in localStorage:', parsed);
         } else {
@@ -109,7 +109,6 @@ const CheckoutPage = () => {
       setError('No booking data available');
       console.log('No query data available');
     }
-
     console.log('Data source:', source);
   }, [searchParams]);
 
@@ -155,32 +154,147 @@ const CheckoutPage = () => {
     }
   }, [bookingData, boardingData]);
 
+
+
   const handleChange = (e, index) => {
     const { name, value } = e.target;
-    const updated = [...passengers];
-    updated[index][name] = value;
-    // handle validation
+    setPassengers((prev) => {
+      const updated = [...prev];
+      updated[index] = { ...updated[index], [name]: value };
+      return updated;
+    });
+
+    // Handle validation
     if (!value) {
       setErrors((prev) => ({
         ...prev,
         [`${name}_${index}`]: `${name} is required`,
       }));
     } else {
-      const updatedErrors = { ...errors };
-      delete updatedErrors[`${name}_${index}`];
-      setErrors(updatedErrors);
+      setErrors((prev) => {
+        const updatedErrors = { ...prev };
+        delete updatedErrors[`${name}_${index}`];
+        return updatedErrors;
+      });
     }
   };
 
-  const handleBooking = () => {
-    // setIsLoading(true);
-    // handlebook();
-    // setTimeout(() => {
-    //   setIsLoading(false);
-    // }, 3000);
+  const calculateAge = (dob) => {
+    const birthDate = new Date(dob);
+    const today = new Date();
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const monthDiff = today.getMonth() - birthDate.getMonth();
+    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+    return age;
   };
 
 
+
+  const handleBooking = async () => {
+    setIsLoading(true);
+    try {
+      // Validate passenger data
+      const validationErrors = {};
+      passengers.forEach((passenger, index) => {
+        ['Title', 'FirstName', 'LastName', 'Gender', 'DateOfBirth', 'AddressLine1', 'City', 'ContactNo', 'Email'].forEach((field) => {
+          if (!passenger[field]) {
+            validationErrors[`${field}_${index}`] = `${field} is required`;
+          }
+        });
+      });
+
+      if (Object.keys(validationErrors).length > 0) {
+        setErrors(validationErrors);
+        setIsLoading(false);
+        return;
+      }
+
+     
+      const payload = {
+        EndUserIp: '223.178.213.196', // Replace with actual client IP
+        ResultIndex: selectedBusData?.ResultIndex || 9,
+        TraceId: bookingData?.TraceId || '3b4d2bb8-0284-4667-a4a6-f5ac6d492070',
+        TokenId: bookingData?.TokenId || 'fb8f5b1a-6d20-4238-b7de-d78e61d2e386',
+        BoardingPointId: selectedBusData?.BoardingPointsDetails[0]?.CityPointIndex || 1,
+        DroppingPointId: selectedBusData?.DroppingPointsDetails[0]?.CityPointIndex || 1,
+        Passenger: passengers.map((passenger, index) => ({
+          LeadPassenger: index === 0,
+          PassengerId: 0,
+          Title: passenger.Title,
+          Address: passenger.AddressLine1,
+          Age: calculateAge(passenger.DateOfBirth),
+          Email: passenger.Email,
+          FirstName: passenger.FirstName,
+          Gender: passenger.Gender === 'Male' ? 1 : passenger.Gender === 'Female' ? 2 : 3,
+          IdNumber: passenger.PassportNo || 'BPL46756AA',
+          IdType: passenger.PassportNo ? 10 : 0,
+          LastName: passenger.LastName,
+          Phoneno: passenger.ContactNo,
+          Seat: {
+            ColumnNo: '000',
+            Height: 1,
+            IsLadiesSeat: false,
+            IsMalesSeat: false,
+            IsUpper: false,
+            RowNo: '000',
+            SeatIndex: (index + 1).toString(),
+            SeatName: (index + 1).toString(),
+            SeatStatus: true,
+            SeatType: 1,
+            Width: 1,
+            Price: {
+              CurrencyCode: selectedBusData?.BusPrice?.CurrencyCode || 'INR',
+              BasePrice: selectedBusData?.BusPrice?.BasePrice || 12.6,
+              Tax: selectedBusData?.BusPrice?.Tax || 0,
+              OtherCharges: selectedBusData?.BusPrice?.OtherCharges || 0,
+              Discount: selectedBusData?.BusPrice?.Discount || 0,
+              PublishedPrice: selectedBusData?.BusPrice?.PublishedPrice || 12.6,
+              PublishedPriceRoundedOff: selectedBusData?.BusPrice?.PublishedPriceRoundedOff || 13,
+              OfferedPrice: selectedBusData?.BusPrice?.OfferedPrice || -17.4,
+              OfferedPriceRoundedOff: selectedBusData?.BusPrice?.OfferedPriceRoundedOff || -17,
+              AgentCommission: selectedBusData?.BusPrice?.AgentCommission || 30,
+              AgentMarkUp: selectedBusData?.BusPrice?.AgentMarkUp || 0,
+              TDS: selectedBusData?.BusPrice?.TDS || 12,
+              GST: {
+                CGSTAmount: selectedBusData?.BusPrice?.GST?.CGSTAmount || 0,
+                CGSTRate: selectedBusData?.BusPrice?.GST?.CGSTRate || 0,
+                CessAmount: selectedBusData?.BusPrice?.GST?.CessAmount || 0,
+                CessRate: selectedBusData?.BusPrice?.GST?.CessRate || 0,
+                IGSTAmount: selectedBusData?.BusPrice?.GST?.IGSTAmount || 0,
+                IGSTRate: selectedBusData?.BusPrice?.GST?.IGSTRate || 18,
+                SGSTAmount: selectedBusData?.BusPrice?.GST?.SGSTAmount || 0,
+                SGSTRate: selectedBusData?.BusPrice?.GST?.SGSTRate || 0,
+                TaxableAmount: selectedBusData?.BusPrice?.GST?.TaxableAmount || 0,
+              },
+            },
+          },
+        })),
+      };
+
+      // Make POST request to /v1/bus/busblock
+      const response = await fetch(`${apilink}/bus/busblock`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to block bus seats');
+      }
+
+      const result = await response.json();
+      console.log('Bus block response:', result);
+
+      // Proceed with existing booking logic (e.g., sending invoice)
+    } catch (error) {
+      setError('Error booking bus: ' + error.message);
+      console.error('Booking error:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
     
   return (
@@ -231,31 +345,25 @@ const CheckoutPage = () => {
         {/* Passenger Form */}
         <div className="p-4">
           <h3 className="text-lg font-semibold">ADULT</h3>
-  
           {passengers?.map((passenger, index) => (
-            <div
-              key={index}
-              className="m-4 rounded-lg shadow-lg border-2 bg-white"
-            >
+            <div key={index} className="m-4 rounded-lg shadow-lg border-2 bg-white">
               <form className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4 border rounded-md shadow-lg">
                 {[
-                  { name: "Title", type: "select", options: ["Mr", "Ms", "Mrs"] },
-                  { name: "FirstName", type: "text" },
-                  { name: "LastName", type: "text" },
-                  { name: "Gender", type: "select", options: ["1", "2", "3"] },
-                  { name: "DateOfBirth", type: "date" },
-                  { name: "PassportNo", type: "text" },
-                  { name: "PassportExpiry", type: "date" },
-                  { name: "AddressLine1", type: "text" },
-                  { name: "City", type: "text" },
-                  { name: "ContactNo", type: "text" },
-                  { name: "Email", type: "email" },
+                  { name: 'Title', type: 'select', options: ['Mr', 'Ms', 'Mrs'] },
+                  { name: 'FirstName', type: 'text' },
+                  { name: 'LastName', type: 'text' },
+                  { name: 'Gender', type: 'select', options: ['Male', 'Female', 'Other'] },
+                  { name: 'DateOfBirth', type: 'date' },
+                  { name: 'PassportNo', type: 'text' },
+                  { name: 'PassportExpiry', type: 'date' },
+                  { name: 'AddressLine1', type: 'text' },
+                  { name: 'City', type: 'text' },
+                  { name: 'ContactNo', type: 'text' },
+                  { name: 'Email', type: 'email' },
                 ].map((field) => (
                   <div key={field.name}>
-                    <label className="block text-[10px] font-bold text-gray-900 mb-1">
-                      {field.name}
-                    </label>
-                    {field.type === "select" ? (
+                    <label className="block text-[10px] font-bold text-gray-900 mb-1">{field.name}</label>
+                    {field.type === 'select' ? (
                       <select
                         name={field.name}
                         value={passenger[field.name]}
@@ -281,9 +389,7 @@ const CheckoutPage = () => {
                       />
                     )}
                     {errors[`${field.name}_${index}`] && (
-                      <p className="text-red-500 text-sm">
-                        {errors[`${field.name}_${index}`]}
-                      </p>
+                      <p className="text-red-500 text-sm">{errors[`${field.name}_${index}`]}</p>
                     )}
                   </div>
                 ))}
@@ -308,21 +414,19 @@ const CheckoutPage = () => {
               <p>Adult x {passengers?.length}</p>
               <p className="flex items-center font-bold text-xs">
                 <FaRupeeSign />
-                {fdatas?.data?.Fare?.OfferedFare || 0}
+                {selectedBusData?.BusPrice?.OfferedPrice}
               </p>
             </div>
           </div>
-  
+
           <div className="offersAndPromoCode border rounded shadow-lg">
-            <div className="bg-[#2196F3] px-3 py-2 text-white">
-              Offers and Promo Codes
-            </div>
+            <div className="bg-[#2196F3] px-3 py-2 text-white">Offers and Promo Codes</div>
           </div>
-  
+
           <div className="booking flex justify-center items-center mt-3">
             <button
               className={`bg-[#DA5200] text-sm lg:text-lg tracking-normal text-white rounded-full w-1/2 md:w-[80%] py-2 flex justify-center items-center ${
-                isLoading ? "opacity-75 cursor-not-allowed" : ""
+                isLoading ? 'opacity-75 cursor-not-allowed' : ''
               }`}
               onClick={handleBooking}
               disabled={isLoading}
@@ -333,7 +437,7 @@ const CheckoutPage = () => {
                   Booking...
                 </>
               ) : (
-                "Continue Booking"
+                'Continue Booking'
               )}
             </button>
           </div>
