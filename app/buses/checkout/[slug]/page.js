@@ -192,109 +192,131 @@ const CheckoutPage = () => {
 
 
 
-  const handleBooking = async () => {
-    setIsLoading(true);
-    try {
-      // Validate passenger data
-      const validationErrors = {};
-      passengers.forEach((passenger, index) => {
-        ['Title', 'FirstName', 'LastName', 'Gender', 'DateOfBirth', 'AddressLine1', 'City', 'ContactNo', 'Email'].forEach((field) => {
-          if (!passenger[field]) {
-            validationErrors[`${field}_${index}`] = `${field} is required`;
-          }
-        });
+ const handleBooking = async () => {
+  setIsLoading(true);
+  try {
+    // Basic validation
+    const validationErrors = {};
+    passengers.forEach((passenger, index) => {
+      ['Title', 'FirstName', 'LastName', 'Gender', 'DateOfBirth', 'AddressLine1', 'City', 'ContactNo', 'Email'].forEach((field) => {
+        if (!passenger[field]) {
+          validationErrors[`${field}_${index}`] = `${field} is required`;
+        }
       });
+    });
 
-      if (Object.keys(validationErrors).length > 0) {
-        setErrors(validationErrors);
-        setIsLoading(false);
-        return;
-      }
-
-     
-      const payload = {
-        EndUserIp: '223.178.213.196', // Replace with actual client IP
-        ResultIndex: selectedBusData?.ResultIndex || 9,
-        TraceId: bookingData?.TraceId || '3b4d2bb8-0284-4667-a4a6-f5ac6d492070',
-        TokenId: bookingData?.TokenId || 'fb8f5b1a-6d20-4238-b7de-d78e61d2e386',
-        BoardingPointId: selectedBusData?.BoardingPointsDetails[0]?.CityPointIndex || 1,
-        DroppingPointId: selectedBusData?.DroppingPointsDetails[0]?.CityPointIndex || 1,
-        Passenger: passengers.map((passenger, index) => ({
-          LeadPassenger: index === 0,
-          PassengerId: 0,
-          Title: passenger.Title,
-          Address: passenger.AddressLine1,
-          Age: calculateAge(passenger.DateOfBirth),
-          Email: passenger.Email,
-          FirstName: passenger.FirstName,
-          Gender: passenger.Gender === 'Male' ? 1 : passenger.Gender === 'Female' ? 2 : 3,
-          IdNumber: passenger.PassportNo || 'BPL46756AA',
-          IdType: passenger.PassportNo ? 10 : 0,
-          LastName: passenger.LastName,
-          Phoneno: passenger.ContactNo,
-          Seat: {
-            ColumnNo: '000',
-            Height: 1,
-            IsLadiesSeat: false,
-            IsMalesSeat: false,
-            IsUpper: false,
-            RowNo: '000',
-            SeatIndex: (index + 1).toString(),
-            SeatName: (index + 1).toString(),
-            SeatStatus: true,
-            SeatType: 1,
-            Width: 1,
-            Price: {
-              CurrencyCode: selectedBusData?.BusPrice?.CurrencyCode || 'INR',
-              BasePrice: selectedBusData?.BusPrice?.BasePrice || 12.6,
-              Tax: selectedBusData?.BusPrice?.Tax || 0,
-              OtherCharges: selectedBusData?.BusPrice?.OtherCharges || 0,
-              Discount: selectedBusData?.BusPrice?.Discount || 0,
-              PublishedPrice: selectedBusData?.BusPrice?.PublishedPrice || 12.6,
-              PublishedPriceRoundedOff: selectedBusData?.BusPrice?.PublishedPriceRoundedOff || 13,
-              OfferedPrice: selectedBusData?.BusPrice?.OfferedPrice || -17.4,
-              OfferedPriceRoundedOff: selectedBusData?.BusPrice?.OfferedPriceRoundedOff || -17,
-              AgentCommission: selectedBusData?.BusPrice?.AgentCommission || 30,
-              AgentMarkUp: selectedBusData?.BusPrice?.AgentMarkUp || 0,
-              TDS: selectedBusData?.BusPrice?.TDS || 12,
-              GST: {
-                CGSTAmount: selectedBusData?.BusPrice?.GST?.CGSTAmount || 0,
-                CGSTRate: selectedBusData?.BusPrice?.GST?.CGSTRate || 0,
-                CessAmount: selectedBusData?.BusPrice?.GST?.CessAmount || 0,
-                CessRate: selectedBusData?.BusPrice?.GST?.CessRate || 0,
-                IGSTAmount: selectedBusData?.BusPrice?.GST?.IGSTAmount || 0,
-                IGSTRate: selectedBusData?.BusPrice?.GST?.IGSTRate || 18,
-                SGSTAmount: selectedBusData?.BusPrice?.GST?.SGSTAmount || 0,
-                SGSTRate: selectedBusData?.BusPrice?.GST?.SGSTRate || 0,
-                TaxableAmount: selectedBusData?.BusPrice?.GST?.TaxableAmount || 0,
-              },
-            },
-          },
-        })),
-      };
-
-      // Make POST request to /v1/bus/busblock
-      const response = await fetch(`${apilink}/bus/busblock`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to block bus seats');
-      }
-
-      const result = await response.json();
-      console.log('Bus block response:', result);
-
-      // Proceed with existing booking logic (e.g., sending invoice)
-    } catch (error) {
-      setError('Error booking bus: ' + error.message);
-      console.error('Booking error:', error);
-    } finally {
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
       setIsLoading(false);
+      return;
     }
-  };
+
+    // Build common passenger structure
+    const mappedPassengers = passengers.map((passenger, index) => ({
+      LeadPassenger: index === 0,
+      PassengerId: 0,
+      Title: passenger.Title,
+      Address: passenger.AddressLine1,
+      Age: calculateAge(passenger.DateOfBirth),
+      Email: passenger.Email,
+      FirstName: passenger.FirstName,
+      Gender: passenger.Gender === 'Male' ? 1 : passenger.Gender === 'Female' ? 2 : 3,
+      IdNumber: passenger.PassportNo || 'BPL46756AA',
+      IdType: passenger.PassportNo ? 10 : 0,
+      LastName: passenger.LastName,
+      Phoneno: passenger.ContactNo,
+      Seat: {
+        ColumnNo: '000',
+        Height: 1,
+        IsLadiesSeat: false,
+        IsMalesSeat: false,
+        IsUpper: false,
+        RowNo: '000',
+        SeatIndex: (index + 1).toString(),
+        SeatName: (index + 1).toString(),
+        SeatStatus: true,
+        SeatType: 1,
+        Width: 1,
+        Price: {
+          CurrencyCode: selectedBusData?.BusPrice?.CurrencyCode || 'INR',
+          BasePrice: selectedBusData?.BusPrice?.BasePrice || 12.6,
+          Tax: selectedBusData?.BusPrice?.Tax || 0,
+          OtherCharges: selectedBusData?.BusPrice?.OtherCharges || 0,
+          Discount: selectedBusData?.BusPrice?.Discount || 0,
+          PublishedPrice: selectedBusData?.BusPrice?.PublishedPrice || 12.6,
+          PublishedPriceRoundedOff: selectedBusData?.BusPrice?.PublishedPriceRoundedOff || 13,
+          OfferedPrice: selectedBusData?.BusPrice?.OfferedPrice || -17.4,
+          OfferedPriceRoundedOff: selectedBusData?.BusPrice?.OfferedPriceRoundedOff || -17,
+          AgentCommission: selectedBusData?.BusPrice?.AgentCommission || 30,
+          AgentMarkUp: selectedBusData?.BusPrice?.AgentMarkUp || 0,
+          TDS: selectedBusData?.BusPrice?.TDS || 12,
+          GST: {
+            CGSTAmount: selectedBusData?.BusPrice?.GST?.CGSTAmount || 0,
+            CGSTRate: selectedBusData?.BusPrice?.GST?.CGSTRate || 0,
+            CessAmount: selectedBusData?.BusPrice?.GST?.CessAmount || 0,
+            CessRate: selectedBusData?.BusPrice?.GST?.CessRate || 0,
+            IGSTAmount: selectedBusData?.BusPrice?.GST?.IGSTAmount || 0,
+            IGSTRate: selectedBusData?.BusPrice?.GST?.IGSTRate || 18,
+            SGSTAmount: selectedBusData?.BusPrice?.GST?.SGSTAmount || 0,
+            SGSTRate: selectedBusData?.BusPrice?.GST?.SGSTRate || 0,
+            TaxableAmount: selectedBusData?.BusPrice?.GST?.TaxableAmount || 0,
+          },
+        },
+      },
+    }));
+
+    // Prepare payload for block
+    const blockPayload = {
+      EndUserIp: '223.178.213.196',
+      ResultIndex: selectedBusData?.ResultIndex || 9,
+      TraceId: bookingData?.TraceId || '3b4d2bb8-0284-4667-a4a6-f5ac6d492070',
+      BoardingPointId: selectedBusData?.BoardingPointsDetails[0]?.CityPointIndex || 1,
+      DroppingPointId: selectedBusData?.DroppingPointsDetails[0]?.CityPointIndex || 1,
+      Passenger: mappedPassengers,
+    };
+
+    // Step 1: Bus Block API
+    const blockResponse = await fetch(`${apilink}/bus/busblock`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(blockPayload),
+    });
+
+    if (!blockResponse.ok) {
+      throw new Error('Failed to block bus seats');
+    }
+
+    const blockResult = await blockResponse.json();
+    console.log('Bus block result:', blockResult);
+
+    // Step 2: Proceed to Book API using blockResult details
+    const bookPayload = {
+      ...blockPayload,
+      BlockKey: blockResult?.BlockKey,
+      BookingId: blockResult?.BookingId, // if required
+      InventoryItems: blockResult?.InventoryItems, // if required
+    };
+
+    const bookResponse = await fetch(`${apilink}/bus/busbook`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(bookPayload),
+    });
+
+  
+
+    const bookResult = await bookResponse.json();
+    console.log('Bus book result:', bookResult);
+    // You can now redirect or show confirmation
+
+  } catch (error) {
+    setError('Error booking bus: ' + error.message);
+    console.error('Booking error:', error);
+  } finally {
+    setIsLoading(false);
+  }
+};
+
 
     
   return (

@@ -379,90 +379,79 @@ const booknow=async()=>{
           </form>
         </div> */}
 
-        {
-              busBoarding &&
-              <>
+{busBoarding && (
+  <div className="mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg max-w-screen-xl">
+    <h1 className="text-3xl font-bold text-center mb-6 text-blue-600">
+      Bus Route Details
+    </h1>
 
+    {/* Responsive Flexbox */}
+    <div className="flex flex-col lg:flex-row lg:justify-around gap-6">
+      
+      {/* Boarding Points */}
+      <div className="lg:w-1/3 w-full">
+        <h2 className="text-2xl font-semibold mb-3 text-gray-700">
+          Boarding Points
+        </h2>
+        {busBoarding?.BoardingPointsDetails?.map((point, index) => (
+          <div
+            key={index}
+            className="flex items-start gap-4 p-4 border-b border-gray-200 hover:bg-blue-50 rounded-lg transition"
+          >
+            <FaMapMarkerAlt className="text-blue-600 text-2xl mt-1" />
+            <div>
+              <h3 className="text-lg font-semibold text-gray-800">{point.CityPointName}</h3>
+              <p className="text-gray-600 text-sm">
+                <FaClock className="inline-block mr-1 text-gray-500" />
+                Time: {new Date(point.CityPointTime).toLocaleString()}
+              </p>
+              <p className="text-gray-600 text-sm">
+                <FaPhoneAlt className="inline-block mr-1 text-gray-500" />
+                Contact: {point.CityPointContactNumber}
+              </p>
+              <p className="text-gray-600 text-sm">Landmark: {point.CityPointLandmark}</p>
+            </div>
+          </div>
+        ))}
+      </div>
 
+      {/* Book Now Button */}
+      <div className="flex justify-center items-center lg:items-start">
+        <div className="flex flex-col gap-[1px] rounded-lg group" onClick={() => handleBooking()}>
+          <div className="h-1 bg-orange-500 w-full group-hover:w-[0px] duration-300 rounded-t-full"></div>
+          <div className="bg-orange-500 text-white font-semibold p-2 px-5 rounded-md cursor-pointer text-center">
+            Book Now
+          </div>
+          <div className="h-1 bg-orange-500 w-full group-hover:w-[0px] duration-300 rounded-b-full"></div>
+        </div>
+      </div>
 
+      {/* Dropping Points */}
+      <div className="lg:w-1/3 w-full">
+        <h2 className="text-2xl font-semibold mb-3 text-gray-700">
+          Dropping Points
+        </h2>
+        {busBoarding?.DroppingPointsDetails?.map((point, index) => (
+          <div
+            key={index}
+            className="flex items-start gap-4 p-4 border-b border-gray-200 hover:bg-green-50 rounded-lg transition"
+          >
+            <FaMapMarkerAlt className="text-green-600 text-2xl mt-1" />
+            <div>
+              <h3 className="text-lg font-semibold text-gray-800">{point.CityPointName}</h3>
+              <p className="text-gray-600 text-sm">
+                <FaClock className="inline-block mr-1 text-gray-500" />
+                Time: {new Date(point.CityPointTime).toLocaleString()}
+              </p>
+              <p className="text-gray-600 text-sm">Location: {point.CityPointLocation}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+)}
 
-                <div className=" mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg">
-         
-                  <h1 className="text-3xl font-bold text-center mb-6 text-blue-600">
-                    Bus Route Details
-                  </h1>
-
-                
-                  <div className='flex justify-around items-center'>
-                    <div className="mb-6 ">
-                      <h2 className="text-2xl font-semibold mb-3 text-gray-700">
-                        Boarding Points
-                      </h2>
-                      {busBoarding?.BoardingPointsDetails?.map((point, index) => (
-                        <div
-                          key={index}
-                          className="flex items-center gap-4 p-4 border-b border-gray-200 hover:bg-blue-50 rounded-lg transition"
-                        >
-                          <FaMapMarkerAlt className="text-blue-600 text-2xl" />
-                          <div>
-                            <h3 className="text-lg font-semibold text-gray-800">
-                              {point.CityPointName}
-                            </h3>
-                            <p className="text-gray-600 text-sm">
-                              <FaClock className="inline-block mr-1 text-gray-500" />
-                              Time: {new Date(point.CityPointTime).toLocaleString()}
-                            </p>
-                            <p className="text-gray-600 text-sm">
-                              <FaPhoneAlt className="inline-block mr-1 text-gray-500" />
-                              Contact: {point.CityPointContactNumber}
-                            </p>
-                            <p className="text-gray-600 text-sm">
-                              Landmark: {point.CityPointLandmark}
-                            </p>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                    <div className='flex flex-col gap-[1px] rounded-lg group' onClick={() => handleBooking()}>
-                      <div className='h-1 bg-orange-500 w-full group-hover:w-[0px] duration-300 rounded-t-full'></div>
-                      <div className='bg-orange-500 text-white font-semibold p-1 px-3 rounded-md cursor-pointer ' type="submit" >Book Now</div>
-                      <div className='h-1 bg-orange-500 w-full group-hover:w-[0px] duration-300 rounded-b-full	'></div>
-                    </div>
-                
-                    <div>
-                      <h2 className="text-2xl font-semibold mb-3 text-gray-700">
-                        Dropping Points
-                      </h2>
-                      {busBoarding?.DroppingPointsDetails?.map((point, index) => (
-                        <div
-                          key={index}
-                          className="flex items-center gap-4 p-4 border-b border-gray-200 hover:bg-green-50 rounded-lg transition"
-                        >
-                          <FaMapMarkerAlt className="text-green-600 text-2xl" />
-                          <div>
-                            <h3 className="text-lg font-semibold text-gray-800">
-                              {point.CityPointName}
-                            </h3>
-                            <p className="text-gray-600 text-sm">
-                              <FaClock className="inline-block mr-1 text-gray-500" />
-                              Time: {new Date(point.CityPointTime).toLocaleString()}
-                            </p>
-                            <p className="text-gray-600 text-sm">
-                              Location: {point.CityPointLocation}
-                            </p>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-
-
-                  </div>
-                </div>
-
-
-              </>
-
-            }
 
       </div>
 

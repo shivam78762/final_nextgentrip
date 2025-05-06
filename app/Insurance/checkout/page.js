@@ -168,18 +168,28 @@ const page = () => {
     e.preventDefault();
     const isValid = validateAllForms();
 
+    const traceID = localStorage.getItem("selectedInsuranceTraceId");
+    console.log("Trace ID:", traceID);
+
     if (isValid) {
       setIsLoading(true);
       const payload = {
         ResultIndex: insuranceData.ResultIndex,
+        TraceId: traceID,
+
         PlanCode: insuranceData.PlanCode,
         PolicyStartDate: insuranceData.PolicyStartDate,
         PolicyEndDate: insuranceData.PolicyEndDate,
         Price: insuranceData.Price,
-        Passengers: passengers.map((passenger) => ({
+        Passenger: passengers.map((passenger) => ({
           Title: passenger.Title,
+          BeneficiaryTitle:  passenger.Title,
           FirstName: passenger.FirstName,
+          BeneficiaryName: `${passenger.Title} ${passenger.FirstName} ${passenger.LastName}`.trim(),
           LastName: passenger.LastName,
+          "RelationShipToInsured": "Self",
+          "RelationToBeneficiary": "Spouse",
+          "PassportCountry": "IN",
           DateOfBirth: passenger.DateOfBirth,
           Gender: parseInt(passenger.Gender, 10),
           AddressLine1: passenger.AddressLine1,

@@ -78,7 +78,11 @@ const InsurancCompo = ({ slug }) => {
   // Handle plan selection
   const handleSelectPlan = (plan) => {
     setSelectedPlan(plan);
+
+    console.log("Selected Plan:", plans?.data?.Response.TraceId);
     localStorage.setItem('selectedInsurancePlan', JSON.stringify(plan));
+    localStorage.setItem('selectedInsuranceTraceId', plans?.data?.Response.TraceId);
+
     router.push("/Insurance/checkout");
   };
 

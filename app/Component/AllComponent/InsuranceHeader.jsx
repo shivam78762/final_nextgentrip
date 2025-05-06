@@ -65,7 +65,7 @@ export default function InsuranceHeader() {
     }
   }, []);
 
-  // Save data to localStorage whenever alldata changes
+
   useEffect(() => {
     localStorage.setItem("insuranceData", JSON.stringify(alldata));
   }, [alldata]);
