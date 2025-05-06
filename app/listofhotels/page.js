@@ -166,7 +166,7 @@ export default function Hotels() {
                       <img
                         src={elm.img}
                         alt=""
-                        className="w-full h-full rounded-lg"
+                        className="w-full bg-cover h-[14rem] rounded-lg"
                       />
                     </div>
 

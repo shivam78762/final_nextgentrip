@@ -127,16 +127,16 @@ const page = () => {
     aboutTitle: "About NextGen",
     aboutText: "NextGen is one of the world's most trusted travel agencies, believing every trip should be memorable, smooth, and rewarding. Our Loyalty Program is our endeavour to make your travel experience as unique as possible with exclusive rewards and personalized services that help you find and explore the world and enjoy great benefits along the way.",
     companyDetails: {
-      address: "Sector 48",
-      city: "Chandigarh, India",
+      // address: "Sector 48",
+      // city: "Chandigarh, India",
       telephone: "+(91) 9877579319",
-      email: "NextGenindia@gmail.com"
+  email: "info@nextgentrip.com"
     },
     socialLinks: [
-      { platform: "Instagram", link: "#" },
-      { platform: "Facebook", link: "#" },
-      { platform: "Twitter", link: "#" },
-      { platform: "LinkedIn", link: "#" }
+      { platform: "Instagram", link: "https://www.instagram.com/nextgentrip/profilecard/?igsh=MTdyMjlyb293aTB0MA%3D%3D" },
+      { platform: "Facebook", link: "https://www.facebook.com/share/1AA9dPezvA/?mibextid=wwXIfr" },
+      { platform: "Twitter", link: "https://x.com/NextGenTrip?t=d4oQeyJHEQldf9lsP2EgnQ&s=08" },
+      { platform: "youtube", link: "https://www.youtube.com/@NextGenTrip-g5t" }
     ]
   };
   
@@ -253,11 +253,11 @@ const page = () => {
     <div className="space-y-4">
       <h6 className="text-lg md:text-2xl font-semibold">{apkaTripInfo.loyaltyProgramCTA}</h6>
       <p>{apkaTripInfo.introduction}</p>
-      <div className="md:space-x-4 space-y-5  ">
+      {/* <div className="md:space-x-4 space-y-5  ">
         {apkaTripInfo.ctaButtons.map((button, index) => (
           <Link key={index} href={button.link} className="inline-block w-full md:w-auto px-6 py-2 text-white bg-blue-600 rounded-md">{button.text}</Link>
         ))}
-      </div>
+      </div> */}
     </div>
 
     {/* About NextGen */}
@@ -268,7 +268,7 @@ const page = () => {
 
     {/* Company Details */}
     <div className="space-y-3">
-      <p className="font-semibold">Headquarters:</p>
+      <p className="font-semibold">Contect:</p>
       <p>{apkaTripInfo.companyDetails.address}</p>
       <p>{apkaTripInfo.companyDetails.city}</p>
       <p>{apkaTripInfo.companyDetails.telephone}</p>

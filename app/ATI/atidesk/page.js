@@ -5,8 +5,9 @@ import Link from "next/link";
 import "slick-carousel/slick/slick.css";
 import { FaQuoteLeft, FaStar } from "react-icons/fa";
 import "slick-carousel/slick/slick-theme.css";
-import { FaInstagram,FaFacebookSquare,FaLinkedin} from "react-icons/fa";
+
 import { FaXTwitter } from "react-icons/fa6";
+import { FaInstagram,FaFacebookSquare,FaYoutube} from "react-icons/fa";
 
 const Page = () => {
   const corporateTravelInfo = [
@@ -155,7 +156,7 @@ const Page = () => {
 
   const contactInfo = {
     phone: "+(91) 9877579319",
-    email: "NextGenindia@gmail.com",
+    email: "info@nextgentrip.com",
     liveChat: "Available 24/7",
     socialLinks: {
       linkedin: "#",
@@ -184,9 +185,9 @@ return (
     <p className="lg:w-[80%] text-gray-200">
       {info.bannerHeadline}
     </p>
-    <button className="mt-4 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg">
+    {/* <button className="mt-4 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg">
       {info.buttonLabel}
-    </button>
+    </button> */}
   </div>
 ))}
 </div>
@@ -322,12 +323,15 @@ NextGen's Corporate Travel Solutions
 <p className="text-base text-gray-600">Live Chat: {contactInfo.liveChat}</p>
 
 {/* Social Media Links */}
-<div className="flex space-x-4 mt-4 text-2xl">
-  <a href={contactInfo.socialLinks.linkedin} target="_blank" rel="noopener noreferrer"><FaLinkedin /></a>
-  <a href={contactInfo.socialLinks.twitter} target="_blank" rel="noopener noreferrer"><FaXTwitter /></a>
-  <a href={contactInfo.socialLinks.facebook} target="_blank" rel="noopener noreferrer"><FaFacebookSquare /></a>
-  <a href={contactInfo.socialLinks.instagram} target="_blank" rel="noopener noreferrer"><FaInstagram /></a> 
-</div>
+ <div className="flex space-x-4 mt-4 text-2xl">
+      <a  target="_blank"
+                  href="https://www.facebook.com/share/1AA9dPezvA/?mibextid=wwXIfr" className=""><FaFacebookSquare /></a>
+      <a  target="_blank"
+                  href="https://x.com/NextGenTrip?t=d4oQeyJHEQldf9lsP2EgnQ&s=08" className=""><FaXTwitter/></a>
+      <a target="_blank"
+                  href="https://www.youtube.com/@NextGenTrip-g5t" className=""><FaYoutube /></a>
+      <a href="https://www.instagram.com/nextgentrip/profilecard/?igsh=MTdyMjlyb293aTB0MA%3D%3D" target="_blank" className=""><FaInstagram /></a>
+    </div>
 </div>
 </section>
 

@@ -3,7 +3,7 @@
 
 import React, { useRef, useState } from "react";
 // Import Swiper React components
-import { FaInstagram,FaFacebookSquare,FaLinkedin} from "react-icons/fa";
+import { FaInstagram,FaFacebookSquare,FaYoutube} from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 
 
@@ -140,10 +140,10 @@ World where great service and ultimate indulgence blend with rare experience- th
 <h3 className="text-2xl font-semibold text-gray-800">Find Your Favorite Luxury Getaway</h3>
 <p className="text-base text-gray-600">Ready to embark on your elite adventure? Whether planning a romantic escape, family holiday, or grand celebration, NextGen will surpass every expectation.</p>
 <p className="text-base text-gray-600">Contact our luxury travel specialists today and let us tailor your dream trip.</p>
-<div className="mt-4 space-y-2">
+{/* <div className="mt-4 space-y-2">
   <button className="bg-blue-600 text-white px-6 py-2 rounded">Contact Us</button>
   <button className="bg-gray-600 text-white px-6 py-2 rounded">Start Planning Your Trip</button>
-</div>
+</div> */}
 </div>
 
 <div className="bg-[#F1F5F9] p-8 rounded-lg space-y-8">
@@ -152,23 +152,26 @@ World where great service and ultimate indulgence blend with rare experience- th
     Luxury travel leader NextGen curates and delivers unparalleled access, high-end experiences, and exceptional service for the discerning traveler on any trip. With a team of expert curators and a network of elite partners around the world, NextGen creates unforgettable moments. For the quiet charm of private beach resorts or extravagant city adventures, NextGen is your trusted partner in luxury travel.
   </p>
 
-  <h3 className="text-2xl font-semibold text-gray-800">Headquarters</h3>
-  <p className="text-lg text-gray-700"> Sector 48,</p>
-  <p className="text-lg text-gray-700">Chandigarh, India</p>
+  <h3 className="text-2xl font-semibold text-gray-800">Contact</h3>
+  {/* <p className="text-lg text-gray-700"> Sector 48,</p>
+  <p className="text-lg text-gray-700">Chandigarh, India</p> */}
   <p className="text-lg text-gray-700">+(91) 9877579319</p>
-  <p className="text-lg text-gray-700">NextGenindia@gmail.com</p>
+  <p className="text-lg text-gray-700">info@nextgentrip.com</p>
 
   <div className="space-y-4">
     <h4 className="text-xl font-semibold text-gray-800">Follow us on our Luxury Journeys</h4>
     <p className="text-lg text-gray-700">
       Stay inspired, stay connected—keep updated with the latest happenings in luxury travel, exclusive offers, and bespoke experiences.
     </p>
-    <div className="flex space-x-4 text-2xl">
-      <a href={socialLinks.instagram} className="text-xl text-gray-700 hover:text-gray-900"><FaInstagram/></a>
-      <a href={socialLinks.facebook} className="text-xl text-gray-700 hover:text-gray-900"><FaFacebookSquare /></a>
-      <a href={socialLinks.twitter} className="text-xl text-gray-700 hover:text-gray-900"><FaXTwitter/></a>
-      <a href={socialLinks.linkedin} className="text-xl text-gray-700 hover:text-gray-900"><FaLinkedin/></a>
-    </div>
+    <div className="flex space-x-4 mt-4 text-2xl">
+         <a  target="_blank"
+                     href="https://www.facebook.com/share/1AA9dPezvA/?mibextid=wwXIfr" className=""><FaFacebookSquare /></a>
+         <a  target="_blank"
+                     href="https://x.com/NextGenTrip?t=d4oQeyJHEQldf9lsP2EgnQ&s=08" className=""><FaXTwitter/></a>
+         <a target="_blank"
+                     href="https://www.youtube.com/@NextGenTrip-g5t" className=""><FaYoutube /></a>
+         <a href="https://www.instagram.com/nextgentrip/profilecard/?igsh=MTdyMjlyb293aTB0MA%3D%3D" target="_blank" className=""><FaInstagram /></a>
+       </div>
   </div>
 
   <div className="space-y-4">

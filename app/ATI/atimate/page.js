@@ -2,7 +2,7 @@
 "use client"
 import Image from "next/image";
 import { useState } from "react";
-import { FaInstagram,FaFacebookSquare,FaLinkedin} from "react-icons/fa";
+import { FaInstagram,FaFacebookSquare,FaYoutube} from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 
 const Page = () => {
@@ -116,10 +116,10 @@ return (
     <p className="text-lg text-gray-600">
       Ready to Elevate Your Travel Business? Unlock the possible world of your business today with NextGen. Whether you are just a small travel agency or a giant enterprise, our platform could help you scale to your desired level.
     </p>
-    <div className="flex space-x-4">
+    {/* <div className="flex space-x-4">
       <button className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition">Join Now</button>
       <button className="bg-gray-600 text-white px-6 py-3 rounded-lg hover:bg-gray-700 transition">Contact Us</button>
-    </div>
+    </div> */}
   </div>
 
   {/* Contact Information Section */}
@@ -140,18 +140,21 @@ return (
 
   {/* Headquarters & Social Media Links Section */}
   <div>
-    <h3 className="text-xl font-semibold text-gray-800">Headquarter</h3>
-    <p className="text-base text-gray-600">
+    <h3 className="text-xl font-semibold text-gray-800">Contect</h3>
+    {/* <p className="text-base text-gray-600">
     Sector 48, Chandigarh, India
-    </p>
+    </p> */}
     <p className="text-base text-gray-600">
-    +(91) 9877579319 | <a href="mailto:Info@Nextgentrip.com" className="text-blue-600">NextGenindia@gmail.com</a>
+    +(91) 9877579319 | <a href="mailto:Info@Nextgentrip.com" className="text-blue-600">info@nextgentrip.com</a>
     </p>
     <div className="flex space-x-4 mt-4 text-2xl">
-      <a href="#" className=""><FaFacebookSquare /></a>
-      <a href="#" className=""><FaXTwitter/></a>
-      <a href="#" className=""><FaLinkedin /></a>
-      <a href="#" className=""><FaInstagram /></a>
+      <a  target="_blank"
+                  href="https://www.facebook.com/share/1AA9dPezvA/?mibextid=wwXIfr" className=""><FaFacebookSquare /></a>
+      <a  target="_blank"
+                  href="https://x.com/NextGenTrip?t=d4oQeyJHEQldf9lsP2EgnQ&s=08" className=""><FaXTwitter/></a>
+      <a target="_blank"
+                  href="https://www.youtube.com/@NextGenTrip-g5t" className=""><FaYoutube /></a>
+      <a href="https://www.instagram.com/nextgentrip/profilecard/?igsh=MTdyMjlyb293aTB0MA%3D%3D" target="_blank" className=""><FaInstagram /></a>
     </div>
     
   </div>

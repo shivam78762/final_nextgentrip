@@ -7,7 +7,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 
 import { useTranslations } from "next-intl";
-import { FaInstagram,FaFacebookSquare,FaPinterestSquare } from "react-icons/fa";
+import { FaInstagram,FaFacebookSquare,FaYoutube } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import Link from "next/link";
 
@@ -203,16 +203,16 @@ return (
 ))}
 <div className="bg-[#F1F5F9] p-8 rounded-lg space-y-4">
   <h2 className="text-xl  font-semibold text-gray-800">
-    Headquarter
+    Contact
   </h2>
-  <p className="text-base text-gray-600">
-  Sector 48, 
+   <p className="text-base text-gray-600">
+  {/*Sector 48, 
     <br />
     Chandigarh, India
-    <br />
+    <br /> */}
     +(91) 9877579319
     <br />
-    NextGenindia@gmail.com
+    info@nextgentrip.com
   </p>
 </div>
 <div className="bg-[#F1F5F9] p-8 rounded-lg space-y-4">
@@ -222,12 +222,16 @@ return (
   <p className="text-base text-gray-600">
     Stay inspired and updated about the latest travel trends, hidden gems, and unique experiences around the world.
   </p>
-  <div className="flex space-x-4">
-    <Link href="#" className=" font-semibold text-2xl"><FaInstagram /> </Link>
-    <Link href="#" className=" font-semibold text-2xl"><FaFacebookSquare /> </Link>
-    <Link href="#" className=" font-semibold text-2xl"><FaXTwitter /> </Link>
-    <Link href="#" className=" font-semibold text-2xl"><FaPinterestSquare /> </Link>
-  </div>
+  <div className="flex space-x-4 mt-4 text-2xl">
+           <a  target="_blank"
+                       href="https://www.facebook.com/share/1AA9dPezvA/?mibextid=wwXIfr" className=""><FaFacebookSquare /></a>
+           <a  target="_blank"
+                       href="https://x.com/NextGenTrip?t=d4oQeyJHEQldf9lsP2EgnQ&s=08" className=""><FaXTwitter/></a>
+           <a target="_blank"
+                       href="https://www.youtube.com/@NextGenTrip-g5t" className=""><FaYoutube /></a>
+           <a href="https://www.instagram.com/nextgentrip/profilecard/?igsh=MTdyMjlyb293aTB0MA%3D%3D" target="_blank" className=""><FaInstagram /></a>
+         </div>
+    
 </div>
 </div>
 </section>
