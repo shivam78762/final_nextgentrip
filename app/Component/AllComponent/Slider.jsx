@@ -168,7 +168,7 @@ sliderdata.isLoading &&
 {
 // false &&
 !sliderdata.isLoading &&
- <div className=" flex  flex-col lg:flex-row md:px-4 lg:px-36 justify-end md:gap-4 w-full ">
+ <div className=" flex  flex-col lg:flex-row md:px-4 lg:px-28 justify-end md:gap-4 w-full ">
  <Swiper
      className=" w-full  lg:w-3/6 h-[200px] lg:h-[300px] "
 
@@ -195,22 +195,22 @@ sliderdata.isLoading &&
     
 
 
-<div className="rounded-2xl overflow-hidden   h-[150px]   md:h-[250px]  lg:h-full hidden md:block">
+<div className="rounded-2xl overflow-hidden   h-[200px] lg:h-[300px] hidden md:block">
 
 
-        <img src={`${storageLink}/${sliderdata.info[0]?.img2}`} alt="" className="h-full w-full" />
+        <img src={`${storageLink}/${sliderdata.info[0]?.img2}`} alt="" className="h-[200px] lg:h-[300px] w-full" />
       
        </div>
-       <div className="rounded-2xl overflow-hidden   h-[150px]   md:h-[250px]  lg:h-full hidden md:block">
+       <div className="rounded-2xl overflow-hidden   h-[200px] lg:h-[300px] hidden md:block">
 
 
-        <img src={`${storageLink}/${sliderdata.info[0]?.img3}`} alt="" className="h-full w-full" />
+        <img src={`${storageLink}/${sliderdata.info[0]?.img3}`} alt="" className="h-[200px] lg:h-[300px] w-full" />
       
        </div>
-       <div className="rounded-2xl overflow-hidden   h-[150px]   md:h-[250px]  lg:h-full hidden md:block">
+       <div className="rounded-2xl overflow-hidden   h-[200px] lg:h-[300px] hidden md:block">
 
 
-        <img src={`${storageLink}/${sliderdata.info[0]?.img4}`} alt="" className="h-full w-full" />
+        <img src={`${storageLink}/${sliderdata.info[0]?.img4}`} alt="" className="h-[200px] lg:h-[300px] w-full" />
       
        </div>
 
