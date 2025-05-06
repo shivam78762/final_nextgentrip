@@ -188,7 +188,7 @@ const fetchTopport = async () => {
   return (
     <>
       <div>
-        <main className="flight pt-0 lg:pt-10 px-0 md:px-10  lg:px-40">
+        <main className="flight pt-0 lg:pt-10 px-0 md:px-10  lg:px-28">
           <div className="">
             <div className="relative ">
               <div className="relative text-lg md:text-xl lg:text-3xl font-bold text-gray-900 flex justify-center items-center gap-2  mb-5 lg:mb-6">
@@ -197,8 +197,8 @@ const fetchTopport = async () => {
             </div>
           </div>
 
-          <div className=" grid grid-cols-1 md:grid-cols-2   lg:grid-cols-3  gap-8  xl:px-5 pb-5 justify-center p-3 ">
-            <div className="bg-white border shadow-md my-5 lg:my-0  mx-auto lg:mx-2 rounded-xl overflow-hidden relative  w-full ">
+          <div className=" grid grid-cols-1 md:grid-cols-2   lg:grid-cols-3  gap-8   pb-5 justify-center p-3 ">
+            <div className="bg-white border shadow-md my-5 lg:my-0  mx-auto  rounded-xl overflow-hidden relative  w-full ">
               <div className="city-head bg-[#0291d2] text-center">
                 <h4 className="text-white text-lg font-semibold py-3">
                   {t("heading1")}
@@ -305,7 +305,7 @@ const fetchTopport = async () => {
       <InfoSection />
 
 
-      <div className='px-2 lg:px-20 my-8'>
+      <div className='px-2  my-8'>
 
         <h3 className="text-center text-3xl font-bold my-4"> Our Packages</h3>
       {/* <FeaturedProperties /> */}
@@ -313,7 +313,7 @@ const fetchTopport = async () => {
 
       </div>
 
-      <div className="w-full mx-auto px-6 md:md:px-10 lg:px-52  pt:0 lg:pt-12 z-[-1]">
+      <div className="w-full mx-auto px-6 md:px-10 lg:px-28  pt:0 lg:pt-12 z-[-1]">
         <div className="relative text-xl md:text-xl lg:text-4xl tracking-tighter	 gfont1  font-bold text-gray-900 flex justify-center items-center gap-2 mb-4 lg:mb-14">
           Tourist 💕<span className="text-[#521010]"> Love</span>
         </div>
@@ -321,7 +321,7 @@ const fetchTopport = async () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  xl:grid-cols-4 gap-5 md:gap-y-8 ">
           {viewAll &&
             attractions.slice(0, 7).map((attraction, index) => (
-              <div className="  border-b-4 border-b-[#009dff] duration-200 text-xl shadow-md">
+              <div className="  border-b-4 border-b-[#009dff]  duration-200 text-xl shadow-md">
                 <Link href={attraction.link}>
                   <div className="bg-white shadow-md rounded-lg p-4">
                     <div className="flex items-center">

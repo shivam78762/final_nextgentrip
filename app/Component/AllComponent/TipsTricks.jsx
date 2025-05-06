@@ -17,7 +17,7 @@ const page = () => {
           <CompoBlog />
 
 
-          <div className="text-center mt-8">
+          <div className="text-center mt-16">
             <Link
               href="/blog"
               rel="noopener noreferrer"
