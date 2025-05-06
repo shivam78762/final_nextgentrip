@@ -153,7 +153,7 @@ const HotelSliderCompo = ({ isLoading, children }) => {
 
 
 
-        <div className=" lg:flex-row px-4 lg:px-36 gap-4 w-full my-15 flex justify-center ">
+        <div className=" lg:flex-row px-4 lg:px-28 gap-4 w-full my-15 flex justify-center ">
         <Swiper
             className=" w-full h-[350px]  lg:h-[300px] "
             loop={true}
@@ -169,7 +169,7 @@ const HotelSliderCompo = ({ isLoading, children }) => {
                   slidesPerView: 2, // Optional: 2 slides for tablets
                 },
                 1024: {
-                  slidesPerView: 3, // 4 slides for larger screens (desktop)
+                  slidesPerView: 2, // 4 slides for larger screens (desktop)
                 },
               }}
               spaceBetween={50}
@@ -178,14 +178,14 @@ const HotelSliderCompo = ({ isLoading, children }) => {
  
             >
 
-            {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((_, index) => <SwiperSlide
+            {["01JSK76W4F49A001EN7NJ2NNJJ.jpg", "01JSK76W4F49A001EN7NJ2NNJJ.jpg","01JSK76W4F49A001EN7NJ2NNJJ.jpg"].map((img, index) => <SwiperSlide
               className="flex flex-col   rounded-2xl shadow-sm bg-white-900"
             >
 
-              <div className="rounded-2xl   h-[350px]  md:h-[250px] lg:h-full">
+              <div className="rounded-2xl   h-[350px]  md:h-[250px] lg:h-full ">
 
 
-                <img src={`/slide/loadimg-${index + 1}.png`} alt="" className="h-full w-full " />
+                <img src={`/slide/${img}`} alt="" className="h-full w-full  rounded-2xl" />
 
               </div>
             </SwiperSlide>)}

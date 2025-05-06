@@ -46,7 +46,7 @@ const Page = () => {
 
 
 
-      <div className="flex flex-col">
+      <div className="flex flex-col mt-32 " >
      
         <div className="block md:flex items-center justify-between gap-4 px-5 lg:px-20">
           <div className="max-w-2xl">
