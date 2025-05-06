@@ -40,7 +40,6 @@ const Page = ({ setActiveTab,fdatas, price }) => {
 
 
 
-
   useEffect(() => {
     
     const fetchUserData = async (userId) => {
@@ -70,7 +69,7 @@ const Page = ({ setActiveTab,fdatas, price }) => {
 
     console.log("userid",userid)
     if (!userid) {
-      router.push("/user/login");
+
     } else {
       fetchUserData(userid);
     }
@@ -387,7 +386,7 @@ const differenceInMinutes = (now - addate) / (1000 * 60);
 
   useEffect(() => {
     const userid = JSON.parse(localStorage.getItem("NextGenUser"));
-    if (!userid) router.push("/user/login");
+
 
     const fetchuserData = async () => {
       const data = await axios.get(`${apilink}/user/${userid}`);
@@ -425,6 +424,14 @@ const differenceInMinutes = (now - addate) / (1000 * 60);
 
     return { formattedDate, formattedTime };
   };
+
+
+   
+  useEffect(() => {
+    if (differenceInMinutes > 11) {
+      router.push('/flight');
+    }
+  }, [differenceInMinutes]);
 
 
  
@@ -559,7 +566,7 @@ const differenceInMinutes = (now - addate) / (1000 * 60);
                 <div className="flex justify-between gap-10">
                 <span className="text-sm md:text-xl font-medium">Flight Detail</span>
                 <span className="text-sm md:text-xl font-medium text-red-700">
-                  { differenceInMinutes>11  && <span>Token is Expire Search flight again</span> }
+                  { differenceInMinutes > 11  && <span>Token is Expire Search flight again</span> }
                 </span>
                 </div>
               </div>

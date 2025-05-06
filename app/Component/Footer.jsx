@@ -223,7 +223,7 @@ const Footer = () => {
             <div className="space-y-4">
               <img
                 className=" block w-auto h-14 md:h-20"
-                src="/images/NextGenTrip.jpg"
+                src="/images/NextGenTrip.png"
                 alt=""
               />
               <p className="text-sm leading-6 text-gray-600">
@@ -467,7 +467,7 @@ const Footer = () => {
                     <li>
                       <Link
                         href="/ATI/loyalty-program/"
-                        className="text-sm leading-6 text-gray-600 hover:text-gray-900 text-nowrap"
+                        className="text-sm leading-6 text-gray-600 hover:text-gray-900 text-wrap"
                       >
                        Membership & Loyalty Program
                       </Link>

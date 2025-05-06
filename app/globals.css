@@ -396,6 +396,21 @@ a.text-sm {
   border-radius: 2px;
 }
 
+@media (max-width: 640px) {
+  table {
+    display: block;
+  }
+  tr {
+    display: block;
+    margin-bottom: 1rem;
+  }
+  td, th {
+    display: block;
+    text-align: left;
+  }
+}
+
+
 /* .event-box div:nth-child(2) {
   z-index: 2;
   position: absolute;

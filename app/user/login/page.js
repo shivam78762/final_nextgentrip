@@ -124,7 +124,7 @@ setloader(true)
           } duration-700`}
         >
           <div className="w-2/5  md:w-1/4">
-            <img src="/images/NextGenTrip.jpg" />
+            <img src="/images/NextGenTrip.png" />
           </div>
 
           <div className="text-[#4B97F0] font-bold">
@@ -195,7 +195,7 @@ setloader(true)
             } duration-700`}
           >
             <div className="flex justify-center">
-              <img src="/images/NextGenTrip.jpg" className="w-1/2  md:w-1/4 " />
+              <img src="/images/NextGenTrip.png" className="w-1/2  md:w-1/4 " />
             </div>
 
             <div className="text-[#4B97F0] font-bold text-center">

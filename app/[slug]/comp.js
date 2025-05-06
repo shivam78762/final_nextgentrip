@@ -985,9 +985,16 @@ const handelnonlcc=(id, ResultIndex)=>{
                                       </p>
                                     </div>
 
-                                    {index2 == 0 ? (
-                                      <div className="flex items-center gap-x-3">
-                                        <div className="text-right flex-1">
+                                   
+                                  </div>
+                                ))}
+                              </div>
+
+
+
+                      
+                                       <div className="flex items-center justify-between gap-x-3">
+                                        <div className="text-right ">
                                           <div className="text-black text-lg font-bold whitespace-nowrap ">
                                             <span className="text-sm md:text-lg font-bold">
                                               {defaultcurrency.symble}
@@ -1044,7 +1051,7 @@ const handelnonlcc=(id, ResultIndex)=>{
                                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                                              />
                                            </svg>
-                                         </div>
+                                           </div>
                                        ) : (
                                          <>
                                            <span className="hidden md:inline">VIEW</span> PRICES
@@ -1083,7 +1090,7 @@ const handelnonlcc=(id, ResultIndex)=>{
                                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                                              />
                                            </svg>
-                                         </div>
+                                        </div>
                                        ) : (
                                          <>
                                            <span className="hidden md:inline">VIEW</span> PRICES
@@ -1093,42 +1100,7 @@ const handelnonlcc=(id, ResultIndex)=>{
                                      }
 
                                       </div>
-                                    ) : (
-                                      <div className="flex items-center gap-x-3 opacity-0">
-                                        <div className="text-right flex-1">
-                                          <div className="text-black text-lg font-bold whitespace-nowrap ">
-                                            <span className="text-sm md:text-lg font-bold">
-                                              {defaultcurrency.symble}
-                                              {(() => {
-                                                const offeredFare =
-                                                  flight.Fare?.OfferedFare || 0;
-                                                const price =
-                                                  Number(offeredFare) *
-                                                  Number(cuntryprice);
-                                                const priceString =
-                                                  price.toFixed(2);
-                                                const [
-                                                  integerPart,
-                                                  decimalPart,
-                                                ] = priceString.split(".");
-                                                return `${integerPart}.${(
-                                                  decimalPart || "00"
-                                                ).slice(0, 2)}`;
-                                              })()}{" "}
-                                            </span>
-                                            <p className="text-sm text-gray-700 font-light leading-tight">
-                                              Total Price
-                                            </p>
-                                          </div>
-                                        </div>
-                                        <button className="hidden sm:hidden md:block text-sm font-semibold h-8 text-blue-600 rounded-full px-4 bg-blue-200 border border-blue-600">
-                                          VIEW PRICES
-                                        </button>
-                                      </div>
-                                    )}
-                                  </div>
-                                ))}
-                              </div>
+                                  
 
                               <p className="my-4 p-1 text-center bg-yellow-100">
                                 <span className="text-[9px] md:text-xs text-center ">

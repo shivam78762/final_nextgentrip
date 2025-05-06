@@ -309,7 +309,7 @@ const Topbar = () => {
             
           </div>
           <Link href="/">
-            <img src="/images/NextGenTrip.jpg" alt="" className="h-[35px] md:h-[60px]" />
+            <img src="/images/NextGenTrip.png" alt="" className="h-[35px] md:h-[60px]" />
           </Link>
           <Sidebar isOpen={isSidebarOpen} onClose={closeSidebar} />
         </div>

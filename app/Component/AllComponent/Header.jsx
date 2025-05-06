@@ -558,7 +558,7 @@ const Header = () => {
 
           // Render the content for the date
           return (
-            <div className="text-sm">
+            <div className=" ">
               <div>{formatPrice(Fare)}</div>
             </div>
           );
@@ -584,7 +584,7 @@ const Header = () => {
           </div>
 
           <div className=" px-4 border-b-2 shadow-sm  space-y-2 py-3 ">
-            <div className=" tabs 1stTab text-sm text-nowrap  md:text-sm  flex  md:gap-2 font-bold text-black gap-5 ">
+            <div className=" tabs 1stTab   text-nowrap  md:   flex  md:gap-2 font-bold text-black gap-5 ">
               <button
                 className={`px-4 py-1  font-bold rounded-3xl ${JourneyType === 1 ? "bg-white text-[#000] active" : " "
                   } transition-colors duration-300 ease-in-out`}
@@ -719,13 +719,13 @@ const Header = () => {
                               {" "}
                               {selected.getDate()}
                             </span>
-                            <span className="text-sm font-semibold">
+                            <span className=" lg:  font-semibold">
                               {selected.toLocaleString("default", {
                                 month: "short",
                               })}
                               '
                             </span>
-                            <span className="text-sm font-semibold">
+                            <span className=" lg:  font-semibold">
                               {" "}
                               {selected.getFullYear()}
                             </span>
@@ -775,10 +775,10 @@ const Header = () => {
                             <span className="text-3xl py-1 pr-1 text-black font-bold">
                               {selectedReturn.getDate()}
                             </span>
-                            <span className="text-sm font-semibold">
+                            <span className=" lg:  font-semibold">
                               {selectedReturn.toLocaleString("default", { month: "short" })}'
                             </span>
-                            <span className="text-sm font-semibold">
+                            <span className=" lg:  font-semibold">
                               {selectedReturn.getFullYear()}
                             </span>
                           </div>
@@ -849,7 +849,7 @@ const Header = () => {
                     className="flex flex-col bg-white relative px-4 py-2 rounded-tl-lg rounded-bl-lg border-r hover:bg-[#ECF5FE] cursor-pointer"
                     onClick={() => handleClick("from")}
                   >
-                    <p className="text-sm text-[#7E7979] font-medium">
+                    <p className="  text-[#7E7979] font-medium">
                       {t("From")}
                     </p>
                     <span className="text-3xl py-1 text-black font-bold">
@@ -874,7 +874,7 @@ const Header = () => {
                     className="flex flex-col px-4 py-2 relative bg-white border-r hover:bg-[#ECF5FE]"
                     onClick={() => handleClick("to")}
                   >
-                    <label className="text-sm text-[#7E7979] font-medium">
+                    <label className="  text-[#7E7979] font-medium">
                       {t("To")}
                     </label>
                     <span className="text-3xl py-1 text-black font-bold">
@@ -896,7 +896,7 @@ const Header = () => {
                   </div>
 
                   <div className="flex flex-col  px-4 py-2 bg-white  border-r hover:bg-[#ECF5FE]">
-                    <label className="text-sm text-[#7E7979] font-medium">
+                    <label className="  text-[#7E7979] font-medium">
                       {t("Departure Date")}
                     </label>
 
@@ -905,10 +905,10 @@ const Header = () => {
                         {" "}
                         {currentDateComponents.day}
                       </span>
-                      <span className="text-sm font-semibold">
+                      <span className="  font-semibold">
                         {months[currentDateComponents.month]}'
                       </span>
-                      <span className="text-sm font-semibold">
+                      <span className="  font-semibold">
                         {" "}
                         {currentDateComponents.year}
                       </span>
@@ -919,7 +919,7 @@ const Header = () => {
                     </p>
                   </div>
                   <div className="flex flex-col  px-4 py-2 bg-white  border-r hover:bg-[#ECF5FE]">
-                    <label className="text-sm text-[#7E7979] font-medium">
+                    <label className="  text-[#7E7979] font-medium">
                       {t("Return Date")}
                     </label>
                     <div className="flex items-baseline text-black">
@@ -927,11 +927,11 @@ const Header = () => {
                         {" "}
                         {futureDateComponents.day}
                       </span>
-                      <span className="text-sm font-semibold">
+                      <span className="  font-semibold">
                         {" "}
                         {months[futureDateComponents.month]}'
                       </span>
-                      <span className="text-sm font-semibold">
+                      <span className="  font-semibold">
                         {futureDateComponents.year}
                       </span>
                       <FaCalendarWeek className="text-[#d3cfcf] ml-5 text-xl" />
@@ -944,14 +944,14 @@ const Header = () => {
                     className="flex flex-col relative  px-4 py-2 bg-white border-r hover:bg-[#ECF5FE]"
                     onClick={() => handleClick("traveller")}
                   >
-                    <label className="text-sm text-[#7E7979] font-medium">
+                    <label className=" lg:  text-[#7E7979] font-medium">
                       {t("Travelers")}
                     </label>
                     <div className="flex items-center text-black">
                       <span className="text-3xl py-1 pr-1 text-black font-bold">
                         1
                       </span>
-                      <span className="text-sm font-semibold flex items-center gap-1">
+                      <span className="  font-semibold flex items-center gap-1">
                         Traveller(s) <FaChevronDown />
                       </span>
                     </div>
@@ -980,7 +980,7 @@ const Header = () => {
                     className="flex flex-col bg-white relative px-4 py-2 rounded-tl-lg rounded-bl-lg border-r border-b hover:bg-[#ECF5FE] cursor-pointer"
                     onClick={() => handleClick("from")}
                   >
-                    <p className="text-sm text-[#7E7979] font-medium">
+                    <p className="  text-[#7E7979] font-medium">
                       {t("From")}
                     </p>
                     <span className="text-3xl py-1 text-black font-bold">
@@ -1004,7 +1004,7 @@ const Header = () => {
                     className="flex flex-col px-4 py-2 border-b relative bg-white border-r hover:bg-[#ECF5FE]"
                     onClick={() => handleClick("to")}
                   >
-                    <label className="text-sm text-[#7E7979] font-medium">
+                    <label className="  text-[#7E7979] font-medium">
                       {t("To")}
                     </label>
                     <span className="text-3xl py-1 text-black font-bold">
@@ -1025,7 +1025,7 @@ const Header = () => {
                     )}
                   </div>
                   <div className="flex flex-col  px-4 py-2 bg-white  border-r border-b hover:bg-[#ECF5FE]">
-                    <label className="text-sm text-[#7E7979] font-medium">
+                    <label className="  text-[#7E7979] font-medium">
                       {t("Departure Date")}
                     </label>
                     <div className="flex items-baseline text-black">
@@ -1033,10 +1033,10 @@ const Header = () => {
                         {" "}
                         {currentDateComponents.day}
                       </span>
-                      <span className="text-sm font-semibold">
+                      <span className="  font-semibold">
                         {months[currentDateComponents.month]}'
                       </span>
-                      <span className="text-sm font-semibold">
+                      <span className="  font-semibold">
                         {" "}
                         {currentDateComponents.year}
                       </span>
@@ -1047,14 +1047,14 @@ const Header = () => {
                     </p>
                   </div>
                   <div className="flex flex-col  px-4 py-2 bg-white border-b rounded-tr-lg hover:bg-[#ECF5FE]">
-                    <label className="text-sm text-[#7E7979] font-medium">
+                    <label className="  text-[#7E7979] font-medium">
                       {t("Travelers")}
                     </label>
                     <div className="flex items-center text-black">
                       <span className="text-3xl py-1 pr-1 text-black font-bold">
                         1
                       </span>
-                      <span className="text-sm font-semibold flex items-center gap-1">
+                      <span className="  font-semibold flex items-center gap-1">
                         Traveller(s) <FaChevronDown />
                       </span>
                     </div>
@@ -1065,7 +1065,7 @@ const Header = () => {
                     className="flex flex-col bg-white relative px-4 py-2 rounded-tl-lg rounded-bl-lg border-r hover:bg-[#ECF5FE] cursor-pointer"
                     onClick={() => handleClick("from")}
                   >
-                    <p className="text-sm text-[#7E7979] font-medium">
+                    <p className="  text-[#7E7979] font-medium">
                       {t("From")}
                     </p>
                     <span className="text-3xl py-1 text-black font-bold">
@@ -1090,7 +1090,7 @@ const Header = () => {
                     className="flex flex-col px-4 py-2 relative bg-white border-r hover:bg-[#ECF5FE]"
                     onClick={() => handleClick("to")}
                   >
-                    <label className="text-sm text-[#7E7979] font-medium">
+                    <label className="  text-[#7E7979] font-medium">
                       {t("To")}
                     </label>
                     <span className="text-3xl py-1 text-black font-bold">
@@ -1111,7 +1111,7 @@ const Header = () => {
                     )}
                   </div>
                   <div className="flex flex-col  px-4 py-2 bg-white  border-r border-b hover:bg-[#ECF5FE]">
-                    <label className="text-sm text-[#7E7979] font-medium">
+                    <label className="  text-[#7E7979] font-medium">
                       {t("Departure Date")}
                     </label>
                     <div className="flex items-baseline text-black">
@@ -1119,10 +1119,10 @@ const Header = () => {
                         {" "}
                         {currentDateComponents.day}
                       </span>
-                      <span className="text-sm font-semibold">
+                      <span className="  font-semibold">
                         {months[currentDateComponents.month]}'
                       </span>
-                      <span className="text-sm font-semibold">
+                      <span className="  font-semibold">
                         {" "}
                         {currentDateComponents.year}
                       </span>
@@ -1233,7 +1233,7 @@ const Header = () => {
                     <div className="relative " ref={dropCoachandCheap}>
                       <button
                         onClick={() => handleDropdownToggle("cheapFlight")}
-                        className="flex items-center w-full  h-full px-3 py-2  md:p-0   justify-center gap-2 text-sm font-medium bg-blue-500 hover:bg-blue-600 text-white md:px-4 md:py-3 lg:py-[3px] rounded-md shadow-md transition-all duration-300"
+                        className="flex items-center w-full  h-full px-3 py-2  md:p-0   justify-center gap-2   font-medium bg-blue-500 hover:bg-blue-600 text-white md:px-4 md:py-3 lg:py-[3px] rounded-md shadow-md transition-all duration-300"
                         aria-expanded={
                           dropdowns.cheapFlight.isOpen ? "true" : "false"
                         }
@@ -1261,7 +1261,7 @@ const Header = () => {
                               }
                               className="flex items-center justify-start px-3 py-2 rounded-lg hover:bg-gray-100 cursor-pointer transition-all duration-200"
                             >
-                              <span className="text-sm font-semibold text-gray-800">
+                              <span className="  font-semibold text-gray-800">
                                 {airline.name}
                               </span>
                             </div>
@@ -1281,7 +1281,7 @@ const Header = () => {
                       className="w-5"
                       alt="Copy Code"
                     />
-                    <span className="text-sm font-bold">Web Check-In</span>
+                    <span className="  font-bold">Web Check-In</span>
                   </Link> */}
                 </ul>
               </nav>
@@ -1296,7 +1296,7 @@ const Header = () => {
                   className="w-5"
                   alt="Copy Code"
                 />
-                <span className="text-sm font-bold">Web Check-In</span>
+                <span className="  font-bold">Web Check-In</span>
               </Link> */}
             </div>
           </div>
