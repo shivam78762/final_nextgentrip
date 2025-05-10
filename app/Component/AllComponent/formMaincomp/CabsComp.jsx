@@ -1,78 +1,130 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
-import { getCabCityApi } from "../../Store/slices/cabSearchSlice"; // Update to cab-specific slice
+import { getCabCityApi } from "../../Store/slices/cabSearchSlice";
 import { Calendar } from "@nextui-org/react";
 import { today, getLocalTimeZone } from "@internationalized/date";
 import { useRouter } from "next/navigation";
 import Navbar from "../Navbar";
-import { MdOutlineMeetingRoom } from "react-icons/md";
-import { FaCalendarWeek, FaChevronDown, FaCalendarAlt, FaUserLarge } from "react-icons/fa";
 import { IoLocationSharp } from "react-icons/io5";
-import { RxCross2 } from "react-icons/rx";
+import { FaCalendarAlt } from "react-icons/fa";
 import TypeWriterHeaderEffect from "../TypeWriterHeaderEffect";
-import MiniNav from "../MiniNav";
+import { getDestinationSearchData, setSearchParams } from "../../Store/slices/destinationSearchSlice";
+// Language enumeration mapping
+const languageMap = {
+  NotSpecified: 0,
+  Arabic: 1,
+  Cantonese: 2,
+  Danish: 3,
+  English: 4,
+  French: 5,
+  German: 6,
+  Hebrew: 7,
+  Italian: 8,
+  Japanese: 9,
+  Korean: 10,
+  Mandarin: 11,
+  Portuguese: 12,
+  Russian: 13,
+  Spanish: 14,
+};
 
 const CabComp = () => {
   const [selected, setSelected] = useState("");
   const defaultStore = JSON.parse(localStorage.getItem("cabSearch")) || {};
   const [loading, setLoading] = useState(true);
   const [isVisible, setIsVisible] = useState(false);
+  const [endUserIp, setEndUserIp] = useState(defaultStore.endUserIp || "");
+const [searchType, setSearchType] = useState(defaultStore.searchType || "1");
 
   // State for cab-specific fields
   const [pickup, setPickup] = useState(
     defaultStore.pickup || {
       CityId: 1234,
       CityName: "Hyderabad",
-      PickUpCode: "HYD",
-      PickUpPointCode: "HYD-AIRPORT",
+      PickUpCode: 1, 
+      PickUpPointCode: "HYD",
     }
   );
   const [dropoff, setDropoff] = useState(
     defaultStore.dropoff || {
       CityId: 5678,
       CityName: "Bengaluru",
-      DropOffCode: "BLR",
-      DropOffPointCode: "BLR-AIRPORT",
+      DropOffCode: 1, 
+      DropOffPointCode: "BLR",
     }
   );
   const [transferDate, setTransferDate] = useState(
-    (defaultStore.transferDate && new Date(defaultStore.transferDate)) || new Date(Date.now())
+    (defaultStore.transferDate && new Date(defaultStore.transferDate)) || new Date()
   );
-  const [transferTime, setTransferTime] = useState(defaultStore.transferTime || "10:00");
+  const [transferTime, setTransferTime] = useState(defaultStore.transferTime || "1000"); // hhmm format
   const [adultCount, setAdultCount] = useState(defaultStore.adultCount || 1);
-  const [preferredLanguage, setPreferredLanguage] = useState(defaultStore.preferredLanguage || "EN");
-  const [alternateLanguage, setAlternateLanguage] = useState(defaultStore.alternateLanguage || "ES");
-  const [preferredCurrency, setPreferredCurrency] = useState(defaultStore.preferredCurrency || "USD");
+  const [preferredLanguage, setPreferredLanguage] = useState(
+    defaultStore.preferredLanguage || 4 // English
+  );
+  const [alternateLanguage, setAlternateLanguage] = useState(
+    defaultStore.alternateLanguage || 0 // NotSpecified
+  );
   const [countryCode, setCountryCode] = useState(defaultStore.countryCode || "IN");
+  const [tokenId, setTokenId] = useState(defaultStore.tokenId || "SAMPLE_TOKEN"); // Replace with actual token
 
   const localTimeZone = getLocalTimeZone();
   const currentDate = today(localTimeZone);
   const router = useRouter();
   const dispatch = useDispatch();
 
-  // Fetch cab cities on mount
+
+useEffect(() => {
+    setLoading(true);
+    dispatch(setSearchParams({ searchType, countryCode }));
+    dispatch(getDestinationSearchData({ searchType, countryCode }))
+      .unwrap()
+      .catch((error) => console.error("Failed to fetch destinations:", error))
+      .finally(() => setLoading(false));
+  }, [dispatch, searchType, countryCode]);
+
+  // Fetch IP address
+  useEffect(() => {
+    if (!endUserIp) {
+      fetch("https://api.ipify.org?format=json")
+        .then((res) => res.json())
+        .then((data) => setEndUserIp(data.ip))
+        .catch((err) => console.error("Failed to fetch IP:", err));
+    }
+  }, [endUserIp]);
+
+  // Fetch cab cities
   useEffect(() => {
     setLoading(true);
     dispatch(getCabCityApi())
       .unwrap()
-      .catch((error) => {
-        console.error("Failed to fetch cab cities:", error);
-      })
+      .catch((error) => console.error("Failed to fetch cab cities:", error))
       .finally(() => setLoading(false));
   }, [dispatch]);
 
-  // // Handle date selection
+  // Handle date selection
   const handleRangeChange = (newRange) => {
-    const date = new Date(newRange.year, newRange.month - 1, newRange.day + 1);
+    const date = new Date(newRange.year, newRange.month - 1, newRange.day);
     setTransferDate(date);
     setSelected("");
   };
 
+  // Format time to hhmm
+  const formatTime = (time) => {
+    return time.replace(":", "");
+  };
+
   // Handle search
   const handleSearch = () => {
-    // Basic validation
+    // Validation
+    if (!endUserIp) {
+      alert("End user IP is required.");
+      return;
+    }
+    if (!tokenId) {
+      alert("Token ID is required.");
+      return;
+    }
     if (pickup.CityId === dropoff.CityId) {
       alert("Pickup and dropoff locations cannot be the same.");
       return;
@@ -81,23 +133,44 @@ const CabComp = () => {
       alert("Transfer date must be in the future.");
       return;
     }
+    if (!transferTime.match(/^\d{4}$/)) {
+      alert("Transfer time must be in hhmm format (e.g., 1030).");
+      return;
+    }
 
     const searchData = {
+      endUserIp,
+      tokenId,
+      countryCode,
       pickup,
       dropoff,
-      transferDate,
+      transferDate: transferDate.toISOString().split("T")[0],
       transferTime,
       adultCount,
       preferredLanguage,
       alternateLanguage,
-      preferredCurrency,
-      countryCode,
+      preferredCurrency: "INR", // Fixed as per docs
     };
     localStorage.setItem("cabSearch", JSON.stringify(searchData));
-    const newDate = transferDate.toISOString().split("T")[0];
-    router.push(
-    `/cabs?TransferDate=${newDate}&TransferTime=${transferTime}&PickUpCode=${pickup.PickUpCode}&PickUpPointCode=${pickup.PickUpPointCode}&DropOffCode=${dropoff.DropOffCode}&DropOffPointCode=${dropoff.DropOffPointCode}&CityId=${pickup.CityId}&CountryCode=${countryCode}&AdultCount=${adultCount}&PreferredLanguage=${preferredLanguage}&AlternateLanguage=${alternateLanguage}&PreferredCurrency=${preferredCurrency}&IsBaseCurrencyRequired=false`
-    );
+
+    const queryParams = new URLSearchParams({
+      EndUserIp: endUserIp,
+      TokenId: tokenId,
+      CountryCode: countryCode,
+      CityId: pickup.CityId,
+      PickUpCode: pickup.PickUpCode,
+      DropOffCode: dropoff.DropOffCode,
+      PickUpPointCode: pickup.PickUpPointCode,
+      DropOffPointCode: dropoff.DropOffPointCode,
+      TransferDate: transferDate.toISOString().split("T")[0],
+      TransferTime: transferTime,
+      AdultCount: adultCount,
+      PreferredLanguage: preferredLanguage,
+      AlternateLanguage: alternateLanguage,
+      PreferredCurrency: "INR",
+    }).toString();
+
+    router.push(`/cabs?${queryParams}`);
   };
 
   // Handle pickup and dropoff selection
@@ -120,8 +193,21 @@ const CabComp = () => {
           <Navbar />
         </div>
         <div className="px-4 border-b-2 shadow-sm space-y-1 py-3">
-          <div className="tabs FromDateDeapt grid lg:grid-cols-7 gap-4">
-      
+          <div className="tabs FromDateDeapt grid  items-center lg:grid-cols-8 gap-4">
+     
+
+            <div className="relative ">
+              <select
+                value={searchType}
+                onChange={(e) => setSearchType(e.target.value)}
+                className="w-full px-3 py-1 border-2 border-slate-200 rounded-md text-black"
+              >
+                <option value="1">City</option>
+                <option value="2">Hotel</option>
+              </select>
+            </div>
+
+
             <div className="relative">
               <div
                 onClick={() => setSelected("pickup")}
@@ -134,11 +220,11 @@ const CabComp = () => {
                 </div>
               </div>
               {selected === "pickup" && (
-                <SearchComponents type={selected} handelcity={handlePickup} />
+                <SearchComponents type={selected} handelcity={handlePickup} searchType={searchType} />
               )}
             </div>
 
-
+            {/* Dropoff */}
             <div className="relative">
               <div
                 onClick={() => setSelected("dropoff")}
@@ -150,9 +236,9 @@ const CabComp = () => {
                   <span className="text-sm text-gray-500">{dropoff.DropOffPointCode}</span>
                 </div>
               </div>
-             {selected === "dropoff" && (
-                <SearchComponents type={selected} handelcity={handleDropoff} />
-              )} 
+            {selected === "dropoff" && (
+                <SearchComponents type={selected} handelcity={handleDropoff} searchType={searchType} />
+              )}
             </div>
 
    
@@ -161,7 +247,7 @@ const CabComp = () => {
                 onClick={() => setSelected("date")}
                 className="flex items-center cursor-pointer gap-2 px-3 py-1 border-2 text-black border-slate-200 rounded-md"
               >
-                <FaCalendarAlt className="" />
+                <FaCalendarAlt />
                 <div className="text-slate-400">
                   <div className="flex items-baseline text-black">
                     <span className="text-3xl py-1 pr-1 text-black font-bold">{transferDate.getDate()}</span>
@@ -176,7 +262,6 @@ const CabComp = () => {
                 <div className="bg-white text-black p-5 shadow-2xl absolute top-full left-0 mt-2 z-10">
                   <Calendar
                     aria-label="Select a date"
-                    value={""}
                     onChange={handleRangeChange}
                     minValue={currentDate}
                   />
@@ -184,23 +269,22 @@ const CabComp = () => {
               )}
             </div>
 
-  
+            {/* Transfer Time */}
             <div className="relative">
               <input
                 type="time"
-                value={transferTime}
-                onChange={(e) => setTransferTime(e.target.value)}
+                value={transferTime.match(/(\d{2})(\d{2})/)?.[1] + ":" + transferTime.match(/(\d{2})(\d{2})/)?.[2] || transferTime}
+                onChange={(e) => setTransferTime(formatTime(e.target.value))}
                 className="w-full px-3 py-1 border-2 border-slate-200 rounded-md text-black"
               />
             </div>
 
-
+            {/* Adult Count */}
             <div className="relative">
               <div
                 onClick={() => setIsVisible(!isVisible)}
                 className="flex items-center cursor-pointer gap-2 px-3 py-1 border-2 text-black border-slate-200 rounded-md"
               >
-                
                 <div className="text-slate-400">
                   <div className="flex items-baseline text-black">
                     <span className="text-xl py-1 pr-1 text-black font-bold">{adultCount}</span>
@@ -234,23 +318,25 @@ const CabComp = () => {
               )}
             </div>
 
-
+            {/* Preferred Language */}
             <div className="relative">
               <select
                 value={preferredLanguage}
-                onChange={(e) => setPreferredLanguage(e.target.value)}
+                onChange={(e) => setPreferredLanguage(Number(e.target.value))}
                 className="w-full px-3 py-1 border-2 border-slate-200 rounded-md text-black"
               >
-                <option value="EN">English</option>
-                <option value="ES">Spanish</option>
-                <option value="FR">French</option>
+                {Object.entries(languageMap).map(([lang, value]) => (
+                  <option key={value} value={value}>
+                    {lang}
+                  </option>
+                ))}
               </select>
             </div>
 
-
+            {/* Search Button */}
             <div className="flex justify-center items-center">
               <button
-               
+                onClick={handleSearch}
                 className="bg-[#0A5EB0] w-full md:w-fit py-2 px-3 font-semibold text-lg rounded-md text-white"
               >
                 Search Cab
@@ -263,24 +349,20 @@ const CabComp = () => {
   );
 };
 
-const SearchComponents = ({ type, handelcity }) => {
+const SearchComponents = ({ type, handelcity, searchType }) => {
   const [searchParam, setSearchParam] = useState("");
-  const state = useSelector((state) => state.cabSearchSlice); // Update to cab-specific slice
-  const [loading, setLoading] = useState(true);
-  const [cabData, setCabData] = useState([]);
+  const { destinations, loading } = useSelector((state) => state.destinationSearch);
 
-  useEffect(() => {
-    setLoading(true);
-    setCabData(state?.info?.CabCities || []);
-    setLoading(false);
-  }, [state]);
+  console.log("Destinations:", destinations);
 
-  useEffect(() => {
-    const newArray = state?.info?.CabCities?.filter((item) =>
-      item.CityName.toLowerCase().includes(searchParam.toLowerCase())
-    );
-    setCabData(newArray || []);
-  }, [searchParam, state]);
+  const filteredDestinations = destinations.filter((item) =>
+    item.CityName.toLowerCase().includes(searchParam.toLowerCase())
+  );
+
+  // Map Type to PickUpCode/DropOffCode
+  const mapTypeToCode = (type) => {
+    return type === 1 ? 1 : 0; // City → Airport (1), Hotel → Accommodation (0)
+  };
 
   return (
     <div className="absolute top-full bg-white w-full z-30 shadow-md rounded-md mt-1">
@@ -288,7 +370,7 @@ const SearchComponents = ({ type, handelcity }) => {
         type="text"
         value={searchParam}
         className="w-full text-black px-3 py-2 border-b outline-none"
-        placeholder={`Search ${type === "pickup" ? "pickup" : "dropoff"} city...`}
+        placeholder={`Search ${type === "pickup" ? "pickup" : "dropoff"} ${searchType === "1" ? "city" : "hotel"}...`}
         onChange={(e) => setSearchParam(e.target.value)}
       />
       <div className="max-h-60 overflow-y-scroll custom-scroll">
@@ -299,21 +381,22 @@ const SearchComponents = ({ type, handelcity }) => {
             </div>
           ))
         ) : (
-          cabData?.map((item, idx) => (
+          filteredDestinations.map((item) => (
             <p
-              key={idx}
+              key={item.DestinationId}
               className="border-b px-3 py-2 cursor-pointer hover:bg-gray-100 transition-all"
               onClick={() => {
                 handelcity({
-                  CityId: item.CityId,
+                  CityId: item.DestinationId.toString(), // Convert to string as per validation
                   CityName: item.CityName,
-                  [type === "pickup" ? "PickUpCode" : "DropOffCode"]: item.Code,
-                  [type === "pickup" ? "PickUpPointCode" : "DropOffPointCode"]: item.PointCode,
+                  [type === "pickup" ? "PickUpCode" : "DropOffCode"]: mapTypeToCode(item.Type),
+                  [type === "pickup" ? "PickUpPointCode" : "DropOffPointCode"]:
+                    item.CityName.slice(0, 3).toUpperCase(), // Derive code (e.g., DEL for Delhi)
                 });
                 setSearchParam("");
               }}
             >
-              {item.CityName} ({item.PointCode})
+              {item.CityName} ({item.CityName.slice(0, 3).toUpperCase()})
             </p>
           ))
         )}

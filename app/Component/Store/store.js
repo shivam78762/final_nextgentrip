@@ -24,6 +24,9 @@ import insuranceSlice from "./slices/insuranceSearchSlice"
 import calendarSlice from './slices/calenderData'
 import currencySlice from "./slices/currencySlice"
 import cabSearchReducer from "./slices/cabSearchSlice";
+
+import destinationSearchReducer from './slices/destinationSearchSlice';
+
 import  SliderSlice  from "./slices/SliderSlice";
 export const store = configureStore({
   reducer: { searchFlightslice, Allairport, topPortsSlice, blogslice, ipslice, searchreturn,advanceSearchFlight,
@@ -36,6 +39,7 @@ export const store = configureStore({
     calendar:calendarSlice,
     sliderData:SliderSlice,
     cabSearchSlice: cabSearchReducer,
+    destinationSearch: destinationSearchReducer,
 
   },
 });
