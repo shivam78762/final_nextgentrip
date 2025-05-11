@@ -157,6 +157,7 @@ const Page = ({ setActiveTab,fdatas, price }) => {
     return Object.keys(newErrors).length === 0; // Return true if no errors
   };
 
+  console.log('fdatas',fdatas)
 
   const now = new Date(Date.now())
 const  addate = new Date(fdatas?.addat);
@@ -229,144 +230,164 @@ const differenceInMinutes = (now - addate) / (1000 * 60);
     setPassengers([...passengers, newTraveler]);
   };
 
-  const handlebook = async (e) => {
-    e.preventDefault();
-  
-    const isValid = validateAllForms();
-  
-    if (!isValid) {
-      alert("Please fill out all required fields and fix the errors before submitting.");
+const handlebook = async (e) => {
+  e.preventDefault();
+
+  const isValid = validateAllForms();
+
+  if (!isValid) {
+    alert("Please fill out all required fields and fix the errors before submitting.");
+    return;
+  }
+
+  setIsLoading(true);
+
+  try {
+    // Step 1: Prepare booking payload
+    const fareBreakdown = fdatas?.data?.FareBreakdown;
+    const payload = {
+      ResultIndex: fdatas?.ResultIndex,
+      EndUserIp: fdatas?.ip,
+      TraceId: fdatas?.traceid,
+      fFareBreakdown: fareBreakdown,
+      email: userInfo.email,
+      user_id: userInfo.id,
+      Passengers: passengers.map((passenger) => {
+        const passengerFare = fareBreakdown.find(
+          (fare) => fare.PassengerType === passenger.PaxType
+        );
+
+        const baseFarePerPassenger = passengerFare?.BaseFare / passengerFare?.PassengerCount;
+        const taxPerPassenger = passengerFare?.Tax / passengerFare?.PassengerCount;
+
+        return {
+          Title: passenger.Title,
+          FirstName: passenger.FirstName,
+          LastName: passenger.LastName,
+          PaxType: passenger.PaxType,
+          DateOfBirth: passenger.DateOfBirth,
+          Gender: parseInt(passenger.Gender, 10),
+          PassportNo: passenger.PassportNo,
+          PassportExpiry: passenger.PassportExpiry,
+          AddressLine1: passenger.AddressLine1,
+          City: passenger.City,
+          CellCountryCode: passenger.CountryCode,
+          CountryCode: "IN",
+          ContactNo: passenger.ContactNo,
+          Email: passenger.Email,
+          IsLeadPax: passenger.IsLeadPax,
+          Fare: {
+            Currency: passengerFare?.Currency,
+            BaseFare: baseFarePerPassenger,
+            Tax: taxPerPassenger,
+            YQTax: passengerFare?.YQTax,
+            AdditionalTxnFeePub: fdatas?.data?.Fare.AdditionalTxnFeePub,
+            AdditionalTxnFeeOfrd: fdatas?.data?.Fare.AdditionalTxnFeeOfrd,
+            OtherCharges: fdatas?.data?.Fare.OtherCharges,
+            Discount: fdatas?.data?.Fare.Discount,
+            PublishedFare: fdatas?.data?.Fare.PublishedFare,
+            OfferedFare: fdatas?.data?.Fare.OfferedFare,
+            TdsOnCommission: fdatas?.data?.Fare.TdsOnCommission,
+            TdsOnPLB: fdatas?.data?.Fare.TdsOnPLB,
+            TdsOnIncentive: fdatas?.data?.Fare.TdsOnIncentive,
+            ServiceFee: fdatas?.data?.Fare.ServiceFee,
+          },
+        };
+      }),
+    };
+
+    // Step 2: Call booking API
+    const checkOutFlightDetail = JSON.parse(localStorage.getItem("checkOutFlightDetail"));
+    const isLCC = checkOutFlightDetail?.IsLCC === true;
+    const apiEndpoint = isLCC
+      ? `${apilink}/flight-book-llc`
+      : `${apilink}/flight-book`;
+
+    const bookingResponse = await axios.post(apiEndpoint, payload);
+
+    console.log("Booking Response:", bookingResponse);
+
+    if (bookingResponse.data?.status !== "success") {
+      handleBookingError(bookingResponse.data);
       return;
     }
-  
-    setIsLoading(true);
-  
-    try {
-      // Calculate amount in paise (INR * 100)
-      const amount = fdatas?.data?.Fare?.OfferedFare * 100;
-  
-      // Call Laravel backend to create Razorpay order
-      const orderResponse = await axios.post(`${apilink}/create-razorpay-order`, {
-        amount: amount,
-        currency: "INR",
-        receipt: `receipt_${Date.now()}`,
-        user_email: userInfo.email,
-        user_name: userInfo.name,
-        user_phone: '7988532993',
 
+    // Step 3: Booking successful, proceed to payment
+    const pnr = bookingResponse.data.data.Response.PNR;
+    const amount = fdatas?.data?.Fare?.OfferedFare * 100;
 
+    // Call Laravel backend to create Razorpay order
+    const orderResponse = await axios.post(`${apilink}/create-razorpay-order`, {
+      amount: amount,
+      currency: "INR",
+      receipt: `receipt_${Date.now()}`,
+      user_email: userInfo.email,
+      user_name: userInfo.name,
+      user_phone: "7988532993",
+    });
 
-      });
-  
-      const { order_id } = orderResponse.data;
-  
-      const options = {
-        key: 'rzp_test_Bi57EMsQ6K7ZZH', 
-        amount: amount,
-        currency: "INR",
-        name: "Your Company",
-        description: "Flight Booking Payment",
-    
-        order_id: order_id,
-        handler: async (response) => {
-          // Payment successful — now call your existing booking API
-  
-          const fareBreakdown = fdatas?.data?.FareBreakdown;
-  
-          const payload = {
-            ResultIndex: fdatas?.ResultIndex,
-            EndUserIp: fdatas?.ip,
-            TraceId: fdatas?.traceid,
-            fFareBreakdown: fareBreakdown,
-            email: userInfo.email,
+    const { order_id } = orderResponse.data;
+
+    const options = {
+      key: "rzp_test_Bi57EMsQ6K7ZZH",
+      amount: amount,
+      currency: "INR",
+      name: "Your Company",
+      description: "Flight Booking Payment",
+      order_id: order_id,
+      handler: async (response) => {
+        try {
+          // Step 4: Payment successful, update booking with payment details (if needed)
+          const paymentUpdateResponse = await axios.post(`${apilink}/update-payment`, {
+            pnr: pnr,
+            razorpay_payment_id: response.razorpay_payment_id,
+            order_id: order_id,
             user_id: userInfo.id,
-            razorpay_payment_id: response.razorpay_payment_id, 
-            Passengers: passengers.map((passenger) => {
-              const passengerFare = fareBreakdown.find(
-                (fare) => fare.PassengerType === passenger.PaxType
-              );
-  
-              const baseFarePerPassenger = passengerFare?.BaseFare / passengerFare?.PassengerCount;
-              const taxPerPassenger = passengerFare?.Tax / passengerFare?.PassengerCount;
-  
-              return {
-                Title: passenger.Title,
-                FirstName: passenger.FirstName,
-                LastName: passenger.LastName,
-                PaxType: passenger.PaxType,
-                DateOfBirth: passenger.DateOfBirth,
-                Gender: parseInt(passenger.Gender, 10),
-                PassportNo: passenger.PassportNo,
-                PassportExpiry: passenger.PassportExpiry,
-                AddressLine1: passenger.AddressLine1,
-                City: passenger.City,
-                CellCountryCode: passenger.CountryCode,
-                CountryCode: "IN",
-                ContactNo: passenger.ContactNo,
-                Email: passenger.Email,
-                IsLeadPax: passenger.IsLeadPax,
-                Fare: {
-                  Currency: passengerFare?.Currency,
-                  BaseFare: baseFarePerPassenger,
-                  Tax: taxPerPassenger,
-                  YQTax: passengerFare?.YQTax,
-                  AdditionalTxnFeePub: fdatas?.data?.Fare.AdditionalTxnFeePub,
-                  AdditionalTxnFeeOfrd: fdatas?.data?.Fare.AdditionalTxnFeeOfrd,
-                  OtherCharges: fdatas?.data?.Fare.OtherCharges,
-                  Discount: fdatas?.data?.Fare.Discount,
-                  PublishedFare: fdatas?.data?.Fare.PublishedFare,
-                  OfferedFare: fdatas?.data?.Fare.OfferedFare,
-                  TdsOnCommission: fdatas?.data?.Fare.TdsOnCommission,
-                  TdsOnPLB: fdatas?.data?.Fare.TdsOnPLB,
-                  TdsOnIncentive: fdatas?.data?.Fare.TdsOnIncentive,
-                  ServiceFee: fdatas?.data?.Fare.ServiceFee,
-                },
-              };
-            }),
-          };
-  
-          const checkOutFlightDetail = JSON.parse(localStorage.getItem("checkOutFlightDetail"));
-          const isLCC = checkOutFlightDetail?.IsLCC === true;
-          const apiEndpoint = isLCC
-            ? `${apilink}/flight-book-llc`
-            : `${apilink}/flight-book`;
-  
-          const bookingResponse = await axios.post(apiEndpoint, payload);
-  
-          if (bookingResponse.data?.status === "success") {
+          });
+
+
+          if (paymentUpdateResponse.data?.status === "success") {
             Swal.fire({
               icon: "success",
-              title: "Booking Successful",
-              text: `Your flight has been booked! PNR: ${bookingResponse.data.data.Response.PNR}`,
+              title: "Booking and Payment Successful",
+              text: `Your flight has been booked! PNR: ${pnr}`,
               confirmButtonText: "OK",
             });
           } else {
-            handleBookingError(bookingResponse.data);
+            throw new Error("Failed to update payment details");
           }
-        },
-        prefill: {
-          name: 'Manshu',
-          email: 'manshu.developer@gmail.com',
-          contact: passengers[0]?.ContactNo || "",
-        },
-        theme: {
-          color: "#DA5200",
-        },
-      };
-  
-      const razorpay = new window.Razorpay(options);
-      razorpay.open();
-    } catch (error) {
-      console.error("Error during payment:", error);
-      Swal.fire({
-        icon: "error",
-        title: "Payment Failed",
-        text: error?.response?.data?.message || "Something went wrong",
-      });
-    } finally {
-      setIsLoading(false);
-    }
-  };
+        } catch (error) {
+          console.error("Error updating payment:", error);
+          Swal.fire({
+            icon: "error",
+            title: "Payment Recorded, Booking Issue",
+            text: "Payment was successful, but there was an issue updating the booking. Please contact support with PNR: " + pnr,
+          });
+        }
+      },
+      prefill: {
+        name: "Manshu",
+        email: "manshu.developer@gmail.com",
+        contact: passengers[0]?.ContactNo || "",
+      },
+      theme: {
+        color: "#0083da",
+      },
+    };
+
+    const razorpay = new window.Razorpay(options);
+    razorpay.open();
+  } catch (error) {
+    console.error("Error during booking or payment:", error);
+    Swal.fire({
+      icon: "error",
+      title: "Operation Failed",
+      text: error?.response?.data?.message || "Something went wrong",
+    });
+  } finally {
+    setIsLoading(false);
+  }
+};
 
   
   const handleBookingError = (data) => {

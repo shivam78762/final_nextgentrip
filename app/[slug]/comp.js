@@ -1120,7 +1120,7 @@ const comp = ({ slug }) => {
                                       </div>
                                     ) : (
                                       <>
-                                        <span className="hidden md:inline">VIEW</span> PRICES
+                                        <span className="hidden md:inline">MM</span> PRICES
                                       </>
                                     )}
                                   </button>}
@@ -1159,7 +1159,7 @@ const comp = ({ slug }) => {
                                       </div>
                                     ) : (
                                       <>
-                                        <span className="hidden md:inline">VIEW</span> PRICES
+                                        <span className="hidden md:inline"> View </span> PRICES
                                       </>
                                     )}
                                   </button>
@@ -1841,7 +1841,7 @@ const comp = ({ slug }) => {
                                         </div>
                                       ) : (
                                         <>
-                                          <span className="hidden md:inline">VIEW</span> PRICES
+                                          <span className="hidden md:inline"> View</span> PRICES
                                         </>
                                       )}
                                     </button>
