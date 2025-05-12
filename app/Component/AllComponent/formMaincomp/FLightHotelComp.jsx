@@ -215,7 +215,7 @@ const FLightHotelComp = () => {
                     Travel Date
                     </label>
                     <div className="flex items-baseline text-black">
-                      <span className="text-3xl py-1 pr-1 text-black font-bold">
+                      <span className="text-2xl py-1 pr-1 text-black font-bold">
                         {" "}
                         {currentDateComponents.day}
                       </span>
@@ -226,7 +226,7 @@ const FLightHotelComp = () => {
                         {" "}
                         {currentDateComponents.year}
                       </span>
-                      <FaCalendarWeek className="text-[#d3cfcf] ml-5 text-xl" />
+                      <FaCalendarWeek className="text-[#d3cfcf] ml-2 text-xl" />
                     </div>
                     <p className="text-black text-xs">
                       {currentDateComponents.dayOfWeek}
@@ -237,7 +237,7 @@ const FLightHotelComp = () => {
                       Return Date
                     </label>
                     <div className="flex items-baseline text-black">
-                      <span className="text-3xl py-1 pr-1 text-black font-bold">
+                      <span className="text-2xl py-1 pr-1 text-black font-bold">
                         {" "}
                         {futureDateComponents.day}
                       </span>
@@ -248,7 +248,7 @@ const FLightHotelComp = () => {
                       <span className="text-sm font-semibold">
                         {futureDateComponents.year}
                       </span>
-                      <FaCalendarWeek className="text-[#d3cfcf] ml-5 text-xl" />
+                      <FaCalendarWeek className="text-[#d3cfcf] ml-2 text-xl" />
                     </div>
                     <p className="text-black text-xs">
                       {futureDateComponents.dayOfWeek}
@@ -262,7 +262,7 @@ const FLightHotelComp = () => {
                       Travelers
                     </label>
                     <div className="flex items-center text-black">
-                      <span className="text-3xl py-1 pr-1 text-black font-bold">
+                      <span className="text-2xl py-1 pr-1 text-black font-bold">
                         1
                       </span>
                       <span className="text-sm font-semibold flex items-center gap-1">
@@ -344,7 +344,7 @@ const FLightHotelComp = () => {
                     Departure Date
                   </label>
                   <div className="flex items-baseline text-black">
-                    <span className="text-3xl py-1 pr-1 text-black font-bold">
+                    <span className="text-2xl py-1 pr-1 text-black font-bold">
                       {" "}
                       {currentDateComponents.day}
                     </span>
@@ -355,7 +355,7 @@ const FLightHotelComp = () => {
                       {" "}
                       {currentDateComponents.year}
                     </span>
-                    <FaCalendarWeek className="text-[#d3cfcf] ml-5 text-xl" />
+                    <FaCalendarWeek className="text-[#d3cfcf] ml-2 text-xl" />
                   </div>
                   <p className="text-black text-xs">
                     {currentDateComponents.dayOfWeek}
@@ -366,7 +366,7 @@ const FLightHotelComp = () => {
                     Return Date
                   </label>
                   <div className="flex items-baseline text-black">
-                    <span className="text-3xl py-1 pr-1 text-black font-bold">
+                    <span className="text-2xl py-1 pr-1 text-black font-bold">
                       {" "}
                       {futureDateComponents.day}
                     </span>
@@ -377,7 +377,7 @@ const FLightHotelComp = () => {
                     <span className="text-sm font-semibold">
                       {futureDateComponents.year}
                     </span>
-                    <FaCalendarWeek className="text-[#d3cfcf] ml-5 text-xl" />
+                    <FaCalendarWeek className="text-[#d3cfcf] ml-2 text-xl" />
                   </div>
                   <p className="text-black text-xs">
                     {futureDateComponents.dayOfWeek}

@@ -167,7 +167,7 @@ onChange={(e)=>handleInputChange(e.target.value)}
                     {" "}
                     {toDate.getFullYear()}
                   </span>
-                  <FaCalendarWeek className="text-[#d3cfcf] ml-5 text-xl" />
+                  <FaCalendarWeek className="text-[#d3cfcf] ml-2 text-xl" />
                 </div>
                 <p className="text-black text-xs">In</p>
               </>
@@ -216,7 +216,7 @@ onChange={(e)=>handleInputChange(e.target.value)}
                     {" "}
                     {fromDate.getFullYear()}
                   </span>
-                  <FaCalendarWeek className="text-[#d3cfcf] ml-5 text-xl" />
+                  <FaCalendarWeek className="text-[#d3cfcf] ml-2 text-xl" />
                 </div>
                 <p className="text-black text-xs"> Out</p>
               </>

@@ -138,7 +138,7 @@ const Hotelmobileheader = () => {
               Check-In
             </label>
             <div className="flex items-baseline text-black">
-              <span className="text-3xl py-1 pr-1 text-black font-bold">
+              <span className="text-2xl py-1 pr-1 text-black font-bold">
                 {" "}
                 {arivitime.getDate()}
               </span>
@@ -151,7 +151,7 @@ const Hotelmobileheader = () => {
                 {" "}
                 {arivitime.getFullYear()}
               </span>
-              <FaCalendarWeek className="text-[#d3cfcf] ml-5 text-xl" />
+              <FaCalendarWeek className="text-[#d3cfcf] ml-2 text-xl" />
             </div>
             </div>
           {isVisible=="date"  &&  <div className="bg-white text-black p-5 shadow-2xl absolute top-full left-0 mt-2 z-50 ">
@@ -178,7 +178,7 @@ const Hotelmobileheader = () => {
               Check-Out
             </label>
             <div className="flex items-baseline text-black">
-              <span className="text-3xl py-1 pr-1 text-black font-bold">
+              <span className="text-2xl py-1 pr-1 text-black font-bold">
                 {" "}
                 {checkOut ? checkOut.getDate():currentDate.day}
               </span>
@@ -191,7 +191,7 @@ const Hotelmobileheader = () => {
               <span className="text-sm font-semibold">
               {checkOut ? checkOut.getFullYear():currentDate.year}
               </span>
-              <FaCalendarWeek className="text-[#d3cfcf] ml-5 text-xl" />
+              <FaCalendarWeek className="text-[#d3cfcf] ml-2 text-xl" />
             </div>
             
           </div>

@@ -715,7 +715,7 @@ const Header = () => {
                       {selected && (
                         <>
                           <div className="flex  items-baseline text-black">
-                            <span className="text-3xl py-1 pr-1 text-black font-bold">
+                            <span className="text-2xl py-1 pr-1 text-black font-bold">
                               {" "}
                               {selected.getDate()}
                             </span>
@@ -729,7 +729,7 @@ const Header = () => {
                               {" "}
                               {selected.getFullYear()}
                             </span>
-                            <FaCalendarWeek className="text-[#d3cfcf] ml-5 text-xl" />
+                            <FaCalendarWeek className="text-[#d3cfcf] ml-2 text-xl" />
                           </div>
                           <p className="text-black text-xs pb-2">
                             {selected.toLocaleDateString()}
@@ -772,7 +772,7 @@ const Header = () => {
                       {selectedReturn ? (
                         <>
                           <div className="flex items-baseline text-black">
-                            <span className="text-3xl py-1 pr-1 text-black font-bold">
+                            <span className="text-2xl py-1 pr-1 text-black font-bold">
                               {selectedReturn.getDate()}
                             </span>
                             <span className=" lg:  font-semibold">
@@ -787,7 +787,7 @@ const Header = () => {
                           </p>
                         </>
                       ) : (
-                        <div className="text-black font-bold">Select Return Date</div>
+                        <div className="text-black text-sm font-bold"> Return Date</div>
                       )}
                     </div>
                   </div>
@@ -901,7 +901,7 @@ const Header = () => {
                     </label>
 
                     <div className="flex items-baseline text-black">
-                      <span className="text-3xl py-1 pr-1 text-black font-bold">
+                      <span className="text-2xl py-1 pr-1 text-black font-bold">
                         {" "}
                         {currentDateComponents.day}
                       </span>
@@ -912,7 +912,7 @@ const Header = () => {
                         {" "}
                         {currentDateComponents.year}
                       </span>
-                      <FaCalendarWeek className="text-[#d3cfcf] ml-5 text-xl" />
+                      <FaCalendarWeek className="text-[#d3cfcf] ml-2 text-xl " />
                     </div>
                     <p className="text-black text-xs">
                       {currentDateComponents.dayOfWeek}
@@ -923,7 +923,7 @@ const Header = () => {
                       {t("Return Date")}
                     </label>
                     <div className="flex items-baseline text-black">
-                      <span className="text-3xl py-1 pr-1 text-black font-bold">
+                      <span className="text-2xl py-1 pr-1 text-black font-bold">
                         {" "}
                         {futureDateComponents.day}
                       </span>
@@ -934,7 +934,7 @@ const Header = () => {
                       <span className="  font-semibold">
                         {futureDateComponents.year}
                       </span>
-                      <FaCalendarWeek className="text-[#d3cfcf] ml-5 text-xl" />
+                      <FaCalendarWeek className="text-[#d3cfcf] ml-2 text-xl" />
                     </div>
                     <p className="text-black text-xs">
                       {futureDateComponents.dayOfWeek}
@@ -948,7 +948,7 @@ const Header = () => {
                       {t("Travelers")}
                     </label>
                     <div className="flex items-center text-black">
-                      <span className="text-3xl py-1 pr-1 text-black font-bold">
+                      <span className="text-2xl py-1 pr-1 text-black font-bold">
                         1
                       </span>
                       <span className="  font-semibold flex items-center gap-1">
@@ -1029,7 +1029,7 @@ const Header = () => {
                       {t("Departure Date")}
                     </label>
                     <div className="flex items-baseline text-black">
-                      <span className="text-3xl py-1 pr-1 text-black font-bold">
+                      <span className="text-2xl py-1 pr-1 text-black font-bold">
                         {" "}
                         {currentDateComponents.day}
                       </span>
@@ -1040,7 +1040,7 @@ const Header = () => {
                         {" "}
                         {currentDateComponents.year}
                       </span>
-                      <FaCalendarWeek className="text-[#d3cfcf] ml-5 text-xl" />
+                      <FaCalendarWeek className="text-[#d3cfcf] ml-2 text-xl" />
                     </div>
                     <p className="text-black text-xs">
                       {currentDateComponents.dayOfWeek}
@@ -1051,7 +1051,7 @@ const Header = () => {
                       {t("Travelers")}
                     </label>
                     <div className="flex items-center text-black">
-                      <span className="text-3xl py-1 pr-1 text-black font-bold">
+                      <span className="text-2xl py-1 pr-1 text-black font-bold">
                         1
                       </span>
                       <span className="  font-semibold flex items-center gap-1">
@@ -1115,7 +1115,7 @@ const Header = () => {
                       {t("Departure Date")}
                     </label>
                     <div className="flex items-baseline text-black">
-                      <span className="text-3xl py-1 pr-1 text-black font-bold">
+                      <span className="text-2xl py-1 pr-1 text-black font-bold">
                         {" "}
                         {currentDateComponents.day}
                       </span>
@@ -1126,7 +1126,7 @@ const Header = () => {
                         {" "}
                         {currentDateComponents.year}
                       </span>
-                      <FaCalendarWeek className="text-[#d3cfcf] ml-5 text-xl" />
+                      <FaCalendarWeek className="text-[#d3cfcf] ml-2 text-xl" />
                     </div>
                     <p className="text-black text-xs">
                       {currentDateComponents.dayOfWeek}

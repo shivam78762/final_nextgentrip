@@ -488,7 +488,7 @@ const comp = ({ slug }) => {
                   </h2>
 
                   <h3 className="text-xl font-semibold text-gray-700 mb-2">{flight.airline}</h3>
-                  <p className="text-sm text-gray-600 flex items-center mb-4">
+                  <p className="text-sm text-gray-600 flex flex-col lg:flex-row items-center mb-4">
                     <FaPlaneDeparture className="mr-2 text-blue-500" />
                     <strong>Departure:</strong>{" "}
                     {new Intl.DateTimeFormat("en-GB", {
@@ -498,7 +498,7 @@ const comp = ({ slug }) => {
                       hour: "2-digit",
                       minute: "2-digit",
                       hour12: false,
-                    }).format(new Date(flight.Destination.ArrTime))}{" "}
+                    }).format(new Date(flight?.Origin?.DepTime))}{" "}
                     | <FaPlaneArrival className="ml-4 mr-2 text-blue-500" />
                     <strong>Arrival:</strong>{" "}
                     {new Intl.DateTimeFormat("en-GB", {
@@ -508,7 +508,7 @@ const comp = ({ slug }) => {
                       hour: "2-digit",
                       minute: "2-digit",
                       hour12: false,
-                    }).format(new Date(flight.Origin.DepTime))}
+                    }).format(new Date(flight?.Destination?.ArrTime))}
                   </p>
 
                   <div className="mt-4 space-y-3">
@@ -997,6 +997,7 @@ const comp = ({ slug }) => {
                                         alt={`${info.Airline.AirlineName || "Default"
                                           } Logo`}
                                       />
+
                                       <div className="hidden sm:block ">
                                         <p className="font-bold text-black ">
                                           {info.Airline.AirlineName}
@@ -1005,6 +1006,9 @@ const comp = ({ slug }) => {
                                           {info.Airline.FlightNumber}
                                         </p>
                                       </div>
+
+                                      
+                                      
                                     </div>
 
                                     <div className="text-center">
@@ -1687,7 +1691,22 @@ const comp = ({ slug }) => {
                                         } Logo`}
                                     />
 
+                                  
+
+                                        <div className="">
+                                        <p className="font-bold text-black ">
+                                          {flight.Segments[0][0].Airline.AirlineName}
+                                          
+                                          {/* { console.log('flight.Airline',flight.Segments[0][0].Airline.AirlineName)} */}
+                                        </p>
+                                        <p className="text-black text-xs">
+                                          {flight.Segments[0][0].Airline.FlightNumber}
+                                        </p>
+                                      </div>
+
                                   </div>
+                                    
+
 
                                   <div className=" w-full flex md:hidden lg:hidden  ">
                                     <div className="text-center w-1/3 sm:w-auto">
@@ -1698,7 +1717,7 @@ const comp = ({ slug }) => {
                                       </p>
                                       <p className="text-black text-xs">
                                         {
-                                          flight.Segments[0][0].Destination
+                                          flight.Segments[0][0].Origin
                                             .Airport.CityName
                                         }
                                       </p>
@@ -1718,10 +1737,15 @@ const comp = ({ slug }) => {
                                             borderTop:
                                               "3px solid rgb(245, 166, 34)",
                                           }}
-                                        ></p>
+                                        >
+
+                                          
+
+
+                                        </p>
                                       </div>
                                       <p className="text-black text-xs mt-1">
-                                        {flight.stop}
+                                     
                                       </p>
                                     </div>
 
@@ -1730,6 +1754,13 @@ const comp = ({ slug }) => {
                                         {flight.Segments[0][0].Destination.ArrTime.split(
                                           "T"
                                         )[1].slice(0, 5)}
+                                      </p>
+
+                                       <p className="text-black text-xs">
+                                        {
+                                          flight.Segments[0][0].Destination
+                                            .Airport.CityName
+                                        }
                                       </p>
 
                                     </div>
@@ -1781,6 +1812,10 @@ const comp = ({ slug }) => {
                                         flight.Segments[0][0]?.Destination?.Airport
                                           .CityName
                                       }
+
+                                    </p>
+                                     <p className="text-black text-xs mt-1">
+                                      {flight.stop}
                                     </p>
                                   </div>
 

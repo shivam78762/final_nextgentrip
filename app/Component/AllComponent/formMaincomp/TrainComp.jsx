@@ -220,7 +220,7 @@ const TrainComp = () => {
                       Departure Date
                     </label>
                     <div className="flex items-baseline text-black">
-                      <span className="text-3xl py-1 pr-1 text-black font-bold">
+                      <span className="text-2xl py-1 pr-1 text-black font-bold">
                         {" "}
                         {currentDateComponents.day}
                       </span>
@@ -231,7 +231,7 @@ const TrainComp = () => {
                         {" "}
                         {currentDateComponents.year}
                       </span>
-                      <FaCalendarWeek className="text-[#d3cfcf] ml-5 text-xl" />
+                      <FaCalendarWeek className="text-[#d3cfcf] ml-2 text-xl" />
                     </div>
                     <p className="text-black text-xs">
                       {currentDateComponents.dayOfWeek}
@@ -340,7 +340,7 @@ const TrainComp = () => {
                       Train Start Date
                     </label>
                     <div className="flex items-baseline text-black">
-                      <span className="text-3xl py-1 pr-1 text-black font-bold">
+                      <span className="text-2xl py-1 pr-1 text-black font-bold">
                         {" "}
                         {currentDateComponents.day}
                       </span>
@@ -351,7 +351,7 @@ const TrainComp = () => {
                         {" "}
                         {currentDateComponents.year}
                       </span>
-                      <FaCalendarWeek className="text-[#d3cfcf] ml-5 text-xl" />
+                      <FaCalendarWeek className="text-[#d3cfcf] ml-2 text-xl" />
                     </div>
                     <p className="text-black text-xs">
                       {currentDateComponents.dayOfWeek}

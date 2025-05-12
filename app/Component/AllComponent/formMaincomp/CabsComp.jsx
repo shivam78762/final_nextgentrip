@@ -250,7 +250,7 @@ useEffect(() => {
                 <FaCalendarAlt />
                 <div className="text-slate-400">
                   <div className="flex items-baseline text-black">
-                    <span className="text-3xl py-1 pr-1 text-black font-bold">{transferDate.getDate()}</span>
+                    <span className="text-2xl py-1 pr-1 text-black font-bold">{transferDate.getDate()}</span>
                     <span className="text-sm font-semibold">
                       {transferDate.toLocaleString("en-US", { month: "short" })}'
                     </span>
