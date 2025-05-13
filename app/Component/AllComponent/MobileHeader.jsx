@@ -28,7 +28,7 @@ const MobileHeader = () => {
     continent: "AS",
     iso_country: "IN",
     iso_region: "IN-DL",
-    municipality: "New Delhi",
+    city: "New Delhi",
     scheduled_service: "yes",
     gps_code: "VIDP",
     iata_code: "DEL",
@@ -49,7 +49,7 @@ const MobileHeader = () => {
     continent: "AS",
     iso_country: "IN",
     iso_region: "IN-MM",
-    municipality: "Mumbai",
+    city: "Mumbai",
     scheduled_service: "yes",
     gps_code: "VABB",
     iata_code: "BOM",
@@ -81,8 +81,8 @@ const MobileHeader = () => {
   const [inputValue, setInputValue] = useState('');
 const [JourneyType,setjurnytype]=useState(0)
 
-   const [fromCity, setFromCity] = useState({municipality:"New Delhi",name:"Indira Gandhi International Airport",iata:"DEL"});
-  const [toCity, setToCity] = useState({municipality:"Mumbai",name:"Chhatrapati Shivaji International Airport",iata:"BOM"});
+   const [fromCity, setFromCity] = useState({city:"New Delhi",name:"Indira Gandhi International Airport",iata:"DEL"});
+  const [toCity, setToCity] = useState({city:"Mumbai",name:"Chhatrapati Shivaji International Airport",iata:"BOM"});
 const [searchport,setsearchport]=useState( {info:[],isLoading:false})
 
 
@@ -225,7 +225,7 @@ const [searchport,setsearchport]=useState( {info:[],isLoading:false})
                 onClick={() => openPopup("from")}
               >
                 <div className="text-sm font-light">From</div>
-                <span className="text-xl py-1 text-black font-bold">{fromCity.municipality}</span>
+                <span className="text-xl py-1 text-black font-bold">{fromCity.city}</span>
                 <p id="fromCity" className="text-sm">
                   {fromCity.name}
                 </p> 
@@ -270,9 +270,9 @@ const [searchport,setsearchport]=useState( {info:[],isLoading:false})
                       </div>}
                       {!searchport.isLoading && searchport.info   && searchport.info.map((items)=>{
 return(
-  <div className="flex justify-between my-4 shadow-sm w-full px-2 items-center" onClick={()=>{setFromCity({municipality:items.properties.municipality,name:items.properties.name,iata:items.properties.iata}),  setIsPopupOpen(""), setsearchport({info:[],isLoading:false})}}>
+  <div className="flex justify-between my-4 shadow-sm w-full px-2 items-center" onClick={()=>{setFromCity({city:items.properties.city,name:items.properties.name,iata:items.properties.iata}),  setIsPopupOpen(""), setsearchport({info:[],isLoading:false})}}>
     <div>
-    <p >{items.properties.municipality}</p>
+    <p >{items.properties.city}</p>
     <p className="text-sm text-gray-600">{items.properties.name}</p>
    </div>
    {items.properties.iata &&
@@ -307,7 +307,7 @@ return(
                 onClick={() => openPopup("to")}
               >
                 <div className="text-sm font-light">To</div>
-                <span className="text-xl py-1 text-black font-bold">{toCity.municipality}</span>
+                <span className="text-xl py-1 text-black font-bold">{toCity.city}</span>
                 <p id="toCity" className="text-sm">
                  {toCity.name}
                 </p>
@@ -353,9 +353,9 @@ return(
                       </div>}
                       {!searchport.isLoading && searchport.info   && searchport.info.map((items)=>{
 return(
-  <div className="flex justify-between my-4 shadow-sm w-full px-2 items-center" onClick={()=>{setToCity({municipality:items.properties.municipality,name:items.properties.name,iata:items.properties.iata}),  setIsPopupOpen("") ,   setsearchport({info:[],isLoading:false})}     }>
+  <div className="flex justify-between my-4 shadow-sm w-full px-2 items-center" onClick={()=>{setToCity({city:items.properties.city,name:items.properties.name,iata:items.properties.iata}),  setIsPopupOpen("") ,   setsearchport({info:[],isLoading:false})}     }>
     <div>
-    <p >{items.properties.municipality}</p>
+    <p >{items.properties.city}</p>
     <p className="text-sm text-gray-600">{items.properties.name}</p>
    </div>
    {items.properties.iata &&

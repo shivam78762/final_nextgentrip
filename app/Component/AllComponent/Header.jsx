@@ -103,7 +103,7 @@ const Header = () => {
     continent: "AS",
     iso_country: "IN",
     iso_region: "IN-DL",
-    municipality: "New Delhi",
+    city: "New Delhi",
     scheduled_service: "yes",
     gps_code: "VIDP",
     iata: "DEL",
@@ -125,7 +125,7 @@ const Header = () => {
     continent: "AS",
     iso_country: "IN",
     iso_region: "IN-MM",
-    municipality: "Mumbai",
+    city: "Mumbai",
     scheduled_service: "yes",
     gps_code: "VABB",
     iata: "BOM",
@@ -631,7 +631,8 @@ const Header = () => {
                     </button>
                     <div className="flex flex-col">
                       <span className="text-[22px] lg:text-2xl  text-black font-bold">
-                        {fromCity.municipality}
+                       { console.log('fromCity.city',fromCity)}
+                        {(fromCity.city || fromCity.municipality) ?? 'Unknown'}
                       </span>
                       <p className="text-black text-xs truncate">
                         [{fromCity.name}] {fromCity.iata}
@@ -679,7 +680,8 @@ const Header = () => {
 
                     <div className="flex flex-col">
                       <span className="text-[22px] lg:text-2xl  text-black font-bold">
-                        {toCity.municipality}
+            
+                          {(toCity.city || toCity.municipality) ?? 'Unknown'}
                       </span>
                       <p className="text-black text-xs truncate">
                         [{toCity.name}] {toCity.iata}
@@ -912,7 +914,7 @@ const Header = () => {
                         {" "}
                         {currentDateComponents.year}
                       </span>
-                      <FaCalendarWeek className="text-[#d3cfcf] ml-2 text-xl " />
+                      <FaCalendarWeek className="text-[#d3cfcf] ml-2 text-xl" />
                     </div>
                     <p className="text-black text-xs">
                       {currentDateComponents.dayOfWeek}
@@ -984,7 +986,7 @@ const Header = () => {
                       {t("From")}
                     </p>
                     <span className="text-3xl py-1 text-black font-bold">
-                      {fromCity.municipality}
+                      {fromCity.city}
                     </span>
                     <p className="text-black text-xs truncate">
                       [{fromCity.name}] {fromCity.airport}
@@ -1008,7 +1010,7 @@ const Header = () => {
                       {t("To")}
                     </label>
                     <span className="text-3xl py-1 text-black font-bold">
-                      {toCity.municipality}
+                      {toCity.city}
                     </span>
                     <p className="text-black text-xs truncate">
                       [{toCity.name}] {toCity.airport}
