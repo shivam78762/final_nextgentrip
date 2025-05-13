@@ -119,7 +119,7 @@ const Page = () => {
       <Header />
       <CustomSlider />
 
-      <div className="">
+      <div className="container mx-auto">
         <h2 className="text-lg lg:text-3xl mb-1 lg:mb-0 font-bold text-black text-center py-0 lg:py-5">
           Best Deals on Flight Tickets
         </h2>
@@ -178,7 +178,7 @@ const Page = () => {
         </div>
       </div>
 
-      <div className="px-5 lg:px-20 py-5 lg:py-10">
+      <div className="px-5 lg:px-20 py-5 lg:py-10 container mx-auto">
         <h6 className="text-lg lg:text-xl font-semibold">{t("memorable")}</h6>
         <p className="mt-5 text-justify">{t("memorable_1")}</p>
         <p className="mt-5 text-justify">{t("memorable_2")}</p>

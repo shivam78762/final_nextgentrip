@@ -94,7 +94,7 @@ const nextdate=new Date(newRange.year, newRange.month - 1, newRange.day+1);
 
 
   return (
-    <div className="header    relative  md:px-5  lg:px-12 xl:px-24">
+    <div className="container mx-auto header    relative  md:px-5  lg:px-12 xl:px-24">
       <div className=" bg-[#002043] h-[12rem] absolute inset-0  -z-10" />
      <MiniNav />
       <div className=" flex justify-start lg:justify-end">

@@ -77,7 +77,7 @@ export default function InsurancePage() {
     <InsuranceHeader />
     </div>
 
-      <main>
+      <main className="container mx-auto ">
        <section className="bg-[url(/images/Insurance.webp)] min-h-[80vh] py-10 flex items-center relative bg-center bg-cover text-white px-5 md:px-16 xl:px-32  ">
         <div className="absolute inset-0 bg-gradient-to-r from-gray-900 to-transparent z-0"></div>
           <div className="z-20 text-white  text-center space-y-5  w-full h-full">

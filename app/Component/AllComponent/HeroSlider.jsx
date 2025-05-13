@@ -75,7 +75,7 @@ route.push(`/holidayspackage/${searchInput}`)
 
 
   return (
-    <div className="relative overflow-hidden lg:overflow-visible pt-6 lg:pt-0 h-80 mb-20">
+    <div className="container mx-auto relative overflow-hidden lg:overflow-visible pt-6 lg:pt-0 h-80 mb-20">
       <Slider {...settings} className="relative">
         {slides.map((slide, index) => (
           <div key={index} className="relative">

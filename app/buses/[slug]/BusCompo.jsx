@@ -71,20 +71,20 @@ const BusCompo = ({ slug }) => {
 
   const handleSelectSeats = (bus) => {
     // console.log("bus", bus);
-  
+
     // Save data to localStorage
     localStorage.setItem("selectedBus", JSON.stringify(bus));
-   
-  
+
+
 
     router.push(`/buses/selectseat/index=${state.info.BusSearchResult.TraceId}&resultindex=${bus.ResultIndex}`);
   };
-  
+
 
 
   return (
     <>  <BusComp />
-      <div className="block md:flex px-0 lg:px-28 items-start gap-3 my-5">
+      <div className="container mx-auto block md:flex px-0 lg:px-28 items-start gap-3 my-5">
         <div className="hidden md:block w-1/4 sticky top-24">
           <BusFilter />
         </div>
@@ -211,12 +211,12 @@ const BusCompo = ({ slug }) => {
 
                 <div className="border-t py-2 flex justify-between mt-6">
 
-                <button
-      onClick={()=>handleSelectSeats(bus)}
-      className="selectSeats text-center cursor-pointer bg-blue-100 border border-blue-600 rounded px-3 py-1 text-blue-600 font-semibold"
-    >
-      Select Seats
-    </button>
+                  <button
+                    onClick={() => handleSelectSeats(bus)}
+                    className="selectSeats text-center cursor-pointer bg-blue-100 border border-blue-600 rounded px-3 py-1 text-blue-600 font-semibold"
+                  >
+                    Select Seats
+                  </button>
                 </div>
               </div>
             ))}

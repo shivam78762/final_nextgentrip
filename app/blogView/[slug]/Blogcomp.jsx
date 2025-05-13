@@ -23,7 +23,7 @@ const page = ({ data }) => {
   const [selected, setSelected] = useState('');
 
   const handleClick = (option) => {
-    setSelected(option); // Update the selected state
+    setSelected(option);
   };
 
   const options = {
@@ -50,7 +50,7 @@ const page = ({ data }) => {
       </div>}
 
       {data && <>
-        <section className="p-0 relative mt-[-1.5rem]">
+        <section className="container mx-auto  p-0 relative mt-[-1.5rem]">
           <div className="">
             <img
               src={`${imgurl}/${data.blog_image}`}

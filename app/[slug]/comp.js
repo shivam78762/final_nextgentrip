@@ -536,7 +536,7 @@ const handelnonlcc=(id, ResultIndex)=>{
       )}
 
       <Header />
-      <div className="block md:flex px-0 lg:px-28 items-start gap-3 my-5  ">
+      <div className="container mx-auto block md:flex px-0 lg:px-28 items-start gap-3 my-5  ">
         <div className="hidden md:block  sticky top-6 w-1/4">
           <FlightFliter
             airlines={airlines}

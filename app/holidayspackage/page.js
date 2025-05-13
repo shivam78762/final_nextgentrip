@@ -177,7 +177,7 @@ const page = () => {
   return (
     <>
       <HeroSlider />
-      <div className="relative overflow-hidden px-5 lg:px-20 ">
+      <div className="container mx-auto  relative overflow-hidden px-5 lg:px-20 ">
         <div className="text-center pb-4 ">
           <h2 className="text-2xl font-bold text-gray-800 mb-2">
             Long Weekend Sale! Grab up to 25% off
@@ -288,7 +288,7 @@ const page = () => {
           </Swiper>
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 px-5 lg:px-20 pb-10">
+      <div className="container mx-auto  grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 px-5 lg:px-20 pb-10">
         
         <PackageCompo />
       </div>

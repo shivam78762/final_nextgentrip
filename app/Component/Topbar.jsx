@@ -306,7 +306,7 @@ const Topbar = () => {
             className="flex   lg:hidden flex-col  justify-center cursor-pointer"
             onClick={openNav3}
           >
-            
+
           </div>
           <Link href="/">
             <img src="/images/NextGenTrip.png" alt="" className="h-[35px] md:h-[60px]" />
@@ -382,45 +382,50 @@ const Topbar = () => {
           {
             currencyappled && (
               <div className="fixed flex justify-center items-center bg-[rgba(0,0,0,0.6)] inset-0 p-4">
-              <div  onClick={(e) => e.stopPropagation()} className="h-[32rem] w-[700px] rounded-xl p-6 bg-white shadow-lg overflow-y-scroll">
- 
-                <div className="text-center mb-6 flex justify-between ">
-                  <h3 className="text-xl font-semibold text-gray-800">Select Your Currency</h3>
-                  <button
-                            onClick={() => setcurrencyappled(false)}
-                            className=""
-                          >
-                            <RxCross2 />
-                          </button>
-                </div>
-            
- 
-                <div className="flex flex-wrap gap-4 ">
-                  {currency.map((currency) => (
+                <div onClick={(e) => e.stopPropagation()} className="h-[32rem] w-[700px] rounded-xl p-6 bg-white shadow-lg overflow-y-scroll">
+
+                  <div className="text-center mb-6 flex justify-between ">
+                    <h3 className="text-xl font-semibold text-gray-800">Select Your Currency</h3>
                     <button
-                      key={currency.code}
-                      onClick={() => handelCurrencySEt(currency)}
-                      className={`flex items-center gap-3 px-5 py-3 text-sm font-medium border rounded-full shadow-sm transition duration-300 ${
-                        currency.code === defaultcurrency.code
-                          ? "bg-blue-500 text-white border-blue-500"
-                          : "bg-gray-50 text-gray-700 hover:bg-gray-100 border-gray-300"
-                      }`}
+                      onClick={() => setcurrencyappled(false)}
+                      className=""
                     >
-             
-                      <span className="w-5 h-5 hidden   rounded-full bg-gray-300 lg:flex items-center justify-center text-xs">
-                        🌍
-                      </span>
-          
-                      <div>
-                        <p>{currency.symble} - {currency.code}</p>
-                        <p className="text-xs text-gray-500">{currency.country}</p>
-                      </div>
+                      <RxCross2 />
                     </button>
-                  ))}
+                  </div>
+
+
+                  <div className="flex flex-wrap gap-4 ">
+                    {currency.map((currency) => (
+                      <button
+                        key={currency.code}
+                        onClick={() => handelCurrencySEt(currency)}
+                        className={`flex items-center gap-3 px-5 py-3 text-sm font-medium border rounded-full shadow-sm transition duration-300 ${currency.code === defaultcurrency.code
+                          ? "bg-blue-500  border-blue-500"
+                          : "bg-gray-50  hover:bg-gray-100 border-gray-300"
+                          }`}
+                      >
+
+                        <span className="w-5 h-5 hidden   rounded-full bg-gray-300 lg:flex items-center justify-center text-xs">
+                          🌍
+                        </span>
+
+                        <div>
+                          <p className={`${currency.code === defaultcurrency.code
+                            ? "text-white"
+                            : ""
+                            }`}>{currency.symble} - {currency.code}</p>
+                          <p className={`text-xs ${currency.code === defaultcurrency.code
+                            ? "text-white"
+                            : ""
+                            }`}>{currency.country}</p>
+                        </div>
+                      </button>
+                    ))}
+                  </div>
                 </div>
               </div>
-            </div> 
-          
+
 
             )
           }
@@ -447,12 +452,11 @@ const Topbar = () => {
                         />
                         <span className="text-nowrap hidden lg:block">{lang.name} </span>
                         <span className="text-nowrap  block lg:hidden ">
-                        {getLangAbbreviation(lang.name)}
+                          {getLangAbbreviation(lang.name)}
                         </span>
                         <FaChevronDown
-                          className={`${
-                            countryOpner && "rotate-180"
-                          } hidden md:block`}
+                          className={`${countryOpner && "rotate-180"
+                            } hidden md:block`}
                         />
                       </button>
                     )

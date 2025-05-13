@@ -153,36 +153,36 @@ const HotelSliderCompo = ({ isLoading, children }) => {
 
 
 
-        <div className=" lg:flex-row px-2 lg:px-28 gap-4 w-full md:my-15 flex justify-center ">
-        <Swiper
-            className=" w-full h-[200px]  md:h-[250px] "
+        <div className="container mx-auto lg:flex-row px-2 lg:px-24 gap-4 w-full md:my-15 flex justify-center ">
+          <Swiper
+            className=" w-full "
             loop={true}
-              autoplay={{
-                delay: 2500,
-                disableOnInteraction: false,
-              }}
-              breakpoints={{
-                640: {
-                  slidesPerView: 1, // 1 slide on screens < 640px (mobile)
-                },
-                768: {
-                  slidesPerView: 2, // Optional: 2 slides for tablets
-                },
-                1024: {
-                  slidesPerView: 2, // 4 slides for larger screens (desktop)
-                },
-              }}
-              spaceBetween={50}
-           
-              modules={[Autoplay]}
- 
-            >
+            autoplay={{
+              delay: 2500,
+              disableOnInteraction: false,
+            }}
+            breakpoints={{
+              640: {
+                slidesPerView: 1, // 1 slide on screens < 640px (mobile)
+              },
+              768: {
+                slidesPerView: 3, // Optional: 2 slides for tablets
+              },
+              1024: {
+                slidesPerView: 3, // 4 slides for larger screens (desktop)
+              },
+            }}
+            spaceBetween={20}
 
-            {["01JSK76W4F49A001EN7NJ2NNJJ.jpg", "01JSK76W4F49A001EN7NJ2NNJJ.jpg","01JSK76W4F49A001EN7NJ2NNJJ.jpg"].map((img, index) => <SwiperSlide
+            modules={[Autoplay]}
+
+          >
+
+            {["01JSK76W4F49A001EN7NJ2NNJJ.jpg", "01JSK76W4F49A001EN7NJ2NNJJ.jpg", "01JSK76W4F49A001EN7NJ2NNJJ.jpg"].map((img, index) => <SwiperSlide
               className="flex flex-col   rounded-2xl shadow-sm bg-white-900"
             >
 
-              <div className="rounded-2xl   h-[200px]  md:h-[250px] lg:h-full ">
+              <div className="rounded-2xl   ">
 
 
                 <img src={`/slide/${img}`} alt="" className="h-full w-full  rounded-2xl" />

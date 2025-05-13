@@ -171,7 +171,7 @@ const page = () => {
     <>
       {/* <TrainComp /> */}
 
-      <div className="bg-[url(/images/TrainImg/trainBanner.webp)] min-h-[80vh] py-10 flex items-center relative bg-center bg-cover text-white px-5 md:px-16 xl:px-32  ">
+      <div className="container mx-auto bg-[url(/images/TrainImg/trainBanner.webp)] min-h-[80vh] py-10 flex items-center relative bg-center bg-cover text-white px-5 md:px-16 xl:px-32  ">
         <div className="absolute inset-0 bg-gradient-to-r from-gray-900 to-transparent z-0"></div>
         <div className=" h-full  w-full flex flex-col bg-red400 gap-10 lg:flex-row items-center lg:justify-between relative z-10">
           <div className=" lg:w-1/2 space-y-4 ">
@@ -347,7 +347,7 @@ const page = () => {
       <MobileHeader />
       <CustomSlider />
 
-      <div className="content px-5 py-0 lg:px-40 lg:py-8">
+      <div className="container mx-auto content px-5 py-0 lg:px-40 lg:py-8">
         <h2 className="text-2xl font-semibold text-center mb-6">
           Why Book Train Tickets with Next Gen?
         </h2>
@@ -482,7 +482,7 @@ const page = () => {
         </div>
       </div> */}
 
-      <div className=" px-5 md:px-20 py-10">
+      <div className=" px-5 md:px-20 py-10 container mx-auto">
         <h2 className="text-2xl font-bold mb-4 text-center">
           Trusted Partners
         </h2>

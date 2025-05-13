@@ -98,51 +98,41 @@ const TopFlight = () => {
           image: "/images/car1.webp",
           title: "Delhi",
           description: t("desb1"),
-          link: `/hotels/cityName=delhi&citycode=130443&checkin=${
-            date.split("T")[0]
-          }&checkout=${
-            date.split("T")[0]
-          }&adult=1&child=0&roomes=1&page=0&star=0/`,
+          link: `/hotels/cityName=delhi&citycode=130443&checkin=${date.split("T")[0]
+            }&checkout=${date.split("T")[0]
+            }&adult=1&child=0&roomes=1&page=0&star=0/`,
         },
         {
           image: "/images/24.webp",
           title: "Mumbai",
           description: t("desb2"),
-          link: `/hotels/cityName=Mumbai,%20%20%20Maharashtra&citycode=144306&checkin=${
-            date.split("T")[0]
-          }&checkout=${
-            date.split("T")[0]
-          }&adult=1&child=0&roomes=1&page=0&star=0/`,
+          link: `/hotels/cityName=Mumbai,%20%20%20Maharashtra&citycode=144306&checkin=${date.split("T")[0]
+            }&checkout=${date.split("T")[0]
+            }&adult=1&child=0&roomes=1&page=0&star=0/`,
         },
         {
           image: "/images/wifi.webp",
           title: "Shimla",
           description: t("desb3"),
-          link: `/hotels/cityName=Shimla,%20%20%20Himachal%20Pradesh&citycode=138673&checkin=${
-            date.split("T")[0]
-          }&checkout=${
-            date.split("T")[0]
-          }&adult=1&child=0&roomes=1&page=0&star=0/`,
+          link: `/hotels/cityName=Shimla,%20%20%20Himachal%20Pradesh&citycode=138673&checkin=${date.split("T")[0]
+            }&checkout=${date.split("T")[0]
+            }&adult=1&child=0&roomes=1&page=0&star=0/`,
         },
         {
           image: "/images/safety-first.webp",
           title: "Guwahati Assam",
           description: t("desb4"),
-          link: `/hotels/cityName=Guwahati,%20%20%20Assam&citycode=121139&checkin=${
-            date.split("T")[0]
-          }&checkout=${
-            date.split("T")[0]
-          }&adult=1&child=0&roomes=1&page=0&star=0/`,
+          link: `/hotels/cityName=Guwahati,%20%20%20Assam&citycode=121139&checkin=${date.split("T")[0]
+            }&checkout=${date.split("T")[0]
+            }&adult=1&child=0&roomes=1&page=0&star=0/`,
         },
         {
           image: "/images/businesswoman.webp",
           title: "Amritsar Punjab",
           description: t("desb5"),
-          link: `/hotels/cityName=Amritsar,%20%20%20Punjab&citycode=101129&checkin=${
-            date.split("T")[0]
-          }&checkout=${
-            date.split("T")[0]
-          }&adult=1&child=0&roomes=1&page=0&star=0/`,
+          link: `/hotels/cityName=Amritsar,%20%20%20Punjab&citycode=101129&checkin=${date.split("T")[0]
+            }&checkout=${date.split("T")[0]
+            }&adult=1&child=0&roomes=1&page=0&star=0/`,
         },
       ],
     },
@@ -169,17 +159,17 @@ const TopFlight = () => {
     { name: "Thar", icon: "🏜️", link: "/FamousPlaces/Kerala" },
   ];
   const [topport, settopport] = useState();
-const [toppkage,setToppackage]=useState()
+  const [toppkage, setToppackage] = useState()
 
-const fetchPAckage=async()=>{
-  const data = await axios.get(`${apilink}/holidays/list`);
-  setToppackage(data.data);
+  const fetchPAckage = async () => {
+    const data = await axios.get(`${apilink}/holidays/list`);
+    setToppackage(data.data);
 
-}
-const fetchTopport = async () => {
-  const data = await axios.get(`${apilink}/Popular-Flight`);
-  settopport(data.data);
-};
+  }
+  const fetchTopport = async () => {
+    const data = await axios.get(`${apilink}/Popular-Flight`);
+    settopport(data.data);
+  };
   useEffect(() => {
     fetchPAckage()
     fetchTopport();
@@ -188,7 +178,7 @@ const fetchTopport = async () => {
   return (
     <>
       <div>
-        <main className="flight pt-0 lg:pt-10 px-0 md:px-10  lg:px-28">
+        <main className="container mx-auto flight pt-0 lg:pt-10 px-0 md:px-10  lg:px-28">
           <div className="">
             <div className="relative ">
               <div className="relative text-lg md:text-xl lg:text-3xl font-bold text-gray-900 flex justify-center items-center gap-2  mb-5 lg:mb-6">
@@ -232,40 +222,40 @@ const fetchTopport = async () => {
                 </div>
               )}
             </div>
-{toppkage && 
-            <div className="bg-white border shadow-md my-5 lg:my-0  mx-auto lg:mx-2 rounded-xl overflow-hidden relative  w-full ">
-              <div className="city-head bg-[#0291d2] text-center">
-                <h4 className="text-white text-lg font-semibold py-3">
-                  {t("heading2")}
-                </h4>
+            {toppkage &&
+              <div className="bg-white border shadow-md my-5 lg:my-0  mx-auto lg:mx-2 rounded-xl overflow-hidden relative  w-full ">
+                <div className="city-head bg-[#0291d2] text-center">
+                  <h4 className="text-white text-lg font-semibold py-3">
+                    {t("heading2")}
+                  </h4>
+                </div>
+                <div className=" ">
+                  {toppkage?.map((imageData, i) => (
+                    <Link
+                      href={`/holidayspackage/package/${imageData.url}`}
+                      className="items-center border-b px-4 flex hover:shadow-lg cursor-pointer"
+                      key={i}
+                    >
+                      <div className="city-image">
+                        <img
+                          src={`${storageLink}/${imageData?.img}`}
+                          alt={imageData?.title}
+                          className="rounded-full h-9 object-cover w-9"
+                        />
+                      </div>
+                      <div className="px-4 w-[80%]">
+                        <h3 className="text-sm font-semibold mb-0 mt-4 ">
+                          {imageData?.title}
+                        </h3>
+                        <p className="text-[#525252] text-xs font-normal mb-5 pt-1">
+                          {imageData?.des}
+                        </p>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
               </div>
-              <div className=" ">
-                {toppkage?.map((imageData, i) => (
-                  <Link
-                    href={`/holidayspackage/package/${imageData.url}`}
-                    className="items-center border-b px-4 flex hover:shadow-lg cursor-pointer"
-                    key={i}
-                  >
-                    <div className="city-image">
-                      <img
-                        src={ `${storageLink}/${imageData?.img}`}
-                        alt={imageData?.title}
-                        className="rounded-full h-9 object-cover w-9"
-                      />
-                    </div>
-                    <div className="px-4 w-[80%]">
-                      <h3 className="text-sm font-semibold mb-0 mt-4 ">
-                        {imageData?.title}
-                      </h3>
-                      <p className="text-[#525252] text-xs font-normal mb-5 pt-1">
-                        {imageData?.des}
-                      </p>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            </div>
-}
+            }
             <div className="bg-white border shadow-md my-5 lg:my-0  mx-auto lg:mx-2 rounded-xl overflow-hidden relative  w-full ">
               <div className="city-head bg-[#0291d2] text-center">
                 <h4 className="text-white text-lg font-semibold py-3">
@@ -305,15 +295,15 @@ const fetchTopport = async () => {
       <InfoSection />
 
 
-      <div className='px-2  my-8'>
+      <div className='container     mx-auto          px-2  my-8'>
 
         <h3 className="text-center text-3xl font-bold my-4"> Our Packages</h3>
-      {/* <FeaturedProperties /> */}
-      <HotelSliderCompo />
+        {/* <FeaturedProperties /> */}
+        <HotelSliderCompo />
 
       </div>
 
-      <div className="w-full mx-auto px-6 md:px-10 lg:px-28  pt:0 lg:pt-12 z-[-1]">
+      <div className="container     mx-auto   w-full  px-6 md:px-10 lg:px-28  pt:0 lg:pt-12 z-[-1]">
         <div className="relative text-xl md:text-xl lg:text-4xl tracking-tighter	 gfont1  font-bold text-gray-900 flex justify-center items-center gap-2 mb-4 lg:mb-14">
           Tourist 💕<span className="text-[#521010]"> Love</span>
         </div>
@@ -397,7 +387,7 @@ const fetchTopport = async () => {
         </div>
       </div>
 
-      <div className="bg-gray-100 p-5 lg:p-20 mt-12">
+      <div className="container     mx-auto   bg-gray-100 p-5 lg:p-20 mt-12">
         <div className=" flex flex-col-reverse lg:flex-row justify-between items-center gap-10">
           <div className="">
             <div className="p-4">

@@ -12,29 +12,29 @@ import { usePathname } from 'next/navigation';
 
 
 
-const LayoutCompo =({children}) => {
-   const path=usePathname()
+const LayoutCompo = ({ children }) => {
+  const path = usePathname()
 
 
   return (
     <>
-    
+
       <>  <Topbar />
 
-<div className="block md:hidden">
-  {/* <Navbar /> */}
-</div> </>
-{children}
+        <div className="block md:hidden">
+          {/* <Navbar /> */}
+        </div> </>
+      {children}
 
 
- <Footer />
-  
-    
+      <Footer />
+
+
     </>
   )
 }
 
-        
+
 
 
 export default LayoutCompo

@@ -100,7 +100,7 @@ export default function InsuranceHeader() {
 
   return (
     <>
-      <div className="relative px-5 md:px-16 xl:px-32 pt-10">
+      <div className="container mx-auto relative px-5 md:px-16 xl:px-32 pt-10">
         <div className="bg-gradient-to-r from-[#002043] to-[#004080] h-[6rem] absolute inset-0 -z-10" />
         <div className="InsuranceHeader shadow-2xl bg-white rounded-md">
           <div className="bg-gray-200 border-b rounded-sm shadow">

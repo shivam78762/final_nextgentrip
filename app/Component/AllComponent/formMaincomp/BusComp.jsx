@@ -102,7 +102,7 @@ const BusComp = () => {
 
   const TravellerDropdown = ({ adultCount, setAdultCount, childCount, setChildCount, infantCount, setInfantCount }) => {
     return (
-      <div className="bg-white p-4 shadow-lg rounded-lg">
+      <div className="container mx-auto bg-white p-4 shadow-lg rounded-lg">
         <div className="flex justify-between items-center mb-4">
           <span>Adults</span>
           <div className="flex items-center gap-2">
@@ -140,7 +140,7 @@ const BusComp = () => {
 
 
 
-      <div className="header    relative  md:px-5  lg:px-12 xl:px-24  pt-10 md:pt-14">
+      <div className="container mx-auto header    relative  md:px-5  lg:px-12 xl:px-24  pt-10 md:pt-14">
         <div className=" bg-[#002043] h-[12rem] absolute inset-0  -z-10"></div>
 
         <TypeWriterHeaderEffect />

@@ -5,7 +5,7 @@ const Subscribe = () => {
   const t=useTranslations("footer")
   return (
     <>
-      <section className="mb-15 py-10 px-5 lg:px-20 animate__animated animate__fadeIn custom-color">
+      <section className="container mx-auto mb-15 py-10 px-5 lg:px-20 animate__animated animate__fadeIn custom-color">
         <div className="block md:flex   items-center justify-center gap-10">
           <div className="w-full lg:w-1/3">
             <h2 className="text-[21px] lg:text-2xl  text-white font-bold mb-5">

@@ -24,7 +24,7 @@ useEffect(()=>{
 
   return (
     <>
-      <div className="relative pt-6 p lg:pt-0">
+      <div className="container mx-auto relative pt-6 p lg:pt-0">
         <div className="relative -z-0">
           <Link href="/" className="block relative">
             <img
@@ -78,7 +78,7 @@ useEffect(()=>{
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 justify-center p-5 lg:p-20">
+      <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 justify-center p-5 lg:p-20">
         { blogPosts && blogPosts.map((post) => (
           <div
             key={post.id}

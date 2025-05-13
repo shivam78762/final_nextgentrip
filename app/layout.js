@@ -4,19 +4,15 @@ import Navbar from "./Component/AllComponent/Navbar";
 import Footer from "./Component/Footer";
 import Topbar from "./Component/Topbar";
 import Providerfile from "./Component/Store/Providerfile";
-import {NextIntlClientProvider} from 'next-intl';
-import {getLocale, getMessages} from 'next-intl/server';
+import { NextIntlClientProvider } from "next-intl";
+import { getLocale, getMessages } from "next-intl/server";
 import { development } from "./Component/common";
 import { redirect } from "next/navigation";
-import Maintenance from "./Component/AllComponent/Maintenance"
+import Maintenance from "./Component/AllComponent/Maintenance";
 
-import LayoutCompo from "./LayoutCompo"
-
+import LayoutCompo from "./LayoutCompo";
 
 const inter = Inter({ subsets: ["latin"] });
-
-
-
 
 export const metadata = {
   title: "My Website",
@@ -24,24 +20,14 @@ export const metadata = {
   keywords: ["Next.js", "React", "SEO", "Layout"],
 };
 
-
-
-
 export default async function RootLayout({ children }) {
-
   const locale = await getLocale();
- 
 
   const messages = await getMessages();
 
-  
-
-
-
   return (
-    <html lang={locale} >
-
-<head>
+    <html lang={locale}>
+      <head>
         {/* FontAwesome */}
         <link
           rel="stylesheet"
@@ -53,12 +39,11 @@ export default async function RootLayout({ children }) {
           async
           src="https://www.googletagmanager.com/gtag/js?id=G-7F46NND7PG"
         ></script>
-<link rel="canonical" href="https://nextgentrip.com/page-url" />
+        <link rel="canonical" href="https://nextgentrip.com/page-url" />
 
         <script
-         id="google-analytics"
+          id="google-analytics"
           strategy="afterInteractive"
-
           dangerouslySetInnerHTML={{
             __html: `
               window.dataLayer = window.dataLayer || [];
@@ -86,11 +71,9 @@ export default async function RootLayout({ children }) {
             `,
           }}
         />
-        
 
-      
         <script
-  id="google-tag-manager"
+          id="google-tag-manager"
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `
@@ -103,7 +86,7 @@ export default async function RootLayout({ children }) {
           }}
         />
 
-<script
+        <script
           id="facebook-pixel"
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{
@@ -123,10 +106,8 @@ export default async function RootLayout({ children }) {
         />
       </head>
 
-
-     
       <body className={inter.className}>
-      <noscript>
+        <noscript>
           <iframe
             src="https://www.googletagmanager.com/ns.html?id=GTM-P6DBCLHP"
             height="0"
@@ -134,7 +115,6 @@ export default async function RootLayout({ children }) {
             style={{ display: "none", visibility: "hidden" }}
           ></iframe>
         </noscript>
-
 
         <noscript>
           <img
@@ -145,21 +125,15 @@ export default async function RootLayout({ children }) {
           />
         </noscript>
 
-     
-     {development !="production"&& <NextIntlClientProvider messages={messages}>
-        <Providerfile>
-       <LayoutCompo >{children}</LayoutCompo>
-        </Providerfile>
-      </NextIntlClientProvider>
-}
-      {
-        development=="production" && <Maintenance />
-      }
-
-
-      
+        {development != "production" && (
+          <NextIntlClientProvider messages={messages}>
+            <Providerfile>
+              <LayoutCompo>{children}</LayoutCompo>
+            </Providerfile>
+          </NextIntlClientProvider>
+        )}
+        {development == "production" && <Maintenance />}
       </body>
-      
     </html>
   );
 }

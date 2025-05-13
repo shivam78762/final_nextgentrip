@@ -24,10 +24,10 @@ useEffect(()=>{
 
 
     
-    <section className="relative blog-bg w-full mt-5 bg-no-repeat bg-cover text-white py-20">
+    <section className="container mx-auto relative blog-bg w-full mt-5 bg-no-repeat bg-cover text-white py-20">
           <div className="absolute inset-0 bg-black opacity-50 z-0"></div>
        
-        <div className="container mx-auto px-6 text-center relative z-10">
+        <div className=" px-6 text-center relative z-10">
           <h1 className="text-5xl font-extrabold mb-4">Blog</h1>
           <p className="text-lg text-white">
             We are passionate about delivering exceptional value and creating
@@ -36,7 +36,7 @@ useEffect(()=>{
          
         </div>
       </section>
-      <div className="min-h-screen bg-gray-100 p-6">
+      <div className="container mx-auto min-h-screen bg-gray-100 p-6">
         <header className="text-center mb-12 max-w-4xl mt-5 mx-auto">
           <h1 className="text-xl md:text-4xl font-bold mb-4">Welcome to Next Gen</h1>
           <p className="text-justify text-lg text-gray-700">

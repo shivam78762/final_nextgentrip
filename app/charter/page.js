@@ -210,7 +210,7 @@ if(res.data.success){
 
 
  return (
-   <div className="">
+   <div className="container mx-auto ">
      <div className="bg-[url(/images/charterimg.avif)] min-h-[80vh] py-10 relative flex items-center bg-center bg-cover text-white  px-5 md:px-16 xl:px-32  ">
        <div className="absolute inset-0 bg-gradient-to-r from-gray-900 to-transparent z-0"></div>
        <div className=" h-full   w-full flex flex-col gap-10 lg:flex-row lg:items-center lg:justify-between relative z-10">

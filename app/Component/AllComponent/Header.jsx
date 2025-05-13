@@ -141,7 +141,7 @@ const Header = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   const [selectedOption, setSelectedOption] = useState("");
-  const [preferredAirline,setPreferredAirline]=useState(null)
+  const [preferredAirline, setPreferredAirline] = useState(null)
 
   const handleTabClick = (tabIndex) => {
     setjurnytype(tabIndex);
@@ -384,7 +384,7 @@ const Header = () => {
     cheapFlight: {
       isOpen: false,
       selected: "Cheap Flights",
-      data: [{name:"AirAsia",code:"AK"}, {name:"IndiGo",code:"6E"},{ code:"SG",name:"SpiceJet" } , {name:"AkasaAir",code:"QP"}],
+      data: [{ name: "AirAsia", code: "AK" }, { name: "IndiGo", code: "6E" }, { code: "SG", name: "SpiceJet" }, { name: "AkasaAir", code: "QP" }],
     },
   });
   const dropCoachandCheap = useRef(null);
@@ -441,7 +441,7 @@ const Header = () => {
 
 
 
-  
+
 
 
   const [topDropdown, setTopDropdown] = useState(null);
@@ -471,7 +471,7 @@ const Header = () => {
   });
 
   useEffect(() => {
-    
+
     const updatedCalData = {
       JourneyType: 1,
       EndUserIp: '223.178.208.151',
@@ -572,7 +572,7 @@ const Header = () => {
 
   return (
     <>
-      <div className="header relative  md:px-5  lg:px-12 xl:px-24">
+      <div className="container mx-auto header relative  md:px-5  lg:px-12 xl:px-24">
         <div className=" bg-[#002043] h-[15rem] absolute inset-0  -z-10" />
         <MiniNav />
 
@@ -600,16 +600,16 @@ const Header = () => {
                 {t("roundtrip")}
               </button>
 
-             
 
 
 
 
 
-           
+
+
             </div>
 
-        
+
 
             <div className="tabs FromDateDeapt grid grid-cols-1 gap-5 xl:grid-cols-2 xl:gap-3">
               <div className="grid relative gap-3 md:grid-cols-2">
@@ -729,7 +729,7 @@ const Header = () => {
                               {" "}
                               {selected.getFullYear()}
                             </span>
-                            <FaCalendarWeek className="text-[#d3cfcf] ml-5 text-xl" />
+                            {/* <FaCalendarWeek className="text-[#d3cfcf] ml-5 text-xl" /> */}
                           </div>
                           <p className="text-black text-xs pb-2">
                             {selected.toLocaleDateString()}
@@ -804,24 +804,24 @@ const Header = () => {
                 </div>
 
 
-                <div className="flex items-start gap-2 px-3 py-2 border-2 text-black border-slate-200 rounded-md relative" onMouseLeave={()=>setIsVisible(false)}>
+                <div className="flex items-start gap-2 px-3 py-2 border-2 text-black border-slate-200 rounded-md relative" onMouseLeave={() => setIsVisible(false)}>
                   <FaUserLarge className="text-lg mt-1" />
                   <div className="text-slate-400">
                     <h5 className="font-bold text-lg text-black">{adultCount + childCount + infantCount}</h5>
                     <p className="text-slate-400 text-xs">Traveller(s)</p>
                   </div>
-                  <button onClick={() =>{ setIsVisible(true),setSelectedOption("count")}}>Edit</button>
-                  {isVisible &&  selectedOption==="count" &&
-                   <div className="absolute top-[80%]  min-w-full min-h-[10rem] left-1 md:-left-10  z-10 " >
+                  <button onClick={() => { setIsVisible(true), setSelectedOption("count") }}>Edit</button>
+                  {isVisible && selectedOption === "count" &&
+                    <div className="absolute top-[80%]  min-w-full min-h-[10rem] left-1 md:-left-10  z-10 " >
                       <div className="shadow-2xl rounded-md  bg-white mt-[10%]  flex flex-col gap-4 p-4">
-                        <div className="flex gap-3 justify-between"><p className="text-nowrap">Adult Count </p> <div className="flex items-center gap-3"> <button className="px-2 border" onClick={()=>{adultCount>1?setAdultCount(adultCount-1):null}}>-</button> <p className=" px-2 border">{adultCount}</p> <button className="px-2 border"onClick={()=>setAdultCount(adultCount+1)} >+</button> </div> </div>
-                        <div className="flex gap-3 justify-between"><p className="text-nowrap">Child Count </p> <div className="flex items-center gap-3"> <button className="px-2 border" onClick={()=>{childCount>0?setChildCount(childCount-1):null}}>-</button> <p className=" px-2 border">{childCount}</p> <button className="px-2 border"onClick={()=>setChildCount(childCount+1)} >+</button> </div> </div>
-                        <div className="flex gap-3 justify-between"><p className="text-nowrap">Infant Count </p> <div className="flex items-center gap-3"> <button className="px-2 border" onClick={()=>{infantCount>0?setInfantCount(infantCount-1):null}}>-</button> <p className=" px-2 border">{infantCount}</p> <button className="px-2 border"onClick={()=>setInfantCount(infantCount+1)} >+</button> </div> </div>
+                        <div className="flex gap-3 justify-between"><p className="text-nowrap">Adult Count </p> <div className="flex items-center gap-3"> <button className="px-2 border" onClick={() => { adultCount > 1 ? setAdultCount(adultCount - 1) : null }}>-</button> <p className=" px-2 border">{adultCount}</p> <button className="px-2 border" onClick={() => setAdultCount(adultCount + 1)} >+</button> </div> </div>
+                        <div className="flex gap-3 justify-between"><p className="text-nowrap">Child Count </p> <div className="flex items-center gap-3"> <button className="px-2 border" onClick={() => { childCount > 0 ? setChildCount(childCount - 1) : null }}>-</button> <p className=" px-2 border">{childCount}</p> <button className="px-2 border" onClick={() => setChildCount(childCount + 1)} >+</button> </div> </div>
+                        <div className="flex gap-3 justify-between"><p className="text-nowrap">Infant Count </p> <div className="flex items-center gap-3"> <button className="px-2 border" onClick={() => { infantCount > 0 ? setInfantCount(infantCount - 1) : null }}>-</button> <p className=" px-2 border">{infantCount}</p> <button className="px-2 border" onClick={() => setInfantCount(infantCount + 1)} >+</button> </div> </div>
 
 
                       </div>
-                  </div>
-}
+                    </div>
+                  }
                 </div>
 
 
@@ -912,7 +912,7 @@ const Header = () => {
                         {" "}
                         {currentDateComponents.year}
                       </span>
-                      <FaCalendarWeek className="text-[#d3cfcf] ml-5 text-xl" />
+                      {/* <FaCalendarWeek className="text-[#d3cfcf] ml-5 text-xl" /> */}
                     </div>
                     <p className="text-black text-xs">
                       {currentDateComponents.dayOfWeek}
@@ -934,7 +934,7 @@ const Header = () => {
                       <span className="  font-semibold">
                         {futureDateComponents.year}
                       </span>
-                      <FaCalendarWeek className="text-[#d3cfcf] ml-5 text-xl" />
+                      {/* <FaCalendarWeek className="text-[#d3cfcf] ml-5 text-xl" /> */}
                     </div>
                     <p className="text-black text-xs">
                       {futureDateComponents.dayOfWeek}
@@ -1040,7 +1040,7 @@ const Header = () => {
                         {" "}
                         {currentDateComponents.year}
                       </span>
-                      <FaCalendarWeek className="text-[#d3cfcf] ml-5 text-xl" />
+                      {/* <FaCalendarWeek className="text-[#d3cfcf] ml-5 text-xl" /> */}
                     </div>
                     <p className="text-black text-xs">
                       {currentDateComponents.dayOfWeek}
@@ -1126,7 +1126,7 @@ const Header = () => {
                         {" "}
                         {currentDateComponents.year}
                       </span>
-                      <FaCalendarWeek className="text-[#d3cfcf] ml-5 text-xl" />
+                      {/* <FaCalendarWeek className="text-[#d3cfcf] ml-5 text-xl" /> */}
                     </div>
                     <p className="text-black text-xs">
                       {currentDateComponents.dayOfWeek}
@@ -1254,9 +1254,9 @@ const Header = () => {
                           {dropdowns.cheapFlight.data.map((airline, index) => (
                             <div
                               key={index}
-                              onClick={() =>{
+                              onClick={() => {
                                 setPreferredAirline(airline.code),
-                                handleDropdownToggle("cheapFlight")
+                                  handleDropdownToggle("cheapFlight")
                               }
                               }
                               className="flex items-center justify-start px-3 py-2 rounded-lg hover:bg-gray-100 cursor-pointer transition-all duration-200"

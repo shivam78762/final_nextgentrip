@@ -36,9 +36,10 @@ const Book = () => {
       count: "4"
     },
   ];
+
   return (
     <>
-      <div className="py-5 lg:py-12 bg-white mt-5">
+      <div className="container mx-auto py-5 lg:py-12 bg-white mt-5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="relative text-lg md:text-xl lg:text-3xl font-bold text-gray-900 flex justify-center items-center gap-2 mb-10">
          {t("bookwith")}
@@ -62,7 +63,8 @@ const Book = () => {
       </div>
 
       <section>
-        <div className="mt-5 px-5 md:px-10 lg:px-40 text-center bg-gray-100">
+        
+        <div className="container     mx-auto  mt-5 px-5 md:px-10 lg:px-40 text-center bg-gray-100">
           <div className="relative text-lg md:text-xl lg:text-3xl font-bold text-gray-900 flex justify-center items-center gap-2 mb-10 pt-[50px]">
             {t("packages")}
           </div>
