@@ -214,7 +214,7 @@ const BusComp = () => {
                   <FaCalendarAlt className="" />
                   <div className="text-slate-400">
                     <div className="flex items-baseline text-black">
-                      <span className="text-3xl py-1 pr-1 text-black font-bold">
+                      <span className="text-2xl py-1 pr-1 text-black font-bold">
                         {" "}
                         {pickupdate.getDate() - 1}
                       </span>
@@ -225,7 +225,7 @@ const BusComp = () => {
                         {" "}
                         {pickupdate.getFullYear()}
                       </span>
-                      {/* <FaCalendarWeek className="text-[#d3cfcf] ml-5 text-xl" /> */}
+                      {/* <FaCalendarWeek className="text-[#d3cfcf] ml-2 text-xl" /> */}
                     </div>
                   </div>
                 </div>

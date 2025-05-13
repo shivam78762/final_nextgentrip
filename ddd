@@ -1,0 +1,8 @@
+  <div className="hidden sm:block ">
+                                        <p className="font-bold text-black ">
+                                          {info.Airline.AirlineName}
+                                        </p>
+                                        <p className="text-black text-xs">
+                                          {info.Airline.FlightNumber}
+                                        </p>
+                                      </div>

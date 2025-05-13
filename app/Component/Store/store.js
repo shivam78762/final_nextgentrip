@@ -23,6 +23,9 @@ import getRegHotelsSlice from "./slices/getReqHotels"
 import insuranceSlice from "./slices/insuranceSearchSlice"
 import calendarSlice from './slices/calenderData'
 import currencySlice from "./slices/currencySlice"
+import cabSearchReducer from "./slices/cabSearchSlice";
+
+import destinationSearchReducer from './slices/destinationSearchSlice';
 
 import  SliderSlice  from "./slices/SliderSlice";
 export const store = configureStore({
@@ -34,7 +37,9 @@ export const store = configureStore({
     insurance:insuranceSlice,
     currencySlice,
     calendar:calendarSlice,
-    sliderData:SliderSlice
+    sliderData:SliderSlice,
+    cabSearchSlice: cabSearchReducer,
+    destinationSearch: destinationSearchReducer,
 
   },
 });

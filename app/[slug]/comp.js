@@ -5,7 +5,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { getfarequote } from "../Component/Store/slices/farequateflight";
 import { MdCancel } from "react-icons/md";
-
+import { FaPlaneDeparture, FaPlaneArrival, FaLuggageCart, FaMoneyCheckAlt, FaChair, FaMoneyBillWave } from 'react-icons/fa';
 import {
   FaArrowRight,
   FaFilter,
@@ -90,7 +90,7 @@ const comp = ({ slug }) => {
   }, [ssrFair]);
 
   useEffect(() => {
-  
+
     if (newtIp && fromCityCode && toCityCode && JourneyType == 1) {
       dispatch(
         searchFlightApi({
@@ -168,11 +168,11 @@ const comp = ({ slug }) => {
   }, [info]);
 
   const [traceid, settraceid] = useState();
-  
+
   useEffect(() => {
 
 
-   
+
 
 
     setstate2(
@@ -247,7 +247,7 @@ const comp = ({ slug }) => {
 
   const togglePopup = (id, ResultIndex) => {
     setisloadingQoute(true); // Set loading to true when starting
-  
+
     // Dispatch the action and handle the response
     dispatch(getfarequote({ ResultIndex: ResultIndex.ResultIndex, TraceId: traceid }))
       .then(() => {
@@ -257,10 +257,10 @@ const comp = ({ slug }) => {
         } else {
           setActivePopup(id);
         }
-  
+
         let data = [];
         data.push(ResultIndex);
-  
+
         const addate = Date.now();
         localStorage.setItem(
           "checkOutFlightDetail",
@@ -273,7 +273,7 @@ const comp = ({ slug }) => {
             ip: newtIp,
           })
         );
-  
+
         // Optionally redirect
         // window.location.href = "/flight/checkout";
       })
@@ -291,15 +291,15 @@ const comp = ({ slug }) => {
 
   useEffect(() => {
 
-   
 
-    localStorage.setItem("farebreakdown", JSON.stringify({data:ssrFair.info.Response?.Results?.FareBreakdown}));
 
-  },[ssrFair])
+    localStorage.setItem("farebreakdown", JSON.stringify({ data: ssrFair.info.Response?.Results?.FareBreakdown }));
+
+  }, [ssrFair])
 
 
   const saveDataInLocal = (flight, price) => {
-   
+
     window.location.href = "/flight/checkout";
 
 
@@ -308,62 +308,158 @@ const comp = ({ slug }) => {
   const SkeletonLoader = () => {
     return (
       <div className="my-3 border p-2 md:p-5 w-full">
-        <div className="flex flex-col">
-          {[...Array(2)].map((_, index) => (
-            <div key={index} className="flex items-center justify-between my-5">
-              <div className="flex gap-3">
-                <div className="w-[50px] h-[50px] bg-gray-300 rounded-full animate-pulse"></div>
-                <div className="hidden sm:block">
-                  <div className="h-4 w-24 bg-gray-300 rounded animate-pulse"></div>
-                  <div className="h-3 w-16 bg-gray-300 rounded mt-2 animate-pulse"></div>
+
+
+        <div className="overflow-hidden px-4">
+          <div className="my-3 w-full h-[120px]  lg:h-[160px] border p-2 md:p-5">
+            <div className=" ">
+              <div className="flex animate-pulse items-center justify-between">
+                <div className="flex gap-3">
+                  <div className="w-[50px] h-[50px] bg-gray-300 rounded"></div>
+                  <div className="hidden sm:block">
+                    <div className="h-4 bg-gray-300 rounded w-32 mb-2"></div>
+                    <div className="h-3 bg-gray-300 rounded w-20"></div>
+                  </div>
+                </div>
+
+                <div className=" text-center">
+                  <div className="h-4 bg-gray-300 rounded w-16 mb-2"></div>
+                  <div className="h-3 bg-gray-300 rounded w-20"></div>
+                </div>
+
+                <div className="text-center">
+                  <div className="h-4 bg-gray-300 rounded w-20 mb-2"></div>
+                  <div className="relative h-3 bg-gray-300 rounded w-32"></div>
+                  <div className="h-3 bg-gray-300 rounded w-16 mt-2"></div>
+                </div>
+
+                <div className="hidden lg:block  text-center">
+                  <div className="h-4 bg-gray-300 rounded w-16 mb-2"></div>
+                  <div className="h-3 bg-gray-300 rounded w-20"></div>
+                </div>
+
+                <div className=" hidden lg:flex  items-center gap-x-3">
+                  <div className="text-right flex-1">
+                    <div className="h-4 bg-gray-300 rounded w-20 mb-2"></div>
+                    <div className="h-3 bg-gray-300 rounded w-24"></div>
+                  </div>
+                  <div className="h-8 bg-gray-300 rounded-full w-20"></div>
                 </div>
               </div>
 
-              <div className="text-center">
-                <div className="h-5 w-16 bg-gray-300 rounded animate-pulse"></div>
-                <div className="h-3 w-20 bg-gray-300 rounded mt-2 animate-pulse"></div>
-              </div>
+              <div className="my-4 p-2 bg-yellow-100 h-5 w-full"></div>
 
-              <div className="text-center">
-                <div className="h-5 w-24 bg-gray-300 rounded animate-pulse"></div>
-                <div className="h-3 w-16 bg-gray-300 rounded mt-2 animate-pulse"></div>
-              </div>
-
-              <div className="text-center">
-                <div className="h-5 w-16 bg-gray-300 rounded animate-pulse"></div>
-                <div className="h-3 w-20 bg-gray-300 rounded mt-2 animate-pulse"></div>
-              </div>
-
-              <div className="flex items-center gap-x-3">
-                <div className="text-right flex-1">
-                  <div className="h-5 w-24 bg-gray-300 rounded animate-pulse"></div>
-                  <div className="h-3 w-16 bg-gray-300 rounded mt-2 animate-pulse"></div>
-                </div>
-                <div className="h-8 w-24 bg-gray-300 rounded-full animate-pulse"></div>
+              <div className="hidden md:flex justify-between items-center text-sm card-footer-v2">
+                <div className="h-4 bg-gray-300 rounded w-40"></div>
               </div>
             </div>
-          ))}
+          </div>
+          <div className="my-3 w-full h-[120px]  lg:h-[160px] border p-2 md:p-5">
+            <div className=" ">
+              <div className="flex animate-pulse items-center justify-between">
+                <div className="flex gap-3">
+                  <div className="w-[50px] h-[50px] bg-gray-300 rounded"></div>
+                  <div className="hidden sm:block">
+                    <div className="h-4 bg-gray-300 rounded w-32 mb-2"></div>
+                    <div className="h-3 bg-gray-300 rounded w-20"></div>
+                  </div>
+                </div>
+
+                <div className=" text-center">
+                  <div className="h-4 bg-gray-300 rounded w-16 mb-2"></div>
+                  <div className="h-3 bg-gray-300 rounded w-20"></div>
+                </div>
+
+                <div className="text-center">
+                  <div className="h-4 bg-gray-300 rounded w-20 mb-2"></div>
+                  <div className="relative h-3 bg-gray-300 rounded w-32"></div>
+                  <div className="h-3 bg-gray-300 rounded w-16 mt-2"></div>
+                </div>
+
+                <div className="hidden lg:block  text-center">
+                  <div className="h-4 bg-gray-300 rounded w-16 mb-2"></div>
+                  <div className="h-3 bg-gray-300 rounded w-20"></div>
+                </div>
+
+                <div className=" hidden lg:flex  items-center gap-x-3">
+                  <div className="text-right flex-1">
+                    <div className="h-4 bg-gray-300 rounded w-20 mb-2"></div>
+                    <div className="h-3 bg-gray-300 rounded w-24"></div>
+                  </div>
+                  <div className="h-8 bg-gray-300 rounded-full w-20"></div>
+                </div>
+              </div>
+
+              <div className="my-4 p-2 bg-yellow-100 h-5 w-full"></div>
+
+              {/* Footer Skeleton */}
+              <div className="hidden md:flex justify-between items-center text-sm card-footer-v2">
+                <div className="h-4 bg-gray-300 rounded w-40"></div>
+              </div>
+            </div>
+          </div>
+
+          <div className="my-3 w-full h-[120px]  lg:h-[160px] border p-2 md:p-5">
+            <div className=" ">
+              <div className="flex animate-pulse items-center justify-between">
+                <div className="flex gap-3">
+                  <div className="w-[50px] h-[50px] bg-gray-300 rounded"></div>
+                  <div className="hidden sm:block">
+                    <div className="h-4 bg-gray-300 rounded w-32 mb-2"></div>
+                    <div className="h-3 bg-gray-300 rounded w-20"></div>
+                  </div>
+                </div>
+
+                <div className=" text-center">
+                  <div className="h-4 bg-gray-300 rounded w-16 mb-2"></div>
+                  <div className="h-3 bg-gray-300 rounded w-20"></div>
+                </div>
+
+                <div className="text-center">
+                  <div className="h-4 bg-gray-300 rounded w-20 mb-2"></div>
+                  <div className="relative h-3 bg-gray-300 rounded w-32"></div>
+                  <div className="h-3 bg-gray-300 rounded w-16 mt-2"></div>
+                </div>
+
+                <div className="hidden lg:block  text-center">
+                  <div className="h-4 bg-gray-300 rounded w-16 mb-2"></div>
+                  <div className="h-3 bg-gray-300 rounded w-20"></div>
+                </div>
+
+                <div className=" hidden lg:flex  items-center gap-x-3">
+                  <div className="text-right flex-1">
+                    <div className="h-4 bg-gray-300 rounded w-20 mb-2"></div>
+                    <div className="h-3 bg-gray-300 rounded w-24"></div>
+                  </div>
+                  <div className="h-8 bg-gray-300 rounded-full w-20"></div>
+                </div>
+              </div>
+
+              <div className="my-4 p-2 bg-yellow-100 h-5 w-full"></div>
+
+              {/* Footer Skeleton */}
+              <div className="hidden md:flex justify-between items-center text-sm card-footer-v2">
+                <div className="h-4 bg-gray-300 rounded w-40"></div>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div className="my-4 p-1 text-center bg-gray-300 animate-pulse">
-          <div className="h-3 w-1/2 bg-gray-400 rounded mx-auto"></div>
-        </div>
 
-        <div className="hidden md:flex justify-between items-center text-sm card-footer-v2">
-          <div className="h-4 w-32 bg-gray-300 rounded animate-pulse"></div>
-        </div>
+
+
       </div>
     );
   };
 
 
 
-const handelnonlcc=(id, ResultIndex)=>{
-  const addate= Date.now()
-  localStorage.setItem("checkOutFlightDetail", JSON.stringify({addat:addate,data:ResultIndex,ResultIndex:ResultIndex.ResultIndex,IsLCC:ResultIndex.IsLCC,traceid,ip:newtIp}));
+  const handelnonlcc = (id, ResultIndex) => {
+    const addate = Date.now()
+    localStorage.setItem("checkOutFlightDetail", JSON.stringify({ addat: addate, data: ResultIndex, ResultIndex: ResultIndex.ResultIndex, IsLCC: ResultIndex.IsLCC, traceid, ip: newtIp }));
 
-   window.location.href = "/flight/checkout";
-  
+    window.location.href = "/flight/checkout";
+
   }
 
 
@@ -374,25 +470,26 @@ const handelnonlcc=(id, ResultIndex)=>{
     <>
       {activePopup === "view-price" && srrFairdata && !ssrFair.isLoading && (
         <div className="fixed p-4 inset-0 flex  z-[9999] items-center justify-center bg-black bg-opacity-50  overflow-y-auto">
-          <div className="p-6  bg-gray-100  h-auto md:max-h-screen relative">
+          <div className="p-6  bg-gray-100  rounded-md h-auto md:max-h-screen relative">
             <MdCancel
               className="absolute top-2 right-2 text-2xl cursor-pointer"
               onClick={() => setActivePopup(null)}
             />
 
-            <div className="grid gap-4 lg:grid-cols-2">
+            <div className="grid gap-6 lg:grid-cols-2">
               {srrFairdata.Results?.Segments[0]?.map((flight, index) => (
                 <div
                   key={index}
-                  className="bg-white shadow-md border border-gray-200 rounded-lg p-4"
+                  className="bg-white shadow-xl border border-gray-100 rounded-2xl p-6 hover:shadow-2xl transition-shadow duration-300"
                 >
-                  <h2 className="text-xl font-bold mb-4">
-                    {flight.Destination.Airport.CityName}-
-                    {flight.Origin.Airport.CityName}
+                  <h2 className="text-2xl font-extrabold mb-4 text-gray-800 flex items-center">
+                    <FaPlaneDeparture className="mr-3 text-indigo-500" />
+                    {flight.Destination.Airport.CityName} - {flight.Origin.Airport.CityName}
                   </h2>
 
-                  <h3 className="text-lg font-semibold">{flight.airline}</h3>
-                  <p className="text-sm text-gray-600">
+                  <h3 className="text-xl font-semibold text-gray-700 mb-2">{flight.airline}</h3>
+                  <p className="text-sm text-gray-600 flex flex-col lg:flex-row items-center mb-4">
+                    <FaPlaneDeparture className="mr-2 text-blue-500" />
                     <strong>Departure:</strong>{" "}
                     {new Intl.DateTimeFormat("en-GB", {
                       year: "numeric",
@@ -401,8 +498,9 @@ const handelnonlcc=(id, ResultIndex)=>{
                       hour: "2-digit",
                       minute: "2-digit",
                       hour12: false,
-                    }).format(new Date(flight.Destination.ArrTime))}{" "}
-                    | <strong>Arrival:</strong>{" "}
+                    }).format(new Date(flight?.Origin?.DepTime))}{" "}
+                    | <FaPlaneArrival className="ml-4 mr-2 text-blue-500" />
+                    <strong>Arrival:</strong>{" "}
                     {new Intl.DateTimeFormat("en-GB", {
                       year: "numeric",
                       month: "long",
@@ -410,21 +508,21 @@ const handelnonlcc=(id, ResultIndex)=>{
                       hour: "2-digit",
                       minute: "2-digit",
                       hour12: false,
-                    }).format(new Date(flight.Origin.DepTime))}{" "}
-                    |{" "}
+                    }).format(new Date(flight?.Destination?.ArrTime))}
                   </p>
 
-                  <div className="mt-2">
-                    <p className="text-sm text-gray-800 font-medium">
-                      <strong>Baggage:</strong>
-                      {flight.CabinBaggage}
+                  <div className="mt-4 space-y-3">
+                    <p className="text-sm text-gray-800 font-medium flex items-center">
+                      <FaLuggageCart className="mr-2 text-gray-500" />
+                      <strong>Baggage:</strong> {flight.CabinBaggage}
                     </p>
-                    <p className="text-sm text-gray-800 font-medium">
-                      <strong>Refundable: </strong>
-                      {srrFairdata.Results.IsRefundable}
+                    <p className="text-sm text-gray-800 font-medium flex items-center">
+                      <FaMoneyCheckAlt className="mr-2 text-green-500" />
+                      <strong>Refundable:</strong> {srrFairdata.Results.IsRefundable ? 'Yes' : 'No'}
                     </p>
-                    <p className="text-sm text-gray-800 font-medium mt-2">
-                      <strong>Seats OR Cabin type:</strong>
+                    <p className="text-sm text-gray-800 font-medium flex items-center">
+                      <FaChair className="mr-2 text-indigo-500" />
+                      <strong>Cabin Type:</strong>{" "}
                       {[
                         "All",
                         "Economy",
@@ -434,99 +532,68 @@ const handelnonlcc=(id, ResultIndex)=>{
                         "First",
                       ].filter((inf, ind) => ind + 1 == flight.CabinClass)}
                     </p>
-                    TaxBreakUp
-                    <p className="text-sm text-gray-800 font-medium mt-2">
-                      <strong>Tax:</strong>
-                      <div className="grid grid-cols-3">
+                    <p className="text-sm text-gray-800 font-medium">
+                      <strong>Tax Breakdown:</strong>
+                      <div className="grid grid-cols-2 gap-2 mt-2">
                         {srrFairdata?.Results?.FareBreakdown?.[0]?.TaxBreakUp?.map(
                           (taxinfo, index) => (
-                            <p key={index}>
+                            <p key={index} className="text-sm text-gray-600 flex items-center">
+                              <FaMoneyBillWave className="mr-2 text-yellow-500" />
                               {taxinfo.key}: {taxinfo.value}
                             </p>
                           )
-                        ) || <p>No tax information available.</p>}
+                        ) || <p className="text-sm text-gray-500">No tax information available.</p>}
                       </div>
                     </p>
                   </div>
 
-                  <div className="mt-4  flex flex-col justify-between">
-                    <p className=" text-[13px] md:text-lg font-bold text-indigo-400">
-                      <span className="block md:inline">
-                        Base price: {defaultcurrency.symble}
-                      </span>
-                      {(() => {
-                        const baseFare =
-                          srrFairdata?.Results?.FareBreakdown?.[0]?.BaseFare ||
-                          0;
-                        const price = baseFare * cuntryprice;
-                        const priceString = price.toFixed(2);
-                        const [integerPart, decimalPart] =
-                          priceString.split(".");
-
-                        return `${integerPart},${(decimalPart || "00").slice(
-                          0,
-                          2
-                        )}`;
-                      })()}
-                    </p>
-                    <p className="  text-[13px] md:text-lg font-bold text-indigo-600">
-                      <span className="block md:inline">
-                        Total price: {defaultcurrency.symble}
-                      </span>
-                      {(() => {
-                        const baseFare = Number(
-                          srrFairdata?.Results?.FareBreakdown?.[0]?.BaseFare ||
-                          0
-                        );
-                        const taxBreakUpTotal =
-                          srrFairdata?.Results?.FareBreakdown?.[0]?.TaxBreakUp?.reduce(
-                            (acc, arr) => acc + Number(arr.value || 0),
-                            0
-                          ) || 0;
-
-                        const totalPrice =
-                          (baseFare + taxBreakUpTotal) * cuntryprice;
-
-                        const priceString = totalPrice.toFixed(2);
-
-                        const [integerPart, decimalPart] =
-                          priceString.split(".");
-
-                        return `${integerPart},${(decimalPart || "00").slice(
-                          0,
-                          2
-                        )}`;
-                      })()}
-                    </p>
-                    <div
-                      onClick={() => saveDataInLocal(flight, (() => {
-                        const baseFare = Number(
-                          srrFairdata?.Results?.FareBreakdown?.[0]?.BaseFare ||
-                          0
-                        );
-                        const taxBreakUpTotal =
-                          srrFairdata?.Results?.FareBreakdown?.[0]?.TaxBreakUp?.reduce(
-                            (acc, arr) => acc + Number(arr.value || 0),
-                            0
-                          ) || 0;
-
-                        const totalPrice =
-                          (baseFare + taxBreakUpTotal) * cuntryprice;
-
-                        const priceString = totalPrice.toFixed(2);
-
-                        const [integerPart, decimalPart] =
-                          priceString.split(".");
-
-                        return `${integerPart},${(decimalPart || "00").slice(
-                          0,
-                          2
-                        )}`;
-                      })())}
-                      className="px-4 py-2 text-center  bg-blue-500 text-white  text-[13px] text-nowrap md:text-sm font-medium rounded hover:bg-blue-600"
-                    >
-                      Book Now
+                  <div className="mt-6 flex flex-col md:flex-row justify-between items-center">
+                    <div className="mb-4 md:mb-0">
+                      <p className="text-lg font-bold text-indigo-400 flex items-center">
+                        <FaMoneyBillWave className="mr-2 text-indigo-400" />
+                        Base Price: {defaultcurrency.symble}
+                        {(() => {
+                          const baseFare = srrFairdata?.Results?.FareBreakdown?.[0]?.BaseFare || 0;
+                          const price = baseFare * cuntryprice;
+                          const priceString = price.toFixed(2);
+                          const [integerPart, decimalPart] = priceString.split(".");
+                          return `${integerPart},${(decimalPart || "00").slice(0, 2)}`;
+                        })()}
+                      </p>
+                      <p className="text-lg font-bold text-indigo-600 flex items-center">
+                        <FaMoneyBillWave className="mr-2 text-indigo-600" />
+                        Total Price: {defaultcurrency.symble}
+                        {(() => {
+                          const baseFare = Number(srrFairdata?.Results?.FareBreakdown?.[0]?.BaseFare || 0);
+                          const taxBreakUpTotal =
+                            srrFairdata?.Results?.FareBreakdown?.[0]?.TaxBreakUp?.reduce(
+                              (acc, arr) => acc + Number(arr.value || 0),
+                              0
+                            ) || 0;
+                          const totalPrice = (baseFare + taxBreakUpTotal) * cuntryprice;
+                          const priceString = totalPrice.toFixed(2);
+                          const [integerPart, decimalPart] = priceString.split(".");
+                          return `${integerPart},${(decimalPart || "00").slice(0, 2)}`;
+                        })()}
+                      </p>
                     </div>
+                    <button
+                      onClick={() => saveDataInLocal(flight, (() => {
+                        const baseFare = Number(srrFairdata?.Results?.FareBreakdown?.[0]?.BaseFare || 0);
+                        const taxBreakUpTotal =
+                          srrFairdata?.Results?.FareBreakdown?.[0]?.TaxBreakUp?.reduce(
+                            (acc, arr) => acc + Number(arr.value || 0),
+                            0
+                          ) || 0;
+                        const totalPrice = (baseFare + taxBreakUpTotal) * cuntryprice;
+                        const priceString = totalPrice.toFixed(2);
+                        const [integerPart, decimalPart] = priceString.split(".");
+                        return `${integerPart},${(decimalPart || "00").slice(0, 2)}`;
+                      })())}
+                      className="px-6 py-3 bg-gradient-to-r from-blue-500 to-indigo-600 text-white text-sm font-semibold rounded-lg hover:from-blue-600 hover:to-indigo-700 transition-all duration-300 flex items-center"
+                    >
+                      <FaPlaneDeparture className="mr-2" /> Book Now
+                    </button>
                   </div>
                 </div>
               ))}
@@ -894,17 +961,17 @@ const handelnonlcc=(id, ResultIndex)=>{
           <div className="myshadow w-full md:flex bg-white gap-1 px-4 overflow-hidden">
             {!state2 ? (
               // Show skeleton loader while data is being fetched
-              [...Array(3)].map((_, index) => <SkeletonLoader key={index} />)
-            ) : (             
+            <SkeletonLoader />
+            ) : (
               state2?.map((flightinfo) => {
 
                 return (
 
                   <div className="w-full">
-                   
+
 
                     {flightinfo?.map((flight, index) => {
-                     
+
                       return (
                         <>
                           {flight.Segments[0].length > 1 ? (
@@ -912,14 +979,14 @@ const handelnonlcc=(id, ResultIndex)=>{
                               key={index}
                               className="my-3 border  p-2 md:p-5 w-full"
                             >
-                  
+
                               <div className="flex flex-col">
                                 {flight?.Segments[0]?.map((info, index2) => (
                                   <div
                                     className="flex items-center justify-between my-5"
                                     key={index2}
                                   >
-                                  <div className="flex gap-3">
+                                    <div className="flex gap-3">
                                       <img
                                         className="w-[50px]"
                                         src={
@@ -927,10 +994,10 @@ const handelnonlcc=(id, ResultIndex)=>{
                                             ? `/images/${info.Airline.AirlineCode}.png`
                                             : "/images/planeicon.svg"
                                         }
-                                        alt={`${
-                                          info.Airline.AirlineName || "Default"
-                                        } Logo`}
+                                        alt={`${info.Airline.AirlineName || "Default"
+                                          } Logo`}
                                       />
+
                                       <div className="hidden sm:block ">
                                         <p className="font-bold text-black ">
                                           {info.Airline.AirlineName}
@@ -939,6 +1006,9 @@ const handelnonlcc=(id, ResultIndex)=>{
                                           {info.Airline.FlightNumber}
                                         </p>
                                       </div>
+
+                                      
+                                      
                                     </div>
 
                                     <div className="text-center">
@@ -985,122 +1055,122 @@ const handelnonlcc=(id, ResultIndex)=>{
                                       </p>
                                     </div>
 
-                                   
+
                                   </div>
                                 ))}
                               </div>
 
 
 
-                      
-                                       <div className="flex items-center justify-between gap-x-3">
-                                        <div className="text-right ">
-                                          <div className="text-black text-lg font-bold whitespace-nowrap ">
-                                            <span className="text-sm md:text-lg font-bold">
-                                              {defaultcurrency.symble}
-                                              {(() => {
-                                                const offeredFare =
-                                                  flight.Fare?.OfferedFare || 0;
-                                                const price =
-                                                  Number(offeredFare) *
-                                                  Number(cuntryprice);
-                                                const priceString =
-                                                  price.toFixed(2);
-                                                const [
-                                                  integerPart,
-                                                  decimalPart,
-                                                ] = priceString.split(".");
-                                                return `${integerPart}.${(
-                                                  decimalPart || "00"
-                                                ).slice(0, 2)}`;
-                                                // return offeredFare;
-                                              })()}
-                                            </span>
-                                            <p className="text-sm text-gray-700 font-light leading-tight">
-                                              Total Price
-                                            </p>
-                                          </div>
-                                        </div>
-                                        {flight.IsLCC &&
-                                       <button
-                                       onClick={() =>
-                                         togglePopup("view-price", flight)
-                                       }
-                                       className="block text-[11.5px] md:text-sm font-semibold md:h-8 text-blue-600 rounded-full p-1 px-2 md:px-4 bg-blue-200 border border-blue-600 relative overflow-hidden"
-                                       disabled={isloadingQoute} 
-                                     >
-                                       {isloadingQoute ? (
-                                         <div className="flex items-center justify-center">
-                                           <svg
-                                             className="animate-spin h-5 w-5 text-blue-600"
-                                             xmlns="http://www.w3.org/2000/svg"
-                                             fill="none"
-                                             viewBox="0 0 24 24"
-                                           >
-                                             <circle
-                                               className="opacity-25"
-                                               cx="12"
-                                               cy="12"
-                                               r="10"
-                                               stroke="currentColor"
-                                               strokeWidth="4"
-                                             />
-                                             <path
-                                               className="opacity-75"
-                                               fill="currentColor"
-                                               d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                                             />
-                                           </svg>
-                                           </div>
-                                       ) : (
-                                         <>
-                                           <span className="hidden md:inline">VIEW</span> PRICES
-                                         </>
-                                       )}
-                                     </button> }
 
-
-                                        {!flight.IsLCC &&
-                                       <button
-                                       onClick={() =>
-                                         togglePopup("view-price", flight)
-                                       }
-                                       className="block text-[11.5px] md:text-sm font-semibold md:h-8 text-blue-600 rounded-full p-1 px-2 md:px-4 bg-blue-200 border border-blue-600 relative overflow-hidden"
-                                       disabled={isloadingQoute} // Optional: disable button while loading
-                                     >
-                                       {isloadingQoute ? (
-                                         <div className="flex items-center justify-center">
-                                           <svg
-                                             className="animate-spin h-5 w-5 text-blue-600"
-                                             xmlns="http://www.w3.org/2000/svg"
-                                             fill="none"
-                                             viewBox="0 0 24 24"
-                                           >
-                                             <circle
-                                               className="opacity-25"
-                                               cx="12"
-                                               cy="12"
-                                               r="10"
-                                               stroke="currentColor"
-                                               strokeWidth="4"
-                                             />
-                                             <path
-                                               className="opacity-75"
-                                               fill="currentColor"
-                                               d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                                             />
-                                           </svg>
-                                        </div>
-                                       ) : (
-                                         <>
-                                           <span className="hidden md:inline">VIEW</span> PRICES
-                                         </>
-                                       )}
-                                     </button>
-                                     }
-
+                              <div className="flex items-center justify-between gap-x-3">
+                                <div className="text-right ">
+                                  <div className="text-black text-lg font-bold whitespace-nowrap ">
+                                    <span className="text-sm md:text-lg font-bold">
+                                      {defaultcurrency.symble}
+                                      {(() => {
+                                        const offeredFare =
+                                          flight.Fare?.OfferedFare || 0;
+                                        const price =
+                                          Number(offeredFare) *
+                                          Number(cuntryprice);
+                                        const priceString =
+                                          price.toFixed(2);
+                                        const [
+                                          integerPart,
+                                          decimalPart,
+                                        ] = priceString.split(".");
+                                        return `${integerPart}.${(
+                                          decimalPart || "00"
+                                        ).slice(0, 2)}`;
+                                        // return offeredFare;
+                                      })()}
+                                    </span>
+                                    <p className="text-sm text-gray-700 font-light leading-tight">
+                                      Total Price
+                                    </p>
+                                  </div>
+                                </div>
+                                {flight.IsLCC &&
+                                  <button
+                                    onClick={() =>
+                                      togglePopup("view-price", flight)
+                                    }
+                                    className="block text-[11.5px] md:text-sm font-semibold md:h-8 text-blue-600 rounded-full p-1 px-2 md:px-4 bg-blue-200 border border-blue-600 relative overflow-hidden"
+                                    disabled={isloadingQoute}
+                                  >
+                                    {isloadingQoute ? (
+                                      <div className="flex items-center justify-center">
+                                        <svg
+                                          className="animate-spin h-5 w-5 text-blue-600"
+                                          xmlns="http://www.w3.org/2000/svg"
+                                          fill="none"
+                                          viewBox="0 0 24 24"
+                                        >
+                                          <circle
+                                            className="opacity-25"
+                                            cx="12"
+                                            cy="12"
+                                            r="10"
+                                            stroke="currentColor"
+                                            strokeWidth="4"
+                                          />
+                                          <path
+                                            className="opacity-75"
+                                            fill="currentColor"
+                                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                                          />
+                                        </svg>
                                       </div>
-                                  
+                                    ) : (
+                                      <>
+                                        <span className="hidden md:inline">VIEW</span> PRICES
+                                      </>
+                                    )}
+                                  </button>}
+
+
+                                {!flight.IsLCC &&
+                                  <button
+                                    onClick={() =>
+                                      togglePopup("view-price", flight)
+                                    }
+                                    className="block text-[11.5px] md:text-sm font-semibold md:h-8 text-blue-600 rounded-full p-1 px-2 md:px-4 bg-blue-200 border border-blue-600 relative overflow-hidden"
+                                    disabled={isloadingQoute} // Optional: disable button while loading
+                                  >
+                                    {isloadingQoute ? (
+                                      <div className="flex items-center justify-center">
+                                        <svg
+                                          className="animate-spin h-5 w-5 text-blue-600"
+                                          xmlns="http://www.w3.org/2000/svg"
+                                          fill="none"
+                                          viewBox="0 0 24 24"
+                                        >
+                                          <circle
+                                            className="opacity-25"
+                                            cx="12"
+                                            cy="12"
+                                            r="10"
+                                            stroke="currentColor"
+                                            strokeWidth="4"
+                                          />
+                                          <path
+                                            className="opacity-75"
+                                            fill="currentColor"
+                                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                                          />
+                                        </svg>
+                                      </div>
+                                    ) : (
+                                      <>
+                                        <span className="hidden md:inline">VIEW</span> PRICES
+                                      </>
+                                    )}
+                                  </button>
+                                }
+
+                              </div>
+
 
                               <p className="my-4 p-1 text-center bg-yellow-100">
                                 <span className="text-[9px] md:text-xs text-center ">
@@ -1123,44 +1193,40 @@ const handelnonlcc=(id, ResultIndex)=>{
                                     <button
                                       onClick={() => setActiveTab(1)}
                                       aria-selected={activeTab == "1"}
-                                      className={`cursor-pointer float-left p-2 list-none text-black text-sm  w-[23%] text-center font-medium${
-                                        activeTab == "1"
+                                      className={`cursor-pointer float-left p-2 list-none text-black text-sm  w-[23%] text-center font-medium${activeTab == "1"
                                           ? " text-white rounded-full bg-[#2196f3]"
                                           : ""
-                                      }`}
+                                        }`}
                                     >
                                       FLIGHT DETAILS
                                     </button>
                                     <button
                                       onClick={() => setActiveTab(2)}
                                       aria-selected={activeTab == "2"}
-                                      className={`cursor-pointer float-left p-2 list-none text-black text-sm  w-[23%] text-center font-medium${
-                                        activeTab == "2"
+                                      className={`cursor-pointer float-left p-2 list-none text-black text-sm  w-[23%] text-center font-medium${activeTab == "2"
                                           ? " text-white rounded-full bg-[#2196f3]"
                                           : ""
-                                      }`}
+                                        }`}
                                     >
                                       FARE SUMMARY
                                     </button>
                                     <button
                                       onClick={() => setActiveTab(3)}
                                       aria-selected={activeTab == "3"}
-                                      className={`cursor-pointer float-left p-2 list-none text-black text-sm  w-[23%] text-center font-medium${
-                                        activeTab === "3"
+                                      className={`cursor-pointer float-left p-2 list-none text-black text-sm  w-[23%] text-center font-medium${activeTab === "3"
                                           ? " text-white rounded-full bg-[#2196f3]"
                                           : ""
-                                      }`}
+                                        }`}
                                     >
                                       CANCELLATION
                                     </button>
                                     <button
                                       onClick={() => setActiveTab(4)}
                                       aria-selected={activeTab == "4"}
-                                      className={`cursor-pointer float-left p-2 list-none text-black text-sm  w-[23%] text-center font-medium${
-                                        activeTab == "4"
+                                      className={`cursor-pointer float-left p-2 list-none text-black text-sm  w-[23%] text-center font-medium${activeTab == "4"
                                           ? " text-white rounded-full bg-[#2196f3]"
                                           : ""
-                                      }`}
+                                        }`}
                                     >
                                       DATE CHANGE
                                     </button>
@@ -1240,8 +1306,8 @@ const handelnonlcc=(id, ResultIndex)=>{
                                                   })}
                                                 </p>
                                                 <p className="text-gray-600">
-                                                Terminal  {flight?.Segments[0][0]?.Origin?.Airport?.Terminal}
-            
+                                                  Terminal  {flight?.Segments[0][0]?.Origin?.Airport?.Terminal}
+
                                                 </p>
                                                 <p className="text-sm">
                                                   New Delhi, India
@@ -1287,7 +1353,7 @@ const handelnonlcc=(id, ResultIndex)=>{
                                                   })}
                                                 </p>
                                                 <p className="text-gray-600">
-                                                Terminal  {flight.Segments[0][0].Destination.Airport.Terminal}
+                                                  Terminal  {flight.Segments[0][0].Destination.Airport.Terminal}
                                                 </p>
                                                 <p className="text-sm">
                                                   Bengaluru, India
@@ -1314,7 +1380,7 @@ const handelnonlcc=(id, ResultIndex)=>{
                                                 <span className="text-gray-700">
                                                   {flight.Segments[0][0].Baggage
                                                     ? flight.Segments[0][0]
-                                                        .Baggage
+                                                      .Baggage
                                                     : "Not Allowed"}
                                                 </span>
                                               </p>
@@ -1426,7 +1492,7 @@ const handelnonlcc=(id, ResultIndex)=>{
                                                     {(() => {
                                                       const baseFare = Number(
                                                         flight.Fare?.BaseFare ||
-                                                          0
+                                                        0
                                                       );
                                                       const totalPrice =
                                                         baseFare * cuntryprice;
@@ -1620,13 +1686,27 @@ const handelnonlcc=(id, ResultIndex)=>{
                                           ? `/images/${flight.Segments[0][0].Airline.AirlineCode}.png`
                                           : "/images/logo-flight.webp"
                                       }
-                                      alt={`${
-                                        flight.Segments[0][0].Airline
+                                      alt={`${flight.Segments[0][0].Airline
                                           .AirlineName || "Default"
-                                      } Logo`}
+                                        } Logo`}
                                     />
-                                    
+
+                                  
+
+                                        <div className="">
+                                        <p className="font-bold text-black ">
+                                          {flight.Segments[0][0].Airline.AirlineName}
+                                          
+                                          {/* { console.log('flight.Airline',flight.Segments[0][0].Airline.AirlineName)} */}
+                                        </p>
+                                        <p className="text-black text-xs">
+                                          {flight.Segments[0][0].Airline.FlightNumber}
+                                        </p>
+                                      </div>
+
                                   </div>
+                                    
+
 
                                   <div className=" w-full flex md:hidden lg:hidden  ">
                                     <div className="text-center w-1/3 sm:w-auto">
@@ -1637,7 +1717,7 @@ const handelnonlcc=(id, ResultIndex)=>{
                                       </p>
                                       <p className="text-black text-xs">
                                         {
-                                          flight.Segments[0][0].Destination
+                                          flight.Segments[0][0].Origin
                                             .Airport.CityName
                                         }
                                       </p>
@@ -1657,10 +1737,15 @@ const handelnonlcc=(id, ResultIndex)=>{
                                             borderTop:
                                               "3px solid rgb(245, 166, 34)",
                                           }}
-                                        ></p>
+                                        >
+
+                                          
+
+
+                                        </p>
                                       </div>
                                       <p className="text-black text-xs mt-1">
-                                        {flight.stop}
+                                     
                                       </p>
                                     </div>
 
@@ -1670,7 +1755,14 @@ const handelnonlcc=(id, ResultIndex)=>{
                                           "T"
                                         )[1].slice(0, 5)}
                                       </p>
-                                     
+
+                                       <p className="text-black text-xs">
+                                        {
+                                          flight.Segments[0][0].Destination
+                                            .Airport.CityName
+                                        }
+                                      </p>
+
                                     </div>
                                   </div>
 
@@ -1685,7 +1777,7 @@ const handelnonlcc=(id, ResultIndex)=>{
                                         flight.Segments[0][0].Origin.Airport.CityName
                                       }
                                     </p>
-                                   
+
                                   </div>
 
                                   <div className="text-center w-1/3 sm:w-auto hidden md:block lg:block">
@@ -1720,6 +1812,10 @@ const handelnonlcc=(id, ResultIndex)=>{
                                         flight.Segments[0][0]?.Destination?.Airport
                                           .CityName
                                       }
+
+                                    </p>
+                                     <p className="text-black text-xs mt-1">
+                                      {flight.stop}
                                     </p>
                                   </div>
 
@@ -1749,41 +1845,41 @@ const handelnonlcc=(id, ResultIndex)=>{
                                       </div>
                                     </div>
                                     <button
-                                       onClick={() =>
-                                         togglePopup("view-price", flight)
-                                       }
-                                       className="block text-[11.5px] md:text-sm font-semibold md:h-8 text-blue-600 rounded-full p-1 px-2 md:px-4 bg-blue-200 border border-blue-600 relative overflow-hidden"
-                                       disabled={isloadingQoute} // Optional: disable button while loading
-                                     >
-                                       {isloadingQoute ? (
-                                         <div className="flex items-center justify-center">
-                                           <svg
-                                             className="animate-spin h-5 w-5 text-blue-600"
-                                             xmlns="http://www.w3.org/2000/svg"
-                                             fill="none"
-                                             viewBox="0 0 24 24"
-                                           >
-                                             <circle
-                                               className="opacity-25"
-                                               cx="12"
-                                               cy="12"
-                                               r="10"
-                                               stroke="currentColor"
-                                               strokeWidth="4"
-                                             />
-                                             <path
-                                               className="opacity-75"
-                                               fill="currentColor"
-                                               d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                                             />
-                                           </svg>
-                                         </div>
-                                       ) : (
-                                         <>
-                                           <span className="hidden md:inline">VIEW</span> PRICES
-                                         </>
-                                       )}
-                                     </button> 
+                                      onClick={() =>
+                                        togglePopup("view-price", flight)
+                                      }
+                                      className="block text-[11.5px] md:text-sm font-semibold md:h-8 text-blue-600 rounded-full p-1 px-2 md:px-4 bg-blue-200 border border-blue-600 relative overflow-hidden"
+                                      disabled={isloadingQoute} // Optional: disable button while loading
+                                    >
+                                      {isloadingQoute ? (
+                                        <div className="flex items-center justify-center">
+                                          <svg
+                                            className="animate-spin h-5 w-5 text-blue-600"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                          >
+                                            <circle
+                                              className="opacity-25"
+                                              cx="12"
+                                              cy="12"
+                                              r="10"
+                                              stroke="currentColor"
+                                              strokeWidth="4"
+                                            />
+                                            <path
+                                              className="opacity-75"
+                                              fill="currentColor"
+                                              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                                            />
+                                          </svg>
+                                        </div>
+                                      ) : (
+                                        <>
+                                          <span className="hidden md:inline">VIEW</span> PRICES
+                                        </>
+                                      )}
+                                    </button>
                                   </div>
 
                                   <p className="my-4 p-2 text-center bg-yellow-100 w-full">
@@ -1807,41 +1903,37 @@ const handelnonlcc=(id, ResultIndex)=>{
                                     <nav className="my-4 flex justify-between m-0 p-0 bg-[#f6f4f4] w-full float-left rounded-[20px]">
                                       <button
                                         onClick={() => setActiveTab("1")}
-                                        className={`cursor-pointer float-left p-2 list-none text-black text-sm w-[23%] text-center font-medium ${
-                                          activeTab == "1"
+                                        className={`cursor-pointer float-left p-2 list-none text-black text-sm w-[23%] text-center font-medium ${activeTab == "1"
                                             ? "text-white rounded-full bg-[#2196f3]"
                                             : ""
-                                        }`}
+                                          }`}
                                       >
                                         FLIGHT DETAILS
                                       </button>
                                       <button
                                         onClick={() => setActiveTab("2")}
-                                        className={`cursor-pointer float-left p-2 list-none text-black text-sm w-[23%] text-center font-medium ${
-                                          activeTab == "2"
+                                        className={`cursor-pointer float-left p-2 list-none text-black text-sm w-[23%] text-center font-medium ${activeTab == "2"
                                             ? "text-white rounded-full bg-[#2196f3]"
                                             : ""
-                                        }`}
+                                          }`}
                                       >
                                         FARE SUMMARY
                                       </button>
                                       <button
                                         onClick={() => setActiveTab("3")}
-                                        className={`cursor-pointer float-left p-2 list-none text-black text-sm w-[23%] text-center font-medium ${
-                                          activeTab == "3"
+                                        className={`cursor-pointer float-left p-2 list-none text-black text-sm w-[23%] text-center font-medium ${activeTab == "3"
                                             ? "text-white rounded-full bg-[#2196f3]"
                                             : ""
-                                        }`}
+                                          }`}
                                       >
                                         CANCELLATION
                                       </button>
                                       <button
                                         onClick={() => setActiveTab("4")}
-                                        className={`cursor-pointer float-left p-2 list-none text-black text-sm w-[23%] text-center font-medium ${
-                                          activeTab == "4"
+                                        className={`cursor-pointer float-left p-2 list-none text-black text-sm w-[23%] text-center font-medium ${activeTab == "4"
                                             ? "text-white rounded-full bg-[#2196f3]"
                                             : ""
-                                        }`}
+                                          }`}
                                       >
                                         DATE CHANGE
                                       </button>
@@ -1898,7 +1990,7 @@ const handelnonlcc=(id, ResultIndex)=>{
                                               </span>
                                             </div>
 
-                                    
+
 
                                             <div className="flex gap-10">
                                               <div className="flex items-center justify-between w-[50%]">
@@ -1923,10 +2015,10 @@ const handelnonlcc=(id, ResultIndex)=>{
                                                     })}
                                                   </p>
                                                   <p className="text-gray-600">
-                                                   Terminal  {flight.Segments[0][0].Origin.Airport.Terminal}
+                                                    Terminal  {flight.Segments[0][0].Origin.Airport.Terminal}
                                                   </p>
                                                   <p className="text-sm">
-                                                  {flight.Segments[0][0].Origin.Airport.CityName},{flight.Segments[0][0].Origin.Airport.CountryName}
+                                                    {flight.Segments[0][0].Origin.Airport.CityName},{flight.Segments[0][0].Origin.Airport.CountryName}
                                                   </p>
                                                 </div>
                                                 <div
@@ -1966,11 +2058,11 @@ const handelnonlcc=(id, ResultIndex)=>{
                                                     }
                                                   </p>
                                                   <p className="text-gray-600">
-                                                  Terminal {flight.Segments[0][0]?.Destination?.Airport?.Terminal}
+                                                    Terminal {flight.Segments[0][0]?.Destination?.Airport?.Terminal}
                                                   </p>
                                                   <p className="text-sm">
-                                                  {flight.Segments[0][0]?.Origin?.Destination?.CityName},{flight.Segments[0][0]?.Origin?.Destination?.CountryName}
-                                                
+                                                    {flight.Segments[0][0]?.Origin?.Destination?.CityName},{flight.Segments[0][0]?.Origin?.Destination?.CountryName}
+
                                                   </p>
                                                 </div>
                                               </div>
@@ -1995,7 +2087,7 @@ const handelnonlcc=(id, ResultIndex)=>{
                                                     {flight.Segments[0][0]
                                                       .Baggage
                                                       ? flight.Segments[0][0]
-                                                          .Baggage
+                                                        .Baggage
                                                       : "Not Allowed"}
                                                   </span>
                                                 </p>
@@ -2101,7 +2193,7 @@ const handelnonlcc=(id, ResultIndex)=>{
                                                     {(() => {
                                                       const baseFare = Number(
                                                         flight.Fare?.BaseFare ||
-                                                          0
+                                                        0
                                                       );
 
                                                       // Calculate the total price
@@ -2296,12 +2388,12 @@ const handelnonlcc=(id, ResultIndex)=>{
                   </div>
                 );
               })
-              
+
 
 
 
             )
-          }
+            }
           </div>
 
 

@@ -103,7 +103,7 @@ const Header = () => {
     continent: "AS",
     iso_country: "IN",
     iso_region: "IN-DL",
-    municipality: "New Delhi",
+    city: "New Delhi",
     scheduled_service: "yes",
     gps_code: "VIDP",
     iata: "DEL",
@@ -125,7 +125,7 @@ const Header = () => {
     continent: "AS",
     iso_country: "IN",
     iso_region: "IN-MM",
-    municipality: "Mumbai",
+    city: "Mumbai",
     scheduled_service: "yes",
     gps_code: "VABB",
     iata: "BOM",
@@ -631,7 +631,8 @@ const Header = () => {
                     </button>
                     <div className="flex flex-col">
                       <span className="text-[22px] lg:text-2xl  text-black font-bold">
-                        {fromCity.municipality}
+                       { console.log('fromCity.city',fromCity)}
+                        {(fromCity.city || fromCity.municipality) ?? 'Unknown'}
                       </span>
                       <p className="text-black text-xs truncate">
                         [{fromCity.name}] {fromCity.iata}
@@ -679,7 +680,8 @@ const Header = () => {
 
                     <div className="flex flex-col">
                       <span className="text-[22px] lg:text-2xl  text-black font-bold">
-                        {toCity.municipality}
+            
+                          {(toCity.city || toCity.municipality) ?? 'Unknown'}
                       </span>
                       <p className="text-black text-xs truncate">
                         [{toCity.name}] {toCity.iata}
@@ -715,7 +717,7 @@ const Header = () => {
                       {selected && (
                         <>
                           <div className="flex  items-baseline text-black">
-                            <span className="text-3xl py-1 pr-1 text-black font-bold">
+                            <span className="text-2xl py-1 pr-1 text-black font-bold">
                               {" "}
                               {selected.getDate()}
                             </span>
@@ -730,6 +732,7 @@ const Header = () => {
                               {selected.getFullYear()}
                             </span>
                             {/* <FaCalendarWeek className="text-[#d3cfcf] ml-5 text-xl" /> */}
+                            <FaCalendarWeek className="text-[#d3cfcf] ml-2 text-xl" />
                           </div>
                           <p className="text-black text-xs pb-2">
                             {selected.toLocaleDateString()}
@@ -772,7 +775,7 @@ const Header = () => {
                       {selectedReturn ? (
                         <>
                           <div className="flex items-baseline text-black">
-                            <span className="text-3xl py-1 pr-1 text-black font-bold">
+                            <span className="text-2xl py-1 pr-1 text-black font-bold">
                               {selectedReturn.getDate()}
                             </span>
                             <span className=" lg:  font-semibold">
@@ -787,7 +790,7 @@ const Header = () => {
                           </p>
                         </>
                       ) : (
-                        <div className="text-black font-bold">Select Return Date</div>
+                        <div className="text-black text-sm font-bold"> Return Date</div>
                       )}
                     </div>
                   </div>
@@ -901,7 +904,7 @@ const Header = () => {
                     </label>
 
                     <div className="flex items-baseline text-black">
-                      <span className="text-3xl py-1 pr-1 text-black font-bold">
+                      <span className="text-2xl py-1 pr-1 text-black font-bold">
                         {" "}
                         {currentDateComponents.day}
                       </span>
@@ -923,7 +926,7 @@ const Header = () => {
                       {t("Return Date")}
                     </label>
                     <div className="flex items-baseline text-black">
-                      <span className="text-3xl py-1 pr-1 text-black font-bold">
+                      <span className="text-2xl py-1 pr-1 text-black font-bold">
                         {" "}
                         {futureDateComponents.day}
                       </span>
@@ -948,7 +951,7 @@ const Header = () => {
                       {t("Travelers")}
                     </label>
                     <div className="flex items-center text-black">
-                      <span className="text-3xl py-1 pr-1 text-black font-bold">
+                      <span className="text-2xl py-1 pr-1 text-black font-bold">
                         1
                       </span>
                       <span className="  font-semibold flex items-center gap-1">
@@ -984,7 +987,7 @@ const Header = () => {
                       {t("From")}
                     </p>
                     <span className="text-3xl py-1 text-black font-bold">
-                      {fromCity.municipality}
+                      {fromCity.city}
                     </span>
                     <p className="text-black text-xs truncate">
                       [{fromCity.name}] {fromCity.airport}
@@ -1008,7 +1011,7 @@ const Header = () => {
                       {t("To")}
                     </label>
                     <span className="text-3xl py-1 text-black font-bold">
-                      {toCity.municipality}
+                      {toCity.city}
                     </span>
                     <p className="text-black text-xs truncate">
                       [{toCity.name}] {toCity.airport}
@@ -1029,7 +1032,7 @@ const Header = () => {
                       {t("Departure Date")}
                     </label>
                     <div className="flex items-baseline text-black">
-                      <span className="text-3xl py-1 pr-1 text-black font-bold">
+                      <span className="text-2xl py-1 pr-1 text-black font-bold">
                         {" "}
                         {currentDateComponents.day}
                       </span>
@@ -1040,7 +1043,7 @@ const Header = () => {
                         {" "}
                         {currentDateComponents.year}
                       </span>
-                      {/* <FaCalendarWeek className="text-[#d3cfcf] ml-5 text-xl" /> */}
+                      <FaCalendarWeek className="text-[#d3cfcf] ml-2 text-xl" />
                     </div>
                     <p className="text-black text-xs">
                       {currentDateComponents.dayOfWeek}
@@ -1051,7 +1054,7 @@ const Header = () => {
                       {t("Travelers")}
                     </label>
                     <div className="flex items-center text-black">
-                      <span className="text-3xl py-1 pr-1 text-black font-bold">
+                      <span className="text-2xl py-1 pr-1 text-black font-bold">
                         1
                       </span>
                       <span className="  font-semibold flex items-center gap-1">
@@ -1115,7 +1118,7 @@ const Header = () => {
                       {t("Departure Date")}
                     </label>
                     <div className="flex items-baseline text-black">
-                      <span className="text-3xl py-1 pr-1 text-black font-bold">
+                      <span className="text-2xl py-1 pr-1 text-black font-bold">
                         {" "}
                         {currentDateComponents.day}
                       </span>

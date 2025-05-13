@@ -21,7 +21,7 @@ const AutoSearch = ({ value, onSelect, Click, fromCity }) => {
     {
       
         iata: "DEL",
-        municipality: "New Delhi",
+        city: "New Delhi",
         name: "Indira Gandhi International Airport",
         country: "India" ,
      
@@ -29,13 +29,13 @@ const AutoSearch = ({ value, onSelect, Click, fromCity }) => {
     {
   
         iata: "BLR",
-        municipality: "Bangalore",
+        city: "Bangalore",
         name: "Kempegowda International Airport",
         country:  "India" 
     },
     {
       iata: "IXC",
-      municipality: "Chandigarh",
+      city: "Chandigarh",
       name: "Shaheed Bhagat Singh International Airport",
       country: "India"
   },
@@ -43,21 +43,21 @@ const AutoSearch = ({ value, onSelect, Click, fromCity }) => {
     {
       
         iata: "BKK",
-        municipality: "Bangkok",
+        city: "Bangkok",
         name: "Suvarnabhumi Airport",
         country: "Thailand" 
     },
     {
       
         iata: "SIN",
-        municipality: "Singapore",
+        city: "Singapore",
         name: "Changi Airport",
         country:  "Singapore" 
     },
     {
     
         iata: "DXB",
-        municipality: "Dubai",
+        city: "Dubai",
         name: "Dubai International Airport",
         country:  "UAE" 
     },
@@ -214,7 +214,7 @@ const AutoSearch = ({ value, onSelect, Click, fromCity }) => {
                           <div>
                             <p>
                               <span className="font-semibold text-base">
-                                {`${airport.municipality} (${airport.iata})`}{" "}
+                                {`${airport.city} (${airport.iata})`}{" "}
                               </span>
                             </p>
                             <p className="text-xs font-medium mt-1 text-gray-600">
