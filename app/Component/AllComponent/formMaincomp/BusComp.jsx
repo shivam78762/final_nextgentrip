@@ -271,7 +271,7 @@ const BusComp = () => {
               <div className="flex justify-center items-center">
                 <button
                   onClick={handelSearch}
-                  className="bg-[#0A5EB0] w-full md:w-fit  py-2 px-3  font-semibold  text-lg rounded-md  text-white "
+                  className="bg-[#0A5EB0] w-full md:w-fit  py-2 px-3  text-nowrap font-semibold  text-lg rounded-md  text-white "
                 >
                   Search Bus
                 </button>

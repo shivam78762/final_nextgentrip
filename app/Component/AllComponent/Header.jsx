@@ -634,7 +634,7 @@ const Header = () => {
                        { console.log('fromCity.city',fromCity)}
                         {(fromCity.city || fromCity.municipality) ?? 'Unknown'}
                       </span>
-                      <p className="text-black text-xs truncate">
+                      <p className="text-black text-[12px] truncate">
                         [{fromCity.name}] {fromCity.iata}
                       </p>
                     </div>
@@ -683,7 +683,7 @@ const Header = () => {
             
                           {(toCity.city || toCity.municipality) ?? 'Unknown'}
                       </span>
-                      <p className="text-black text-xs truncate">
+                      <p className="text-black text-[12px] truncate">
                         [{toCity.name}] {toCity.iata}
                       </p>
                     </div>
@@ -731,7 +731,7 @@ const Header = () => {
                               {" "}
                               {selected.getFullYear()}
                             </span>
-                            <FaCalendarWeek className="text-[#d3cfcf] ml-2 text-xl" />
+                            {/* <FaCalendarWeek className="text-[#d3cfcf] ml-2 text-xl" /> */}
                           </div>
                           <p className="text-black text-xs pb-2">
                             {selected.toLocaleDateString()}
@@ -836,7 +836,7 @@ const Header = () => {
                 <div className="flex justify-center items-center">
                   <button
                     onClick={handelSearch}
-                    className="bg-[#0A5EB0] w-full md:w-fit  py-2 px-3  font-semibold  text-lg rounded-md  text-white "
+                    className="bg-[#0A5EB0] w-full md:w-fit text-nowrap  py-2 px-3  font-semibold  text-lg rounded-md  text-white "
                   >
                     Search Flights
                   </button>
@@ -857,7 +857,7 @@ const Header = () => {
                     <span className="text-3xl py-1 text-black font-bold">
                       {fromCity.name}
                     </span>
-                    <p className="text-black text-xs truncate">
+                    <p className="text-black text-[12px] truncate">
                       [{fromCity.code}] {fromCity.airport}
                     </p>
                     {isVisible && selectedOption === "from" && (
@@ -882,7 +882,7 @@ const Header = () => {
                     <span className="text-3xl py-1 text-black font-bold">
                       {toCity.name}
                     </span>
-                    <p className="text-black text-xs truncate">
+                    <p className="text-black text-[12px] truncate">
                       [{toCity.code}] {toCity.airport}
                     </p>
                     {isVisible && selectedOption === "to" && (
@@ -988,7 +988,7 @@ const Header = () => {
                     <span className="text-3xl py-1 text-black font-bold">
                       {fromCity.city}
                     </span>
-                    <p className="text-black text-xs truncate">
+                    <p className="text-black text-[12px] truncate">
                       [{fromCity.name}] {fromCity.airport}
                     </p>
                     {isVisible && selectedOption === "from" && (
@@ -1012,7 +1012,7 @@ const Header = () => {
                     <span className="text-3xl py-1 text-black font-bold">
                       {toCity.city}
                     </span>
-                    <p className="text-black text-xs truncate">
+                    <p className="text-black text-[12px] truncate">
                       [{toCity.name}] {toCity.airport}
                     </p>
                     {isVisible && selectedOption === "to" && (
@@ -1073,7 +1073,7 @@ const Header = () => {
                     <span className="text-3xl py-1 text-black font-bold">
                       {fromCity.name}
                     </span>
-                    <p className="text-black text-xs truncate">
+                    <p className="text-black text-[12px] truncate">
                       [{fromCity.code}] {fromCity.airport}
                     </p>
                     {isVisible && selectedOption === "from" && (
@@ -1098,7 +1098,7 @@ const Header = () => {
                     <span className="text-3xl py-1 text-black font-bold">
                       {toCity.name}
                     </span>
-                    <p className="text-black text-xs truncate">
+                    <p className="text-black text-[12px] truncate">
                       [{toCity.code}] {toCity.airport}
                     </p>
                     {isVisible && selectedOption === "to" && (
