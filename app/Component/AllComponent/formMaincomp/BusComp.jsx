@@ -214,7 +214,7 @@ const BusComp = () => {
                   <FaCalendarAlt className="" />
                   <div className="text-slate-400">
                     <div className="flex items-baseline text-black">
-                      <span className="text-2xl py-1 pr-1 text-black font-bold">
+                      <span className="text-xl py-1 pr-1 text-black font-bold">
                         {" "}
                         {pickupdate.getDate() - 1}
                       </span>

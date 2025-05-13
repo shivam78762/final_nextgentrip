@@ -138,7 +138,7 @@ const Hotelmobileheader = () => {
               Check-In
             </label>
             <div className="flex items-baseline text-black">
-              <span className="text-2xl py-1 pr-1 text-black font-bold">
+              <span className="text-xl py-1 pr-1 text-black font-bold">
                 {" "}
                 {arivitime.getDate()}
               </span>
@@ -178,7 +178,7 @@ const Hotelmobileheader = () => {
               Check-Out
             </label>
             <div className="flex items-baseline text-black">
-              <span className="text-2xl py-1 pr-1 text-black font-bold">
+              <span className="text-xl py-1 pr-1 text-black font-bold">
                 {" "}
                 {checkOut ? checkOut.getDate():currentDate.day}
               </span>

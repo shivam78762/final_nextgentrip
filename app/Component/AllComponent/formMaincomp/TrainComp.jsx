@@ -220,7 +220,7 @@ const TrainComp = () => {
                       Departure Date
                     </label>
                     <div className="flex items-baseline text-black">
-                      <span className="text-2xl py-1 pr-1 text-black font-bold">
+                      <span className="text-xl py-1 pr-1 text-black font-bold">
                         {" "}
                         {currentDateComponents.day}
                       </span>
@@ -340,7 +340,7 @@ const TrainComp = () => {
                       Train Start Date
                     </label>
                     <div className="flex items-baseline text-black">
-                      <span className="text-2xl py-1 pr-1 text-black font-bold">
+                      <span className="text-xl py-1 pr-1 text-black font-bold">
                         {" "}
                         {currentDateComponents.day}
                       </span>

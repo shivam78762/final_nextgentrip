@@ -153,7 +153,7 @@ onChange={(e)=>handleInputChange(e.target.value)}
             {toDate && (
               <>
                 <div className="flex items-baseline text-black">
-                  <span className="text-2xl py-1 pr-1 text-black font-bold">
+                  <span className="text-xl py-1 pr-1 text-black font-bold">
                     {" "}
                     {toDate.getDate()}
                   </span>
@@ -202,7 +202,7 @@ onChange={(e)=>handleInputChange(e.target.value)}
             {fromDate && (
               <>
                 <div className="flex items-baseline text-black">
-                  <span className="text-2xl py-1 pr-1 text-black font-bold">
+                  <span className="text-xl py-1 pr-1 text-black font-bold">
                     {" "}
                     {fromDate.getDate()}
                   </span>

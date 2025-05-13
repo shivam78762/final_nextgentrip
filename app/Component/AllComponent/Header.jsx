@@ -774,13 +774,13 @@ const Header = () => {
                       {selectedReturn ? (
                         <>
                           <div className="flex items-baseline text-black">
-                            <span className="text-2xl py-1 pr-1 text-black font-bold">
+                            <span className="text-xl py-1 pr-1 text-black font-bold">
                               {selectedReturn.getDate()}
                             </span>
-                            <span className=" lg:  font-semibold">
+                            <span className="text-xs  font-semibold">
                               {selectedReturn.toLocaleString("default", { month: "short" })}'
                             </span>
-                            <span className=" lg:  font-semibold">
+                            <span className="text-xs  font-semibold">
                               {selectedReturn.getFullYear()}
                             </span>
                           </div>
@@ -903,7 +903,7 @@ const Header = () => {
                     </label>
 
                     <div className="flex items-baseline text-black">
-                      <span className="text-2xl py-1 pr-1 text-black font-bold">
+                      <span className="text-xl py-1 pr-1 text-black font-bold">
                         {" "}
                         {currentDateComponents.day}
                       </span>
@@ -925,7 +925,7 @@ const Header = () => {
                       {t("Return Date")}
                     </label>
                     <div className="flex items-baseline text-black">
-                      <span className="text-2xl py-1 pr-1 text-black font-bold">
+                      <span className="text-xl py-1 pr-1 text-black font-bold">
                         {" "}
                         {futureDateComponents.day}
                       </span>
@@ -950,7 +950,7 @@ const Header = () => {
                       {t("Travelers")}
                     </label>
                     <div className="flex items-center text-black">
-                      <span className="text-2xl py-1 pr-1 text-black font-bold">
+                      <span className="text-xl py-1 pr-1 text-black font-bold">
                         1
                       </span>
                       <span className="  font-semibold flex items-center gap-1">
@@ -1031,7 +1031,7 @@ const Header = () => {
                       {t("Departure Date")}
                     </label>
                     <div className="flex items-baseline text-black">
-                      <span className="text-2xl py-1 pr-1 text-black font-bold">
+                      <span className="text-xl py-1 pr-1 text-black font-bold">
                         {" "}
                         {currentDateComponents.day}
                       </span>
@@ -1053,7 +1053,7 @@ const Header = () => {
                       {t("Travelers")}
                     </label>
                     <div className="flex items-center text-black">
-                      <span className="text-2xl py-1 pr-1 text-black font-bold">
+                      <span className="text-xl py-1 pr-1 text-black font-bold">
                         1
                       </span>
                       <span className="  font-semibold flex items-center gap-1">
@@ -1117,7 +1117,7 @@ const Header = () => {
                       {t("Departure Date")}
                     </label>
                     <div className="flex items-baseline text-black">
-                      <span className="text-2xl py-1 pr-1 text-black font-bold">
+                      <span className="text-xl py-1 pr-1 text-black font-bold">
                         {" "}
                         {currentDateComponents.day}
                       </span>
