@@ -19,10 +19,8 @@ export const getDestinationSearchData = createAsyncThunk(
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
       const data = await response.json();
-      if (!data.Destinations || !Array.isArray(data.Destinations)) {
-        throw new Error('Invalid response format: Destinations array not found');
-      }
-      return data.Destinations; // Return only the Destinations array
+   
+      return data; // Return only the Destinations array
     } catch (error) {
       return rejectWithValue(error.message);
     }

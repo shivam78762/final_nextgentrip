@@ -60,11 +60,23 @@ const comp = ({ slug }) => {
   const r_localFormattedDate = params.get("returndate");
   const date = new Date(selectedMinDate);
   const currencylist = useSelector((state) => state.currencySlice);
-  const defaultcurrency = JSON.parse(localStorage.getItem("usercurrency")) || {
-    symble: "₹",
-    code: "INR",
-    country: "India",
-  };
+let defaultcurrency = {
+  symble: "₹",
+  code: "INR",
+  country: "India",
+};
+
+if (typeof window !== "undefined") {
+  const stored = localStorage.getItem("usercurrency");
+  if (stored) {
+    try {
+      defaultcurrency = JSON.parse(stored);
+    } catch (e) {
+      console.error("Failed to parse usercurrency:", e);
+    }
+  }
+}
+
   const cuntryprice = currencylist?.info?.rates?.[`${defaultcurrency.code}`];
 
   const offset = 6 * 60 * 55 * 1000;

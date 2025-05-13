@@ -18,18 +18,15 @@ export const getInsuranceSearch = createAsyncThunk(
       };
 
 
-function convertToYMD(dateStr) {
-  const [day, month, year] = dateStr.split('/');
-  return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
-}
+
       const res = await axios.post(`${apilink}/insurance/search`, 
         {
           EndUserIp: userIp,
           PlanCategory: requestData.plancategory,
           PlanCoverage: requestData.plancoverage,
           PlanType: requestData.plantype,
-  TravelStartDate: convertToYMD(requestData.travelstartdate),
-  TravelEndDate: convertToYMD(requestData.travelenddate),
+  TravelStartDate: requestData.travelstartdate,
+  TravelEndDate: requestData.travelenddate,
           NoOfPax: requestData.noOfPax || 1, 
           PaxAge: requestData.paxAge || [30], 
         }

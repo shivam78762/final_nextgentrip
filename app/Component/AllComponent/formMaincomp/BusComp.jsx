@@ -164,7 +164,7 @@ const BusComp = () => {
 
 
                   <div className="flex flex-col">
-                    <span className="text-[22px] md:text-2xl text-black font-bold">
+                    <span className="text-[12px]  text-black font-bold">
                       {fromCity.CityName}
                     </span>
                   </div>
@@ -189,7 +189,7 @@ const BusComp = () => {
 
 
                   <div className="flex flex-col">
-                    <span className="text-[22px] md:text-2xl text-black font-bold">
+                    <span className="text-[12px]  text-black font-bold">
                       {toCity.CityName}
                     </span>
                   </div>

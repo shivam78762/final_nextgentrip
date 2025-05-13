@@ -215,7 +215,7 @@ useEffect(() => {
               >
                 <IoLocationSharp className="text-xl" />
                 <div className="flex flex-col">
-                  <span className="text-[22px] md:text-2xl text-black font-bold">{pickup.CityName}</span>
+                  <span className="text-[12px]  text-black font-bold">{pickup.CityName}</span>
                   <span className="text-sm text-gray-500">{pickup.PickUpPointCode}</span>
                 </div>
               </div>
@@ -232,7 +232,7 @@ useEffect(() => {
               >
                 <IoLocationSharp className="text-xl" />
                 <div className="flex flex-col">
-                  <span className="text-[22px] md:text-2xl text-black font-bold">{dropoff.CityName}</span>
+                  <span className="text-[12px]  text-black font-bold">{dropoff.CityName}</span>
                   <span className="text-sm text-gray-500">{dropoff.DropOffPointCode}</span>
                 </div>
               </div>
@@ -247,10 +247,10 @@ useEffect(() => {
                 onClick={() => setSelected("date")}
                 className="flex items-center cursor-pointer gap-2 px-3 py-1 border-2 text-black border-slate-200 rounded-md"
               >
-                <FaCalendarAlt />
+                <FaCalendarAlt className="text-12px" />
                 <div className="text-slate-400">
                   <div className="flex items-baseline text-black">
-                    <span className="text-2xl py-1 pr-1 text-black font-bold">{transferDate.getDate()}</span>
+                    <span className="text-xl py-1 pr-1 text-black font-bold">{transferDate.getDate()}</span>
                     <span className="text-sm font-semibold">
                       {transferDate.toLocaleString("en-US", { month: "short" })}'
                     </span>
@@ -351,11 +351,14 @@ useEffect(() => {
 
 const SearchComponents = ({ type, handelcity, searchType }) => {
   const [searchParam, setSearchParam] = useState("");
-  const { destinations, loading } = useSelector((state) => state.destinationSearch);
 
-  console.log("Destinations:", destinations);
 
-  const filteredDestinations = destinations.filter((item) =>
+
+  const { destinations, loading } = useSelector((state) => state.destinations);
+
+  console.log("Destinations:", destinations.data);
+
+  const filteredDestinations = destinations?.data?.filter((item) =>
     item.CityName.toLowerCase().includes(searchParam.toLowerCase())
   );
 
@@ -373,6 +376,7 @@ const SearchComponents = ({ type, handelcity, searchType }) => {
         placeholder={`Search ${type === "pickup" ? "pickup" : "dropoff"} ${searchType === "1" ? "city" : "hotel"}...`}
         onChange={(e) => setSearchParam(e.target.value)}
       />
+       {console.log("Filtered Destinations:", filteredDestinations)}
       <div className="max-h-60 overflow-y-scroll custom-scroll">
         {loading ? (
           [...Array(5)].map((_, i) => (
