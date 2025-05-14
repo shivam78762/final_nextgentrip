@@ -7,7 +7,7 @@ export const getInsuranceSearch=createAsyncThunk("/insurance",async({PlanCategor
   
 
 
-const res=await axios.post(`${apilink}/insurance`,({EndUserIp:"0.0.0.0",PlanCategory,PlanCoverage,PlanType,TravelStartDate,TravelEndDate,NoOfPax:1,PaxAge:[37]}))
+const res=await axios.post(`${apilink}/insurance`,({EndUserIp:"148.135.137.54",PlanCategory,PlanCoverage,PlanType,TravelStartDate,TravelEndDate,NoOfPax:1,PaxAge:[37]}))
 
 return res.data;
 })

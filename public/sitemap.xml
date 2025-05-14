@@ -1,51 +1,239 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
- <url><loc>https://nextgentrip.com/</loc></url>
- <url><loc>https://nextgentrip.com/blog/</loc></url>
- <url><loc>https://nextgentrip.com/ATI/loyalty-program/</loc></url>
- <url><loc>https://nextgentrip.com/condition/privacy-policy/</loc></url>
- <url><loc>https://nextgentrip.com/condition/terms-condition/</loc></url>
- <url><loc>https://nextgentrip.com/flight/</loc></url>
- <url><loc>https://nextgentrip.com/hotels/</loc></url>
- <url><loc>https://nextgentrip.com/holidayspackage/</loc></url>
- <url><loc>https://nextgentrip.com/activities/</loc></url>
- <url><loc>https://nextgentrip.com/buses/</loc></url>
- <url><loc>https://nextgentrip.com/train/</loc></url>
- <url><loc>https://nextgentrip.com/cabs/</loc></url>
- <url><loc>https://nextgentrip.com/cruise/</loc></url>
- <url><loc>https://nextgentrip.com/charter/</loc></url>
- <url><loc>https://nextgentrip.com/Insurance/</loc></url>
- <url><loc>https://nextgentrip.com/web-check/</loc></url>
- <url><loc>https://nextgentrip.com/TrainComponent/pnrcheck/</loc></url>
- <url><loc>https://nextgentrip.com/ATI/atimate/</loc></url>
- <url><loc>https://nextgentrip.com/ATI/atidesk/</loc></url>
- <url><loc>https://nextgentrip.com/ATI/atipro/</loc></url>
- <url><loc>https://nextgentrip.com/user/login/</loc></url>
- <url><loc>https://nextgentrip.com/property-listing/</loc></url>
- <url><loc>https://nextgentrip.com/holidayspackage/package/blissful-thailand/</loc></url>
- <url><loc>https://nextgentrip.com/holidayspackage/package/honeymoon-in-shimla/</loc></url>
- <url><loc>https://nextgentrip.com/holidayspackage/package/pattaya-beach-thailand/</loc></url>
- <url><loc>https://nextgentrip.com/holidayspackage/package/dubai/</loc></url>
- <url><loc>https://nextgentrip.com/FamousPlaces/InnerLakshadweep/</loc></url>
- <url><loc>https://nextgentrip.com/FamousPlaces/Bali/</loc></url>
- <url><loc>https://nextgentrip.com/FamousPlaces/Andaman/</loc></url>
- <url><loc>https://nextgentrip.com/FamousPlaces/Kashmir/</loc></url>
- <url><loc>https://nextgentrip.com/FamousPlaces/Jaipur/</loc></url>
- <url><loc>https://nextgentrip.com/FamousPlaces/Dubai/</loc></url>
- <url><loc>https://nextgentrip.com/FamousPlaces/Bengaluru/</loc></url>
- <url><loc>https://nextgentrip.com/FamousPlaces/Singapore/</loc></url>
- <url><loc>https://nextgentrip.com/FamousPlaces/Kerala/</loc></url>
- <url><loc>https://nextgentrip.com/FamousPlaces/Leh/</loc></url>
- <url><loc>https://nextgentrip.com/blogView/kerala-tour-packages/</loc></url>
- <url><loc>https://nextgentrip.com/blogView/bali-indonesia-tour-package/</loc></url>
- <url><loc>https://nextgentrip.com/blogView/marina-bay-sands/</loc></url>
- <url><loc>https://nextgentrip.com/blogView/dubai-mall-otel/</loc></url>
- <url><loc>https://nextgentrip.com/blogView/goa-holiday-packages/</loc></url>
- <url><loc>https://nextgentrip.com/blogView/jaipur-tour-packages/</loc></url>
- <url><loc>https://nextgentrip.com/blogView/thailand-family-packages/</loc></url>
- <url><loc>https://nextgentrip.com/blogView/rajasthan-tour-packages-for-couple/</loc></url>
- <url><loc>https://nextgentrip.com/listofhotels/</loc></url>
- <url><loc>https://nextgentrip.com/MyBooking/mybooking/</loc></url>
- <url><loc>https://nextgentrip.com/about/</loc></url>
- <url><loc>https://nextgentrip.com/contact/</loc></url>
+This XML file does not appear to have any style information associated with it. The document tree is shown below.
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+<url>
+<loc>https://nextgentrip.com/</loc>
+<lastmod>2025-05-14T04:08:49+00:00</lastmod>
+<priority>1.00</priority>
+</url>
+<url>
+<loc>https://nextgentrip.com/MyBooking/mybooking/</loc>
+<lastmod>2025-05-14T04:08:49+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://nextgentrip.com/maintenance_mode/</loc>
+<lastmod>2025-05-14T04:08:49+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://nextgentrip.com/condition/terms-condition/</loc>
+<lastmod>2025-05-14T04:08:49+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://nextgentrip.com/condition/privacy-policy/</loc>
+<lastmod>2025-05-14T04:08:49+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://nextgentrip.com/property-listing/</loc>
+<lastmod>2025-05-14T04:08:49+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://nextgentrip.com/user/login/</loc>
+<lastmod>2025-05-14T04:08:49+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://nextgentrip.com/flight/</loc>
+<lastmod>2025-05-14T04:08:49+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://nextgentrip.com/train/</loc>
+<lastmod>2025-05-14T04:08:49+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://nextgentrip.com/holidayspackage/</loc>
+<lastmod>2025-05-14T04:08:49+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://nextgentrip.com/cruise/</loc>
+<lastmod>2025-05-14T04:08:49+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://nextgentrip.com/charter/</loc>
+<lastmod>2025-05-14T04:08:49+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://nextgentrip.com/Insurance/</loc>
+<lastmod>2025-05-14T04:08:49+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://nextgentrip.com/last-update/</loc>
+<lastmod>2025-05-14T04:08:49+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://nextgentrip.com/web-check/</loc>
+<lastmod>2025-05-14T04:08:49+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://nextgentrip.com/FamousPlaces/InnerLakshadweep/</loc>
+<lastmod>2025-05-14T04:08:49+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://nextgentrip.com/FamousPlaces/Bali/</loc>
+<lastmod>2025-05-14T04:08:49+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://nextgentrip.com/FamousPlaces/Andaman/</loc>
+<lastmod>2025-05-14T04:08:49+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://nextgentrip.com/FamousPlaces/Kashmir/</loc>
+<lastmod>2025-05-14T04:08:49+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://nextgentrip.com/FamousPlaces/Dubai/</loc>
+<lastmod>2025-05-14T04:08:49+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://nextgentrip.com/FamousPlaces/Jaipur/</loc>
+<lastmod>2025-05-14T04:08:49+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://nextgentrip.com/FamousPlaces/Bengaluru/</loc>
+<lastmod>2025-05-14T04:08:49+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://nextgentrip.com/blog/</loc>
+<lastmod>2025-05-14T04:08:49+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://nextgentrip.com/listofhotels/</loc>
+<lastmod>2025-05-14T04:08:49+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://nextgentrip.com/TrainComponent/pnrcheck/</loc>
+<lastmod>2025-05-14T04:08:49+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://nextgentrip.com/activities/</loc>
+<lastmod>2025-05-14T04:08:49+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://nextgentrip.com/about/</loc>
+<lastmod>2025-05-14T04:08:49+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://nextgentrip.com/contact/</loc>
+<lastmod>2025-05-14T04:08:49+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://nextgentrip.com/ATI/atimate/</loc>
+<lastmod>2025-05-14T04:08:49+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://nextgentrip.com/ATI/atidesk/</loc>
+<lastmod>2025-05-14T04:08:49+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://nextgentrip.com/ATI/atipro/</loc>
+<lastmod>2025-05-14T04:08:49+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://nextgentrip.com/ATI/atibharat/</loc>
+<lastmod>2025-05-14T04:08:49+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://nextgentrip.com/ATI/loyalty-program/</loc>
+<lastmod>2025-05-14T04:08:49+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://nextgentrip.com/flightto=BOM&from=DEL&date=2025-05-31T00:00:00&prfdate=2025-05-31T00:00:00&JourneyType=1&adultcount=1&childCount=0&infantCount=0&selectedClass=1&returndate=2025-05-15T00:00:00&PreferredAirlines=null/</loc>
+<lastmod>2025-05-14T04:08:49+00:00</lastmod>
+<priority>0.64</priority>
+</url>
+<url>
+<loc>https://nextgentrip.com/flightto=BOM&from=DEL&date=2025-05-15T00:00:00&prfdate=2025-05-15T00:00:00&JourneyType=1&adultcount=1&childCount=0&infantCount=0&selectedClass=1&returndate=2025-05-15T00:00:00&PreferredAirlines=null/</loc>
+<lastmod>2025-05-14T04:08:49+00:00</lastmod>
+<priority>0.64</priority>
+</url>
+<url>
+<loc>https://nextgentrip.com/flightto=BOM&from=DEL&date=2025-05-22T00:00:00&prfdate=2025-05-22T00:00:00&JourneyType=1&adultcount=1&childCount=0&infantCount=0&selectedClass=1&returndate=2025-05-15T00:00:00&PreferredAirlines=null/</loc>
+<lastmod>2025-05-14T04:08:49+00:00</lastmod>
+<priority>0.64</priority>
+</url>
+<url>
+<loc>https://nextgentrip.com/flightto=BOM&from=DEL&date=2025-05-22T00:00:00&prfdate=2025-05-22T00:00:00&JourneyType=1&adultcount=1&childCount=0&infantCount=0&selectedClass=1&returndate=2025-05-30T00:00:00&PreferredAirlines=null/</loc>
+<lastmod>2025-05-14T04:08:49+00:00</lastmod>
+<priority>0.64</priority>
+</url>
+<url>
+<loc>https://nextgentrip.com/flightto=BOM&from=DEL&date=2025-05-15T00:00:00&prfdate=2025-05-15T00:00:00&JourneyType=1&adultcount=1&childCount=0&infantCount=0&selectedClass=1&returndate=2025-05-31T00:00:00&PreferredAirlines=null/</loc>
+<lastmod>2025-05-14T04:08:49+00:00</lastmod>
+<priority>0.64</priority>
+</url>
+<url>
+<loc>https://nextgentrip.com/flightto=BOM&from=DEL&date=2025-05-15T00:00:00&prfdate=2025-05-15T00:00:00&JourneyType=1&adultcount=1&childCount=0&infantCount=0&selectedClass=1&returndate=2025-05-23T00:00:00&PreferredAirlines=null/</loc>
+<lastmod>2025-05-14T04:08:49+00:00</lastmod>
+<priority>0.64</priority>
+</url>
+<url>
+<loc>https://nextgentrip.com/kashmir-tours-packages/</loc>
+<lastmod>2025-05-14T04:08:49+00:00</lastmod>
+<priority>0.64</priority>
+</url>
+<url>
+<loc>https://nextgentrip.com/himachal-pradesh-tours-packages/</loc>
+<lastmod>2025-05-14T04:08:49+00:00</lastmod>
+<priority>0.64</priority>
+</url>
+<url>
+<loc>https://nextgentrip.com/australia-tours-packages/</loc>
+<lastmod>2025-05-14T04:08:49+00:00</lastmod>
+<priority>0.64</priority>
+</url>
+<url>
+<loc>https://nextgentrip.com/azerbaijan-tours-packages/</loc>
+<lastmod>2025-05-14T04:08:49+00:00</lastmod>
+<priority>0.64</priority>
+</url>
+<url>
+<loc>https://nextgentrip.com/kerala-tours-packages/</loc>
+<lastmod>2025-05-14T04:08:49+00:00</lastmod>
+<priority>0.64</priority>
+</url>
+<url>
+<loc>https://nextgentrip.com/europe-tours-packages/</loc>
+<lastmod>2025-05-14T04:08:49+00:00</lastmod>
+<priority>0.64</priority>
+</url>
+<url>
+<loc>https://nextgentrip.com/ActivitiesComp/holidays/</loc>
+<lastmod>2025-05-14T04:08:49+00:00</lastmod>
+<priority>0.64</priority>
+</url>
+<url>
+<loc>https://nextgentrip.com/ActivitiesComp/booknowtheseplaces/</loc>
+<lastmod>2025-05-14T04:08:49+00:00</lastmod>
+<priority>0.51</priority>
+</url>
 </urlset>

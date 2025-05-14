@@ -164,7 +164,7 @@ const BusComp = () => {
 
 
                   <div className="flex flex-col">
-                    <span className="text-[22px] md:text-2xl text-black font-bold">
+                    <span className="text-[12px]  text-black font-bold">
                       {fromCity.CityName}
                     </span>
                   </div>
@@ -189,7 +189,7 @@ const BusComp = () => {
 
 
                   <div className="flex flex-col">
-                    <span className="text-[22px] md:text-2xl text-black font-bold">
+                    <span className="text-[12px]  text-black font-bold">
                       {toCity.CityName}
                     </span>
                   </div>
@@ -214,7 +214,7 @@ const BusComp = () => {
                   <FaCalendarAlt className="" />
                   <div className="text-slate-400">
                     <div className="flex items-baseline text-black">
-                      <span className="text-2xl py-1 pr-1 text-black font-bold">
+                      <span className="text-xl py-1 pr-1 text-black font-bold">
                         {" "}
                         {pickupdate.getDate() - 1}
                       </span>
@@ -271,7 +271,7 @@ const BusComp = () => {
               <div className="flex justify-center items-center">
                 <button
                   onClick={handelSearch}
-                  className="bg-[#0A5EB0] w-full md:w-fit  py-2 px-3  font-semibold  text-lg rounded-md  text-white "
+                  className="bg-[#0A5EB0] w-full md:w-fit  py-2 px-3  text-nowrap font-semibold  text-lg rounded-md  text-white "
                 >
                   Search Bus
                 </button>

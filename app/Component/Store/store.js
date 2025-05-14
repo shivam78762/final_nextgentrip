@@ -39,7 +39,7 @@ export const store = configureStore({
     calendar:calendarSlice,
     sliderData:SliderSlice,
     cabSearchSlice: cabSearchReducer,
-    destinationSearch: destinationSearchReducer,
+    destinations: destinationSearchReducer,
 
   },
 });

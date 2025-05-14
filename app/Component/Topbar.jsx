@@ -81,13 +81,21 @@ const Topbar = () => {
   };
   const [activeTab, setActiveTab] = useState("signup");
   const [currencyappled, setcurrencyappled] = useState(false);
-  const [defaultcurrency, setdefaultcurrency] = useState(
-    JSON.parse(localStorage.getItem("usercurrency")) || {
-      symble: "₹",
-      code: "INR",
-      country: "India",
+   const [defaultcurrency, setdefaultcurrency] = useState({
+    symble: "₹",
+    code: "INR",
+    country: "India",
+  });
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const storedCurrency = localStorage.getItem("usercurrency");
+      if (storedCurrency) {
+        setdefaultcurrency(JSON.parse(storedCurrency));
+      }
     }
-  );
+  }, []);
+  
   const [countryOpner, setCounrtyOpner] = useState(false);
   const countryLanguages = [
     { name: "English (US)", image: "/images/flags/us.webp", langCode: "en" },

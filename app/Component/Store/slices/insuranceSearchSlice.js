@@ -25,8 +25,8 @@ export const getInsuranceSearch = createAsyncThunk(
           PlanCategory: requestData.plancategory,
           PlanCoverage: requestData.plancoverage,
           PlanType: requestData.plantype,
-          TravelStartDate: requestData.travelstartdate,
-          TravelEndDate: requestData.travelenddate,
+  TravelStartDate: requestData.travelstartdate,
+  TravelEndDate: requestData.travelenddate,
           NoOfPax: requestData.noOfPax || 1, 
           PaxAge: requestData.paxAge || [30], 
         }

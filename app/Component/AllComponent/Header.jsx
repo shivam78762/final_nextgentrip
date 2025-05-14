@@ -620,7 +620,7 @@ const Header = () => {
                     }}
                     className="1stInput relative rounded gap-1 h-[4rem]  flex items-center px-3  border border-slate-400 text-black"
                   >
-                    <IoLocationSharp className="text-xl" />
+                    <IoLocationSharp className="text-[20px]" />
 
                     <button
                       className="absolute rounded-full text-white  bg-gray-400 right-0 -top-[2px] bg"
@@ -630,11 +630,11 @@ const Header = () => {
                       {/* <RxCross2 /> */}
                     </button>
                     <div className="flex flex-col">
-                      <span className="text-[22px] lg:text-2xl  text-black font-bold">
-                        {console.log('fromCity.city', fromCity)}
+                      <span className="text-[18px] lg:text-xl  text-black font-bold">
+                       { console.log('fromCity.city',fromCity)}
                         {(fromCity.city || fromCity.municipality) ?? 'Unknown'}
                       </span>
-                      <p className="text-black text-xs truncate">
+                      <p className="text-black text-[10px] truncate">
                         [{fromCity.name}] {fromCity.iata}
                       </p>
                     </div>
@@ -679,11 +679,11 @@ const Header = () => {
                     </button>
 
                     <div className="flex flex-col">
-                      <span className="text-[22px] lg:text-2xl  text-black font-bold">
-
-                        {(toCity.city || toCity.municipality) ?? 'Unknown'}
+                      <span className="text-[18px] lg:text-xl  text-black font-bold">
+            
+                          {(toCity.city || toCity.municipality) ?? 'Unknown'}
                       </span>
-                      <p className="text-black text-xs truncate">
+                      <p className="text-black text-[10px] truncate">
                         [{toCity.name}] {toCity.iata}
                       </p>
                     </div>
@@ -717,22 +717,21 @@ const Header = () => {
                       {selected && (
                         <>
                           <div className="flex  items-baseline text-black">
-                            <span className="text-2xl py-1 pr-1 text-black font-bold">
+                            <span className="text-md py-1 pr-1 text-black font-bold">
                               {" "}
                               {selected.getDate()}
                             </span>
-                            <span className=" lg:  font-semibold">
+                            <span className=" text-md  font-semibold">
                               {selected.toLocaleString("default", {
                                 month: "short",
                               })}
                               '
                             </span>
-                            <span className=" lg:  font-semibold">
+                            <span className=" text-md  font-semibold">
                               {" "}
                               {selected.getFullYear()}
                             </span>
-                            {/* <FaCalendarWeek className="text-[#d3cfcf] ml-5 text-xl" /> */}
-                            <FaCalendarWeek className="text-[#d3cfcf] ml-2 text-xl" />
+                            {/* <FaCalendarWeek className="text-[#d3cfcf] ml-2 text-xl" /> */}
                           </div>
                           <p className="text-black text-xs pb-2">
                             {selected.toLocaleDateString()}
@@ -775,13 +774,13 @@ const Header = () => {
                       {selectedReturn ? (
                         <>
                           <div className="flex items-baseline text-black">
-                            <span className="text-2xl py-1 pr-1 text-black font-bold">
+                            <span className="text-xl py-1 pr-1 text-black font-bold">
                               {selectedReturn.getDate()}
                             </span>
-                            <span className=" lg:  font-semibold">
+                            <span className="text-xs  font-semibold">
                               {selectedReturn.toLocaleString("default", { month: "short" })}'
                             </span>
-                            <span className=" lg:  font-semibold">
+                            <span className="text-xs  font-semibold">
                               {selectedReturn.getFullYear()}
                             </span>
                           </div>
@@ -837,7 +836,7 @@ const Header = () => {
                 <div className="flex justify-center items-center">
                   <button
                     onClick={handelSearch}
-                    className="bg-[#0A5EB0] w-full md:w-fit  py-2 px-3  font-semibold  text-lg rounded-md  text-white "
+                    className="bg-[#0A5EB0] w-full md:w-fit text-nowrap  py-2 px-3  font-semibold  text-lg rounded-md  text-white "
                   >
                     Search Flights
                   </button>
@@ -858,7 +857,7 @@ const Header = () => {
                     <span className="text-3xl py-1 text-black font-bold">
                       {fromCity.name}
                     </span>
-                    <p className="text-black text-xs truncate">
+                    <p className="text-black text-[10px] truncate">
                       [{fromCity.code}] {fromCity.airport}
                     </p>
                     {isVisible && selectedOption === "from" && (
@@ -883,7 +882,7 @@ const Header = () => {
                     <span className="text-3xl py-1 text-black font-bold">
                       {toCity.name}
                     </span>
-                    <p className="text-black text-xs truncate">
+                    <p className="text-black text-[10px] truncate">
                       [{toCity.code}] {toCity.airport}
                     </p>
                     {isVisible && selectedOption === "to" && (
@@ -904,7 +903,7 @@ const Header = () => {
                     </label>
 
                     <div className="flex items-baseline text-black">
-                      <span className="text-2xl py-1 pr-1 text-black font-bold">
+                      <span className="text-xl py-1 pr-1 text-black font-bold">
                         {" "}
                         {currentDateComponents.day}
                       </span>
@@ -926,7 +925,7 @@ const Header = () => {
                       {t("Return Date")}
                     </label>
                     <div className="flex items-baseline text-black">
-                      <span className="text-2xl py-1 pr-1 text-black font-bold">
+                      <span className="text-xl py-1 pr-1 text-black font-bold">
                         {" "}
                         {futureDateComponents.day}
                       </span>
@@ -951,7 +950,7 @@ const Header = () => {
                       {t("Travelers")}
                     </label>
                     <div className="flex items-center text-black">
-                      <span className="text-2xl py-1 pr-1 text-black font-bold">
+                      <span className="text-xl py-1 pr-1 text-black font-bold">
                         1
                       </span>
                       <span className="  font-semibold flex items-center gap-1">
@@ -989,7 +988,7 @@ const Header = () => {
                     <span className="text-3xl py-1 text-black font-bold">
                       {fromCity.city}
                     </span>
-                    <p className="text-black text-xs truncate">
+                    <p className="text-black text-[10px] truncate">
                       [{fromCity.name}] {fromCity.airport}
                     </p>
                     {isVisible && selectedOption === "from" && (
@@ -1013,7 +1012,7 @@ const Header = () => {
                     <span className="text-3xl py-1 text-black font-bold">
                       {toCity.city}
                     </span>
-                    <p className="text-black text-xs truncate">
+                    <p className="text-black text-[10px] truncate">
                       [{toCity.name}] {toCity.airport}
                     </p>
                     {isVisible && selectedOption === "to" && (
@@ -1032,7 +1031,7 @@ const Header = () => {
                       {t("Departure Date")}
                     </label>
                     <div className="flex items-baseline text-black">
-                      <span className="text-2xl py-1 pr-1 text-black font-bold">
+                      <span className="text-xl py-1 pr-1 text-black font-bold">
                         {" "}
                         {currentDateComponents.day}
                       </span>
@@ -1054,7 +1053,7 @@ const Header = () => {
                       {t("Travelers")}
                     </label>
                     <div className="flex items-center text-black">
-                      <span className="text-2xl py-1 pr-1 text-black font-bold">
+                      <span className="text-xl py-1 pr-1 text-black font-bold">
                         1
                       </span>
                       <span className="  font-semibold flex items-center gap-1">
@@ -1074,7 +1073,7 @@ const Header = () => {
                     <span className="text-3xl py-1 text-black font-bold">
                       {fromCity.name}
                     </span>
-                    <p className="text-black text-xs truncate">
+                    <p className="text-black text-[10px] truncate">
                       [{fromCity.code}] {fromCity.airport}
                     </p>
                     {isVisible && selectedOption === "from" && (
@@ -1099,7 +1098,7 @@ const Header = () => {
                     <span className="text-3xl py-1 text-black font-bold">
                       {toCity.name}
                     </span>
-                    <p className="text-black text-xs truncate">
+                    <p className="text-black text-[10px] truncate">
                       [{toCity.code}] {toCity.airport}
                     </p>
                     {isVisible && selectedOption === "to" && (
@@ -1118,7 +1117,7 @@ const Header = () => {
                       {t("Departure Date")}
                     </label>
                     <div className="flex items-baseline text-black">
-                      <span className="text-2xl py-1 pr-1 text-black font-bold">
+                      <span className="text-xl py-1 pr-1 text-black font-bold">
                         {" "}
                         {currentDateComponents.day}
                       </span>
