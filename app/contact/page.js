@@ -18,12 +18,12 @@ import Link from "next/link";
 
 export default function Page() {
   return (
-    <>
+    <div div className="container mx-auto">
       <section className="text-white py-20 h-80 w-full bg-image-contact hidden md:flex" >
        
        
       </section>
-      <div className="mx-auto pt-10 px-5  lg:px-24 ">
+      <div className=" pt-10 px-5  lg:px-24 ">
           <p className="text-lg text-justify ">
             We are passionate about delivering exceptional value and creating
             memorable experiences.
@@ -297,6 +297,6 @@ export default function Page() {
           look forward to helping you plan your next adventure!
         </p>
       </div>
-    </>
+    </div>
   );
 }

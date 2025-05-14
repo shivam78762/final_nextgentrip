@@ -259,7 +259,7 @@ const page = () => {
 
   return (
     <>
-      <div className="px-20 py-5">
+      <div className="container mx-auto px-20 py-5">
         <ul
           className="flex space-x-2 text-sm text-gray-600 mt-5 mb-5"
           id="detpg_bread_crumbs"

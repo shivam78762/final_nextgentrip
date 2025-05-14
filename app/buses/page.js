@@ -39,7 +39,7 @@ const Page = () => {
     <>
       <BusComp />
       <MobileHeader />
-      <CustomSlider />
+      {/* <CustomSlider /> */}
 
       <div className="container mx-auto  flex flex-col mt-32 ">
         <div className="block md:flex items-center justify-between gap-4 px-5 lg:px-20">

@@ -139,7 +139,7 @@ const HotelSlugComp = ({ slugs }) => {
         </div>
       )}
 
-      <div className="lg:px-20 py-5">
+      <div className="container mx-auto lg:px-20 py-5">
         {hotelinfo && hotelinfo.isLoading ? (
           <div className="animate-pulse">
             {/* Breadcrumb Skeleton */}

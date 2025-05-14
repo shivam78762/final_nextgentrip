@@ -62,10 +62,6 @@ const BusCompo = ({ slug }) => {
   }, [state])
 
 
-  const handelGetSeat = (ResultIndex) => {
-    dispatch(getBusSeatLayout({ TraceId: state.info.BusSearchResult.TraceId, ResultIndex }))
-  }
-
 
 
 
@@ -83,7 +79,8 @@ const BusCompo = ({ slug }) => {
 
 
   return (
-    <>  <BusComp />
+    <>
+      <BusComp />
       <div className="container mx-auto block md:flex px-0 lg:px-28 items-start gap-3 my-5">
         <div className="hidden md:block w-1/4 sticky top-24">
           <BusFilter />

@@ -631,7 +631,7 @@ const Header = () => {
                     </button>
                     <div className="flex flex-col">
                       <span className="text-[22px] lg:text-2xl  text-black font-bold">
-                       { console.log('fromCity.city',fromCity)}
+                        {console.log('fromCity.city', fromCity)}
                         {(fromCity.city || fromCity.municipality) ?? 'Unknown'}
                       </span>
                       <p className="text-black text-xs truncate">
@@ -680,8 +680,8 @@ const Header = () => {
 
                     <div className="flex flex-col">
                       <span className="text-[22px] lg:text-2xl  text-black font-bold">
-            
-                          {(toCity.city || toCity.municipality) ?? 'Unknown'}
+
+                        {(toCity.city || toCity.municipality) ?? 'Unknown'}
                       </span>
                       <p className="text-black text-xs truncate">
                         [{toCity.name}] {toCity.iata}
