@@ -1003,7 +1003,7 @@ if (typeof window !== "undefined") {
                                         className="w-[50px]"
                                         src={
                                           info.Airline.AirlineName
-                                            ? `/images/${info.Airline.AirlineCode}.png`
+                                            ? `/images/${info.Airline.AirlineCode}.gif`
                                             : "/images/planeicon.svg"
                                         }
                                         alt={`${info.Airline.AirlineName || "Default"
@@ -1695,7 +1695,7 @@ if (typeof window !== "undefined") {
                                       src={
                                         flight.Segments[0][0].Airline
                                           .AirlineName
-                                          ? `/images/${flight.Segments[0][0].Airline.AirlineCode}.png`
+                                          ? `/images/${flight.Segments[0][0].Airline.AirlineCode}.gif`
                                           : "/images/logo-flight.webp"
                                       }
                                       alt={`${flight.Segments[0][0].Airline

@@ -228,7 +228,7 @@ const page = () => {
         </Swiper>
       </div>
 
-      <div className="my-10 lg:my-16 px-5 lg:px-20">
+      {/* <div className="my-10 lg:my-16 px-5 lg:px-20">
         <div className="container mx-auto px-4">
           <h2 className="text-2xl md:text-4xl font-bold mb-4">
             <span className="text-blue-500">Explore</span> The Hidden Gems
@@ -287,7 +287,9 @@ const page = () => {
             ))}
           </Swiper>
         </div>
-      </div>
+      </div> */}
+
+      
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 px-5 lg:px-20 pb-10">
         
         <PackageCompo />
